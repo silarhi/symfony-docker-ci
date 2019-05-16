@@ -20,11 +20,15 @@ jobs:
 
             -  run:
                 name: "What was my custom environment variable?"
-                command: echo ${TAG}
+                command: echo $TAG
+
+            -  run:
+                name: "What was my custom environment variable 3?"
+                command: echo $CIRCLE_BUILD_NUM
 
             -  run:
                 name: "What was my custom environment variable 2?"
-                command: echo ${IMAGE_NAME}
+                command: echo $IMAGE_NAME
 
             - run:
                 name: "Build and push Docker image"
