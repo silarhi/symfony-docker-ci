@@ -2,7 +2,7 @@ version: 2
 jobs:
     build:
         docker:
-            - image: docker:dind
+            - image: circleci/node:10.0-browsers
         steps:
             - checkout
             - run:
