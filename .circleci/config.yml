@@ -15,7 +15,7 @@ jobs:
                 name: "Build and push Docker image"
                 command: |
                     if [ "${CIRCLE_BRANCH}" == "master" ]; then
-                        docker build -t silarhi/${IMAGE_NAME}:${TAG}.$CIRCLE_BUILD_NUM -t silarhi/${IMAGE_NAME}:latest.
+                        docker build -t silarhi/${IMAGE_NAME}:${TAG}.$CIRCLE_BUILD_NUM -t silarhi/${IMAGE_NAME}:latest .
                     else
                         docker build -t silarhi/${IMAGE_NAME}:${TAG}.$CIRCLE_BUILD_NUM .
                     fi
