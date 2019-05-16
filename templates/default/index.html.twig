@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My Super App{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1>Hello {{ name|default('World') }}!</h1>
+        <h2>Git commit : <span class="badge badge-primary">{{ git_commit|default('Unknown') }}</span></h2>
+        <div id="inner">This will be modified by Javascript</div>
+    </div>
+{% endblock %}
