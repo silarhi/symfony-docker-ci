@@ -15,7 +15,6 @@ jobs:
             - run:
                 name: Build and push Docker image
                 command: |
-                    . helloworld/bin/activate
                     docker build -t silarhi/$IMAGE_NAME:$TAG .
                     echo $DOCKER_PWD | docker login -u $DOCKER_LOGIN --password-stdin
                     docker push silarhi/$IMAGE_NAME:$TAG
