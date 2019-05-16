@@ -4,7 +4,7 @@ jobs:
         docker:
             - image: docker:dind
               environment:
-                  - "TAG=0.1.${CIRCLE_BUILD_NUM}"
+                  - "TAG=0.1.$CIRCLE_BUILD_NUM"
                   - "IMAGE_NAME=app-ci"
         steps:
             - checkout
