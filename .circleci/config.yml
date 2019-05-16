@@ -5,7 +5,7 @@ jobs:
             - image: docker:dind
         steps:
             - checkout
-            -   run:
+            - run:
                 name: Setup VirtualEnv
                 command: |
                     echo 'export TAG=0.1.${CIRCLE_BUILD_NUM}' >> $BASH_ENV
