@@ -1,3 +1,4 @@
+# Dockerfile
 FROM guystlr/php-apache:7.2-symfony
 
 EXPOSE 80
@@ -17,8 +18,6 @@ RUN apt-get update -q && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 COPY . /app
-COPY docker/entrypoint.sh /usr/local/bin/entrypoint.sh
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 
 RUN mkdir -p var && \
     APP_ENV=prod composer install --optimize-autoloader --no-interaction --no-ansi --no-dev && \
@@ -29,3 +28,7 @@ RUN mkdir -p var && \
     yarn run build && \
     # Reduce container size
     rm -rf .git docker /root/.composer /root/.npm /tmp/*
+
+COPY docker/entrypoint.sh /usr/local/bin/docker-php-entrypoint
+ENTRYPOINT ["docker-php-entrypoint"]
+CMD ["apache2-foreground"]

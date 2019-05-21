@@ -6,14 +6,15 @@
     {{ encore_entry_link_tags('app') }}
 {% endblock %}
 
-{% block javascripts %}
-    {{ encore_entry_script_tags('app') }}
-{% endblock %}
-
 {% block body %}
     <div class="container mt-4">
         <h1>Hello {{ name|default('World') }}!</h1>
-        <h2>Git commit : <span class="badge badge-primary">{{ git_commit|default('Unknown') }}</span></h2>
+        <h2>App version: <span class="badge badge-primary">{{ app_version|default('Unknown') }}</span></h2>
+        <p class="lead">This app is a POC of CI & CD with Symfony and Docker.</p>
         <div id="inner">This will be modified by Javascript</div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
 {% endblock %}

@@ -3,4 +3,4 @@ twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
     globals:
-        git_commit: '%env(GIT_COMMIT)%'
+        app_version: '%env(APP_VERSION)%'
