@@ -6,6 +6,8 @@ jobs:
               environment:
                   TAG: 0.1
                   IMAGE_NAME: app-ci
+                  PRODUCTION_SERVER_IP: $PRODUCTION_SERVER_IP
+                  PRODUCTION_SERVER_PATH: $PRODUCTION_SERVER_PATH
         steps:
             - checkout
             - setup_remote_docker:
@@ -21,3 +23,9 @@ jobs:
                     fi
                     echo ${DOCKER_PWD} | docker login -u ${DOCKER_LOGIN} --password-stdin
                     docker push silarhi/${IMAGE_NAME}
+            - run:
+                name: "Deploy image"
+                command: |
+                    if [ "${CIRCLE_BRANCH}" == "master" ]; then
+                        ssh root@${PRODUCTION_SERVER_IP} "/bin/bash ${PRODUCTION_SERVER_PATH}/deploy.sh silarhi/${IMAGE_NAME}:latest"
+                    fi
