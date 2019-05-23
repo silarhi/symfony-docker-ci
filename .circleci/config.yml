@@ -22,10 +22,10 @@ jobs:
                         docker tag $IMAGE_NAME:${TAG} $IMAGE_NAME:latest
                     fi
                     echo ${DOCKER_PWD} | docker login -u ${DOCKER_LOGIN} --password-stdin
-                    docker push silarhi/${IMAGE_NAME}
+                    docker push ${IMAGE_NAME}
             - run:
                 name: "Deploy image"
                 command: |
                     if [ "${CIRCLE_BRANCH}" == "master" ]; then
-                        ssh root@${PRODUCTION_SERVER_IP} "/bin/bash ${PRODUCTION_SERVER_PATH}/deploy.sh silarhi/${IMAGE_NAME}:latest"
+                        ssh root@${PRODUCTION_SERVER_IP} "/bin/bash ${PRODUCTION_SERVER_PATH}/deploy.sh ${IMAGE_NAME}:latest"
                     fi
