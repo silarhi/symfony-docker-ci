@@ -17,7 +17,7 @@ jobs:
                     docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .
 
                     if [ "${CIRCLE_BRANCH}" == "master" ]; then
-                        docker tag $IMAGE_NAME:${IMAGE_TAG} $IMAGE_NAME:latest
+                        docker tag ${IMAGE_NAME}:${IMAGE_TAG} ${IMAGE_NAME}:latest
                     fi
                     echo ${DOCKER_PWD} | docker login -u ${DOCKER_LOGIN} --password-stdin
                     docker push ${IMAGE_NAME}
@@ -29,11 +29,11 @@ jobs:
                 fingerprints:
                     - "51:2c:bf:10:3d:c0:16:08:6f:23:ae:79:8e:cb:82:9b"
             - run:
-                name: "Deploy image"
+                name: "Deploy image to production"
                 command: |
-                    if [ "${CIRCLE_BRANCH}" == "master" ]; then
-                        ssh root@${PRODUCTION_SERVER_IP} "/bin/bash ${PRODUCTION_SERVER_PATH}/deploy.sh ${IMAGE_NAME}:latest"
-                    fi
+                    ssh root@${PRODUCTION_SERVER_IP} "/bin/bash ${PRODUCTION_SERVER_PATH}/deploy.sh ${IMAGE_NAME}:latest"
+                environment:
+                    IMAGE_NAME: silarhi/app-ci
 
 workflows:
     version: 2
