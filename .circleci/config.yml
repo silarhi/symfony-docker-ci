@@ -5,8 +5,6 @@ jobs:
             - image: circleci/buildpack-deps:stretch
               environment:
                   IMAGE_NAME: silarhi/app-ci
-                  PRODUCTION_SERVER_IP: $PRODUCTION_SERVER_IP
-                  PRODUCTION_SERVER_PATH: $PRODUCTION_SERVER_PATH
         steps:
             - checkout
             - setup_remote_docker:
@@ -23,9 +21,28 @@ jobs:
                     fi
                     echo ${DOCKER_PWD} | docker login -u ${DOCKER_LOGIN} --password-stdin
                     docker push ${IMAGE_NAME}
+    deploy:
+        machine:
+            enabled: true
+        steps:
+            - add_ssh_keys:
+                fingerprints:
+                    - "69:66:db:38:c1:67:e9:f4:68:f8:05:f1:ef:d4:c2:97"
             - run:
                 name: "Deploy image"
                 command: |
                     if [ "${CIRCLE_BRANCH}" == "master" ]; then
                         ssh root@${PRODUCTION_SERVER_IP} "/bin/bash ${PRODUCTION_SERVER_PATH}/deploy.sh ${IMAGE_NAME}:latest"
                     fi
+
+workflows:
+    version: 2
+    build-and-deploy:
+        jobs:
+            - build
+            - deploy:
+                  requires:
+                      - build
+                  filters:
+                      branches:
+                          only: master
