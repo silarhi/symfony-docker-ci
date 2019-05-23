@@ -27,7 +27,7 @@ jobs:
         steps:
             - add_ssh_keys:
                 fingerprints:
-                    - "69:66:db:38:c1:67:e9:f4:68:f8:05:f1:ef:d4:c2:97"
+                    - "51:2c:bf:10:3d:c0:16:08:6f:23:ae:79:8e:cb:82:9b"
             - run:
                 name: "Deploy image"
                 command: |
