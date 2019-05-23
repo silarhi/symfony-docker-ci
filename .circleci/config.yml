@@ -2,7 +2,7 @@ version: 2
 jobs:
     build:
         docker:
-            - image: docker:dind
+            - image: circleci/buildpack-deps:stretch
               environment:
                   IMAGE_NAME: silarhi/app-ci
                   PRODUCTION_SERVER_IP: $PRODUCTION_SERVER_IP
