@@ -31,7 +31,7 @@ jobs:
             - run:
                 name: "Deploy image to production"
                 command: |
-                    ssh root@${PRODUCTION_SERVER_IP} "/bin/bash ${PRODUCTION_SERVER_PATH}/deploy.sh ${IMAGE_NAME}:latest"
+                    ssh root@${PRODUCTION_SERVER_IP} "/bin/bash ${PRODUCTION_SERVER_PATH}/deploy.sh ${IMAGE_NAME}:latest ${CIRCLE_SHA1}"
                 environment:
                     IMAGE_NAME: silarhi/app-ci
 
