@@ -6,6 +6,11 @@ use Symfony\Component\HttpFoundation\Request;
 
 require dirname(__DIR__).'/config/bootstrap.php';
 
+if($_SERVER['APP_MAINTENANCE'] ?? $_ENV['APP_MAINTENANCE'] ?? false) {
+    echo "<html><body><h1>Upgrade in progress. Please retry in a few seconds.</h1></body></html>";
+    die;
+}
+
 if ($_SERVER['APP_DEBUG']) {
     umask(0000);
 
