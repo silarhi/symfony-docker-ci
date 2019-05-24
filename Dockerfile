@@ -4,6 +4,9 @@ FROM guystlr/php-apache:7.2-symfony
 EXPOSE 80
 WORKDIR /app
 
+ARG APP_VERSION=dev
+ENV APP_VERSION="${APP_VERSION}"
+
 # Install dependencies
 RUN apt-get update -q && \
 
