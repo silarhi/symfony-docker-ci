@@ -23,12 +23,9 @@ RUN mkdir -p var && \
     APP_ENV=prod composer install --optimize-autoloader --no-interaction --no-ansi --no-dev && \
     APP_ENV=prod bin/console cache:clear --no-warmup && \
     APP_ENV=prod bin/console cache:warmup && \
+    echo "<?php return [];" > .env.local.php && \
     chown -R www-data:www-data var && \
     yarn install && \
     yarn run build && \
     # Reduce container size
-    rm -rf .git docker /root/.composer /root/.npm /tmp/*
-
-COPY docker/entrypoint.sh /usr/local/bin/docker-php-entrypoint
-ENTRYPOINT ["docker-php-entrypoint"]
-CMD ["apache2-foreground"]
+    rm -rf .git /root/.composer /root/.npm /tmp/*
