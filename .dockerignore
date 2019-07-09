@@ -8,3 +8,5 @@ phpunit.xml.dist
 tests
 var
 vendor
+public/build/
+public/bundles
