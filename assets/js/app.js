@@ -11,6 +11,6 @@ require('../scss/app.scss');
 const inner = document.querySelector("#inner");
 
 if (inner) {
-    inner.innerHTML = 'This block is managed by Javascript 😍';
+    inner.innerHTML = 'This block is managed by Javascript with Webpack & Encore 😍';
     inner.style = 'border: 2px dashed red; padding: 1rem';
 }
