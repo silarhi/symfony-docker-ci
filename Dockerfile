@@ -21,6 +21,7 @@ ARG APP_VERSION=dev
 ENV APP_VERSION="${APP_VERSION}"
 
 COPY . /app
+COPY --from=builder /app/public/build /app/public/build
 
 RUN mkdir -p var && \
     APP_ENV=prod composer install --optimize-autoloader --no-interaction --no-ansi --no-dev && \
