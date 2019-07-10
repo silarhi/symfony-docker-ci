@@ -12,6 +12,7 @@
         <h2>App version: <span class="badge badge-primary">{{ app_version|default('Unknown') }}</span></h2>
         <p class="lead">This app is a POC of CI & CD with Symfony and Docker.</p>
         <div id="inner">This will be modified by Javascript</div>
+        {{ description|raw }}
     </div>
 {% endblock %}
 
