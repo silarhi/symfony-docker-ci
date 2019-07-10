@@ -1,4 +1,5 @@
 *.md
+!README.md
 .git
 .gitignore
 .idea
