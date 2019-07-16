@@ -12,7 +12,7 @@ RUN mkdir -p public && \
     NODE_ENV=development yarn install && \
     yarn run build
 
-FROM silarhi/php-apache:7.2-symfony
+FROM silarhi/php-apache:7.3-symfony
 
 EXPOSE 80
 WORKDIR /app
