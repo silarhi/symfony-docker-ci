@@ -30,4 +30,4 @@ RUN mkdir -p var && \
     echo "<?php return [];" > .env.local.php && \
     chown -R www-data:www-data var && \
     # Reduce container size
-    rm -rf .git /root/.composer /root/.npm /tmp/*
+    rm -rf .git assets /root/.composer /root/.npm /tmp/*
