@@ -7,12 +7,15 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container mt-4">
-        <h1>Hello {{ name|default('World') }}!</h1>
-        <h2>App version: <span class="badge badge-primary">{{ app_version|default('Unknown') }}</span> on Symfony {{ constant('Symfony\\Component\\HttpKernel\\Kernel::VERSION') }}</h2>
-        <p class="lead">This app is a POC of CI &amp; CD with Symfony and Docker.</p>
-        <p id="inner">This will be modified by Javascript</p>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">App v<span class="badge badge-primary">{{ app_version|default('Unknown') }}</span> running on Symfony {{ constant('Symfony\\Component\\HttpKernel\\Kernel::VERSION') }}</a>
+        </div>
+    </nav>
+    <div class="container my-4">
         {{ description|raw }}
+        <br />
+        <div id="root">This will be modified by Javascript</div>
     </div>
 {% endblock %}
 

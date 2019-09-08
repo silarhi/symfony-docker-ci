@@ -9,12 +9,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class DefaultController extends AbstractController
 {
     /**
-     * @Route("/{name}", name="homepage")
+     * @Route("/", name="homepage")
      */
-    public function index(string $projectDir, MarkdownParserInterface $parser, ?string $name = null)
+    public function index(string $projectDir, MarkdownParserInterface $parser)
     {
         return $this->render('default/index.html.twig', [
-            'name' => $name,
             'description' => $parser->transformMarkdown(file_get_contents($projectDir . DIRECTORY_SEPARATOR . 'README.md'))
         ]);
     }

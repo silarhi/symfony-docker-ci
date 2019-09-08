@@ -1,16 +1,47 @@
-/*
- * Welcome to your app's main JavaScript file!
- *
- * We recommend including the built version of this JavaScript file
- * (and its CSS file) in your base layout (base.html.twig).
- */
+import '../scss/app.scss';
 
-// any CSS you require will output into a single css file (app.css in this case)
-require('../scss/app.scss');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Item from './component/Item';
 
-const inner = document.querySelector("#inner");
+class App extends React.Component {
+    constructor() {
+        super();
 
-if (inner) {
-    inner.innerHTML = 'This block is managed by Javascript with Webpack & Encore 😍';
-    inner.style = 'border: 2px dashed red; padding: 1rem';
+        this.state = {
+            entries: []
+        };
+    }
+
+    componentDidMount() {
+        fetch('https://jsonplaceholder.typicode.com/posts/?_limit=12')
+            .then(response => response.json())
+            .then(entries => {
+                this.setState({
+                    entries
+                });
+            });
+    }
+
+    render() {
+        return (
+            <div>
+                React component with <a href="https://jsonplaceholder.typicode.com/posts/">from https://jsonplaceholder.typicode.com/posts/</a>
+                <div className="row no-gutters">
+                    {this.state.entries.map(
+                        ({ id, title, body }) => (
+                            <Item
+                                key={id}
+                                title={title}
+                                body={body}
+                            >
+                            </Item>
+                        )
+                    )}
+                </div>
+            </div>
+        );
+    }
 }
+
+ReactDOM.render(<App />, document.getElementById('root'));
