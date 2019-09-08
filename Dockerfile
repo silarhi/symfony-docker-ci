@@ -1,4 +1,6 @@
 # Dockerfile
+
+# 1st stage : build js & css
 FROM node:8-alpine as builder
 
 ENV NODE_ENV=production
@@ -14,9 +16,11 @@ RUN mkdir -p public && \
 
 FROM silarhi/php-apache:7.3-symfony
 
+# 2nd stage : build the real app container
 EXPOSE 80
 WORKDIR /app
 
+# Default APP_VERSION, real version will be given by the CD server
 ARG APP_VERSION=dev
 ENV APP_VERSION="${APP_VERSION}"
 
