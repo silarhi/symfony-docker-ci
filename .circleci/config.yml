@@ -33,9 +33,7 @@ jobs:
             - run:
                 name: "Deploy image to production"
                 command: |
-                    ssh root@${PRODUCTION_SERVER_IP} "cd ${PRODUCTION_SERVER_PATH} && ./deploy.sh ${IMAGE_NAME}:latest"
-                environment:
-                    IMAGE_NAME: silarhi/app-ci
+                    ssh root@${PRODUCTION_SERVER_IP} "cd ${PRODUCTION_SERVER_PATH} && ./deploy.sh"
 
 # On éxécute ces étapes lors d'un commit sur la branche master uniquement
 workflows:
