@@ -23,7 +23,7 @@ jobs:
                     fi
                     echo ${DOCKER_PWD} | docker login -u ${DOCKER_LOGIN} --password-stdin
                     docker push ${IMAGE_NAME}
-    deploy: # Étapes 4
+    deploy: # Étape 4
         machine:
             enabled: true
         steps:
