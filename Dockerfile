@@ -14,7 +14,7 @@ RUN mkdir -p public && \
     NODE_ENV=development yarn install && \
     yarn run build
 
-FROM silarhi/php-apache:7.3-symfony
+FROM silarhi/php-apache:7.4-symfony
 
 # 2nd stage : build the real app container
 EXPOSE 80
