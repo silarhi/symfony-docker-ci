@@ -5,7 +5,7 @@ jobs:
         docker:
             - image: circleci/buildpack-deps:stretch
               environment:
-                  IMAGE_NAME: silarhi/app-ci
+                  IMAGE_NAME: silarhi/symfony-docker-ci
         steps:
             - checkout # Étape 1
             - setup_remote_docker
