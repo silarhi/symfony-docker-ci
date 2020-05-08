@@ -21,7 +21,9 @@ WORKDIR /app
 
 # Default APP_VERSION, real version will be given by the CD server
 ARG APP_VERSION=dev
+ARG GIT_COMMIT=master
 ENV APP_VERSION="${APP_VERSION}"
+ENV GIT_COMMIT="${GIT_COMMIT}"
 
 COPY . /app
 COPY --from=builder /app/public/build /app/public/build

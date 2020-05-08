@@ -9,7 +9,7 @@
 {% block body %}
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="#">App v<span class="badge badge-primary">{{ app_version|default('Unknown') }}</span> running on Symfony {{ constant('Symfony\\Component\\HttpKernel\\Kernel::VERSION') }}</a>
+            <a class="navbar-brand" href="https://github.com/silarhi/symfony-docker-ci/commit/{{ git_commit }}">App v<span class="badge badge-primary">{{ app_version }} - {{ git_commit }}</span> running on Symfony {{ constant('Symfony\\Component\\HttpKernel\\Kernel::VERSION') }}</a>
         </div>
     </nav>
     <div class="container my-4">

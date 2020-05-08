@@ -2,3 +2,4 @@ twig:
     default_path: '%kernel.project_dir%/templates'
     globals:
         app_version: '%env(APP_VERSION)%'
+        git_commit: '%env(GIT_COMMIT)%'
