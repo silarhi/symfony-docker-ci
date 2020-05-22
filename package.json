@@ -4,7 +4,10 @@
         "@symfony/webpack-encore": "^0.29.1",
         "bootstrap": "^4.3.1",
         "core-js": "^3.6.5",
+        "husky": ">=4",
+        "lint-staged": ">=10",
         "node-sass": "^4.14.1",
+        "prettier": "^2.0.5",
         "prop-types": "^15.7.2",
         "react": "^16.9.0",
         "react-dom": "^16.9.0",
@@ -18,5 +21,13 @@
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "build": "encore production --progress"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "*.{js,css,md}": "prettier --write"
     }
 }

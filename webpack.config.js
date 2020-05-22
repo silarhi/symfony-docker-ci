@@ -43,7 +43,7 @@ Encore
     // enables @babel/preset-env polyfills
     .configureBabel(() => {}, {
         useBuiltIns: 'usage',
-        corejs: 3
+        corejs: 3,
     })
 
     // enables Sass/SCSS support
@@ -60,8 +60,7 @@ Encore
     //.autoProvidejQuery()
 
     // uncomment if you use API Platform Admin (composer req api-admin)
-    .enableReactPreset()
-    //.addEntry('admin', './assets/js/admin.js')
-;
+    .enableReactPreset();
+//.addEntry('admin', './assets/js/admin.js')
 
 module.exports = Encore.getWebpackConfig();

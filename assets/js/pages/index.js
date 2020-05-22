@@ -7,16 +7,16 @@ class App extends React.Component {
         super();
 
         this.state = {
-            entries: []
+            entries: [],
         };
     }
 
     componentDidMount() {
         fetch('https://jsonplaceholder.typicode.com/posts/?_limit=6')
-            .then(response => response.json())
-            .then(entries => {
+            .then((response) => response.json())
+            .then((entries) => {
                 this.setState({
-                    entries
+                    entries,
                 });
             });
     }
@@ -24,18 +24,14 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                React component with <a href="https://jsonplaceholder.typicode.com/posts/">from https://jsonplaceholder.typicode.com/posts/</a>
+                React component with{' '}
+                <a href="https://jsonplaceholder.typicode.com/posts/">
+                    from https://jsonplaceholder.typicode.com/posts/
+                </a>
                 <div className="row no-gutters">
-                    {this.state.entries.map(
-                        ({id, title, body}) => (
-                            <Item
-                                key={id}
-                                title={title}
-                                body={body}
-                            >
-                            </Item>
-                        )
-                    )}
+                    {this.state.entries.map(({ id, title, body }) => (
+                        <Item key={id} title={title} body={body}></Item>
+                    ))}
                 </div>
             </div>
         );
