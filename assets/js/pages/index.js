@@ -25,10 +25,8 @@ class App extends React.Component {
         return (
             <div>
                 React component with{' '}
-                <a href="https://jsonplaceholder.typicode.com/posts/">
-                    from https://jsonplaceholder.typicode.com/posts/
-                </a>
-                <div className="row no-gutters">
+                <a href="https://jsonplaceholder.typicode.com/posts/">https://jsonplaceholder.typicode.com/posts/</a>
+                <div className="row">
                     {this.state.entries.map(({ id, title, body }) => (
                         <Item key={id} title={title} body={body}></Item>
                     ))}
