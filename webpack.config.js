@@ -8,6 +8,13 @@ Encore
     // only needed for CDN's or sub-directory deploy
     //.setManifestKeyPrefix('build/')
 
+    .copyFiles([
+        {
+            from: './assets/images',
+            to: Encore.isProduction() ? 'images/[path][name].[hash:8].[ext]' : 'images/[path][name].[ext]',
+        },
+    ])
+
     /*
      * ENTRY CONFIG
      *
