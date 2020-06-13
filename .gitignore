@@ -8,11 +8,6 @@
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
-
-###> symfony/phpunit-bridge ###
-.phpunit
-/phpunit.xml
-###< symfony/phpunit-bridge ###
 ###> symfony/webpack-encore-bundle ###
 /node_modules/
 /public/build/
