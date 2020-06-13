@@ -34,6 +34,7 @@ RUN mkdir -p var && \
     APP_ENV=prod composer install --optimize-autoloader --no-interaction --no-ansi --no-dev && \
     APP_ENV=prod bin/console cache:clear --no-warmup && \
     APP_ENV=prod bin/console cache:warmup && \
+    mkdir -p var/storage && \
     chown -R www-data:www-data var && \
     # Reduce container size
     rm -rf .git assets /root/.composer /tmp/*
