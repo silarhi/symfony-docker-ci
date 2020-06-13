@@ -6,6 +6,8 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "knplabs/knp-markdown-bundle": "^1.7",
+        "league/glide": "^1.5",
+        "league/glide-symfony": "^1.0",
         "sensio/framework-extra-bundle": "^5.1",
         "symfony/apache-pack": "*",
         "symfony/asset": "5.0.*",

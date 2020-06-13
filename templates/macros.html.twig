@@ -1,0 +1,18 @@
+{% macro image(path, width, height, attrs, params) %}
+    <img src="{{ app_asset(path, params|default({})|merge({'w': width, 'h': height})) }}"
+         srcset="{{ app_asset(path, params|default({})|merge({'w': width, 'h': height, 'dpr': 2})) }} 2x"
+         width="{{ width }}"
+         height="{{ height }}"
+         loading="lazy"
+        {% for name,value in attrs|default([])|filter((k, v) => k != 'class') %}{{ name }}="{{ value|e }}" {% endfor %}
+    />
+{% endmacro %}
+
+{% macro fixedHeightImage(path, height, attrs) %}
+    <img class="img-fluid {{ attrs.class|default(null) }}"
+         src="{{ app_asset(path, {'h': height}) }}"
+         srcset="{{ app_asset(path, {'h': height, 'dpr': 2}) }} 2x"
+         loading="lazy"
+        {% for name,value in attrs|default([]) |filter((k, v) => k != 'class') %}{{ name }}="{{ value|e }}" {% endfor %}
+    />
+{% endmacro %}

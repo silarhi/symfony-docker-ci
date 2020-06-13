@@ -1,7 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
 
 //Bootstrap default overrides
+$body-bg: #f8f8f8;
 $primary: #6f42c1;
 $enable-rounded: false;
+$enable-shadows: true;
+$card-border-width: 0;
 
 @import '~bootstrap/scss/bootstrap';
+
+.card {
+  @include box-shadow($box-shadow-sm);
+}

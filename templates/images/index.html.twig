@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+{% import 'macros.html.twig' as macros %}
+
+{% block title %}Kittens world{% endblock %}
+
+{% block body %}
+    <div class="container my-4">
+        <h1>Welcome to kitten world</h1>
+        <h2>300px height</h2>
+        <div class="row row-cols-1 row-cols-md-3">
+            {% for image in ['destiny-wiens-1332880-unsplash.jpg', 'diana-parkhouse-1166627-unsplash.jpg', 'elvira-visser-k89j1SUqf5U-unsplash.jpg'] %}
+                <div class="col">
+                    <div class="card mb-3">
+                        <div class="bg-light">
+                            {{ macros.fixedHeightImage(asset('build/images/' ~ image), 300, {'class': 'd-block mx-auto'}) }}
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <h2>Fitting</h2>
+        <div class="row row-cols-1 row-cols-md-3">
+            <div class="col mb-3 text-center">
+                {{ macros.image(
+                    asset('build/images/edgar-edgar-712801-unsplash.jpg'),
+                    300,
+                    300,
+                    {'class': 'img-fluid d-block mx-auto shadow-sm'},
+                    {'fit': 'crop'}
+                ) }}
+                <span>300x500px, crop</span>
+            </div>
+            <div class="col mb-3 text-center">
+                {{ macros.image(
+                    asset('build/images/edgar-edgar-712801-unsplash.jpg'),
+                    300,
+                    300,
+                    {'class': 'img-fluid d-block mx-auto shadow-sm'},
+                    {'fit': 'stretch'}
+                ) }}
+                <span>300x300px, stretch</span>
+            </div>
+            <div class="col mb-3 text-center">
+                {{ macros.image(
+                    asset('build/images/edgar-edgar-712801-unsplash.jpg'),
+                    300,
+                    300,
+                    {'class': 'img-fluid d-block mx-auto shadow-sm'},
+                    {'fit': 'fill'}
+                ) }}
+                <span>300x300px, fill</span>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -20,8 +20,23 @@
     "egulias/email-validator": {
         "version": "2.1.7"
     },
+    "guzzlehttp/psr7": {
+        "version": "1.6.1"
+    },
+    "intervention/image": {
+        "version": "2.5.1"
+    },
     "knplabs/knp-markdown-bundle": {
         "version": "1.7.1"
+    },
+    "league/flysystem": {
+        "version": "1.0.69"
+    },
+    "league/glide": {
+        "version": "1.5.0"
+    },
+    "league/glide-symfony": {
+        "version": "1.0.4"
     },
     "michelf/php-markdown": {
         "version": "1.8.0"
@@ -53,11 +68,17 @@
     "psr/event-dispatcher": {
         "version": "1.0.0"
     },
+    "psr/http-message": {
+        "version": "1.0.1"
+    },
     "psr/link": {
         "version": "1.0.0"
     },
     "psr/log": {
         "version": "1.1.0"
+    },
+    "ralouphie/getallheaders": {
+        "version": "3.0.3"
     },
     "sensio/framework-extra-bundle": {
         "version": "5.2",
