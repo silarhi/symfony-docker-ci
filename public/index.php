@@ -19,6 +19,7 @@ require \dirname(__DIR__) . '/vendor/autoload.php';
 
 if ($_SERVER['APP_MAINTENANCE']) {
     echo '<html><body><h1>Upgrade in progress</h1></body></html>';
+    exit(1);
 }
 
 if ($_SERVER['APP_DEBUG']) {
