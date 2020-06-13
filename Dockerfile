@@ -25,6 +25,15 @@ ARG GIT_COMMIT=master
 ENV APP_VERSION="${APP_VERSION}"
 ENV GIT_COMMIT="${GIT_COMMIT}"
 
+RUN apt-get update -qq && \
+    apt-get install -qy \
+    libpng-dev \
+    libjpeg-dev \
+    libfreetype6-dev
+
+RUN docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ && \
+    docker-php-ext-install gd exif
+
 COPY . /app
 COPY --from=builder /app/public/build /app/public/build
 
