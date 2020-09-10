@@ -32,6 +32,9 @@
     "league/glide-symfony": {
         "version": "1.0.4"
     },
+    "league/mime-type-detection": {
+        "version": "1.4.0"
+    },
     "michelf/php-markdown": {
         "version": "1.8.0"
     },
