@@ -8,7 +8,8 @@ jobs:
                   IMAGE_NAME: silarhi/symfony-docker-ci
         steps:
             - checkout # Étape 1
-            - setup_remote_docker
+            - setup_remote_docker:
+                version: 19.03.13
 
             - run: # Étapes 2 & 3
                 name: "Build and push Docker image"
