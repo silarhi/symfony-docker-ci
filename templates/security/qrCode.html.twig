@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Qr code!{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <h2 class="h3 mb-3 font-weight-normal">Scanné le Qr Code :</h2>
+        <div class="text-center">
+            <img src="data:image/png;base64,{{ qrCodeImage }}"/>
+            <a class="btn btn-lg btn-primary" href="{{ path('app_security_validate_authentification') }}">Continuer</a>
+        </div>
+    </div>
+
+{% endblock %}
