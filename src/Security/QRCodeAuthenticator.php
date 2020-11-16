@@ -10,9 +10,7 @@
 
 namespace App\Security;
 
-use App\Entity\User;
 use App\EventSuscriber\DoubleAuthentificationSuscriber;
-use App\Repository\UserRepository;
 use PragmaRX\Google2FA\Google2FA;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -34,9 +32,6 @@ class QRCodeAuthenticator extends AbstractFormLoginAuthenticator
     use TargetPathTrait;
 
     public const LOGIN_ROUTE = 'app_security_validate_authentification';
-
-    /** @var UserRepository */
-    private $userRepository;
 
     /** @var UrlGeneratorInterface */
     private $urlGenerator;
@@ -122,7 +117,7 @@ class QRCodeAuthenticator extends AbstractFormLoginAuthenticator
             return new RedirectResponse($targetPath);
         }
 
-        return new RedirectResponse($this->urlGenerator->generate('homepage'));
+        return new RedirectResponse($this->urlGenerator->generate('app_security_authentification_protected'));
     }
 
     protected function getLoginUrl()

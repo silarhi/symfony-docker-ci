@@ -92,4 +92,12 @@ class SecurityController extends AbstractController
             'error' => $error,
         ]);
     }
+
+    /**
+     * @Route("/2FA-protected", name="app_security_authentification_protected")
+     */
+    public function authentificationProtected()
+    {
+        return $this->render('security/protected.html.twig');
+    }
 }
