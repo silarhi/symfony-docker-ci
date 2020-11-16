@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 use Symfony\Component\Security\Core\Exception\InvalidCsrfTokenException;
 use Symfony\Component\Security\Core\Security;
@@ -33,10 +34,14 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
     private $urlGenerator;
     private $csrfTokenManager;
 
-    public function __construct(UrlGeneratorInterface $urlGenerator, CsrfTokenManagerInterface $csrfTokenManager)
+    /** @var UserPasswordEncoderInterface */
+    private $passwordEncoder;
+
+    public function __construct(UrlGeneratorInterface $urlGenerator, CsrfTokenManagerInterface $csrfTokenManager, UserPasswordEncoderInterface $passwordEncoder)
     {
         $this->urlGenerator = $urlGenerator;
         $this->csrfTokenManager = $csrfTokenManager;
+        $this->passwordEncoder = $passwordEncoder;
     }
 
     public function supports(Request $request)
@@ -83,7 +88,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
     {
         // Check the user's password or other credentials and return true or false
         // If there are no credentials to check, you can just return true
-        return true;
+        return $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
     }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $providerKey)
