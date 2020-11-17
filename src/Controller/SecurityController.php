@@ -98,6 +98,10 @@ class SecurityController extends AbstractController
      */
     public function authentificationProtected()
     {
-        return $this->render('security/protected.html.twig');
+        if ($this->getUser()) {
+            return $this->render('security/protected.html.twig');
+        }
+
+        return $this->redirectToRoute('homepage');
     }
 }
