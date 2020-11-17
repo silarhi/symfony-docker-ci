@@ -92,7 +92,7 @@ class QRCodeAuthenticator extends AbstractFormLoginAuthenticator
         $google2fa->setSecret($this->session->get('qrCodeSession')['secretKey']);
 
         if (true !== $google2fa->verifyKey($google2fa->getSecret(), $qrCode)) {
-            throw new CustomUserMessageAuthenticationException("le code n'est pas valide");
+            throw new CustomUserMessageAuthenticationException('This code is not valid');
         }
 
         return true;
