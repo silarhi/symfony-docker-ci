@@ -32,7 +32,9 @@ RUN apt-get update -qq && \
     libfreetype6-dev
 
 RUN docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ && \
-    docker-php-ext-install gd exif
+    pecl install imagick-3.4.4 && \
+    docker-php-ext-install gd exif && \
+    docker-php-ext-enable imagick
 
 COPY . /app
 COPY --from=builder /app/public/build /app/public/build
