@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Qr code!{% endblock %}
+
+{% block body %}
+
+    <div class="container mt-5 mb-5">
+        <form method="post" class="no-pjax">
+            {% if error %}
+                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+
+
+                <div class="form-group">
+                    <label for="qrCode">Validate code</label>
+                    <input type="text" id="qrCode" name="qrCode" class="form-control" required="required" />
+                </div>
+                <input type="submit" class="btn btn-primary" value="Confirm" />
+        </form>
+    </div>
+{% endblock %}
