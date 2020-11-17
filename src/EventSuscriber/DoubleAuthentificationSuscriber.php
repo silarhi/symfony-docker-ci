@@ -56,9 +56,10 @@ class DoubleAuthentificationSuscriber implements EventSubscriberInterface
 
         $currentToken = $this->tokenStorage->getToken();
         if (!$currentToken instanceof PostAuthenticationGuardToken) {
-            $response = new RedirectResponse($this->router->generate('homepage'));
+            $response = new RedirectResponse($this->router->generate('app_login'));
+            $event->setResponse($response);
 
-            return $event->setResponse($response);
+            return;
         }
 
         if (!$currentToken->isAuthenticated() || self::FIREWALL_NAME !== $currentToken->getProviderKey()) {
