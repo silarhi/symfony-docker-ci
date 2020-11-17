@@ -3,21 +3,26 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-    <form method="post">
-        {% if error %}
-            <div class="alert alert-danger">
-                <div class="container px-0">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-            </div>
-        {% endif %}
 
-        <div class="container mt-5 mb-5">
-            <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+    {% if error %}
+        <div class="alert alert-danger">
+            <div class="container px-0">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        </div>
+    {% endif %}
+
+    <div class="container mt-5 mb-5">
+        <h1>Login</h1>
+        <form method="post">
             <div class="card">
                 <div class="card-body">
-                    <label for="inputUsername">Username</label>
-                    <input type="text" value="test" name="username" id="inputUsername" class="form-control" required autofocus placeholder="test">
-                    <label for="inputPassword">Password</label>
-                    <input type="password" name="password" id="inputPassword" class="form-control" required placeholder="test" value="test">
+                    <div class="form-group">
+                        <label for="inputUsername">Username</label>
+                        <input type="text" value="test" name="username" id="inputUsername" class="form-control form-control-lg" required autofocus placeholder="test">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword">Password</label>
+                        <input type="password" name="password" id="inputPassword" class="form-control form-control-lg" required placeholder="test" value="test">
+                    </div>
 
                     <input type="hidden" name="_csrf_token"
                            value="{{ csrf_token('authenticate') }}"
@@ -34,11 +39,11 @@
                     </div>
                     #}
 
-                    <button class="btn btn-lg btn-primary mt-3" type="submit">
+                    <button class="btn btn-lg btn-primary" type="submit">
                         Connection
                     </button>
                 </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 {% endblock %}
