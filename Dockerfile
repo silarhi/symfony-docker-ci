@@ -27,7 +27,7 @@ ENV GIT_COMMIT="${GIT_COMMIT}"
 
 RUN apt-get update -qq && \
     apt-get install -qy \
-    imagemagick-dev \
+    libmagickwand-dev \
     libpng-dev \
     libjpeg-dev \
     libfreetype6-dev
