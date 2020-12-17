@@ -10,7 +10,7 @@
 
 namespace App\Security;
 
-use App\EventSuscriber\DoubleAuthentificationSuscriber;
+use App\EventSubscriber\DoubleAuthentificationSuscriber;
 use PragmaRX\Google2FA\Google2FA;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
