@@ -18,7 +18,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
@@ -39,17 +38,13 @@ class QRCodeAuthenticator extends AbstractFormLoginAuthenticator
     /** @var CsrfTokenManagerInterface */
     private $csrfTokenManager;
 
-    /** @var UserPasswordEncoderInterface */
-    private $passwordEncoder;
-
     /** @var TokenStorageInterface */
     private $tokenStorage;
 
-    public function __construct(TokenStorageInterface $tokenStorage, UrlGeneratorInterface $urlGenerator, UserPasswordEncoderInterface $passwordEncoder)
+    public function __construct(TokenStorageInterface $tokenStorage, UrlGeneratorInterface $urlGenerator)
     {
         $this->tokenStorage = $tokenStorage;
         $this->urlGenerator = $urlGenerator;
-        $this->passwordEncoder = $passwordEncoder;
     }
 
     public function supports(Request $request)
