@@ -10,11 +10,11 @@
 
 namespace App\Security;
 
+use App\Controller\SecurityController;
 use App\EventSubscriber\DoubleAuthentificationSuscriber;
 use PragmaRX\Google2FA\Google2FA;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
@@ -45,13 +45,9 @@ class QRCodeAuthenticator extends AbstractFormLoginAuthenticator
     /** @var TokenStorageInterface */
     private $tokenStorage;
 
-    /** @var SessionInterface */
-    private $session;
-
-    public function __construct(SessionInterface $session, TokenStorageInterface $tokenStorage, UrlGeneratorInterface $urlGenerator, UserPasswordEncoderInterface $passwordEncoder)
+    public function __construct(TokenStorageInterface $tokenStorage, UrlGeneratorInterface $urlGenerator, UserPasswordEncoderInterface $passwordEncoder)
     {
         $this->tokenStorage = $tokenStorage;
-        $this->session = $session;
         $this->urlGenerator = $urlGenerator;
         $this->passwordEncoder = $passwordEncoder;
     }
@@ -59,13 +55,15 @@ class QRCodeAuthenticator extends AbstractFormLoginAuthenticator
     public function supports(Request $request)
     {
         return self::LOGIN_ROUTE === $request->attributes->get('_route')
-            && $request->isMethod('POST');
+            && $request->isMethod('POST')
+            && $request->getSession()->has(SecurityController::QR_CODE_KEY);
     }
 
     public function getCredentials(Request $request)
     {
         return [
             'qrCode' => $request->request->get('qrCode'),
+            'secretKey' => $request->getSession()->get(SecurityController::QR_CODE_KEY),
         ];
     }
 
@@ -82,14 +80,14 @@ class QRCodeAuthenticator extends AbstractFormLoginAuthenticator
 
     public function checkCredentials($credentials, UserInterface $user)
     {
-        $qrCode = (string) $credentials['qrCode'];
+        $qrCode = $credentials['qrCode'];
 
         if (!$user) {
             return false;
         }
 
         $google2fa = new Google2FA();
-        $google2fa->setSecret($this->session->get('qrCodeSession')['secretKey']);
+        $google2fa->setSecret($credentials['secretKey']);
 
         if (true !== $google2fa->verifyKey($google2fa->getSecret(), $qrCode)) {
             throw new CustomUserMessageAuthenticationException('This code is not valid');
