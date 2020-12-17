@@ -23,6 +23,8 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
+    const QR_CODE_KEY = '_qr_code_secret';
+
     /**
      * @Route("/login", name="app_login")
      */
@@ -45,39 +47,32 @@ class SecurityController extends AbstractController
      */
     public function index(SessionInterface $session)
     {
-        if (!$session->has('qrCodeSession')) {
-            $google2fa = new Google2FA();
-
+        $google2fa = new Google2FA();
+        if (!$session->has(self::QR_CODE_KEY)) {
             $secretKey = $google2fa->generateSecretKey();
-
-            $qrCodeUrl = $google2fa->getQRCodeUrl(
-                'Silarhi',
-                'hello@silarhi.fr',
-                $secretKey
-            );
-
-            $writer = new Writer(
-                new ImageRenderer(
-                    new RendererStyle(400),
-                    new ImagickImageBackEnd()
-                )
-            );
-
-            $qrCodeImage = base64_encode($writer->writeString($qrCodeUrl));
-
-            $qrCodeSession = [
-                'secretKey' => $secretKey,
-                'qrCodeImage' => $qrCodeImage,
-            ];
-
-            $session->set('qrCodeSession', $qrCodeSession);
+            $session->set(self::QR_CODE_KEY, $secretKey);
+        } else {
+            $secretKey = $session->get(self::QR_CODE_KEY);
         }
 
-        $getQrCodeSession = $session->get('qrCodeSession');
+        //Generate QR CODE based on secretKey
+        $qrCodeUrl = $google2fa->getQRCodeUrl(
+            '2FA DEMO (Silarhi)',
+            'hello@silarhi.fr',
+            $secretKey
+        );
+
+        $writer = new Writer(
+            new ImageRenderer(
+                new RendererStyle(400),
+                new ImagickImageBackEnd()
+            )
+        );
+
+        $qrCodeImage = base64_encode($writer->writeString($qrCodeUrl));
 
         return $this->render('security/qrCode.html.twig', [
-            'qrCodeImage' => $getQrCodeSession['qrCodeImage'],
-            'secretKey' => $getQrCodeSession['secretKey'],
+            'qrCodeImage' => $qrCodeImage,
         ]);
     }
 
