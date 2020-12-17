@@ -77,7 +77,7 @@ class QRCodeAuthenticator extends AbstractFormLoginAuthenticator
             return null;
         }
 
-        return $this->tokenStorage->getToken()->getUser();
+        return $existingToken->getUser();
     }
 
     public function checkCredentials($credentials, UserInterface $user)
