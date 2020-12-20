@@ -1,50 +1,53 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}Welcome!{% endblock %}</title>
 
-        {{ encore_entry_link_tags('app') }}
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        <nav class="navbar navbar-expand navbar-dark bg-dark">
-            <div class="container">
-                <a class="navbar-brand" href="{{ path('homepage') }}">App <span class="badge badge-primary">{{ app_version }} - {{ git_commit }}</span></a>
-                {% set routeName = app.request.attributes.get('_route') %}
-                <ul class="navbar-nav flex-row">
-                    <li class="nav-item">
-                        <a class="nav-link {{ routeName == 'homepage' ? 'active' }}" href="{{ path('homepage') }}">CI Demo</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ routeName == 'images' ? 'active' }}" href="{{ path('images') }}">Images</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ routeName == 'app_login' ? 'active' }}" href="{{ path('app_login') }}">Connection</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        <main>{% block body %}{% endblock %}</main>
-        <footer class="py-4 bg-dark">
-            <div class="container text-center">
-                <ul class="list-inline">
-                    <li class="list-inline-item">
-                        Git commit: <a href="https://github.com/silarhi/symfony-docker-ci/commit/{{ git_commit }}">{{ git_commit }}</a>
-                    </li>
-                    <li class="list-inline-item">
-                        App version: <span class="badge badge-primary">{{ app_version }}</span>
-                    </li>
-                    <li class="list-inline-item">
-                        Symfony version: <span class="badge badge-primary">{{ constant('Symfony\\Component\\HttpKernel\\Kernel::VERSION') }}</span>
-                    </li>
-                </ul>
-                <a href="https://sainthillier.fr">Guillaume Sainthillier - PHP Web Developper</a>
-            </div>
-        </footer>
+    {{ encore_entry_link_tags('app') }}
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="{{ path('homepage') }}">App
+            <span class="badge badge-primary">{{ app_version }} - {{ git_commit }}</span></a>
+        {% set routeName = app.request.attributes.get('_route') %}
+        <ul class="navbar-nav flex-row">
+            <li class="nav-item">
+                <a class="nav-link {{ routeName == 'homepage' ? 'active' }}" href="{{ path('homepage') }}">CI Demo</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ routeName == 'images' ? 'active' }}" href="{{ path('images') }}">Images</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ routeName == 'app_login' ? 'active' }}" href="{{ path('app_login') }}">Connection</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<main>{% block body %}{% endblock %}</main>
+<footer class="py-4 bg-dark">
+    <div class="container text-center">
+        <ul class="list-inline">
+            <li class="list-inline-item">
+                Git commit:
+                <a href="https://github.com/silarhi/symfony-docker-ci/commit/{{ git_commit }}">{{ git_commit }}</a>
+            </li>
+            <li class="list-inline-item">
+                App version: <span class="badge badge-primary">{{ app_version }}</span>
+            </li>
+            <li class="list-inline-item">
+                Symfony version:
+                <span class="badge badge-primary">{{ constant('Symfony\\Component\\HttpKernel\\Kernel::VERSION') }}</span>
+            </li>
+        </ul>
+        <a href="https://sainthillier.fr">Guillaume Sainthillier - PHP Web Developper</a>
+    </div>
+</footer>
 
-        {{ encore_entry_script_tags('app') }}
-        {% block javascripts %}{% endblock %}
-    </body>
+{{ encore_entry_script_tags('app') }}
+{% block javascripts %}{% endblock %}
+</body>
 </html>
