@@ -62,7 +62,7 @@ class DoubleAuthentificationSuscriber implements EventSubscriberInterface
             return;
         }
 
-        $response = new RedirectResponse($this->router->generate('app_security_validate_authentification'));
+        $response = new RedirectResponse($this->router->generate('app_security_setup_fa'));
         $event->setResponse($response);
     }
 

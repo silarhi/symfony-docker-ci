@@ -23,7 +23,7 @@ security:
                 entry_point: App\Security\LoginFormAuthenticator
                 authenticators:
                     - App\Security\LoginFormAuthenticator
-                    - App\Security\QRCodeAuthenticator
+                    - App\Security\TwoFactorsAuthenticator
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
@@ -34,6 +34,4 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        - { path: ^/authentification, roles: ROLE_USER }
-        - { path: ^/valide-authentification, roles: ROLE_USER }
-        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/setup-2FA, roles: ROLE_USER }

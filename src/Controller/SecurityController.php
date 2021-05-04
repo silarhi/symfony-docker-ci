@@ -28,9 +28,6 @@ class SecurityController extends AbstractController
     #[Route(path: '/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        // if ($this->getUser()) {
-        //     return $this->redirectToRoute('target_path');
-        // }
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
@@ -39,9 +36,11 @@ class SecurityController extends AbstractController
         return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
     }
 
-    #[Route(path: '/authentification', name: 'app_security_authentification')]
-    public function index(SessionInterface $session)
+    #[Route(path: '/setup-2FA', name: 'app_security_setup_fa')]
+    public function setup(SessionInterface $session, AuthenticationUtils $authenticationUtils)
     {
+        $error = $authenticationUtils->getLastAuthenticationError();
+
         $google2fa = new Google2FA();
         if (!$session->has(self::QR_CODE_KEY)) {
             $secretKey = $google2fa->generateSecretKey();
@@ -63,17 +62,9 @@ class SecurityController extends AbstractController
         );
         $qrCodeImage = base64_encode($writer->writeString($qrCodeUrl));
 
-        return $this->render('security/qrCode.html.twig', [
+        return $this->render('security/setup-2fa.html.twig', [
             'qrCodeImage' => $qrCodeImage,
-        ]);
-    }
-
-    #[Route(path: '/valide-authentification', name: 'app_security_validate_authentification')]
-    public function valideAuthentification(AuthenticationUtils $authenticationUtils)
-    {
-        $error = $authenticationUtils->getLastAuthenticationError();
-
-        return $this->render('security/valide_authentification.html.twig', [
+            'secretKey' => $secretKey,
             'error' => $error,
         ]);
     }
