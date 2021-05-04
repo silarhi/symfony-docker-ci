@@ -19,9 +19,9 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Guard\Token\PostAuthenticationGuardToken;
 
-class DoubleAuthentificationSuscriber implements EventSubscriberInterface
+class DoubleAuthentificationSubscriber implements EventSubscriberInterface
 {
-    public const ROLE_2FA_SUCCEED = '2FA_SUCCEED';
+    public const ROLE_2FA_SUCCEED = 'ROLE_2FA_SUCCEED';
     public const FIREWALL_NAME = 'main';
 
     public function __construct(private RouterInterface $router, private TokenStorageInterface $tokenStorage)
@@ -68,12 +68,6 @@ class DoubleAuthentificationSuscriber implements EventSubscriberInterface
 
     private function hasRole(TokenInterface $token, string $role): bool
     {
-        foreach ($token->getRoleNames() as $userRole) {
-            if ($userRole === $role) {
-                return true;
-            }
-        }
-
-        return false;
+        return \in_array($role, $token->getRoleNames(), true);
     }
 }

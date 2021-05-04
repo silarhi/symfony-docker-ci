@@ -21,9 +21,24 @@
             <li class="nav-item">
                 <a class="nav-link {{ routeName == 'images' ? 'active' }}" href="{{ path('images') }}">Images</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link {{ routeName == 'app_login' ? 'active' }}" href="{{ path('app_login') }}">Connection</a>
-            </li>
+            {% if is_granted(constant('\\App\\EventSubscriber\\DoubleAuthentificationSubscriber::ROLE_2FA_SUCCEED')) %}
+                <li class="nav-item">
+                    <a class="nav-link {{ routeName == 'app_security_authentification_protected' ? 'active' }}" href="{{ path('app_security_authentification_protected') }}">
+                        Secret page!
+                    </a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link {{ routeName == 'app_login' ? 'active' }}" href="{{ path('app_login') }}">Connection</a>
+                </li>
+            {% endif %}
+            {% if is_granted('ROLE_USER') %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_logout') }}">
+                        Logout
+                    </a>
+                </li>
+            {% endif %}
         </ul>
     </div>
 </nav>

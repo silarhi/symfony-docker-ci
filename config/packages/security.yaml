@@ -19,6 +19,8 @@ security:
             anonymous: true
             lazy: true
             provider: in_memory
+            logout:
+                path: app_logout
             guard:
                 entry_point: App\Security\LoginFormAuthenticator
                 authenticators:
