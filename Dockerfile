@@ -13,7 +13,7 @@ RUN mkdir -p public && \
     NODE_ENV=development yarn install && \
     yarn run build
 
-FROM silarhi/php-apache:7.4-symfony
+FROM silarhi/php-apache:8.0-symfony
 
 # 2nd stage : build the real app container
 EXPOSE 80
@@ -33,7 +33,10 @@ RUN apt-get update -qq && \
     libfreetype6-dev
 
 RUN docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ && \
-    pecl install imagick-3.4.4 && \
+    git clone https://github.com/Imagick/imagick && \
+    cd imagick && \
+    phpize && ./configure && make && make install && \
+    cd .. && rm -Rf imagick && \
     docker-php-ext-install gd exif && \
     docker-php-ext-enable imagick
 
