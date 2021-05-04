@@ -17,16 +17,8 @@ use Twig\TwigFunction;
 
 class AssetExtension extends AbstractExtension
 {
-    /** @var UrlGeneratorInterface */
-    private $router;
-
-    /** @var string */
-    private $secret;
-
-    public function __construct(UrlGeneratorInterface $router, string $secret)
+    public function __construct(private UrlGeneratorInterface $router, private string $secret)
     {
-        $this->router = $router;
-        $this->secret = $secret;
     }
 
     public function getFunctions()

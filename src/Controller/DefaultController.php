@@ -16,9 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends AbstractController
 {
-    /**
-     * @Route("/", name="homepage")
-     */
+    #[Route(path: '/', name: 'homepage')]
     public function index(string $projectDir, MarkdownParserInterface $parser)
     {
         return $this->render('default/index.html.twig', [

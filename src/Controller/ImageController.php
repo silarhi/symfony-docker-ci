@@ -15,9 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ImageController extends AbstractController
 {
-    /**
-     * @Route("/images", name="images")
-     */
+    #[Route(path: '/images', name: 'images')]
     public function index()
     {
         return $this->render('images/index.html.twig');

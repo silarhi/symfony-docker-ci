@@ -23,17 +23,14 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
-    const QR_CODE_KEY = '_qr_code_secret';
+    public const QR_CODE_KEY = '_qr_code_secret';
 
-    /**
-     * @Route("/login", name="app_login")
-     */
+    #[Route(path: '/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
         // if ($this->getUser()) {
         //     return $this->redirectToRoute('target_path');
         // }
-
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
@@ -42,9 +39,7 @@ class SecurityController extends AbstractController
         return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
     }
 
-    /**
-     * @Route("/authentification", name="app_security_authentification")
-     */
+    #[Route(path: '/authentification', name: 'app_security_authentification')]
     public function index(SessionInterface $session)
     {
         $google2fa = new Google2FA();
@@ -54,21 +49,18 @@ class SecurityController extends AbstractController
         } else {
             $secretKey = $session->get(self::QR_CODE_KEY);
         }
-
         //Generate QR CODE based on secretKey
         $qrCodeUrl = $google2fa->getQRCodeUrl(
             '2FA DEMO (Silarhi)',
             'hello@silarhi.fr',
             $secretKey
         );
-
         $writer = new Writer(
             new ImageRenderer(
                 new RendererStyle(400),
                 new ImagickImageBackEnd()
             )
         );
-
         $qrCodeImage = base64_encode($writer->writeString($qrCodeUrl));
 
         return $this->render('security/qrCode.html.twig', [
@@ -76,9 +68,7 @@ class SecurityController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/valide-authentification", name="app_security_validate_authentification")
-     */
+    #[Route(path: '/valide-authentification', name: 'app_security_validate_authentification')]
     public function valideAuthentification(AuthenticationUtils $authenticationUtils)
     {
         $error = $authenticationUtils->getLastAuthenticationError();
@@ -88,9 +78,7 @@ class SecurityController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/2FA-protected", name="app_security_authentification_protected")
-     */
+    #[Route(path: '/2FA-protected', name: 'app_security_authentification_protected')]
     public function authentificationProtected()
     {
         return $this->render('security/protected.html.twig');

@@ -21,19 +21,11 @@ use Symfony\Component\Security\Guard\Token\PostAuthenticationGuardToken;
 
 class DoubleAuthentificationSuscriber implements EventSubscriberInterface
 {
-    const ROLE_2FA_SUCCEED = '2FA_SUCCEED';
-    const FIREWALL_NAME = 'main';
+    public const ROLE_2FA_SUCCEED = '2FA_SUCCEED';
+    public const FIREWALL_NAME = 'main';
 
-    /** @var RouterInterface */
-    private $router;
-
-    /** @var TokenStorageInterface */
-    private $tokenStorage;
-
-    public function __construct(RouterInterface $router, TokenStorageInterface $tokenStorage)
+    public function __construct(private RouterInterface $router, private TokenStorageInterface $tokenStorage)
     {
-        $this->router = $router;
-        $this->tokenStorage = $tokenStorage;
     }
 
     public static function getSubscribedEvents()

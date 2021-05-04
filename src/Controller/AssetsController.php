@@ -10,6 +10,7 @@
 
 namespace App\Controller;
 
+use InvalidArgumentException;
 use League\Glide\Filesystem\FileNotFoundException;
 use League\Glide\Responses\SymfonyResponseFactory;
 use League\Glide\Server;
@@ -21,13 +22,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AssetsController extends AbstractController
 {
-    /**
-     * @Route("/assets/{path<(.+)>}", name="asset_url", methods={"GET"})
-     */
+    #[Route(path: '/assets/{path<(.+)>}', name: 'asset_url', methods: ['GET'])]
     public function asset(string $path, string $secret, Request $request, Server $glide)
     {
         $parameters = $request->query->all();
-
         if (\count($parameters) > 0) {
             try {
                 SignatureFactory::create($secret)->validateRequest($path, $parameters);
@@ -35,12 +33,10 @@ class AssetsController extends AbstractController
                 throw $this->createNotFoundException('', $e);
             }
         }
-
         $glide->setResponseFactory(new SymfonyResponseFactory($request));
-
         try {
             $response = $glide->getImageResponse($path, $parameters);
-        } catch (\InvalidArgumentException | FileNotFoundException $e) {
+        } catch (InvalidArgumentException | FileNotFoundException $e) {
             throw $this->createNotFoundException('', $e);
         }
 

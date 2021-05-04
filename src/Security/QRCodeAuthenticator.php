@@ -32,19 +32,11 @@ class QRCodeAuthenticator extends AbstractFormLoginAuthenticator
 
     public const LOGIN_ROUTE = 'app_security_validate_authentification';
 
-    /** @var UrlGeneratorInterface */
-    private $urlGenerator;
-
     /** @var CsrfTokenManagerInterface */
     private $csrfTokenManager;
 
-    /** @var TokenStorageInterface */
-    private $tokenStorage;
-
-    public function __construct(TokenStorageInterface $tokenStorage, UrlGeneratorInterface $urlGenerator)
+    public function __construct(private TokenStorageInterface $tokenStorage, private UrlGeneratorInterface $urlGenerator)
     {
-        $this->tokenStorage = $tokenStorage;
-        $this->urlGenerator = $urlGenerator;
     }
 
     public function supports(Request $request)
