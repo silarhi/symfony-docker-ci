@@ -2,7 +2,7 @@
     "devDependencies": {
         "@babel/preset-react": "^7.13.13",
         "@symfony/webpack-encore": "^1.2.0",
-        "bootstrap": "^4.6.0",
+        "bootstrap": "^5.0.0",
         "core-js": "^3.12.1",
         "file-loader": "^6.0.0",
         "husky": "^6.0.0",
