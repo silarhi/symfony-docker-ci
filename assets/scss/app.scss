@@ -38,3 +38,8 @@ footer {
 .card {
   @include box-shadow($box-shadow-sm);
 }
+
+.qr-image {
+  border-radius: $card-border-radius;
+  border: 1px solid $card-border-color;
+}
