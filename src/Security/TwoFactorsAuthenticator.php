@@ -95,6 +95,8 @@ class TwoFactorsAuthenticator extends AbstractFormLoginAuthenticator
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $providerKey)
     {
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
+            $this->removeTargetPath($request->getSession(), $providerKey);
+
             return new RedirectResponse($targetPath);
         }
 
