@@ -10,7 +10,7 @@
         "league/glide": "^1.5",
         "league/glide-symfony": "^1.0",
         "pragmarx/google2fa": "^8.0",
-        "sensio/framework-extra-bundle": "^5.1",
+        "sensio/framework-extra-bundle": "^6.1",
         "symfony/apache-pack": "*",
         "symfony/asset": "5.3.*",
         "symfony/console": "5.3.*",
