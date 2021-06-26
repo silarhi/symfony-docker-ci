@@ -17,7 +17,7 @@ use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
-use Symfony\Component\Security\Guard\Token\PostAuthenticationGuardToken;
+use Symfony\Component\Security\Http\Authenticator\Token\PostAuthenticationToken;
 
 class DoubleAuthentificationSubscriber implements EventSubscriberInterface
 {
@@ -47,7 +47,7 @@ class DoubleAuthentificationSubscriber implements EventSubscriberInterface
         }
 
         $currentToken = $this->tokenStorage->getToken();
-        if (!$currentToken instanceof PostAuthenticationGuardToken) {
+        if (!$currentToken instanceof PostAuthenticationToken) {
             $response = new RedirectResponse($this->router->generate('app_login'));
             $event->setResponse($response);
 
