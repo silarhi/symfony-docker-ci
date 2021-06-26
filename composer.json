@@ -19,7 +19,6 @@
         "symfony/flex": "^1.10",
         "symfony/form": "5.3.*",
         "symfony/framework-bundle": "5.3.*",
-        "symfony/maker-bundle": "^1.23",
         "symfony/monolog-bundle": "^3.1",
         "symfony/runtime": "5.3.*",
         "symfony/security-bundle": "5.3.*",
@@ -28,6 +27,7 @@
         "symfony/yaml": "5.3.*"
     },
     "require-dev": {
+        "symfony/maker-bundle": "^1.23",
         "symfony/debug-pack": "*",
         "symfony/profiler-pack": "*"
     },
