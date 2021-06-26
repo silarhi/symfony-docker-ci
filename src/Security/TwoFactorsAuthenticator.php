@@ -15,17 +15,21 @@ use App\EventSubscriber\DoubleAuthentificationSubscriber;
 use PragmaRX\Google2FA\Google2FA;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Security\Core\Authentication\Token\NullToken;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
-use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Security\Core\User\UserProviderInterface;
-use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticator;
-use Symfony\Component\Security\Guard\Token\PostAuthenticationGuardToken;
+use Symfony\Component\Security\Core\Exception\UserNotFoundException;
+use Symfony\Component\Security\Http\Authenticator\AbstractLoginFormAuthenticator;
+use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
+use Symfony\Component\Security\Http\Authenticator\Passport\PassportInterface;
+use Symfony\Component\Security\Http\Authenticator\Passport\SelfValidatingPassport;
+use Symfony\Component\Security\Http\Authenticator\Token\PostAuthenticationToken;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
 
-class TwoFactorsAuthenticator extends AbstractFormLoginAuthenticator
+class TwoFactorsAuthenticator extends AbstractLoginFormAuthenticator
 {
     use TargetPathTrait;
 
@@ -35,10 +39,9 @@ class TwoFactorsAuthenticator extends AbstractFormLoginAuthenticator
     {
     }
 
-    public function supports(Request $request)
+    public function supports(Request $request): bool
     {
-        return self::LOGIN_ROUTE === $request->attributes->get('_route')
-            && $request->isMethod('POST')
+        return parent::supports($request)
             && $request->getSession()->has(SecurityController::QR_CODE_KEY);
     }
 
@@ -50,61 +53,58 @@ class TwoFactorsAuthenticator extends AbstractFormLoginAuthenticator
         ];
     }
 
-    public function getUser($credentials, UserProviderInterface $userProvider)
+    public function authenticate(Request $request): PassportInterface
     {
         //Get user from login form
         $existingToken = $this->tokenStorage->getToken();
-        if (null === $existingToken) {
-            return null;
+        if (null === $existingToken || $existingToken instanceof NullToken) {
+            throw new UserNotFoundException();
         }
 
-        return $existingToken->getUser();
-    }
-
-    public function checkCredentials($credentials, UserInterface $user)
-    {
-        $qrCode = $credentials['qrCode'];
-
-        if (!$user) {
-            return false;
-        }
+        $user = $existingToken->getUser();
+        $qrCode = $request->request->get('qrCode', '');
+        $secretKey = $request->getSession()->get(SecurityController::QR_CODE_KEY);
 
         $google2fa = new Google2FA();
-        $google2fa->setSecret($credentials['secretKey']);
+        $google2fa->setSecret($secretKey);
 
         if (true !== $google2fa->verifyKey($google2fa->getSecret(), $qrCode)) {
             throw new CustomUserMessageAuthenticationException('This code is not valid');
         }
 
-        return true;
+        $email = $user->getUserIdentifier();
+
+        return new SelfValidatingPassport(
+            new UserBadge($email)
+        );
     }
 
-    public function createAuthenticatedToken(UserInterface $user, string $providerKey)
+    public function createAuthenticatedToken(PassportInterface $passport, string $firewallName): TokenInterface
     {
-        $currentToken = parent::createAuthenticatedToken($user, $providerKey);
+        $currentToken = parent::createAuthenticatedToken($passport, $firewallName);
 
         $roles = array_merge($currentToken->getRoleNames(), [DoubleAuthentificationSubscriber::ROLE_2FA_SUCCEED]);
 
-        return new PostAuthenticationGuardToken(
+        return new PostAuthenticationToken(
             $currentToken->getUser(),
-            $currentToken->getProviderKey(),
+            $currentToken->getFirewallName(),
             $roles
         );
     }
 
-    public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $providerKey)
+    protected function getLoginUrl(Request $request): string
     {
-        if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
-            $this->removeTargetPath($request->getSession(), $providerKey);
+        return $this->urlGenerator->generate(self::LOGIN_ROUTE);
+    }
+
+    public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
+    {
+        if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
+            $this->removeTargetPath($request->getSession(), $firewallName);
 
             return new RedirectResponse($targetPath);
         }
 
         return new RedirectResponse($this->urlGenerator->generate('app_security_authentification_protected'));
-    }
-
-    protected function getLoginUrl()
-    {
-        return $this->urlGenerator->generate(self::LOGIN_ROUTE);
     }
 }
