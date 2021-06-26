@@ -7,12 +7,14 @@
 
     {{ encore_entry_link_tags('app') }}
     {% block stylesheets %}{% endblock %}
+
+    {{ encore_entry_script_tags('app') }}
+    {% block javascripts %}{% endblock %}
 </head>
 <body>
 <nav class="navbar navbar-expand navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="{{ path('homepage') }}">App
-            <span class="badge bg-primary">{{ app_version }} - {{ git_commit }}</span></a>
+        <a class="navbar-brand" href="{{ path('homepage') }}">App Demo</a>
         {% set routeName = app.request.attributes.get('_route') %}
         <ul class="navbar-nav flex-row">
             <li class="nav-item">
@@ -61,8 +63,5 @@
         <a href="https://sainthillier.fr">Guillaume Sainthillier - PHP Web Developer</a>
     </div>
 </footer>
-
-{{ encore_entry_script_tags('app') }}
-{% block javascripts %}{% endblock %}
 </body>
 </html>
