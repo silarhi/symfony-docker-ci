@@ -22,14 +22,17 @@
         "symfony/monolog-bundle": "^3.1",
         "symfony/runtime": "5.3.*",
         "symfony/security-bundle": "5.3.*",
-        "symfony/twig-pack": "*",
+        "symfony/twig-bundle": "5.3.*",
         "symfony/webpack-encore-bundle": "^1.5",
-        "symfony/yaml": "5.3.*"
+        "symfony/yaml": "5.3.*",
+        "twig/extra-bundle": "^2.12|^3.0",
+        "twig/twig": "^2.12|^3.0"
     },
     "require-dev": {
+        "symfony/debug-bundle": "^5.3",
         "symfony/maker-bundle": "^1.23",
-        "symfony/debug-pack": "*",
-        "symfony/profiler-pack": "*"
+        "symfony/stopwatch": "^5.3",
+        "symfony/web-profiler-bundle": "^5.3"
     },
     "config": {
         "preferred-install": {
