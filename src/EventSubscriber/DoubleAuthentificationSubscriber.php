@@ -37,7 +37,7 @@ class DoubleAuthentificationSubscriber implements EventSubscriberInterface
 
     public function onKernelRequest(RequestEvent $event)
     {
-        if (!$event->isMasterRequest()) {
+        if (!$event->isMainRequest()) {
             return;
         }
 
@@ -54,7 +54,7 @@ class DoubleAuthentificationSubscriber implements EventSubscriberInterface
             return;
         }
 
-        if (!$currentToken->isAuthenticated() || self::FIREWALL_NAME !== $currentToken->getProviderKey()) {
+        if (null === $currentToken->getUser() || self::FIREWALL_NAME !== $currentToken->getFirewallName()) {
             return;
         }
 

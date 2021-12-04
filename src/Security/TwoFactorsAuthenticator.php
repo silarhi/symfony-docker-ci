@@ -24,7 +24,7 @@ use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationExc
 use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 use Symfony\Component\Security\Http\Authenticator\AbstractLoginFormAuthenticator;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
-use Symfony\Component\Security\Http\Authenticator\Passport\PassportInterface;
+use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\Authenticator\Passport\SelfValidatingPassport;
 use Symfony\Component\Security\Http\Authenticator\Token\PostAuthenticationToken;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
@@ -45,15 +45,7 @@ class TwoFactorsAuthenticator extends AbstractLoginFormAuthenticator
             && $request->getSession()->has(SecurityController::QR_CODE_KEY);
     }
 
-    public function getCredentials(Request $request)
-    {
-        return [
-            'qrCode' => $request->request->get('qrCode'),
-            'secretKey' => $request->getSession()->get(SecurityController::QR_CODE_KEY),
-        ];
-    }
-
-    public function authenticate(Request $request): PassportInterface
+    public function authenticate(Request $request): Passport
     {
         //Get user from login form
         $existingToken = $this->tokenStorage->getToken();
@@ -79,9 +71,9 @@ class TwoFactorsAuthenticator extends AbstractLoginFormAuthenticator
         );
     }
 
-    public function createAuthenticatedToken(PassportInterface $passport, string $firewallName): TokenInterface
+    public function createToken(Passport $passport, string $firewallName): TokenInterface
     {
-        $currentToken = parent::createAuthenticatedToken($passport, $firewallName);
+        $currentToken = parent::createToken($passport, $firewallName);
 
         $roles = array_merge($currentToken->getRoleNames(), [DoubleAuthentificationSubscriber::ROLE_2FA_SUCCEED]);
 
