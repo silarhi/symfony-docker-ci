@@ -3,13 +3,13 @@ version: 2
 jobs:
     build:
         docker:
-            - image: circleci/buildpack-deps:stretch
+            - image: circleci/buildpack-deps:stable
               environment:
                   IMAGE_NAME: silarhi/symfony-docker-ci
         steps:
             - checkout # Étape 1
             - setup_remote_docker:
-                version: 19.03.13
+                version: 20.10.11
 
             - run: # Étapes 2 & 3
                 name: "Build and push Docker image"
