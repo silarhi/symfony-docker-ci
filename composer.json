@@ -6,7 +6,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "bacon/bacon-qr-code": "^2.0",
-        "knplabs/knp-markdown-bundle": "^1.7",
+        "league/commonmark": "^2.1",
         "league/glide-symfony": "^2",
         "pragmarx/google2fa": "^8.0",
         "sensio/framework-extra-bundle": "^6.1",
