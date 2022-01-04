@@ -5,6 +5,9 @@
     "dasprid/enum": {
         "version": "1.0.3"
     },
+    "dflydev/dot-access-data": {
+        "version": "v3.0.1"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -29,8 +32,11 @@
     "intervention/image": {
         "version": "2.5.1"
     },
-    "knplabs/knp-markdown-bundle": {
-        "version": "1.9.0"
+    "league/commonmark": {
+        "version": "2.1.1"
+    },
+    "league/config": {
+        "version": "v1.1.1"
     },
     "league/flysystem": {
         "version": "1.1.4"
@@ -44,11 +50,14 @@
     "league/mime-type-detection": {
         "version": "1.7.0"
     },
-    "michelf/php-markdown": {
-        "version": "1.9.0"
-    },
     "monolog/monolog": {
         "version": "2.2.0"
+    },
+    "nette/schema": {
+        "version": "v1.2.2"
+    },
+    "nette/utils": {
+        "version": "v3.2.6"
     },
     "nikic/php-parser": {
         "version": "v4.10.5"
@@ -258,9 +267,6 @@
     "symfony/polyfill-mbstring": {
         "version": "v1.23.0"
     },
-    "symfony/polyfill-php73": {
-        "version": "v1.23.0"
-    },
     "symfony/polyfill-php80": {
         "version": "v1.23.0"
     },
@@ -306,9 +312,6 @@
     },
     "symfony/security-csrf": {
         "version": "v5.3.0"
-    },
-    "symfony/security-guard": {
-        "version": "v5.4.0"
     },
     "symfony/security-http": {
         "version": "v5.3.2"
@@ -388,6 +391,9 @@
     },
     "twig/extra-bundle": {
         "version": "v3.3.1"
+    },
+    "twig/markdown-extra": {
+        "version": "v3.3.5"
     },
     "twig/twig": {
         "version": "v3.3.2"
