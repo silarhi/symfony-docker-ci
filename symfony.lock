@@ -65,9 +65,6 @@
     "paragonie/constant_time_encoding": {
         "version": "v2.4.0"
     },
-    "php": {
-        "version": "7.4"
-    },
     "pragmarx/google2fa": {
         "version": "8.0.0"
     },
@@ -212,9 +209,6 @@
             "src/Controller/.gitignore",
             "src/Kernel.php"
         ]
-    },
-    "symfony/http-client-contracts": {
-        "version": "v2.4.0"
     },
     "symfony/http-foundation": {
         "version": "v5.3.2"
