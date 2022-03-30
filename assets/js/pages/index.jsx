@@ -28,7 +28,7 @@ class App extends React.Component {
                 <a href="https://jsonplaceholder.typicode.com/posts/">https://jsonplaceholder.typicode.com/posts/</a>
                 <div className="row">
                     {this.state.entries.map(({ id, title, body }) => (
-                        <Item key={id} id={id} title={title} body={body}></Item>
+                        <Item key={id} id={id} title={title} body={body} />
                     ))}
                 </div>
             </div>
