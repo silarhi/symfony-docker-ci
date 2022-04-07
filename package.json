@@ -20,11 +20,11 @@
         "file-loader": "^6.0.0",
         "husky": "^7.0.4",
         "lint-staged": ">=12.3.7",
-        "prettier": "^2.6.1",
+        "prettier": "^2.6.2",
         "prop-types": "^15.7.2",
         "react": "^18.0.0",
         "react-dom": "^18.0.0",
-        "sass": "^1.49.9",
+        "sass": "^1.50.0",
         "sass-loader": "^12.6.0",
         "webpack-notifier": "^1.14.1"
     }
