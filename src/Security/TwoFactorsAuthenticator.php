@@ -47,7 +47,7 @@ class TwoFactorsAuthenticator extends AbstractLoginFormAuthenticator
 
     public function authenticate(Request $request): Passport
     {
-        //Get user from login form
+        // Get user from login form
         $existingToken = $this->tokenStorage->getToken();
         if (null === $existingToken || $existingToken instanceof NullToken) {
             throw new UserNotFoundException();
