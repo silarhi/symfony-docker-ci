@@ -3,12 +3,14 @@
 {% block title %}Page for connected users!{% endblock %}
 
 {% block body %}
-    <div class="container mt-5 text-center">
-        <div class="jumbotron">
+    <div class="container text-center">
+        <div class="jumbotron my-5">
             <h1 class="display-4">Success!</h1>
             <p class="lead">Only connected users can see this mega secret message.</p>
-            <hr class="my-4">
-            <a class="btn btn-primary btn-lg" href="{{ path('homepage') }}" role="button">Go back to home</a>
+            <div class="ratio ratio-16x9 mx-auto" style="max-width: 600px">
+                <iframe src="https://giphy.com/embed/xT1XGRazAbrOJnNu9i" width="100%" height="100%" style="position:absolute;top:0;left:0" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+            </div>
+            <a class="btn btn-primary btn-lg mt-4" href="{{ path('homepage') }}" role="button">Go back to home</a>
         </div>
     </div>
 {% endblock %}
