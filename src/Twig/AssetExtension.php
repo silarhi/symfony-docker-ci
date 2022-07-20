@@ -21,7 +21,7 @@ class AssetExtension extends AbstractExtension
     {
     }
 
-    public function getFunctions()
+    public function getFunctions(): array
     {
         return [
             new TwigFunction('app_asset', [$this, 'appAsset'], ['is_safe' => ['html']]),
@@ -32,7 +32,7 @@ class AssetExtension extends AbstractExtension
     {
         $parameters['fm'] = 'pjpg';
 
-        if ('png' === substr($path, -3)) {
+        if (str_ends_with($path, 'png')) {
             $parameters['fm'] = 'png';
         }
 

@@ -16,8 +16,8 @@ use BaconQrCode\Renderer\RendererStyle\RendererStyle;
 use BaconQrCode\Writer;
 use PragmaRX\Google2FA\Google2FA;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
@@ -37,8 +37,9 @@ class SecurityController extends AbstractController
     }
 
     #[Route(path: '/setup-2FA', name: 'app_security_setup_fa')]
-    public function setup(SessionInterface $session, AuthenticationUtils $authenticationUtils)
+    public function setup(Request $request, AuthenticationUtils $authenticationUtils)
     {
+        $session = $request->getSession();
         $error = $authenticationUtils->getLastAuthenticationError();
 
         $google2fa = new Google2FA();
