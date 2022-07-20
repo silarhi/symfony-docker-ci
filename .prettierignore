@@ -3,6 +3,4 @@ config
 public
 src
 templates
-tests
-translations
 vendor
