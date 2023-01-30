@@ -7,9 +7,6 @@
 
     {{ encore_entry_link_tags('app') }}
     {% block stylesheets %}{% endblock %}
-
-    {{ encore_entry_script_tags('app') }}
-    {% block javascripts %}{% endblock %}
 </head>
 <body>
 <nav class="navbar navbar-expand navbar-dark bg-dark">
@@ -63,5 +60,8 @@
         <a href="https://sainthillier.fr">Guillaume Sainthillier - PHP Web Developer</a>
     </div>
 </footer>
+
+{{ encore_entry_script_tags('app') }}
+{% block javascripts %}{% endblock %}
 </body>
 </html>
