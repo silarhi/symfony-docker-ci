@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Item from '../component/Item';
+import { createRoot } from 'react-dom/client';
 
 class App extends React.Component {
     constructor() {
@@ -35,5 +36,6 @@ class App extends React.Component {
         );
     }
 }
-
-ReactDOM.render(<App />, document.getElementById('root'));
+const container = document.getElementById('root');
+const root = createRoot(container);
+root.render(<App />);
