@@ -23,7 +23,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
-    public const QR_CODE_KEY = '_qr_code_secret';
+    final public const QR_CODE_KEY = '_qr_code_secret';
 
     #[Route(path: '/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response

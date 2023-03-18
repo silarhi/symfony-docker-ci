@@ -33,9 +33,9 @@ class TwoFactorsAuthenticator extends AbstractLoginFormAuthenticator
 {
     use TargetPathTrait;
 
-    public const LOGIN_ROUTE = 'app_security_setup_fa';
+    final public const LOGIN_ROUTE = 'app_security_setup_fa';
 
-    public function __construct(private TokenStorageInterface $tokenStorage, private UrlGeneratorInterface $urlGenerator)
+    public function __construct(private readonly TokenStorageInterface $tokenStorage, private readonly UrlGeneratorInterface $urlGenerator)
     {
     }
 

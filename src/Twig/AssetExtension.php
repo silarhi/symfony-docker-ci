@@ -17,14 +17,14 @@ use Twig\TwigFunction;
 
 class AssetExtension extends AbstractExtension
 {
-    public function __construct(private UrlGeneratorInterface $router, private string $secret)
+    public function __construct(private readonly UrlGeneratorInterface $router, private readonly string $secret)
     {
     }
 
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('app_asset', [$this, 'appAsset'], ['is_safe' => ['html']]),
+            new TwigFunction('app_asset', $this->appAsset(...), ['is_safe' => ['html']]),
         ];
     }
 

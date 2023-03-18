@@ -21,10 +21,10 @@ use Symfony\Component\Security\Http\Authenticator\Token\PostAuthenticationToken;
 
 class DoubleAuthentificationSubscriber implements EventSubscriberInterface
 {
-    public const ROLE_2FA_SUCCEED = 'ROLE_2FA_SUCCEED';
-    public const FIREWALL_NAME = 'main';
+    final public const ROLE_2FA_SUCCEED = 'ROLE_2FA_SUCCEED';
+    final public const FIREWALL_NAME = 'main';
 
-    public function __construct(private RouterInterface $router, private TokenStorageInterface $tokenStorage)
+    public function __construct(private readonly RouterInterface $router, private readonly TokenStorageInterface $tokenStorage)
     {
     }
 
