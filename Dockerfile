@@ -1,7 +1,7 @@
 # Dockerfile
 
 # 1st stage : build js & css
-FROM node:16-alpine as builder
+FROM node:18-alpine as builder
 
 ENV NODE_ENV=production
 WORKDIR /app
