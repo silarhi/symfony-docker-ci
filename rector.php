@@ -16,6 +16,9 @@ use Rector\Set\ValueObject\LevelSetList;
 use Rector\Symfony\Set\SymfonySetList;
 
 return static function (RectorConfig $rectorConfig): void {
+    $rectorConfig->importNames();
+    $rectorConfig->importShortClasses();
+
     $rectorConfig->paths([
         __DIR__ . '/src',
     ]);
