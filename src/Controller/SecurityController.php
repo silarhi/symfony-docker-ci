@@ -37,7 +37,7 @@ class SecurityController extends AbstractController
     }
 
     #[Route(path: '/setup-2FA', name: 'app_security_setup_fa')]
-    public function setup(Request $request, AuthenticationUtils $authenticationUtils)
+    public function setup(Request $request, AuthenticationUtils $authenticationUtils): Response
     {
         $session = $request->getSession();
         $error = $authenticationUtils->getLastAuthenticationError();
@@ -71,7 +71,7 @@ class SecurityController extends AbstractController
     }
 
     #[Route(path: '/2FA-protected', name: 'app_security_authentification_protected')]
-    public function authentificationProtected()
+    public function authentificationProtected(): Response
     {
         return $this->render('security/protected.html.twig');
     }

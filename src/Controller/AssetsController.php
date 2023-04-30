@@ -18,12 +18,13 @@ use League\Glide\Signatures\SignatureException;
 use League\Glide\Signatures\SignatureFactory;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class AssetsController extends AbstractController
 {
     #[Route(path: '/assets/{path<(.+)>}', name: 'asset_url', methods: ['GET'])]
-    public function asset(string $path, string $secret, Request $request, Server $glide)
+    public function asset(string $path, string $secret, Request $request, Server $glide): Response
     {
         $parameters = $request->query->all();
         if (\count($parameters) > 0) {

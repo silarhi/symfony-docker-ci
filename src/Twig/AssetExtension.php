@@ -28,7 +28,7 @@ class AssetExtension extends AbstractExtension
         ];
     }
 
-    public function appAsset(string $path, array $parameters = [], $referenceType = UrlGeneratorInterface::ABSOLUTE_PATH)
+    public function appAsset(string $path, array $parameters = [], $referenceType = UrlGeneratorInterface::ABSOLUTE_PATH): string
     {
         $parameters['fm'] = 'pjpg';
 
