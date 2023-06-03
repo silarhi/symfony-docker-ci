@@ -1,5 +1,5 @@
 //Bootstrap default overrides
-$body-bg: #f8f8f8;
+$lightShade: #f8f8f8;
 $primary: #6f42c1;
 $enable-rounded: false;
 $enable-shadows: true;
@@ -16,6 +16,7 @@ body {
 body {
     display: flex;
     flex-direction: column;
+    background: $lightShade;
 }
 
 main {
