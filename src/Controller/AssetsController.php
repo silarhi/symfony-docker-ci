@@ -27,7 +27,7 @@ class AssetsController extends AbstractController
     public function asset(string $path, string $secret, Request $request, Server $glide): Response
     {
         $parameters = $request->query->all();
-        if (\count($parameters) > 0) {
+        if ([] !== $parameters) {
             try {
                 SignatureFactory::create($secret)->validateRequest($path, $parameters);
             } catch (SignatureException $e) {

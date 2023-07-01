@@ -17,6 +17,7 @@ use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Http\Authenticator\Token\PostAuthenticationToken;
 
 class DoubleAuthentificationSubscriber implements EventSubscriberInterface
@@ -42,7 +43,7 @@ class DoubleAuthentificationSubscriber implements EventSubscriberInterface
         }
 
         $route = $event->getRequest()->attributes->get('_route');
-        if (!\in_array($route, ['app_security_authentification_protected'], true)) {
+        if ('app_security_authentification_protected' !== $route) {
             return;
         }
 
@@ -54,7 +55,7 @@ class DoubleAuthentificationSubscriber implements EventSubscriberInterface
             return;
         }
 
-        if (null === $currentToken->getUser() || self::FIREWALL_NAME !== $currentToken->getFirewallName()) {
+        if (!$currentToken->getUser() instanceof UserInterface || self::FIREWALL_NAME !== $currentToken->getFirewallName()) {
             return;
         }
 

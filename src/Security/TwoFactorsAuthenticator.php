@@ -49,7 +49,7 @@ class TwoFactorsAuthenticator extends AbstractLoginFormAuthenticator
     {
         // Get user from login form
         $existingToken = $this->tokenStorage->getToken();
-        if (null === $existingToken || $existingToken instanceof NullToken) {
+        if (!$existingToken instanceof TokenInterface || $existingToken instanceof NullToken) {
             throw new UserNotFoundException();
         }
 
