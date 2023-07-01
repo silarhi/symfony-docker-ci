@@ -25,20 +25,9 @@ ARG GIT_COMMIT=master
 ENV APP_VERSION="${APP_VERSION}"
 ENV GIT_COMMIT="${GIT_COMMIT}"
 
-RUN apt-get update -qq && \
-    apt-get install -qy \
-    libmagickwand-dev \
-    libpng-dev \
-    libjpeg-dev \
-    libfreetype6-dev
+COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
 
-RUN docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ && \
-    git clone https://github.com/Imagick/imagick && \
-    cd imagick && \
-    phpize && ./configure && make && make install && \
-    cd .. && rm -Rf imagick && \
-    docker-php-ext-install gd exif && \
-    docker-php-ext-enable imagick
+RUN install-php-extensions exif gd imagick
 
 COPY . /app
 COPY --from=builder /app/public/build /app/public/build
