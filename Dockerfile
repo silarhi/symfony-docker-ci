@@ -32,13 +32,12 @@ RUN install-php-extensions exif gd imagick
 COPY . /app
 COPY --from=builder /app/public/build /app/public/build
 
-RUN mkdir -p var && \
+RUN mkdir -p var var/storage && \
     APP_ENV=prod composer install --prefer-dist --optimize-autoloader --classmap-authoritative --no-interaction --no-ansi --no-dev && \
     APP_ENV=prod bin/console cache:clear --no-warmup && \
     APP_ENV=prod bin/console cache:warmup && \
     # We don't use DotEnv component as docker-compose will provide real environment variables
     echo "<?php return [];" > .env.local.php && \
-    mkdir -p var/storage && \
     chown -R www-data:www-data var && \
     # Reduce container size
     rm -rf .git assets /root/.composer /tmp/*
