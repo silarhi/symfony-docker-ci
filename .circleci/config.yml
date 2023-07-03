@@ -26,7 +26,7 @@ jobs:
                     docker push ${IMAGE_NAME}
     deploy: # Étape 4
         machine:
-            image: ubuntu-2004:202111-02
+            image: ubuntu-2204:current
         steps:
             - add_ssh_keys:
                 fingerprints:
