@@ -34,7 +34,7 @@ jobs:
             - run:
                 name: "Deploy image to production"
                 command: |
-                    ssh root@${PRODUCTION_SERVER_IP} "cd ${PRODUCTION_SERVER_PATH} && ./deploy.sh"
+                    ssh ${PRODUCTION_SERVER_USER}@${PRODUCTION_SERVER_IP} "cd ${PRODUCTION_SERVER_PATH} && ./deploy.sh"
 
 # On éxécute ces étapes lors d'un commit sur la branche master uniquement
 workflows:
