@@ -30,7 +30,7 @@ jobs:
         steps:
             - add_ssh_keys:
                 fingerprints:
-                    - "7c:58:a5:54:56:36:ee:bc:7d:d6:07:38:a0:52:31:cb"
+                    - "de:c3:47:8e:28:31:55:01:9d:f7:08:f9:df:8e:79:e0"
             - run:
                 name: "Deploy image to production"
                 command: |
