@@ -79,7 +79,7 @@ class TwoFactorsAuthenticator extends AbstractLoginFormAuthenticator
 
         return new PostAuthenticationToken(
             $currentToken->getUser(),
-            $currentToken->getFirewallName(),
+            $firewallName,
             $roles
         );
     }
