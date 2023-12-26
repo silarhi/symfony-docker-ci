@@ -9,7 +9,7 @@
     {% block stylesheets %}{% endblock %}
 </head>
 <body>
-<nav class="navbar navbar-expand navbar-dark bg-dark">
+<nav class="navbar navbar-expand" data-bs-theme="dark">
     <div class="container">
         <a class="navbar-brand" href="{{ path('homepage') }}">App Demo</a>
         {% set routeName = app.request.attributes.get('_route') %}
@@ -50,11 +50,11 @@
                 <a href="https://github.com/silarhi/symfony-docker-ci/commit/{{ git_commit }}">{{ git_commit }}</a>
             </li>
             <li class="list-inline-item">
-                App version: <span class="badge bg-primary">{{ app_version }}</span>
+                App version: <span class="badge text-bg-primary">{{ app_version }}</span>
             </li>
             <li class="list-inline-item">
                 Symfony version:
-                <span class="badge bg-primary">{{ constant('Symfony\\Component\\HttpKernel\\Kernel::VERSION') }}</span>
+                <span class="badge text-bg-primary">{{ constant('Symfony\\Component\\HttpKernel\\Kernel::VERSION') }}</span>
             </li>
         </ul>
         <a href="https://sainthillier.fr">Guillaume Sainthillier - PHP Web Developer</a>

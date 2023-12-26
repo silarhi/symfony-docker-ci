@@ -1,12 +1,13 @@
 //Bootstrap default overrides
 $lightShade: #f8f8f8;
 $primary: #6f42c1;
-$enable-rounded: false;
+$border-radius: 0.25rem;
+$border-radius-lg: 0.25rem;
 $enable-shadows: true;
 $card-border-width: 0;
 $link-decoration: none;
 
-@import '~bootstrap/scss/bootstrap';
+@import '@tabler/core/src/scss/core';
 
 html,
 body {
@@ -28,7 +29,10 @@ footer {
 }
 
 .navbar {
-    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
+    box-shadow:
+        0 2px 4px -1px rgba(0, 0, 0, 0.2),
+        0 4px 5px 0 rgba(0, 0, 0, 0.14),
+        0 1px 10px 0 rgba(0, 0, 0, 0.12);
 }
 
 footer {
