@@ -14,7 +14,6 @@ use Rector\CodeQuality\Rector\Class_\InlineConstructorDefaultToPropertyRector;
 use Rector\Config\RectorConfig;
 use Rector\Set\ValueObject\LevelSetList;
 use Rector\Set\ValueObject\SetList;
-use Rector\Symfony\Set\SymfonyLevelSetList;
 use Rector\Symfony\Set\SymfonySetList;
 
 return static function (RectorConfig $rectorConfig): void {
@@ -33,7 +32,7 @@ return static function (RectorConfig $rectorConfig): void {
         SetList::DEAD_CODE,
         SetList::CODE_QUALITY,
         SymfonySetList::SYMFONY_CODE_QUALITY,
-        SymfonyLevelSetList::UP_TO_SYMFONY_63,
+        SymfonySetList::SYMFONY_64,
         LevelSetList::UP_TO_PHP_82,
     ]);
 };
