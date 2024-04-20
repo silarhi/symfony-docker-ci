@@ -33,6 +33,6 @@ return static function (RectorConfig $rectorConfig): void {
         SetList::CODE_QUALITY,
         SymfonySetList::SYMFONY_CODE_QUALITY,
         SymfonySetList::SYMFONY_64,
-        LevelSetList::UP_TO_PHP_82,
+        LevelSetList::UP_TO_PHP_83,
     ]);
 };

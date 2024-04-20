@@ -10,6 +10,7 @@
 
 namespace App\Security;
 
+use Override;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,12 +28,13 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 {
     use TargetPathTrait;
 
-    final public const LOGIN_ROUTE = 'app_login';
+    final public const string LOGIN_ROUTE = 'app_login';
 
     public function __construct(private readonly UrlGeneratorInterface $urlGenerator)
     {
     }
 
+    #[Override]
     public function authenticate(Request $request): Passport
     {
         /** @var string $identifier */
@@ -53,11 +55,13 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
         );
     }
 
+    #[Override]
     protected function getLoginUrl(Request $request): string
     {
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);
     }
 
+    #[Override]
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): Response
     {
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {

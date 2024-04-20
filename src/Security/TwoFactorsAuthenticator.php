@@ -12,6 +12,7 @@ namespace App\Security;
 
 use App\Controller\SecurityController;
 use App\EventSubscriber\DoubleAuthentificationSubscriber;
+use Override;
 use PragmaRX\Google2FA\Google2FA;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -34,18 +35,20 @@ class TwoFactorsAuthenticator extends AbstractLoginFormAuthenticator
 {
     use TargetPathTrait;
 
-    final public const LOGIN_ROUTE = 'app_security_setup_fa';
+    final public const string LOGIN_ROUTE = 'app_security_setup_fa';
 
     public function __construct(private readonly TokenStorageInterface $tokenStorage, private readonly UrlGeneratorInterface $urlGenerator)
     {
     }
 
+    #[Override]
     public function supports(Request $request): bool
     {
         return parent::supports($request)
             && $request->getSession()->has(SecurityController::QR_CODE_KEY);
     }
 
+    #[Override]
     public function authenticate(Request $request): Passport
     {
         // Get user from login form
@@ -75,6 +78,7 @@ class TwoFactorsAuthenticator extends AbstractLoginFormAuthenticator
         );
     }
 
+    #[Override]
     public function createToken(Passport $passport, string $firewallName): TokenInterface
     {
         $currentToken = parent::createToken($passport, $firewallName);
@@ -91,11 +95,13 @@ class TwoFactorsAuthenticator extends AbstractLoginFormAuthenticator
         );
     }
 
+    #[Override]
     protected function getLoginUrl(Request $request): string
     {
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);
     }
 
+    #[Override]
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): Response
     {
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {

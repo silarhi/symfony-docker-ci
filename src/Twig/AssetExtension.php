@@ -11,6 +11,7 @@
 namespace App\Twig;
 
 use League\Glide\Signatures\SignatureFactory;
+use Override;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
@@ -21,6 +22,7 @@ class AssetExtension extends AbstractExtension
     {
     }
 
+    #[Override]
     public function getFunctions(): array
     {
         return [

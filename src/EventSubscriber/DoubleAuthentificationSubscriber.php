@@ -10,6 +10,7 @@
 
 namespace App\EventSubscriber;
 
+use Override;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
@@ -22,13 +23,14 @@ use Symfony\Component\Security\Http\Authenticator\Token\PostAuthenticationToken;
 
 class DoubleAuthentificationSubscriber implements EventSubscriberInterface
 {
-    final public const ROLE_2FA_SUCCEED = 'ROLE_2FA_SUCCEED';
-    final public const FIREWALL_NAME = 'main';
+    final public const string ROLE_2FA_SUCCEED = 'ROLE_2FA_SUCCEED';
+    final public const string FIREWALL_NAME = 'main';
 
     public function __construct(private readonly RouterInterface $router, private readonly TokenStorageInterface $tokenStorage)
     {
     }
 
+    #[Override]
     public static function getSubscribedEvents(): array
     {
         return [
