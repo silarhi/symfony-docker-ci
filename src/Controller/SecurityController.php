@@ -47,6 +47,7 @@ class SecurityController extends AbstractController
             $secretKey = $google2fa->generateSecretKey();
             $session->set(self::QR_CODE_KEY, $secretKey);
         } else {
+            /** @var string $secretKey */
             $secretKey = $session->get(self::QR_CODE_KEY);
         }
         // Generate QR CODE based on secretKey

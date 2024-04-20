@@ -36,6 +36,7 @@ class AssetsController extends AbstractController
         }
         $glide->setResponseFactory(new SymfonyResponseFactory($request));
         try {
+            /** @var Response $response */
             $response = $glide->getImageResponse($path, $parameters);
         } catch (InvalidArgumentException|FileNotFoundException $e) {
             throw $this->createNotFoundException('', $e);
