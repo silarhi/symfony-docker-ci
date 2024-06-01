@@ -10,29 +10,24 @@ declare(strict_types=1);
  * with this source code in the file LICENSE.
  */
 
-use Rector\CodeQuality\Rector\Class_\InlineConstructorDefaultToPropertyRector;
 use Rector\Config\RectorConfig;
-use Rector\Set\ValueObject\LevelSetList;
-use Rector\Set\ValueObject\SetList;
 use Rector\Symfony\Set\SymfonySetList;
 
-return static function (RectorConfig $rectorConfig): void {
-    $rectorConfig->importNames();
-    $rectorConfig->importShortClasses();
-
-    $rectorConfig->paths([
+return RectorConfig::configure()
+    ->withImportNames()
+    ->withSymfonyContainerXml(__DIR__ . '/var/cache/dev/App_KernelDevDebugContainer.xml')
+    ->withPaths([
+        __DIR__ . '/config',
+        __DIR__ . '/public',
         __DIR__ . '/src',
-    ]);
-
-    // register a single rule
-    $rectorConfig->rule(InlineConstructorDefaultToPropertyRector::class);
-
-    // define sets of rules
-    $rectorConfig->sets([
-        SetList::DEAD_CODE,
-        SetList::CODE_QUALITY,
+    ])
+    // uncomment to reach your current PHP version
+    ->withPhpSets()
+    ->withPreparedSets(
+        deadCode: true,
+        codeQuality: true
+    )
+    ->withSets([
         SymfonySetList::SYMFONY_CODE_QUALITY,
         SymfonySetList::SYMFONY_64,
-        LevelSetList::UP_TO_PHP_83,
     ]);
-};
