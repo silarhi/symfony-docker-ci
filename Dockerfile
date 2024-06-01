@@ -13,14 +13,11 @@ RUN mkdir -p public && \
     NODE_ENV=development yarn install && \
     yarn run build
 
-FROM dunglas/frankenphp:1-php8.3-bookworm
+FROM silarhi/php-apache:8.3-frankenphp-bookworm
 
 # 2nd stage : build the real app container
 EXPOSE 80
 WORKDIR /app
-
-ENV SERVER_NAME=:80
-ENV COMPOSER_ALLOW_SUPERUSER=1
 
 # Default APP_VERSION, real version will be given by the CD server
 ARG APP_VERSION=dev
@@ -28,21 +25,10 @@ ARG GIT_COMMIT=master
 ENV APP_VERSION="${APP_VERSION}"
 ENV GIT_COMMIT="${GIT_COMMIT}"
 
-# git, unzip & zip are for composer
-RUN apt-get update -qq && \
-    apt-get install -qy \
-    git \
-    gnupg \
-    unzip \
-    zip && \
-    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
-    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
 RUN install-php-extensions exif gd imagick/imagick@master
 
 # Enable PHP production settings
 COPY docker/php.ini $PHP_INI_DIR/conf.d/app.ini
-RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 COPY . /app
 COPY --from=builder /app/public/build /app/public/build
