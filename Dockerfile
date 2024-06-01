@@ -41,6 +41,7 @@ RUN apt-get update -qq && \
 RUN install-php-extensions exif gd imagick/imagick@master
 
 # Enable PHP production settings
+COPY docker/php.ini $PHP_INI_DIR/conf.d/app.ini
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 COPY . /app
