@@ -9,7 +9,6 @@
         "league/commonmark": "^2.1",
         "league/glide-symfony": "^2",
         "pragmarx/google2fa": "^8.0",
-        "symfony/apache-pack": "*",
         "symfony/asset": "7.1.*",
         "symfony/console": "7.1.*",
         "symfony/dotenv": "7.1.*",
@@ -29,6 +28,7 @@
     },
     "require-dev": {
         "rector/rector": "^1",
+        "symfony/apache-pack": "^1.0",
         "symfony/debug-bundle": "7.1.*",
         "symfony/maker-bundle": "^1.23",
         "symfony/stopwatch": "7.1.*",
