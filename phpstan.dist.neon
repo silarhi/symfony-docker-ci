@@ -1,5 +1,8 @@
 parameters:
     level: 9
+    tmpDir: var/tools/phpstan
+    symfony:
+        containerXmlPath: var/cache/dev/App_KernelDevDebugContainer.xml
     paths:
         - bin/
         - config/
