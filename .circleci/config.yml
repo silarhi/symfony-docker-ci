@@ -36,7 +36,7 @@ jobs:
                 command: |
                     ssh ${PRODUCTION_SERVER_USER}@${PRODUCTION_SERVER_IP} "cd ${PRODUCTION_SERVER_PATH} && ./deploy.sh"
 
-# On éxécute ces étapes lors d'un commit sur la branche master uniquement
+# On éxécute ces étapes lors d'un commit sur la branche main uniquement
 workflows:
     version: 2
     build-and-deploy:
