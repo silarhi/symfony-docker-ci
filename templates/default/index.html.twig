@@ -6,7 +6,7 @@
     <div class="container my-4">
         {{ description|markdown_to_html }}
         <br />
-        <div id="root">This will be modified by Javascript</div>
+        <div {{ stimulus_controller('index') }}>This will be modified by Javascript</div>
     </div>
 {% endblock %}
 

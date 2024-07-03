@@ -1,11 +1,21 @@
 # Dockerfile
 
+FROM silarhi/php-apache:8.3-frankenphp-bookworm as php_builder
+WORKDIR /app
+
+ENV COMPOSER_ALLOW_SUPERUSER=1
+
+# Composer install before sources
+COPY composer.json composer.lock symfony.lock ./
+RUN APP_ENV=prod composer install --no-interaction --no-dev --no-scripts --prefer-dist
+
 # 1st stage : build js & css
 FROM node:20-alpine as builder
 
 ENV NODE_ENV=production
 WORKDIR /app
 
+COPY --from=php_builder --link /app/vendor ./vendor
 COPY package.json yarn.lock webpack.config.js ./
 COPY assets ./assets
 
@@ -13,7 +23,7 @@ RUN mkdir -p public && \
     NODE_ENV=development yarn install && \
     yarn run build
 
-FROM silarhi/php-apache:8.3-frankenphp-bookworm
+FROM php_builder
 
 # 2nd stage : build the real app container
 EXPOSE 80
