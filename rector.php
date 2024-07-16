@@ -29,5 +29,5 @@ return RectorConfig::configure()
     )
     ->withSets([
         SymfonySetList::SYMFONY_CODE_QUALITY,
-        SymfonySetList::SYMFONY_64,
+        SymfonySetList::SYMFONY_71,
     ]);
