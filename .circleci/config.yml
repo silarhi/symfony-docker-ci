@@ -23,7 +23,7 @@ jobs:
                         docker tag ${IMAGE_NAME}:${IMAGE_TAG} ${IMAGE_NAME}:latest
                     fi
                     echo ${DOCKER_PWD} | docker login -u ${DOCKER_LOGIN} --password-stdin
-                    docker push ${IMAGE_NAME}
+                    docker push ${IMAGE_NAME} --all-tags
     deploy: # Étape 4
         machine:
             image: ubuntu-2204:current
