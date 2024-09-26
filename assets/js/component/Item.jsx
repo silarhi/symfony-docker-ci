@@ -6,7 +6,7 @@ export default function Items({ id, title, body }) {
             <div className="card">
                 <div className="card-body">
                     <h4 className="card-title">
-                        #{id} - {title}{' '}
+                        #{id} - {title}
                     </h4>
                     <p className="card-text">{body}</p>
                 </div>
