@@ -9,6 +9,7 @@
         "league/commonmark": "^2.1",
         "league/glide-symfony": "^2",
         "pragmarx/google2fa": "^8.0",
+        "runtime/frankenphp-symfony": "^0.2.0",
         "symfony/asset": "7.1.*",
         "symfony/console": "7.1.*",
         "symfony/dotenv": "7.1.*",
