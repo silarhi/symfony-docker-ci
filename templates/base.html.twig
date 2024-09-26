@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="turbo-prefetch" content="false">
+    <meta name="x-app-version" content="{{ app_version }}" data-turbo-track="reload">
     <title>{% block title %}Welcome!{% endblock %}</title>
 
     {{ encore_entry_link_tags('app') }}
