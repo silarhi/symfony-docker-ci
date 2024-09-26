@@ -38,7 +38,8 @@
         "symfony/debug-bundle": "7.1.*",
         "symfony/maker-bundle": "^1.23",
         "symfony/stopwatch": "7.1.*",
-        "symfony/web-profiler-bundle": "7.1.*"
+        "symfony/web-profiler-bundle": "7.1.*",
+        "vincentlanglet/twig-cs-fixer": "^3.1"
     },
     "config": {
         "preferred-install": {

@@ -22,6 +22,7 @@ $finder = PhpCsFixer\Finder::create()
     ->in(__DIR__ . '/src')
     ->append([
         __FILE__,
+        __DIR__ . '/.twig-cs-fixer.php',
         __DIR__ . '/rector.php',
     ])
 ;
