@@ -1,6 +1,8 @@
 *.md
 !README.md
 *.log
+.circleci
+.husky
 .git
 .gitignore
 .idea

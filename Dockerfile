@@ -1,29 +1,33 @@
-# Dockerfile
+#syntax=docker/dockerfile:1.7-labs
 
-FROM silarhi/php-apache:8.3-frankenphp-bookworm as php_builder
+# Versions
+FROM silarhi/php-apache:8.3-frankenphp-bookworm as php_upstream
+FROM node:20-alpine as node_upstream
+
+FROM php_upstream as php_builder
 WORKDIR /app
 
 ENV COMPOSER_ALLOW_SUPERUSER=1
 
 # Composer install before sources
 COPY composer.json composer.lock symfony.lock ./
-RUN APP_ENV=prod composer install --no-interaction --no-dev --no-scripts --prefer-dist
+RUN composer install --no-interaction --no-dev --no-scripts --prefer-dist
 
 # 1st stage : build js & css
-FROM node:20-alpine as builder
+FROM node_upstream as node_builder
 
 ENV NODE_ENV=production
 WORKDIR /app
 
 COPY --from=php_builder --link /app/vendor ./vendor
-COPY package.json yarn.lock webpack.config.js ./
-COPY assets ./assets
+COPY --link package.json yarn.lock webpack.config.js ./
+COPY --link assets ./assets
 
 RUN mkdir -p public && \
     NODE_ENV=development yarn install && \
     yarn run build
 
-FROM php_builder
+FROM php_upstream
 
 # 2nd stage : build the real app container
 EXPOSE 80
@@ -37,18 +41,18 @@ ENV GIT_COMMIT="${GIT_COMMIT}"
 
 RUN install-php-extensions exif gd imagick/imagick@master
 
-# Enable PHP production settings
-COPY docker/php.ini $PHP_INI_DIR/conf.d/app.ini
+COPY --from=php_builder --link /app/vendor ./vendor
+COPY --from=node_builder --link /app/public/build /app/public/build
+COPY --link --exclude=assets --exclude=docker . .
 
-COPY . /app
-COPY --from=builder /app/public/build /app/public/build
+# Config
+COPY --link docker/php.ini $PHP_INI_DIR/conf.d/app.ini
 
 RUN mkdir -p var var/storage && \
-    APP_ENV=prod composer install --prefer-dist --optimize-autoloader --classmap-authoritative --no-interaction --no-ansi --no-dev && \
+    composer dump-autoload --optimize --classmap-authoritative --no-dev --no-interaction && \
     APP_ENV=prod bin/console cache:clear --no-warmup && \
     APP_ENV=prod bin/console cache:warmup && \
     # We don't use DotEnv component as docker-compose will provide real environment variables
     echo "<?php return [];" > .env.local.php && \
     chown -R www-data:www-data var && \
-    # Reduce container size
-    rm -rf .git assets /root/.composer /tmp/*
+    rm -rf /root/.cache
