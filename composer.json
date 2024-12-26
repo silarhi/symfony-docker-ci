@@ -31,9 +31,9 @@
     },
     "require-dev": {
         "phpstan/extension-installer": "^1.4",
-        "phpstan/phpstan": "^1.11",
-        "phpstan/phpstan-symfony": "^1.4",
-        "rector/rector": "^1",
+        "phpstan/phpstan": "^2",
+        "phpstan/phpstan-symfony": "^2",
+        "rector/rector": "^2",
         "symfony/apache-pack": "^1.0",
         "symfony/debug-bundle": "7.2.*",
         "symfony/maker-bundle": "^1.23",
