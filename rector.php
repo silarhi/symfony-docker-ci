@@ -17,6 +17,7 @@ return RectorConfig::configure()
     ->withImportNames()
     ->withSymfonyContainerXml(__DIR__ . '/var/cache/dev/App_KernelDevDebugContainer.xml')
     ->withPaths([
+        __DIR__ . '/bin',
         __DIR__ . '/config',
         __DIR__ . '/public',
         __DIR__ . '/src',
@@ -25,7 +26,8 @@ return RectorConfig::configure()
     ->withPhpSets()
     ->withPreparedSets(
         deadCode: true,
-        codeQuality: true
+        codeQuality: true,
+        codingStyle: true,
     )
     ->withSets([
         SymfonySetList::SYMFONY_CODE_QUALITY,

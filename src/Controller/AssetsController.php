@@ -34,6 +34,7 @@ class AssetsController extends AbstractController
                 throw $this->createNotFoundException('', $e);
             }
         }
+
         $glide->setResponseFactory(new SymfonyResponseFactory($request));
         try {
             /** @var Response $response */
