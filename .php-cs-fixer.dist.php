@@ -44,4 +44,4 @@ return $config
     ])
     ->setRiskyAllowed(true)
     ->setFinder($finder)
-    ->setCacheFile(__DIR__ . '/var/.php-cs-fixer.cache');
+    ->setCacheFile(__DIR__ . '/var/tools/.php-cs-fixer.cache');

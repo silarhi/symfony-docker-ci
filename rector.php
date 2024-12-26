@@ -14,6 +14,7 @@ use Rector\Config\RectorConfig;
 use Rector\Symfony\Set\SymfonySetList;
 
 return RectorConfig::configure()
+    ->withCache(__DIR__ . '/var/tools/rector')
     ->withImportNames()
     ->withSymfonyContainerXml(__DIR__ . '/var/cache/dev/App_KernelDevDebugContainer.xml')
     ->withPaths([
