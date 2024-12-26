@@ -9,7 +9,7 @@
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "build": "encore production --progress",
-        "prepare": "husky install"
+        "prepare": "husky"
     },
     "lint-staged": {
         "*.{js,scss,md}": "prettier --write",
@@ -33,10 +33,10 @@
         "prop-types": "^15.7.2",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
-        "sass": "^1.82.0",
+        "sass": "1.75.*",
         "sass-loader": "^16.0.4",
         "webpack": "^5.97.1",
-        "webpack-cli": "^5.1.4",
+        "webpack-cli": "^6.0.1",
         "webpack-notifier": "^1.14.1"
     },
     "dependencies": {
