@@ -39,7 +39,7 @@ ARG GIT_COMMIT=master
 ENV APP_VERSION="${APP_VERSION}"
 ENV GIT_COMMIT="${GIT_COMMIT}"
 
-RUN install-php-extensions exif gd imagick/imagick@master
+RUN install-php-extensions exif gd imagick
 
 COPY --from=php_builder --link /app/vendor ./vendor
 COPY --from=node_builder --link /app/public/build /app/public/build
