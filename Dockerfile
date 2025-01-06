@@ -1,7 +1,7 @@
 #syntax=docker/dockerfile:1.7-labs
 
 # Versions
-FROM silarhi/php-apache:8.3-frankenphp-bookworm as php_upstream
+FROM silarhi/php-apache:8.4-frankenphp-bookworm as php_upstream
 FROM node:20-alpine as node_upstream
 
 FROM php_upstream as php_builder
