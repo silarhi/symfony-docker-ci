@@ -1,6 +1,7 @@
 twig:
     file_name_pattern: '*.twig'
     globals:
+        php_version: !php/const PHP_VERSION
         app_version: '%env(APP_VERSION)%'
         git_commit: '%env(GIT_COMMIT)%'
 
