@@ -78,6 +78,24 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
+        ],
+        "lint:php-cs": "php-cs-fixer fix --dry-run --diff --verbose",
+        "lint:phpstan": "phpstan analyse",
+        "lint:twig": "twig-cs-fixer lint",
+        "lint:rector": "rector process --dry-run",
+        "lint": [
+            "@lint:php-cs",
+            "@lint:phpstan",
+            "@lint:twig",
+            "@lint:rector"
+        ],
+        "fix:php-cs": "php-cs-fixer fix",
+        "fix:twig": "twig-cs-fixer lint --fix",
+        "fix:rector": "rector process",
+        "fix": [
+            "@fix:php-cs",
+            "@fix:twig",
+            "@fix:rector"
         ]
     },
     "conflict": {
