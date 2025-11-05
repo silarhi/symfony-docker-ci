@@ -9,15 +9,23 @@
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "build": "encore production --progress",
-        "prepare": "husky"
+        "prepare": "husky",
+        "lint": "yarn lint:eslint && yarn lint:prettier",
+        "lint:eslint": "eslint assets",
+        "lint:prettier": "prettier --check \"assets/**/*.{js,scss,md}\"",
+        "format": "yarn format:eslint && yarn format:prettier",
+        "format:eslint": "eslint assets --fix",
+        "format:prettier": "prettier --write \"assets/**/*.{js,scss,md}\""
     },
     "lint-staged": {
-        "*.{js,scss,md}": "prettier --write",
+        "*.{js,jsx}": "eslint --fix",
+        "*.{scss,md}": "prettier --write",
         "*.php": "php-cs-fixer fix --config=.php-cs-fixer.dist.php",
         "*.twig": "vendor/bin/twig-cs-fixer lint --fix --config=.twig-cs-fixer.php"
     },
     "devDependencies": {
         "@babel/core": "^7.28.5",
+        "@babel/eslint-parser": "^7.28.5",
         "@babel/preset-env": "^7.28.5",
         "@babel/preset-react": "^7.28.5",
         "@hotwired/stimulus": "^3.2.2",
@@ -26,6 +34,10 @@
         "@symfony/ux-turbo": "file:vendor/symfony/ux-turbo/assets",
         "@symfony/webpack-encore": "^5.2.0",
         "core-js": "^3.46.0",
+        "eslint": "^9.39.1",
+        "eslint-config-prettier": "^10.1.8",
+        "eslint-plugin-react": "^7.37.5",
+        "eslint-plugin-react-hooks": "^7.0.1",
         "file-loader": "^6.2.0",
         "husky": "^9.1.7",
         "lint-staged": ">=16.2.6",
