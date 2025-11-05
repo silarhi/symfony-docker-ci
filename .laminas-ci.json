@@ -1,35 +1,10 @@
 {
     "additional_checks": [
         {
-            "name": "PHP CS Fixer",
+            "name": "Backend Linting",
             "job": {
-                "php": "8.4",
-                "dependencies": "locked",
-                "command": "composer lint:php-cs"
-            }
-        },
-        {
-            "name": "PHPStan",
-            "job": {
-                "php": "8.4",
-                "dependencies": "locked",
-                "command": "composer lint:phpstan"
-            }
-        },
-        {
-            "name": "Twig CS Fixer",
-            "job": {
-                "php": "8.4",
-                "dependencies": "locked",
-                "command": "composer lint:twig"
-            }
-        },
-        {
-            "name": "Rector",
-            "job": {
-                "php": "8.4",
-                "dependencies": "locked",
-                "command": "composer lint:rector"
+                "command": "composer lint:php-cs && composer lint:phpstan && composer lint:twig && composer lint:rector",
+                "php": "8.4"
             }
         }
     ]
