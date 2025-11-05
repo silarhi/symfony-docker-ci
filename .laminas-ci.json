@@ -1,0 +1,11 @@
+{
+  "additional_checks": [
+    {
+      "name": "Lint",
+      "job": {
+        "command": "export APP_ENV=prod; bin/console lint:container; bin/console lint:yaml config --parse-tags; bin/console lint:twig templates",
+        "php": "@lowest"
+      }
+    }
+  ]
+}
