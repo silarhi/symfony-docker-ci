@@ -5,47 +5,48 @@
         "php": "^8.4",
         "ext-ctype": "*",
         "ext-iconv": "*",
-        "bacon/bacon-qr-code": "^3.0",
-        "league/commonmark": "^2.1",
-        "league/glide-symfony": "^2",
-        "pragmarx/google2fa": "^8.0",
+        "bacon/bacon-qr-code": "^3.0.1",
+        "league/commonmark": "^2.7.1",
+        "league/glide-symfony": "^2.0.1",
+        "pragmarx/google2fa": "^8.0.3",
         "runtime/frankenphp-symfony": "^0.2.0",
-        "symfony/asset": "7.2.*",
-        "symfony/console": "7.2.*",
-        "symfony/dotenv": "7.2.*",
-        "symfony/expression-language": "7.2.*",
-        "symfony/flex": "^2",
-        "symfony/form": "7.2.*",
-        "symfony/framework-bundle": "7.2.*",
-        "symfony/monolog-bundle": "^3.1",
-        "symfony/runtime": "7.2.*",
-        "symfony/security-bundle": "7.2.*",
-        "symfony/stimulus-bundle": "^2.18",
-        "symfony/twig-bundle": "7.2.*",
-        "symfony/ux-turbo": "^2.18",
-        "symfony/webpack-encore-bundle": "^2",
-        "symfony/yaml": "7.2.*",
-        "twig/extra-bundle": "^3.3",
-        "twig/markdown-extra": "^3.3",
-        "twig/twig": "^3.0"
+        "symfony/asset": "7.3.*",
+        "symfony/console": "7.3.*",
+        "symfony/dotenv": "7.3.*",
+        "symfony/expression-language": "7.3.*",
+        "symfony/flex": "^2.9",
+        "symfony/form": "7.3.*",
+        "symfony/framework-bundle": "7.3.*",
+        "symfony/monolog-bundle": "^3.10",
+        "symfony/runtime": "7.3.*",
+        "symfony/security-bundle": "7.3.*",
+        "symfony/stimulus-bundle": "^2.31",
+        "symfony/twig-bundle": "7.3.*",
+        "symfony/ux-turbo": "^2.31",
+        "symfony/webpack-encore-bundle": "^2.3",
+        "symfony/yaml": "7.3.*",
+        "twig/extra-bundle": "^3.22",
+        "twig/markdown-extra": "^3.22",
+        "twig/twig": "^3.22"
     },
     "require-dev": {
-        "phpstan/extension-installer": "^1.4",
-        "phpstan/phpstan": "^2",
-        "phpstan/phpstan-symfony": "^2",
-        "rector/rector": "^2",
-        "symfony/apache-pack": "^1.0",
-        "symfony/debug-bundle": "7.2.*",
-        "symfony/maker-bundle": "^1.23",
-        "symfony/stopwatch": "7.2.*",
-        "symfony/web-profiler-bundle": "7.2.*",
-        "vincentlanglet/twig-cs-fixer": "^3.1"
+        "phpstan/extension-installer": "^1.4.3",
+        "phpstan/phpstan": "^2.1.31",
+        "phpstan/phpstan-symfony": "^2.0.8",
+        "rector/rector": "^2.2.7",
+        "symfony/apache-pack": "^1.0.1",
+        "symfony/debug-bundle": "7.3.*",
+        "symfony/maker-bundle": "^1.64",
+        "symfony/stopwatch": "7.3.*",
+        "symfony/web-profiler-bundle": "7.3.*",
+        "vincentlanglet/twig-cs-fixer": "^3.10"
     },
     "config": {
         "preferred-install": {
             "*": "dist"
         },
         "sort-packages": true,
+        "bump-after-update": true,
         "allow-plugins": {
             "symfony/flex": true,
             "symfony/runtime": true,
@@ -85,7 +86,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": true,
-            "require": "7.2.*"
+            "require": "7.3.*"
         }
     }
 }
