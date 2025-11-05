@@ -5,9 +5,6 @@ on:
   push:
     branches:
       - main
-      - develop
-    tags:
-      - "*"
 
 jobs:
   matrix:
@@ -16,9 +13,6 @@ jobs:
     outputs:
       matrix: ${{ steps.matrix.outputs.matrix }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
       - name: Gather CI configuration
         id: matrix
         uses: laminas/laminas-ci-matrix-action@v1
@@ -34,4 +28,4 @@ jobs:
       - name: ${{ matrix.name }}
         uses: laminas/laminas-continuous-integration-action@v1
         with:
-          job: ${{ toJSON(matrix.job) }}
+          job: ${{ matrix.job }}

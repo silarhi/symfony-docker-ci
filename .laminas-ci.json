@@ -1,46 +1,44 @@
 {
-    "php": [
-        "8.4"
-    ],
-    "extensions": [
-        "ctype",
-        "iconv"
-    ],
-    "ini": [
-        "memory_limit=-1"
-    ],
     "additional_checks": [
         {
             "name": "PHP CS Fixer",
-            "php": "8.4",
-            "extensions": ["ctype", "iconv"],
-            "ini": ["memory_limit=-1"],
-            "dependencies": "locked",
-            "command": "composer lint:php-cs"
+            "job": {
+                "php": "8.4",
+                "extensions": ["ctype", "iconv"],
+                "ini": ["memory_limit=-1"],
+                "dependencies": "locked",
+                "command": "composer lint:php-cs"
+            }
         },
         {
             "name": "PHPStan",
-            "php": "8.4",
-            "extensions": ["ctype", "iconv"],
-            "ini": ["memory_limit=-1"],
-            "dependencies": "locked",
-            "command": "composer lint:phpstan"
+            "job": {
+                "php": "8.4",
+                "extensions": ["ctype", "iconv"],
+                "ini": ["memory_limit=-1"],
+                "dependencies": "locked",
+                "command": "composer lint:phpstan"
+            }
         },
         {
             "name": "Twig CS Fixer",
-            "php": "8.4",
-            "extensions": ["ctype", "iconv"],
-            "ini": ["memory_limit=-1"],
-            "dependencies": "locked",
-            "command": "composer lint:twig"
+            "job": {
+                "php": "8.4",
+                "extensions": ["ctype", "iconv"],
+                "ini": ["memory_limit=-1"],
+                "dependencies": "locked",
+                "command": "composer lint:twig"
+            }
         },
         {
             "name": "Rector",
-            "php": "8.4",
-            "extensions": ["ctype", "iconv"],
-            "ini": ["memory_limit=-1"],
-            "dependencies": "locked",
-            "command": "composer lint:rector"
+            "job": {
+                "php": "8.4",
+                "extensions": ["ctype", "iconv"],
+                "ini": ["memory_limit=-1"],
+                "dependencies": "locked",
+                "command": "composer lint:rector"
+            }
         }
     ]
 }
