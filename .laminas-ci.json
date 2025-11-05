@@ -4,8 +4,6 @@
             "name": "PHP CS Fixer",
             "job": {
                 "php": "8.4",
-                "extensions": ["ctype", "iconv"],
-                "ini": ["memory_limit=-1"],
                 "dependencies": "locked",
                 "command": "composer lint:php-cs"
             }
@@ -14,8 +12,6 @@
             "name": "PHPStan",
             "job": {
                 "php": "8.4",
-                "extensions": ["ctype", "iconv"],
-                "ini": ["memory_limit=-1"],
                 "dependencies": "locked",
                 "command": "composer lint:phpstan"
             }
@@ -24,8 +20,6 @@
             "name": "Twig CS Fixer",
             "job": {
                 "php": "8.4",
-                "extensions": ["ctype", "iconv"],
-                "ini": ["memory_limit=-1"],
                 "dependencies": "locked",
                 "command": "composer lint:twig"
             }
@@ -34,8 +28,6 @@
             "name": "Rector",
             "job": {
                 "php": "8.4",
-                "extensions": ["ctype", "iconv"],
-                "ini": ["memory_limit=-1"],
                 "dependencies": "locked",
                 "command": "composer lint:rector"
             }
