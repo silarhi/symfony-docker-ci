@@ -18,10 +18,7 @@
         "format:prettier": "prettier --write \"assets/**/*.{js,scss,md}\""
     },
     "lint-staged": {
-        "*.{js,jsx}": [
-            "eslint --fix",
-            "prettier --write"
-        ],
+        "*.{js,jsx}": "eslint --fix",
         "*.{scss,md}": "prettier --write",
         "*.php": "php-cs-fixer fix --config=.php-cs-fixer.dist.php",
         "*.twig": "vendor/bin/twig-cs-fixer lint --fix --config=.twig-cs-fixer.php"
