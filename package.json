@@ -20,7 +20,7 @@
     "lint-staged": {
         "*.{js,jsx}": "eslint --fix",
         "*.{scss,md}": "prettier --write",
-        "*.php": "php-cs-fixer fix --config=.php-cs-fixer.dist.php",
+        "*.php": "vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php",
         "*.twig": "vendor/bin/twig-cs-fixer lint --fix --config=.twig-cs-fixer.php"
     },
     "devDependencies": {
@@ -39,6 +39,7 @@
         "eslint-plugin-react": "^7.37.5",
         "eslint-plugin-react-hooks": "^7.0.1",
         "file-loader": "^6.2.0",
+        "globals": "^16.5.0",
         "husky": "^9.1.7",
         "lint-staged": ">=16.2.6",
         "prettier": "^3.6.2",

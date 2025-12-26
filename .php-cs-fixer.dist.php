@@ -17,14 +17,9 @@ with this source code in the file LICENSE.
 EOF;
 
 $finder = PhpCsFixer\Finder::create()
-    ->in(__DIR__ . '/config')
-    ->in(__DIR__ . '/public')
-    ->in(__DIR__ . '/src')
-    ->append([
-        __FILE__,
-        __DIR__ . '/.twig-cs-fixer.php',
-        __DIR__ . '/rector.php',
-    ])
+    ->in(__DIR__)
+    ->exclude('var')
+    ->notPath('config/reference.php')
 ;
 
 $config = new PhpCsFixer\Config();
