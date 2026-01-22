@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__repomix__pack_codebase",
+      "mcp__repomix__read_repomix_output",
+      "mcp__repomix__grep_repomix_output"
+    ]
+  }
+}
