@@ -19,9 +19,9 @@
         "symfony/monolog-bundle": "^3.11.1",
         "symfony/runtime": "7.4.*",
         "symfony/security-bundle": "7.4.*",
-        "symfony/stimulus-bundle": "^2.31",
+        "symfony/stimulus-bundle": "^2.32",
         "symfony/twig-bundle": "7.4.*",
-        "symfony/ux-turbo": "^2.31",
+        "symfony/ux-turbo": "^2.32",
         "symfony/webpack-encore-bundle": "^2.4",
         "symfony/yaml": "7.4.*",
         "twig/extra-bundle": "^3.22.2",
@@ -29,17 +29,17 @@
         "twig/twig": "^3.22.2"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.92.3",
+        "friendsofphp/php-cs-fixer": "^3.92.5",
         "phpstan/extension-installer": "^1.4.3",
-        "phpstan/phpstan": "^2.1.33",
-        "phpstan/phpstan-symfony": "^2.0.9",
-        "rector/rector": "^2.3.0",
+        "phpstan/phpstan": "^2.1.36",
+        "phpstan/phpstan-symfony": "^2.0.11",
+        "rector/rector": "^2.3.4",
         "symfony/apache-pack": "^1.0.1",
         "symfony/debug-bundle": "7.4.*",
         "symfony/maker-bundle": "^1.65.1",
         "symfony/stopwatch": "7.4.*",
         "symfony/web-profiler-bundle": "7.4.*",
-        "vincentlanglet/twig-cs-fixer": "^3.11"
+        "vincentlanglet/twig-cs-fixer": "^3.12"
     },
     "config": {
         "preferred-install": {
