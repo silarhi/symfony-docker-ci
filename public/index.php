@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 require_once \dirname(__DIR__) . '/vendor/autoload_runtime.php';
 
-return function (array $context) {
+return static function (array $context) {
     if ($context['APP_MAINTENANCE'] ?? false) {
         /** @var string $html */
         $html = file_get_contents(__DIR__ . '/../maintenance.html');
