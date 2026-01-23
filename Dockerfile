@@ -1,7 +1,7 @@
 #syntax=docker/dockerfile:1.21-labs
 
 # Versions
-FROM silarhi/php-apache:8.4-frankenphp-alpine as php_upstream
+FROM silarhi/php-apache:8.5-frankenphp-alpine as php_upstream
 FROM node:24-alpine as node_upstream
 
 FROM php_upstream as php_builder
