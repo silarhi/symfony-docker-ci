@@ -2,7 +2,7 @@
 
 # Versions
 FROM silarhi/php-apache:8.4-frankenphp-alpine as php_upstream
-FROM node:20-alpine as node_upstream
+FROM node:24-alpine as node_upstream
 
 FROM php_upstream as php_builder
 WORKDIR /app
