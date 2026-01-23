@@ -11,28 +11,19 @@
 namespace App\Twig;
 
 use League\Glide\Signatures\SignatureFactory;
-use Override;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Twig\Extension\AbstractExtension;
-use Twig\TwigFunction;
+use Twig\Attribute\AsTwigFunction;
 
-class AssetExtension extends AbstractExtension
+class AssetExtension
 {
     public function __construct(private readonly UrlGeneratorInterface $router, private readonly string $secret)
     {
     }
 
-    #[Override]
-    public function getFunctions(): array
-    {
-        return [
-            new TwigFunction('app_asset', $this->appAsset(...), ['is_safe' => ['html']]),
-        ];
-    }
-
     /**
      * @param array<string, mixed> $parameters
      */
+    #[AsTwigFunction(name: 'app_asset', isSafe: ['html'])]
     public function appAsset(string $path, array $parameters = [], int $referenceType = UrlGeneratorInterface::ABSOLUTE_PATH): string
     {
         $parameters['fm'] = 'pjpg';

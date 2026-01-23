@@ -11,7 +11,7 @@ declare(strict_types=1);
  */
 
 use Rector\Config\RectorConfig;
-use Rector\Symfony\Set\SymfonySetList;
+use Rector\Symfony\CodeQuality\Rector\Class_\ControllerMethodInjectionToConstructorRector;
 
 return RectorConfig::configure()
     ->withCache(__DIR__ . '/var/tools/rector')
@@ -29,8 +29,13 @@ return RectorConfig::configure()
         deadCode: true,
         codeQuality: true,
         codingStyle: true,
+        symfonyCodeQuality: true,
     )
-    ->withSets([
-        SymfonySetList::SYMFONY_CODE_QUALITY,
-        SymfonySetList::SYMFONY_72,
-    ]);
+    ->withComposerBased(
+        twig: true,
+        symfony: true,
+    )
+    ->withSkip([
+        ControllerMethodInjectionToConstructorRector::class,
+    ])
+;
