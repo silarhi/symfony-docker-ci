@@ -929,7 +929,7 @@
   integrity sha512-eGeIqNOQpXoPAIP7tC1+1Yc1yl1xnwYqg+3mzqxyrbE5pg5YFBZcA6YoTiByJB6DKAEsiWtl6tjTJS4IYtbB7A==
 
 "@hotwired/turbo@^8.0.21":
-  version "8.0.22"
+  version "8.0.23"
   dependencies:
     "@humanfs/core" "^0.19.1"
     "@humanwhocodes/retry" "^0.4.0"
