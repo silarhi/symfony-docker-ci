@@ -2682,7 +2682,7 @@ globals@^14.0.0:
   integrity sha512-oahGvuMGQlPw/ivIYBjVSrWAfWLBeku5tpPE2fOPLi+WHffIWbuh2tCjhyQhTBPMf5E9jDEH4FOmTYgYwbKwtQ==
 
 globals@^17.0.0:
-  version "17.2.0"
+  version "17.3.0"
 
 globalthis@^1.0.4:
   version "1.0.4"
