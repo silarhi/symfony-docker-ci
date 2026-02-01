@@ -3,7 +3,7 @@ version: 2
 jobs:
     build:
         docker:
-            - image: cimg/base:2026.01
+            - image: cimg/base:2026.02
               environment:
                   IMAGE_NAME: silarhi/symfony-docker-ci
         steps:
