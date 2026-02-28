@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "641e87dcd2804213637cb9797a114d4a",
+    "content-hash": "b9b7debdfe0dd273b6d5025b0aa48a86",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -2069,16 +2069,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v7.4.4",
+            "version": "v7.4.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "41e38717ac1dd7a46b6bda7d6a82af2d98a78894"
+                "reference": "6d643a93b47398599124022eb24d97c153c12f27"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/41e38717ac1dd7a46b6bda7d6a82af2d98a78894",
-                "reference": "41e38717ac1dd7a46b6bda7d6a82af2d98a78894",
+                "url": "https://api.github.com/repos/symfony/console/zipball/6d643a93b47398599124022eb24d97c153c12f27",
+                "reference": "6d643a93b47398599124022eb24d97c153c12f27",
                 "shasum": ""
             },
             "require": {
@@ -2143,7 +2143,7 @@
                 "terminal"
             ],
             "support": {
-                "source": "https://github.com/symfony/console/tree/v7.4.4"
+                "source": "https://github.com/symfony/console/tree/v7.4.6"
             },
             "funding": [
                 {
@@ -2163,7 +2163,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-01-13T11:36:38+00:00"
+            "time": "2026-02-25T17:02:47+00:00"
         },
         {
             "name": "symfony/dependency-injection",
@@ -2918,16 +2918,16 @@
         },
         {
             "name": "symfony/form",
-            "version": "v7.4.4",
+            "version": "v7.4.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/form.git",
-                "reference": "264fc873f01376216f0b884ecc81b34b830e25a8"
+                "reference": "1ec55f7b1a6152760a670415c334f70a08d264f9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/form/zipball/264fc873f01376216f0b884ecc81b34b830e25a8",
-                "reference": "264fc873f01376216f0b884ecc81b34b830e25a8",
+                "url": "https://api.github.com/repos/symfony/form/zipball/1ec55f7b1a6152760a670415c334f70a08d264f9",
+                "reference": "1ec55f7b1a6152760a670415c334f70a08d264f9",
                 "shasum": ""
             },
             "require": {
@@ -2997,7 +2997,7 @@
             "description": "Allows to easily create, process and reuse HTML forms",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/form/tree/v7.4.4"
+                "source": "https://github.com/symfony/form/tree/v7.4.6"
             },
             "funding": [
                 {
@@ -3017,20 +3017,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-01-23T10:51:15+00:00"
+            "time": "2026-02-25T16:50:00+00:00"
         },
         {
             "name": "symfony/framework-bundle",
-            "version": "v7.4.5",
+            "version": "v7.4.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/framework-bundle.git",
-                "reference": "dcf89ca6712d9e1b5d3f14dea0e1c2685a05d1cd"
+                "reference": "a4022da7530f794aa64cea34b388439afb6323a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/framework-bundle/zipball/dcf89ca6712d9e1b5d3f14dea0e1c2685a05d1cd",
-                "reference": "dcf89ca6712d9e1b5d3f14dea0e1c2685a05d1cd",
+                "url": "https://api.github.com/repos/symfony/framework-bundle/zipball/a4022da7530f794aa64cea34b388439afb6323a3",
+                "reference": "a4022da7530f794aa64cea34b388439afb6323a3",
                 "shasum": ""
             },
             "require": {
@@ -3053,7 +3053,7 @@
             },
             "conflict": {
                 "doctrine/persistence": "<1.3",
-                "phpdocumentor/reflection-docblock": "<5.2|>=6",
+                "phpdocumentor/reflection-docblock": "<5.2|>=7",
                 "phpdocumentor/type-resolver": "<1.5.1",
                 "symfony/asset": "<6.4",
                 "symfony/asset-mapper": "<6.4",
@@ -3086,7 +3086,7 @@
             "require-dev": {
                 "doctrine/persistence": "^1.3|^2|^3",
                 "dragonmantank/cron-expression": "^3.1",
-                "phpdocumentor/reflection-docblock": "^5.2",
+                "phpdocumentor/reflection-docblock": "^5.2|^6.0",
                 "seld/jsonlint": "^1.10",
                 "symfony/asset": "^6.4|^7.0|^8.0",
                 "symfony/asset-mapper": "^6.4|^7.0|^8.0",
@@ -3155,7 +3155,7 @@
             "description": "Provides a tight integration between Symfony components and the Symfony full-stack framework",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/framework-bundle/tree/v7.4.5"
+                "source": "https://github.com/symfony/framework-bundle/tree/v7.4.6"
             },
             "funding": [
                 {
@@ -3175,7 +3175,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-01-27T08:59:58+00:00"
+            "time": "2026-02-25T16:50:00+00:00"
         },
         {
             "name": "symfony/http-foundation",
