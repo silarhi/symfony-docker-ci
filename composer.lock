@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a77175b37af47b49ad08ab479044e1b0",
+    "content-hash": "8bfea7edc1afcdaf9090981f773cbb03",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -5440,16 +5440,16 @@
         },
         {
             "name": "symfony/ux-turbo",
-            "version": "v2.32.0",
+            "version": "v2.33.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/ux-turbo.git",
-                "reference": "0deaa8abef20933d11f8bbe9899d950b4333ca1e"
+                "reference": "493436bc109f87663ca45c3bac8678b62a5d861f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/ux-turbo/zipball/0deaa8abef20933d11f8bbe9899d950b4333ca1e",
-                "reference": "0deaa8abef20933d11f8bbe9899d950b4333ca1e",
+                "url": "https://api.github.com/repos/symfony/ux-turbo/zipball/493436bc109f87663ca45c3bac8678b62a5d861f",
+                "reference": "493436bc109f87663ca45c3bac8678b62a5d861f",
                 "shasum": ""
             },
             "require": {
@@ -5519,7 +5519,7 @@
                 "turbo-stream"
             ],
             "support": {
-                "source": "https://github.com/symfony/ux-turbo/tree/v2.32.0"
+                "source": "https://github.com/symfony/ux-turbo/tree/v2.33.0"
             },
             "funding": [
                 {
@@ -5539,7 +5539,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-12-17T06:03:34+00:00"
+            "time": "2026-03-15T07:57:29+00:00"
         },
         {
             "name": "symfony/var-dumper",
