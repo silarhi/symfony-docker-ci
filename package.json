@@ -35,7 +35,7 @@
         "@symfony/ux-turbo": "file:vendor/symfony/ux-turbo/assets",
         "@symfony/webpack-encore": "^5.2.0",
         "core-js": "^3.46.0",
-        "eslint": "^10.0.1",
+        "eslint": "^10.1.0",
         "eslint-config-prettier": "^10.1.8",
         "eslint-plugin-react": "^7.37.5",
         "eslint-plugin-react-hooks": "^7.0.1",
@@ -50,7 +50,7 @@
         "sass": "^1.98.0",
         "sass-loader": "^16.0.6",
         "webpack": "^5.102.1",
-        "webpack-cli": "^6.0.1",
+        "webpack-cli": "^7.0.2",
         "webpack-notifier": "^1.15.0"
     },
     "dependencies": {
