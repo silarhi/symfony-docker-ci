@@ -33,7 +33,7 @@
         "@hotwired/turbo": "^8.0.21",
         "@symfony/stimulus-bridge": "^4.0.1",
         "@symfony/ux-turbo": "file:vendor/symfony/ux-turbo/assets",
-        "@symfony/webpack-encore": "^5.2.0",
+        "@symfony/webpack-encore": "^6.0.0",
         "core-js": "^3.46.0",
         "eslint": "^10.1.0",
         "eslint-config-prettier": "^10.1.8",
