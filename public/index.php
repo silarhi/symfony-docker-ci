@@ -21,5 +21,8 @@ return static function (array $context) {
         return new Response($html, Response::HTTP_SERVICE_UNAVAILABLE);
     }
 
-    return new Kernel($context['APP_ENV'], (bool) $context['APP_DEBUG']);
+    /** @var string $appEnv */
+    $appEnv = $context['APP_ENV'];
+
+    return new Kernel($appEnv, (bool) $context['APP_DEBUG']);
 };

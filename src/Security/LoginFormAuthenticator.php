@@ -41,7 +41,7 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
         $identifier = $request->request->get('username', '');
         /** @var string $password */
         $password = $request->request->get('password', '');
-        /** @var string|null $crsfToken */
+        /** @var string $crsfToken */
         $crsfToken = $request->request->get('_csrf_token', '');
 
         $request->getSession()->set(SecurityRequestAttributes::LAST_USERNAME, $identifier);
@@ -64,7 +64,8 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
     #[Override]
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): Response
     {
-        if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
+        $targetPath = $this->getTargetPath($request->getSession(), $firewallName);
+        if (null !== $targetPath) {
             return new RedirectResponse($targetPath);
         }
 
