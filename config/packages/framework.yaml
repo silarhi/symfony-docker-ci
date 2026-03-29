@@ -9,7 +9,6 @@ framework:
     trusted_hosts: '%env(TRUSTED_HOSTS)%'
     trusted_headers: ['x-forwarded-for', 'x-forwarded-host', 'x-forwarded-proto', 'x-forwarded-port']
 
-
     #esi: true
     #fragments: true
 

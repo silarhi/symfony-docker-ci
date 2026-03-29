@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 
 export default function Items({ id, title, body }) {
     return (
@@ -13,11 +13,11 @@ export default function Items({ id, title, body }) {
                 </div>
             </div>
         </div>
-    );
-};
+    )
+}
 
 Items.propTypes = {
-    id:        PropTypes.number.isRequired,
-    title:     PropTypes.string.isRequired,
-    body:      PropTypes.string.isRequired,
-};
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    body: PropTypes.string.isRequired,
+}

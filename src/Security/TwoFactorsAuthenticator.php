@@ -60,7 +60,7 @@ class TwoFactorsAuthenticator extends AbstractLoginFormAuthenticator
         /** @var UserInterface $user */
         $user = $existingToken->getUser();
         /** @var string $qrCode */
-        $qrCode = $request->request->get('qrCode', '');
+        $qrCode = $request->getPayload()->getString('qrCode');
         /** @var string $secretKey */
         $secretKey = $request->getSession()->get(SecurityController::QR_CODE_KEY);
 
@@ -104,7 +104,8 @@ class TwoFactorsAuthenticator extends AbstractLoginFormAuthenticator
     #[Override]
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): Response
     {
-        if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
+        $targetPath = $this->getTargetPath($request->getSession(), $firewallName);
+        if (null !== $targetPath) {
             $this->removeTargetPath($request->getSession(), $firewallName);
 
             return new RedirectResponse($targetPath);
