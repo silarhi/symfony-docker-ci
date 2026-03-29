@@ -1,3 +1,3 @@
-import '../scss/app.scss';
+import '../scss/app.scss'
 
-import '../stimulus_bootstrap';
+import '../stimulus_bootstrap'

@@ -7,7 +7,7 @@ security:
         users_in_memory:
             memory:
                 users:
-                    test: { password: 'test', roles: [ 'ROLE_USER' ] }
+                    test: { password: 'test', roles: ['ROLE_USER'] }
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js|assets)/
