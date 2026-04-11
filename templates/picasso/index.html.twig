@@ -30,7 +30,7 @@
             <code>picasso.yaml</code>.
         </p>
         <div class="row row-cols-1 row-cols-md-3 mb-5">
-            {% for image in ['destiny-wiens-1332880-unsplash.jpg', 'diana-parkhouse-1166627-unsplash.jpg', 'elvira-visser-k89j1SUqf5U-unsplash.jpg'] %}
+            {% for image in [asset('build/images/destiny-wiens-1332880-unsplash.jpg'), asset('build/images/diana-parkhouse-1166627-unsplash.jpg'), asset('build/images/elvira-visser-k89j1SUqf5U-unsplash.jpg')] %}
                 <div class="col">
                     <div class="card mb-3 shadow-sm">
                         <twig:Picasso:Image
@@ -62,7 +62,7 @@
             <div class="col mb-3 text-center">
                 <div class="bg-light p-3">
                     <twig:Picasso:Image
-                        src="edgar-edgar-712801-unsplash.jpg"
+                        src="{{ asset('build/images/edgar-edgar-712801-unsplash.jpg') }}"
                         width="300"
                         height="300"
                         fit="contain"
@@ -75,7 +75,7 @@
             <div class="col mb-3 text-center">
                 <div class="bg-light p-3">
                     <twig:Picasso:Image
-                        src="edgar-edgar-712801-unsplash.jpg"
+                        src="{{ asset('build/images/edgar-edgar-712801-unsplash.jpg') }}"
                         width="300"
                         height="300"
                         fit="cover"
@@ -88,7 +88,7 @@
             <div class="col mb-3 text-center">
                 <div class="bg-light p-3">
                     <twig:Picasso:Image
-                        src="edgar-edgar-712801-unsplash.jpg"
+                        src="{{ asset('build/images/edgar-edgar-712801-unsplash.jpg') }}"
                         width="300"
                         height="300"
                         fit="crop"
@@ -108,7 +108,7 @@
         </p>
         <div class="mb-5">
             <twig:Picasso:Image
-                src="jacalyn-beales-669247-unsplash.jpg"
+                src="{{ asset('build/images/jacalyn-beales-669247-unsplash.jpg') }}"
                 width="1200"
                 height="500"
                 sizes="100vw"
@@ -128,7 +128,7 @@
             <div class="col mb-3">
                 <h5>Quality set to 40% (<code>:quality="40"</code>)</h5>
                 <twig:Picasso:Image
-                    src="diana-parkhouse-1166627-unsplash.jpg"
+                    src="{{ asset('build/images/diana-parkhouse-1166627-unsplash.jpg') }}"
                     width="600"
                     height="400"
                     :quality="40"
@@ -140,7 +140,7 @@
             <div class="col mb-3">
                 <h5>No placeholder (<code>:placeholder="false"</code>)</h5>
                 <twig:Picasso:Image
-                    src="diana-parkhouse-1166627-unsplash.jpg"
+                    src="{{ asset('build/images/diana-parkhouse-1166627-unsplash.jpg') }}"
                     width="600"
                     height="400"
                     :placeholder="false"

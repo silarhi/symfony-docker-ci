@@ -2,7 +2,7 @@ picasso:
     loaders:
         filesystem:
             paths:
-                - '%kernel.project_dir%/public/build/images'
+                - '%kernel.project_dir%/public'
 
     transformers:
         glide:
