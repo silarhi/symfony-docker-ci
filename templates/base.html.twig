@@ -24,6 +24,9 @@
             <li class="nav-item">
                 <a class="nav-link {{ routeName == 'images' ? 'active' }}" href="{{ path('images') }}">Images</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link {{ routeName == 'picasso' ? 'active' }}" href="{{ path('picasso') }}">Picasso</a>
+            </li>
             {% if is_granted(constant('\\App\\EventSubscriber\\DoubleAuthentificationSubscriber::ROLE_2FA_SUCCEED')) %}
                 <li class="nav-item">
                     <a class="nav-link {{ routeName == 'app_security_authentification_protected' ? 'active' }}" href="{{ path('app_security_authentification_protected') }}">

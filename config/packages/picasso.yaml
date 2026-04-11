@@ -1,0 +1,22 @@
+picasso:
+    loaders:
+        filesystem:
+            paths:
+                - '%kernel.project_dir%/public/build/images'
+
+    transformers:
+        glide:
+            sign_key: '%kernel.secret%'
+            cache: '%kernel.project_dir%/var/picasso-cache'
+            driver: gd
+            public_cache:
+                enabled: false
+
+    placeholders:
+        blur:
+            type: transformer
+            size: 10
+            blur: 5
+            quality: 30
+
+    default_placeholder: blur

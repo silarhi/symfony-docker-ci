@@ -1,6 +1,12 @@
 <?php
 
-// This file is auto-generated and is for apps only. Bundles SHOULD NOT rely on its content.
+/*
+ * This file is part of SILARHI.
+ * (c) 2019 - present Guillaume Sainthillier <guillaume@silarhi.fr>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
@@ -1263,6 +1269,71 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     },
  *     default_transport?: scalar|Param|null, // Default: "default"
  * }
+ * @psalm-type TwigComponentConfig = array{
+ *     defaults?: array<string, string|array{ // Default: ["__deprecated__use_old_naming_behavior"]
+ *         template_directory?: scalar|Param|null, // Default: "components"
+ *         name_prefix?: scalar|Param|null, // Default: ""
+ *     }>,
+ *     anonymous_template_directory?: scalar|Param|null, // Defaults to `components`
+ *     profiler?: bool|array{ // Enables the profiler for Twig Component
+ *         enabled?: bool|Param, // Default: "%kernel.debug%"
+ *         collect_components?: bool|Param, // Collect components instances // Default: true
+ *     },
+ *     controllers_json?: scalar|Param|null, // Deprecated: The "twig_component.controllers_json" config option is deprecated, and will be removed in 3.0. // Default: null
+ * }
+ * @psalm-type PicassoConfig = array{
+ *     default_loader?: scalar|Param|null, // Default loader name. // Default: null
+ *     default_transformer?: scalar|Param|null, // Default transformer name. Auto-detected when only one is configured. // Default: null
+ *     device_sizes?: list<int|Param>,
+ *     image_sizes?: list<int|Param>,
+ *     formats?: list<scalar|Param|null>,
+ *     default_quality?: scalar|Param|null, // Default: 75
+ *     default_fit?: scalar|Param|null, // Default fit mode (contain, cover, crop, fill). // Default: "contain"
+ *     cache?: scalar|Param|null, // PSR-6 cache pool for metadata guessing and BlurHash generation. true (default) uses cache.app, false disables caching, or pass a service ID string. // Default: true
+ *     resolve_metadata?: bool|Param, // Whether to resolve image metadata (dimensions) from the source by default. Filesystem loaders default to true. // Default: false
+ *     default_placeholder?: scalar|Param|null, // Default placeholder name. Auto-detected when only one is configured. // Default: null
+ *     placeholders?: array<string, array{ // Default: []
+ *         enabled?: bool|Param, // Default: true
+ *         type?: "transformer"|"blurhash"|"service"|Param, // Placeholder type. Inferred from name when it matches a known type. // Default: null
+ *         size?: int|Param, // Tiny image size for transformer placeholders. // Default: 10
+ *         blur?: scalar|Param|null, // Blur amount for transformer placeholders. Null disables blur. // Default: 5
+ *         quality?: scalar|Param|null, // Quality for transformer placeholders. Null uses transformer default. // Default: 30
+ *         fit?: scalar|Param|null, // Fit mode for transformer placeholders. Null uses transformer default. // Default: "crop"
+ *         format?: scalar|Param|null, // Image format for transformer placeholders. Null uses transformer default. // Default: "jpg"
+ *         components_x?: int|Param, // Horizontal BlurHash components (1–9). // Default: 4
+ *         components_y?: int|Param, // Vertical BlurHash components (1–9). // Default: 3
+ *         driver?: scalar|Param|null, // Image processing driver for BlurHash (gd or imagick). // Default: "gd"
+ *         service?: scalar|Param|null, // Service ID for custom placeholders (type: service). // Default: null
+ *     }>,
+ *     loaders?: array<string, array{ // Default: []
+ *         enabled?: bool|Param, // Default: true
+ *         type?: "filesystem"|"flysystem"|"vich"|"url"|Param, // Loader type. Inferred from name when it matches a known type. // Default: null
+ *         paths?: list<scalar|Param|null>,
+ *         storage?: scalar|Param|null, // Flysystem storage service ID. // Default: null
+ *         http_client?: scalar|Param|null, // PSR-18 HTTP client service ID for url loaders. // Default: null
+ *         request_factory?: scalar|Param|null, // PSR-17 request factory service ID for url loaders. // Default: null
+ *         default_placeholder?: scalar|Param|null, // Default placeholder name for this loader. Overrides the global default_placeholder. // Default: null
+ *         default_transformer?: scalar|Param|null, // Default transformer name for this loader. Overrides the global default_transformer. // Default: null
+ *         resolve_metadata?: scalar|Param|null, // Whether to resolve image metadata for this loader. Null inherits from global. Filesystem loaders default to true. // Default: null
+ *     }>,
+ *     transformers?: array<string, array{ // Default: []
+ *         enabled?: bool|Param, // Default: true
+ *         type?: "glide"|"imgix"|"service"|Param, // Transformer type. Inferred from name when it matches a known type. // Default: null
+ *         sign_key?: scalar|Param|null, // Default: null
+ *         cache?: scalar|Param|null, // Cache directory for glide. // Default: null
+ *         driver?: scalar|Param|null, // Default: "gd"
+ *         max_image_size?: int|Param, // Max image size for glide. // Default: null
+ *         base_url?: scalar|Param|null, // Base URL for imgix (e.g. https://my-source.imgix.net). // Default: null
+ *         api_key?: scalar|Param|null, // Imgix API key for cache purge operations. // Default: null
+ *         http_client?: scalar|Param|null, // PSR-18 HTTP client service ID for imgix purge. // Default: null
+ *         request_factory?: scalar|Param|null, // PSR-17 request factory service ID for imgix purge. // Default: null
+ *         stream_factory?: scalar|Param|null, // PSR-17 stream factory service ID for imgix purge. // Default: null
+ *         service?: scalar|Param|null, // Service ID for custom transformers (type: service). // Default: null
+ *         public_cache?: bool|array{
+ *             enabled?: bool|Param, // Default: false
+ *         },
+ *     }>,
+ * }
  * @psalm-type ConfigType = array{
  *     imports?: ImportsConfig,
  *     parameters?: ParametersConfig,
@@ -1275,6 +1346,8 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     security?: SecurityConfig,
  *     stimulus?: StimulusConfig,
  *     turbo?: TurboConfig,
+ *     twig_component?: TwigComponentConfig,
+ *     picasso?: PicassoConfig,
  *     "when@dev"?: array{
  *         imports?: ImportsConfig,
  *         parameters?: ParametersConfig,
@@ -1290,6 +1363,8 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         security?: SecurityConfig,
  *         stimulus?: StimulusConfig,
  *         turbo?: TurboConfig,
+ *         twig_component?: TwigComponentConfig,
+ *         picasso?: PicassoConfig,
  *     },
  *     "when@prod"?: array{
  *         imports?: ImportsConfig,
@@ -1303,6 +1378,8 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         security?: SecurityConfig,
  *         stimulus?: StimulusConfig,
  *         turbo?: TurboConfig,
+ *         twig_component?: TwigComponentConfig,
+ *         picasso?: PicassoConfig,
  *     },
  *     "when@test"?: array{
  *         imports?: ImportsConfig,
@@ -1318,6 +1395,8 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         security?: SecurityConfig,
  *         stimulus?: StimulusConfig,
  *         turbo?: TurboConfig,
+ *         twig_component?: TwigComponentConfig,
+ *         picasso?: PicassoConfig,
  *     },
  *     ...<string, ExtensionType|array{ // extra keys must follow the when@%env% pattern or match an extension alias
  *         imports?: ImportsConfig,
