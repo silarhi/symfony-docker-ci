@@ -8,6 +8,7 @@
  * with this source code in the file LICENSE.
  */
 
+use Silarhi\PicassoBundle\PicassoBundle;
 use Symfony\Bundle\DebugBundle\DebugBundle;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\MakerBundle\MakerBundle;
@@ -17,16 +18,10 @@ use Symfony\Bundle\TwigBundle\TwigBundle;
 use Symfony\Bundle\WebProfilerBundle\WebProfilerBundle;
 use Symfony\UX\StimulusBundle\StimulusBundle;
 use Symfony\UX\Turbo\TurboBundle;
+use Symfony\UX\TwigComponent\TwigComponentBundle;
 use Symfony\WebpackEncoreBundle\WebpackEncoreBundle;
 use Twig\Extra\TwigExtraBundle\TwigExtraBundle;
 
-/*
- * This file is part of SILARHI.
- * (c) 2019 - present Guillaume Sainthillier <guillaume@silarhi.fr>
- *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
- */
 return [
     FrameworkBundle::class => ['all' => true],
     TwigBundle::class => ['all' => true],
@@ -39,4 +34,6 @@ return [
     SecurityBundle::class => ['all' => true],
     StimulusBundle::class => ['all' => true],
     TurboBundle::class => ['all' => true],
+    TwigComponentBundle::class => ['all' => true],
+    PicassoBundle::class => ['all' => true],
 ];

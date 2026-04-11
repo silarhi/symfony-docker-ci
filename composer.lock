@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4f67d9f9899548abce99fadf08d440ef",
+    "content-hash": "24ba906138a76926ae50e4d6849344c8",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -1658,6 +1658,73 @@
                 "source": "https://github.com/ralouphie/getallheaders/tree/develop"
             },
             "time": "2019-03-08T08:55:37+00:00"
+        },
+        {
+            "name": "silarhi/picasso-bundle",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/silarhi/picasso-bundle.git",
+                "reference": "ff0397028d4c7298047c53cac73643560d4b7f94"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/silarhi/picasso-bundle/zipball/ff0397028d4c7298047c53cac73643560d4b7f94",
+                "reference": "ff0397028d4c7298047c53cac73643560d4b7f94",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.2",
+                "symfony/framework-bundle": "^6.4 || ^7.0 || ^8.0",
+                "symfony/ux-twig-component": "^2.13"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.94.2",
+                "imagine/imagine": "^1.5.2",
+                "kornrunner/blurhash": "^1.2.2",
+                "league/flysystem-bundle": "^3.6.2",
+                "league/glide": "^2.3.2",
+                "league/glide-symfony": "^2.0.1",
+                "phpstan/extension-installer": "^1.4",
+                "phpstan/phpstan": "^2.1.44",
+                "phpstan/phpstan-strict-rules": "^2.0",
+                "phpstan/phpstan-symfony": "^2.0",
+                "phpunit/phpunit": "^11.5.55|^12|^13",
+                "psr/http-client": "^1.0.3",
+                "psr/http-factory": "^1.1",
+                "rector/rector": "^2.3.9",
+                "symfony/http-client": "^6.4 || ^7.4.7 || ^8.0.7",
+                "symfony/twig-bundle": "^6.4 || ^7.4.4 || ^8.0.4",
+                "vich/uploader-bundle": "^2.9.2",
+                "vincentlanglet/twig-cs-fixer": "^3.14"
+            },
+            "suggest": {
+                "imagine/imagine": "Required for the BlurHash placeholder (supports GD and Imagick)",
+                "kornrunner/blurhash": "Required for the BlurHash placeholder",
+                "league/flysystem": "Required for the Flysystem loader",
+                "league/glide": "Required for the Glide transformer (local image transformation)",
+                "league/glide-symfony": "Required for the Glide transformer",
+                "psr/http-client": "Required for the URL loader (PSR-18 HTTP client interface)",
+                "psr/http-factory": "Required for the URL loader (PSR-17 HTTP factory interface)",
+                "symfony/http-client": "Provides a PSR-18 HTTP client implementation for the URL loader",
+                "vich/uploader-bundle": "Required for the VichUploader loader"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Silarhi\\PicassoBundle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Responsive image component for Symfony, inspired by next/image",
+            "support": {
+                "issues": "https://github.com/silarhi/picasso-bundle/issues",
+                "source": "https://github.com/silarhi/picasso-bundle/tree/v1.0.1"
+            },
+            "time": "2026-04-11T08:48:44+00:00"
         },
         {
             "name": "symfony/asset",
@@ -5540,6 +5607,93 @@
                 }
             ],
             "time": "2026-03-21T22:29:11+00:00"
+        },
+        {
+            "name": "symfony/ux-twig-component",
+            "version": "v2.34.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/ux-twig-component.git",
+                "reference": "f9942e32246fe3fa9d31f60cffc1ada4d274830a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/ux-twig-component/zipball/f9942e32246fe3fa9d31f60cffc1ada4d274830a",
+                "reference": "f9942e32246fe3fa9d31f60cffc1ada4d274830a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.1",
+                "symfony/dependency-injection": "^5.4|^6.0|^7.0|^8.0",
+                "symfony/deprecation-contracts": "^2.2|^3.0",
+                "symfony/event-dispatcher": "^5.4|^6.0|^7.0|^8.0",
+                "symfony/property-access": "^5.4|^6.0|^7.0|^8.0",
+                "twig/twig": "^3.10.3"
+            },
+            "conflict": {
+                "symfony/config": "<5.4.0"
+            },
+            "require-dev": {
+                "symfony/console": "^5.4|^6.0|^7.0|^8.0",
+                "symfony/css-selector": "^5.4|^6.0|^7.0|^8.0",
+                "symfony/dom-crawler": "^5.4|^6.0|^7.0|^8.0",
+                "symfony/framework-bundle": "^5.4|^6.0|^7.0|^8.0",
+                "symfony/phpunit-bridge": "^6.0|^7.0|^8.0",
+                "symfony/stimulus-bundle": "^2.9.1",
+                "symfony/twig-bundle": "^5.4|^6.0|^7.0|^8.0",
+                "symfony/webpack-encore-bundle": "^1.15|^2.3.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "thanks": {
+                    "url": "https://github.com/symfony/ux",
+                    "name": "symfony/ux"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\UX\\TwigComponent\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Twig components for Symfony",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "components",
+                "symfony-ux",
+                "twig"
+            ],
+            "support": {
+                "source": "https://github.com/symfony/ux-twig-component/tree/v2.34.0"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/nicolas-grekas",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2026-03-15T18:48:53+00:00"
         },
         {
             "name": "symfony/var-dumper",

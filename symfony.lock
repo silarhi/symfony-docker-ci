@@ -98,6 +98,9 @@
     "ralouphie/getallheaders": {
         "version": "3.0.3"
     },
+    "silarhi/picasso-bundle": {
+        "version": "v1.0.1"
+    },
     "symfony/apache-pack": {
         "version": "1.0",
         "recipe": {
@@ -372,6 +375,18 @@
         },
         "files": [
             "config/packages/ux_turbo.yaml"
+        ]
+    },
+    "symfony/ux-twig-component": {
+        "version": "2.34",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "2.13",
+            "ref": "f367ae2a1faf01c503de2171f1ec22567febeead"
+        },
+        "files": [
+            "config/packages/twig_component.yaml"
         ]
     },
     "symfony/var-dumper": {
