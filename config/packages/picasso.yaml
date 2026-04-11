@@ -7,7 +7,7 @@ picasso:
     transformers:
         glide:
             sign_key: '%kernel.secret%'
-            cache: '%kernel.project_dir%/var/picasso-cache'
+            cache: '%kernel.project_dir%/var/storage/picasso-cache'
             driver: gd
             public_cache:
                 enabled: false
