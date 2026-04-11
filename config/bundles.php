@@ -8,32 +8,18 @@
  * with this source code in the file LICENSE.
  */
 
-use Silarhi\PicassoBundle\PicassoBundle;
-use Symfony\Bundle\DebugBundle\DebugBundle;
-use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
-use Symfony\Bundle\MakerBundle\MakerBundle;
-use Symfony\Bundle\MonologBundle\MonologBundle;
-use Symfony\Bundle\SecurityBundle\SecurityBundle;
-use Symfony\Bundle\TwigBundle\TwigBundle;
-use Symfony\Bundle\WebProfilerBundle\WebProfilerBundle;
-use Symfony\UX\StimulusBundle\StimulusBundle;
-use Symfony\UX\Turbo\TurboBundle;
-use Symfony\UX\TwigComponent\TwigComponentBundle;
-use Symfony\WebpackEncoreBundle\WebpackEncoreBundle;
-use Twig\Extra\TwigExtraBundle\TwigExtraBundle;
-
 return [
-    FrameworkBundle::class => ['all' => true],
-    TwigBundle::class => ['all' => true],
-    WebProfilerBundle::class => ['dev' => true, 'test' => true],
-    MonologBundle::class => ['all' => true],
-    DebugBundle::class => ['dev' => true, 'test' => true],
-    WebpackEncoreBundle::class => ['all' => true],
-    TwigExtraBundle::class => ['all' => true],
-    MakerBundle::class => ['dev' => true],
-    SecurityBundle::class => ['all' => true],
-    StimulusBundle::class => ['all' => true],
-    TurboBundle::class => ['all' => true],
-    TwigComponentBundle::class => ['all' => true],
-    PicassoBundle::class => ['all' => true],
+    Symfony\Bundle\FrameworkBundle\FrameworkBundle::class => ['all' => true],
+    Symfony\Bundle\TwigBundle\TwigBundle::class => ['all' => true],
+    Symfony\Bundle\WebProfilerBundle\WebProfilerBundle::class => ['dev' => true, 'test' => true],
+    Symfony\Bundle\MonologBundle\MonologBundle::class => ['all' => true],
+    Symfony\Bundle\DebugBundle\DebugBundle::class => ['dev' => true, 'test' => true],
+    Symfony\WebpackEncoreBundle\WebpackEncoreBundle::class => ['all' => true],
+    Twig\Extra\TwigExtraBundle\TwigExtraBundle::class => ['all' => true],
+    Symfony\Bundle\MakerBundle\MakerBundle::class => ['dev' => true],
+    Symfony\Bundle\SecurityBundle\SecurityBundle::class => ['all' => true],
+    Symfony\UX\StimulusBundle\StimulusBundle::class => ['all' => true],
+    Symfony\UX\Turbo\TurboBundle::class => ['all' => true],
+    Symfony\UX\TwigComponent\TwigComponentBundle::class => ['all' => true],
+    Silarhi\PicassoBundle\PicassoBundle::class => ['all' => true],
 ];
