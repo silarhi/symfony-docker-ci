@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of SILARHI.
  * (c) 2019 - present Guillaume Sainthillier <guillaume@silarhi.fr>
