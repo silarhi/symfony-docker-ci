@@ -22,7 +22,7 @@
         "symfony/security-bundle": "8.0.*",
         "symfony/stimulus-bundle": "^2.34",
         "symfony/twig-bundle": "8.0.*",
-        "symfony/ux-turbo": "^2.34",
+        "symfony/ux-turbo": "^3.0",
         "symfony/ux-twig-component": "^2.34",
         "symfony/webpack-encore-bundle": "^2.4",
         "symfony/yaml": "8.0.*",
