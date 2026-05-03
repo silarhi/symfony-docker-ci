@@ -2903,16 +2903,16 @@
         },
         {
             "name": "symfony/framework-bundle",
-            "version": "v8.0.8",
+            "version": "v8.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/framework-bundle.git",
-                "reference": "ce3ee5db0a9c1b6c52f5e3ba16b63a677b18b7df"
+                "reference": "ec5e749f011a477d9a5d422f50ad6bdc2820c5cd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/framework-bundle/zipball/ce3ee5db0a9c1b6c52f5e3ba16b63a677b18b7df",
-                "reference": "ce3ee5db0a9c1b6c52f5e3ba16b63a677b18b7df",
+                "url": "https://api.github.com/repos/symfony/framework-bundle/zipball/ec5e749f011a477d9a5d422f50ad6bdc2820c5cd",
+                "reference": "ec5e749f011a477d9a5d422f50ad6bdc2820c5cd",
                 "shasum": ""
             },
             "require": {
@@ -2941,6 +2941,7 @@
                 "symfony/form": "<7.4",
                 "symfony/json-streamer": "<7.4",
                 "symfony/messenger": "<7.4",
+                "symfony/mime": "<7.4.9|>=8.0,<8.0.9",
                 "symfony/security-csrf": "<7.4",
                 "symfony/serializer": "<7.4",
                 "symfony/translation": "<7.4",
@@ -2969,9 +2970,9 @@
                 "symfony/lock": "^7.4|^8.0",
                 "symfony/mailer": "^7.4|^8.0",
                 "symfony/messenger": "^7.4|^8.0",
-                "symfony/mime": "^7.4|^8.0",
+                "symfony/mime": "^7.4.9|^8.0.9",
                 "symfony/notifier": "^7.4|^8.0",
-                "symfony/object-mapper": "^7.4|^8.0",
+                "symfony/object-mapper": "^7.4.9|^8.0.9",
                 "symfony/polyfill-intl-icu": "^1.0",
                 "symfony/process": "^7.4|^8.0",
                 "symfony/property-info": "^7.4|^8.0",
@@ -3019,7 +3020,7 @@
             "description": "Provides a tight integration between Symfony components and the Symfony full-stack framework",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/framework-bundle/tree/v8.0.8"
+                "source": "https://github.com/symfony/framework-bundle/tree/v8.0.9"
             },
             "funding": [
                 {
@@ -3039,7 +3040,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-03-30T15:14:47+00:00"
+            "time": "2026-04-30T09:11:52+00:00"
         },
         {
             "name": "symfony/http-foundation",
