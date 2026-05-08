@@ -734,9 +734,7 @@
     "@babel/helper-plugin-utils" "^7.28.6"
 
 "@babel/preset-env@^7.28.5":
-  version "7.29.3"
-  resolved "https://registry.yarnpkg.com/@babel/preset-env/-/preset-env-7.29.3.tgz#2bbd5b0162e6a762adfe356f4aecdef837a3d574"
-  integrity sha512-ySZypNLAIH1ClygLDQzVMoGQRViATnkHkYYV6TcNDz+8+jwZCdsguGvsb3EY5d9wyWyhmF1iSuFM0Yh5XPnqSA==
+  version "7.29.5"
   dependencies:
     "@babel/compat-data" "^7.29.3"
     "@babel/helper-compilation-targets" "^7.28.6"
