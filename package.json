@@ -47,9 +47,9 @@
         "prop-types": "^15.8.1",
         "react": "^19.2.6",
         "react-dom": "^19.2.6",
-        "sass": "^1.98.0",
-        "sass-loader": "^16.0.8",
-        "webpack": "^5.102.1",
+        "sass": "^1.100.0",
+        "sass-loader": "^17.0.0",
+        "webpack": "^5.107.1",
         "webpack-cli": "^7.0.2",
         "webpack-notifier": "^1.15.0"
     },
