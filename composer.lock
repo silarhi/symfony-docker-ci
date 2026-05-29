@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b688b66abd5fef928f773290b19c0d0f",
+    "content-hash": "660e70e6aa790547116d8774e5847901",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -5227,16 +5227,16 @@
         },
         {
             "name": "symfony/ux-turbo",
-            "version": "v3.0.0",
+            "version": "v3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/ux-turbo.git",
-                "reference": "f32f0eb888a8224589400ffdc1b2b76c6844d30e"
+                "reference": "50faf143c13154dd928cfedb96f951bbecad4c73"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/ux-turbo/zipball/f32f0eb888a8224589400ffdc1b2b76c6844d30e",
-                "reference": "f32f0eb888a8224589400ffdc1b2b76c6844d30e",
+                "url": "https://api.github.com/repos/symfony/ux-turbo/zipball/50faf143c13154dd928cfedb96f951bbecad4c73",
+                "reference": "50faf143c13154dd928cfedb96f951bbecad4c73",
                 "shasum": ""
             },
             "require": {
@@ -5247,21 +5247,18 @@
                 "symfony/flex": "<1.13"
             },
             "require-dev": {
-                "dbrekelmans/bdi": "dev-main",
                 "doctrine/doctrine-bundle": "^2.14|^3.0|^4.0",
                 "doctrine/orm": "^2.8|^3.0",
-                "php-webdriver/webdriver": "^1.15",
                 "phpstan/phpstan": "^2.1.17",
                 "phpunit/phpunit": "^11.1|^12.0",
                 "symfony/asset-mapper": "^7.4|^8.0",
+                "symfony/browser-kit": "^7.4|^8.0",
                 "symfony/debug-bundle": "^7.4|^8.0",
                 "symfony/expression-language": "^7.4|^8.0",
                 "symfony/form": "^7.4|^8.0",
                 "symfony/framework-bundle": "^7.4|^8.0",
                 "symfony/mercure-bundle": "^0.3.7|^0.4.1",
                 "symfony/messenger": "^7.4|^8.0",
-                "symfony/panther": "^2.2",
-                "symfony/process": "^7.4|^8.0",
                 "symfony/property-access": "^7.4|^8.0",
                 "symfony/security-core": "^7.4|^8.0",
                 "symfony/stopwatch": "^7.4|^8.0",
@@ -5306,7 +5303,7 @@
                 "turbo-stream"
             ],
             "support": {
-                "source": "https://github.com/symfony/ux-turbo/tree/v3.0.0"
+                "source": "https://github.com/symfony/ux-turbo/tree/v3.1.0"
             },
             "funding": [
                 {
@@ -5326,7 +5323,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-04-09T22:56:44+00:00"
+            "time": "2026-05-22T05:04:55+00:00"
         },
         {
             "name": "symfony/ux-twig-component",
