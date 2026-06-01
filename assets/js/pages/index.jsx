@@ -1,7 +1,7 @@
 import { Controller } from '@hotwired/stimulus'
 import React from 'react'
-import App from '../component/App'
 import { createRoot } from 'react-dom/client'
+import App from '../component/App'
 
 class IndexController extends Controller {
     #root
