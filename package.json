@@ -12,7 +12,8 @@
         "prepare": "husky",
         "lint": "biome check --write assets",
         "prettier": "prettier --write \"assets/**/*.{scss,md}\"",
-        "format": "yarn lint && yarn prettier"
+        "format": "yarn lint && yarn prettier",
+        "knip": "knip"
     },
     "lint-staged": {
         "*.{js,jsx,ts,tsx,mjs,json}": "biome check --write --no-errors-on-unmatched",
@@ -31,8 +32,8 @@
         "@symfony/ux-turbo": "file:vendor/symfony/ux-turbo/assets",
         "@symfony/webpack-encore": "^6",
         "core-js": "^3.46.0",
-        "file-loader": "^6.2.0",
         "husky": "^9.1.7",
+        "knip": "^6",
         "lint-staged": "^17.0.5",
         "prettier": "^3.6.2",
         "prop-types": "^15.8.1",
