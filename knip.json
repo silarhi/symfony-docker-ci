@@ -1,13 +1,13 @@
 {
     "$schema": "https://unpkg.com/knip@5/schema.json",
     "entry": [
-        "assets/js/app.js",
-        "assets/js/pages/index.jsx",
         "assets/**/pages/**/*.{js,jsx}",
         "assets/**/controllers/**/*.{js,jsx}"
     ],
     "project": ["assets/**/*.{js,jsx,ts,tsx}"],
-    "ignore": ["assets/**/translations/**"],
+    "paths": {
+        "@/*": ["assets/*"]
+    },
     "ignoreBinaries": ["vendor/bin/.+"],
     "rules": {
         "unlisted": "off",
