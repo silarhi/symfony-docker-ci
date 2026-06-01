@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dd958c4aa0d35e781731eb627ff47a3f",
+    "content-hash": "c21f897d36c6a6f9e478893dd1a81c4d",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -5436,16 +5436,16 @@
         },
         {
             "name": "symfony/ux-twig-component",
-            "version": "v3.0.0",
+            "version": "v3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/ux-twig-component.git",
-                "reference": "dea344e320238234c94f63b152d65821c80cd103"
+                "reference": "69763f39367d7185ebff3a8aec3e9d6ec7e10d55"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/ux-twig-component/zipball/dea344e320238234c94f63b152d65821c80cd103",
-                "reference": "dea344e320238234c94f63b152d65821c80cd103",
+                "url": "https://api.github.com/repos/symfony/ux-twig-component/zipball/69763f39367d7185ebff3a8aec3e9d6ec7e10d55",
+                "reference": "69763f39367d7185ebff3a8aec3e9d6ec7e10d55",
                 "shasum": ""
             },
             "require": {
@@ -5500,7 +5500,7 @@
                 "twig"
             ],
             "support": {
-                "source": "https://github.com/symfony/ux-twig-component/tree/v3.0.0"
+                "source": "https://github.com/symfony/ux-twig-component/tree/v3.1.0"
             },
             "funding": [
                 {
@@ -5520,7 +5520,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-04-09T22:56:44+00:00"
+            "time": "2026-05-29T07:08:56+00:00"
         },
         {
             "name": "symfony/var-dumper",
