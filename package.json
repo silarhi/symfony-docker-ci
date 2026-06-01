@@ -14,8 +14,7 @@
         "lint-ci": "biome check assets",
         "prettier": "prettier --write \"assets/**/*.{scss,md}\"",
         "format": "yarn lint && yarn prettier",
-        "knip": "knip",
-        "knip:ci": "knip --dependencies"
+        "knip": "knip"
     },
     "lint-staged": {
         "*.{js,jsx,ts,tsx,mjs,json}": "biome check --write --no-errors-on-unmatched",

@@ -37,7 +37,7 @@ jobs:
               run: yarn lint-ci
 
             - name: Run Knip
-              run: yarn knip:ci
+              run: yarn knip
 
     matrix:
         name: Generate job matrix
