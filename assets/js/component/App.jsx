@@ -1,5 +1,5 @@
 import React from 'react'
-import Item from './Item'
+import Item from '@/js/component/Item'
 
 export default function App() {
     const [entries, setEntries] = React.useState([])
