@@ -9,7 +9,7 @@ on:
 
 jobs:
     lint-js:
-        name: Lint JS/JSX (ESLint & Prettier)
+        name: Lint JS/JSX (Biome)
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
@@ -33,11 +33,8 @@ jobs:
             - name: Install dependencies
               run: yarn install --frozen-lockfile
 
-            - name: Run ESLint
-              run: yarn lint:eslint
-
-            - name: Run Prettier
-              run: yarn lint:prettier
+            - name: Run Biome
+              run: yarn lint-ci
 
     matrix:
         name: Generate job matrix

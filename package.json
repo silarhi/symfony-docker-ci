@@ -11,6 +11,7 @@
         "build": "encore production --progress",
         "prepare": "husky",
         "lint": "biome check --write assets",
+        "lint-ci": "biome check assets",
         "prettier": "prettier --write \"assets/**/*.{scss,md}\"",
         "format": "yarn lint && yarn prettier",
         "knip": "knip"
