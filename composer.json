@@ -14,16 +14,16 @@
         "symfony/console": "8.1.*",
         "symfony/dotenv": "8.1.*",
         "symfony/expression-language": "8.1.*",
-        "symfony/flex": "^2.10",
+        "symfony/flex": "^2.11",
         "symfony/form": "8.1.*",
         "symfony/framework-bundle": "8.1.*",
         "symfony/monolog-bundle": "^4.0.2",
         "symfony/runtime": "8.1.*",
         "symfony/security-bundle": "8.1.*",
-        "symfony/stimulus-bundle": "^3",
+        "symfony/stimulus-bundle": "^3.1",
         "symfony/twig-bundle": "8.1.*",
-        "symfony/ux-turbo": "^3.0",
-        "symfony/ux-twig-component": "^3",
+        "symfony/ux-turbo": "^3.1",
+        "symfony/ux-twig-component": "^3.1",
         "symfony/webpack-encore-bundle": "^2.4",
         "symfony/yaml": "8.1.*",
         "twig/extra-bundle": "^3.24.0",
@@ -107,7 +107,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": true,
-            "require": "8.0.*"
+            "require": "8.1.*"
         }
     }
 }
