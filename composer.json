@@ -1,4 +1,6 @@
 {
+    "name": "silarhi/symfony-docker-ci",
+    "description": "Symfony Docker CI application",
     "license": "MIT",
     "type": "project",
     "require": {
@@ -8,7 +10,7 @@
         "bacon/bacon-qr-code": "^3.1.1",
         "league/commonmark": "^2.8.2",
         "league/glide-symfony": "^2.1.0",
-        "pragmarx/google2fa": "^9",
+        "pragmarx/google2fa": "^9.0",
         "silarhi/picasso-bundle": "^1.1.0",
         "symfony/asset": "~8.1.0",
         "symfony/console": "~8.1.0",
