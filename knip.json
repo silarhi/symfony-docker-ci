@@ -8,7 +8,7 @@
     "paths": {
         "@/*": ["assets/*"]
     },
-    "ignoreBinaries": ["vendor/bin/.+"],
+    "ignoreBinaries": ["composer", "vendor/bin/.+"],
     "rules": {
         "unlisted": "off",
         "unresolved": "off"
