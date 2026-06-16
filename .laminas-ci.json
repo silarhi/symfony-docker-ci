@@ -10,7 +10,7 @@
         {
             "name": "Composer validate & normalize",
             "job": {
-                "command": "composer validate --strict --no-check-publish && composer normalize --dry-run --diff",
+                "command": "composer validate --strict && composer normalize --dry-run --diff",
                 "php": "@lowest",
                 "dependencies": "locked"
             }
