@@ -49,8 +49,5 @@
     },
     "dependencies": {
         "@tabler/core": "^1.4.0"
-    },
-    "resolutions": {
-        "bootstrap": "5.3.8"
     }
 }
