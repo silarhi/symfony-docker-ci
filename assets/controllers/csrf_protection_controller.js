@@ -45,7 +45,10 @@ export function generateCsrfToken(formElement) {
     csrfField.dispatchEvent(new Event('change', { bubbles: true }))
 
     if (csrfCookie && tokenCheck.test(csrfToken)) {
+        // biome-ignore lint/style/useTemplate: keep verbatim Symfony stimulus-bundle CSRF controller
         const cookie = csrfCookie + '_' + csrfToken + '=' + csrfCookie + '; path=/; samesite=strict'
+        // biome-ignore lint/style/useTemplate: keep verbatim Symfony stimulus-bundle CSRF controller
+        // biome-ignore lint/suspicious/noDocumentCookie: double-submit CSRF cookie must be written synchronously (Cookie Store API is async/unsupported in Firefox)
         document.cookie = window.location.protocol === 'https:' ? '__Host-' + cookie + '; secure' : cookie
     }
 }
@@ -77,8 +80,11 @@ export function removeCsrfToken(formElement) {
     const csrfCookie = csrfField.getAttribute('data-csrf-protection-cookie-value')
 
     if (tokenCheck.test(csrfField.value) && nameCheck.test(csrfCookie)) {
+        // biome-ignore lint/style/useTemplate: keep verbatim Symfony stimulus-bundle CSRF controller
         const cookie = csrfCookie + '_' + csrfField.value + '=0; path=/; samesite=strict; max-age=0'
 
+        // biome-ignore lint/style/useTemplate: keep verbatim Symfony stimulus-bundle CSRF controller
+        // biome-ignore lint/suspicious/noDocumentCookie: double-submit CSRF cookie must be written synchronously (Cookie Store API is async/unsupported in Firefox)
         document.cookie = window.location.protocol === 'https:' ? '__Host-' + cookie + '; secure' : cookie
     }
 }
