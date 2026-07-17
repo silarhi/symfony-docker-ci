@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c1f3f9d3451ae8989f0dda1a8c1c2da8",
+    "content-hash": "4db61b0ad764ab0bc36ed93f48f68718",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -5454,16 +5454,16 @@
         },
         {
             "name": "symfony/ux-twig-component",
-            "version": "v3.2.0",
+            "version": "v3.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/ux-twig-component.git",
-                "reference": "a9b93b10fe2056a6f93ebc1f9e3509f7fafb5bf2"
+                "reference": "2f3a1b74e3ee04daed1a303245998e7b799eb9dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/ux-twig-component/zipball/a9b93b10fe2056a6f93ebc1f9e3509f7fafb5bf2",
-                "reference": "a9b93b10fe2056a6f93ebc1f9e3509f7fafb5bf2",
+                "url": "https://api.github.com/repos/symfony/ux-twig-component/zipball/2f3a1b74e3ee04daed1a303245998e7b799eb9dc",
+                "reference": "2f3a1b74e3ee04daed1a303245998e7b799eb9dc",
                 "shasum": ""
             },
             "require": {
@@ -5519,7 +5519,7 @@
                 "twig"
             ],
             "support": {
-                "source": "https://github.com/symfony/ux-twig-component/tree/v3.2.0"
+                "source": "https://github.com/symfony/ux-twig-component/tree/v3.3.0"
             },
             "funding": [
                 {
@@ -5539,7 +5539,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-06-11T20:32:06+00:00"
+            "time": "2026-07-05T15:45:35+00:00"
         },
         {
             "name": "symfony/var-dumper",
