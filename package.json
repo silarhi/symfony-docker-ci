@@ -32,7 +32,7 @@
         "@hotwired/turbo": "^8.0.21",
         "@symfony/stimulus-bridge": "^4.0.1",
         "@symfony/ux-turbo": "file:vendor/symfony/ux-turbo/assets",
-        "@symfony/webpack-encore": "^6",
+        "@symfony/webpack-encore": "^7.0.0",
         "core-js": "^3.46.0",
         "husky": "^9.1.7",
         "knip": "^6",
