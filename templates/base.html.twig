@@ -7,9 +7,9 @@
     <meta name="x-app-version" content="{{ app_version }}" data-turbo-track="reload">
     <title>{% block title %}Welcome!{% endblock %}</title>
 
-    {{ encore_entry_link_tags('app') }}
+    {{ reprise_entry_link_tags('app') }}
     {% block stylesheets %}{% endblock %}
-    {{ encore_entry_script_tags('app') }}
+    {{ reprise_entry_script_tags('app') }}
     {% block javascripts %}{% endblock %}
 </head>
 <body>
