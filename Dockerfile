@@ -28,7 +28,7 @@ FROM node_upstream AS node_builder
 WORKDIR /app
 COPY --from=node_deps --link /app/node_modules ./node_modules
 COPY --from=node_deps --link /app/vendor ./vendor
-COPY --link package.json webpack.config.js yarn.lock ./
+COPY --link package.json vite.config.js yarn.lock ./
 COPY --link assets ./assets
 RUN mkdir -p public && yarn build
 

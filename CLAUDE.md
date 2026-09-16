@@ -8,7 +8,7 @@ This is a Symfony 7.4 demonstration application showcasing continuous integratio
 
 - Custom two-factor authentication implementation
 - Dynamic image processing with League Glide
-- Hybrid frontend: Twig templates + React components via Webpack Encore
+- Hybrid frontend: Twig templates + React components via Symfony Reprise (Vite)
 - Containerized deployment workflow
 - Enterprise-grade PHP tooling (PHPStan level 9, PHP-CS-Fixer, Rector)
 
@@ -133,14 +133,14 @@ The application uses League Glide for on-the-fly image manipulation:
 - Stimulus controllers for progressive enhancement
 - Hotwire Turbo for SPA-like navigation
 
-**Entry Points** (webpack.config.js):
+**Entry Points** (vite.config.js, `build.rollupOptions.input`):
 
 - `app` - Main application CSS/JS (base.html.twig)
 - `index` - React-based index page (assets/js/pages/index.jsx)
 
 **Build Process**:
 
-- Webpack Encore compiles assets to `public/build/`
+- Vite compiles assets to `public/build/`; the `@symfony/reprise` plugin writes `entrypoints.json` + `manifest.json` there
 - Development: Non-hashed filenames
 - Production: Content-hashed filenames for cache busting
 - SCSS compiled with dart-sass
@@ -237,7 +237,7 @@ Required for deployment (see config/packages/twig.yaml and Dockerfile):
 The Dockerfile uses a three-stage build process:
 
 1. **php_builder**: Install PHP dependencies with Composer
-2. **node_builder**: Build frontend assets with Yarn + Webpack Encore
+2. **node_builder**: Build frontend assets with Yarn + Vite (Symfony Reprise)
 3. **Final stage**: Combine artifacts, optimize autoloader, warm cache
 
 **Important**: The build process:
@@ -266,9 +266,9 @@ assets/
 ├── js/
 │   ├── app.js       # Main JavaScript entry
 │   ├── pages/       # React page components
-│   └── component/   # Reusable React components
-├── scss/            # Stylesheets
-└── controllers/     # Stimulus controllers
+│   ├── component/   # Reusable React components
+│   └── controllers/ # Stimulus controllers
+└── scss/            # Stylesheets
 
 config/
 ├── packages/        # Bundle configurations
@@ -298,8 +298,8 @@ config/
 
 1. Create component in `assets/js/component/`
 2. Create page wrapper in `assets/js/pages/`
-3. Add entry point in `webpack.config.js`
-4. Include in Twig template with `encore_entry_script_tags()`
+3. Add entry point in `vite.config.js` under `build.rollupOptions.input`
+4. Include in Twig template with `reprise_entry_script_tags()`
 
 ### Modifying Security Configuration
 
