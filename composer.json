@@ -34,7 +34,7 @@
     },
     "require-dev": {
         "ergebnis/composer-normalize": "^2.53.0",
-        "friendsofphp/php-cs-fixer": "^3.95.1",
+        "friendsofphp/php-cs-fixer": "^3.95.25",
         "phpstan/extension-installer": "^1.4.3",
         "phpstan/phpstan": "^2.1.50",
         "phpstan/phpstan-strict-rules": "^2.0.10",
