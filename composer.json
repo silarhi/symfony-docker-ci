@@ -8,7 +8,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "bacon/bacon-qr-code": "^3.1.1",
-        "league/commonmark": "^2.8.2",
+        "league/commonmark": "^2.10.1",
         "league/glide-symfony": "^2.1.0",
         "pragmarx/google2fa": "^9.0",
         "silarhi/picasso-bundle": "^1.1.0",
