@@ -25,7 +25,7 @@
         "symfony/security-bundle": "~8.1.6",
         "symfony/stimulus-bundle": "^3.4.0",
         "symfony/twig-bundle": "~8.1.2",
-        "symfony/ux-turbo": "^3.1",
+        "symfony/ux-turbo": "^3.4.0",
         "symfony/ux-twig-component": "^3.1",
         "symfony/yaml": "~8.1.6",
         "twig/extra-bundle": "^3.24.0",
