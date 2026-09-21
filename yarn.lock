@@ -609,9 +609,7 @@ jiti@^2.7.0:
   integrity sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==
 
 knip@^6:
-  version "6.35.1"
-  resolved "https://registry.yarnpkg.com/knip/-/knip-6.35.1.tgz#377043482db9f77420334fcf393af5302fd457ef"
-  integrity sha512-22wnEnv4do2fvoeJsxpFCG/MBxReNxoCVBccaCl7suUJsG+F0UvxI9ycxZ9YgtLHSSjrZl5tOas0JZ/R1vJ93g==
+  version "6.37.0"
   dependencies:
     fdir "^6.5.0"
     formatly "^0.7.0"
