@@ -509,7 +509,7 @@
     unplugin "^3.3.0"
 
 "@symfony/ux-turbo@file:vendor/symfony/ux-turbo/assets":
-  version "3.2.0"
+  version "3.5.1"
 
 "@tabler/core@^1.4.0":
   version "1.5.1"
@@ -811,9 +811,9 @@ postcss@^8.5.28:
     source-map-js "^1.2.1"
 
 prettier@^3.8.4:
-  version "3.9.6"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-3.9.6.tgz#b3ea5146515d40fc53f18aa63f74dfab1e10dbf6"
-  integrity sha512-OpN0zzVdiaiAhxpuuj5efpIS4sY9j7bY6uR5mnj5yPzGkdkjNKSJeUThPb60Jw29QuAZgA4o+/iB49kFiaBX6g==
+  version "3.9.9"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-3.9.9.tgz#09b826918c91cd4cbc80e0cbd1d2a922ff04f233"
+  integrity sha512-Z/CJHIkdujO/OtN7nXUii0Rf3VT5SRuhjBA82Xvu2XhBUgX3nhP67T0LHceBdQLex7OOFGTox+Q5Yg8Jk2Qivg==
 
 prop-types@^15.8.1:
   version "15.8.1"
