@@ -557,9 +557,9 @@ fdir@^6.5.0:
   integrity sha512-tIbYtZbucOs0BRGqPJkshJUYdL+SDH7dVM8gjy+ERp3WAUjLEFJE+02kanyHtwjWOnwrKYBiwAmM0p4kLJAnXg==
 
 formatly@^0.7.0:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/formatly/-/formatly-0.7.0.tgz#3254a5e5f0b1eb1b1b53a5bb57241245e7d12816"
-  integrity sha512-7CXJtIIA0zy/u12StsYk25qVKxvdLA2ep2sTNxK3ov0mGNIIDqIvAXDSgTnAfDJFsPfWjuz0WjfYSdpvnLA5Tg==
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/formatly/-/formatly-0.7.1.tgz#d9ea802b43204fbe7725f15a0897c3390f8b526e"
+  integrity sha512-ESuCEJE0SGgabl9q+zABI8LhJDmF+8nhpuqDzuM48HfJ9QTD5o6PqFJDFZY7w6f8xsh5lixuj5nJsQNvYOWvKQ==
   dependencies:
     fd-package-json "^2.0.0"
     package-manager-detector "^1.8.0"
@@ -609,9 +609,9 @@ jiti@^2.7.0:
   integrity sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==
 
 knip@^6:
-  version "6.37.0"
-  resolved "https://registry.yarnpkg.com/knip/-/knip-6.37.0.tgz#6aff69da159c4de2e9ab58c4efdf649358780620"
-  integrity sha512-NKCYuoGKJ+o2AuoCuV1mDvfMYnSSWfDXqxwmzxeHyd8fftjNRl8TBUg3fbSrtJjhm7Vj6sc1PX3WZnZhECs9EQ==
+  version "6.38.0"
+  resolved "https://registry.yarnpkg.com/knip/-/knip-6.38.0.tgz#d1ff703b3e14b5666054db0867ba288f5a45bbed"
+  integrity sha512-umytiMCaZf02MV9SOO1FEDgbDf6h20VZk3ruJE0kh52kkGjYZFRUAXHJWYoLhvhoHGINO/7GXVJmQ2vxTBvl6A==
   dependencies:
     fdir "^6.5.0"
     formatly "^0.7.0"
@@ -892,9 +892,9 @@ scheduler@^0.28.0:
   integrity sha512-juorfCmIkIw8tT+p5BXSm6PJjQF/ycEYmKyzURCIt/RaZIhL+PulbQ9Yu2z1HdOJDdqDTlxA1+xKBmHXJsczAw==
 
 smol-toml@^1.8.0:
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/smol-toml/-/smol-toml-1.8.0.tgz#dc5e0936825f1fef37bdf2c569081f709d8a009f"
-  integrity sha512-kCZr2V3ch9i00x8zXRhjUNVcjG9ijES5dDudkXvUVCT5QlJNQWElSJdZqyPemffHoLNUYwOcou0Fy+ojN0uHSQ==
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/smol-toml/-/smol-toml-1.9.0.tgz#f36b8dc7eb621c541c48f9fba6925dab95172817"
+  integrity sha512-hpd+HLON7HdZXqYchMM/+LaTTbdK0AU3NngIJ4KVyWbY9bfQqdL9cD+4yf6dUoU2Ap4VsU0JkQi6FxAI1B2mXQ==
 
 "source-map-js@>=0.6.2 <2.0.0", source-map-js@^1.2.1:
   version "1.2.1"
