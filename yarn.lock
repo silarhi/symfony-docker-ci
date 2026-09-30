@@ -944,9 +944,7 @@ unplugin@^3.3.0:
     webpack-virtual-modules "^0.6.2"
 
 vite@^8.3.0:
-  version "8.3.0"
-  resolved "https://registry.yarnpkg.com/vite/-/vite-8.3.0.tgz#f9565cfd4879d58d28fa64d3c7aff3b372d2ccc8"
-  integrity sha512-lhZBVvEHefgE+HQZC9O7EBJgCU/nVzFNl7vkS4RE0APtWLP02/8QVIkQtzBxPquh7lq5/78NHipTj7ODQ6XuyQ==
+  version "8.3.1"
   dependencies:
     lightningcss "^1.33.0"
     picomatch "^4.0.7"
