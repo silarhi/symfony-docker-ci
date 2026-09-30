@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e1dcdcd98a3ba585c54ec40b1cb5d9b9",
+    "content-hash": "12974bafb4cc9a3bfd49f39a3cb5efb1",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -4426,16 +4426,16 @@
         },
         {
             "name": "symfony/reprise",
-            "version": "v1.2.0",
+            "version": "v1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/reprise.git",
-                "reference": "3eedb47af8cb4f686d67e778b63b0987743ced3d"
+                "reference": "76527bd850678ac4b2c526062d955fa93ff4bd8a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/reprise/zipball/3eedb47af8cb4f686d67e778b63b0987743ced3d",
-                "reference": "3eedb47af8cb4f686d67e778b63b0987743ced3d",
+                "url": "https://api.github.com/repos/symfony/reprise/zipball/76527bd850678ac4b2c526062d955fa93ff4bd8a",
+                "reference": "76527bd850678ac4b2c526062d955fa93ff4bd8a",
                 "shasum": ""
             },
             "require": {
@@ -4457,6 +4457,7 @@
                 "symfony/cache": "^7.4|^8.0",
                 "symfony/error-handler": "^7.4|^8.0",
                 "symfony/framework-bundle": "^7.4|^8.0",
+                "symfony/twig-bundle": "^7.4|^8.0",
                 "symfony/web-link": "^7.4|^8.0"
             },
             "type": "symfony-bundle",
@@ -4489,7 +4490,7 @@
             ],
             "support": {
                 "issues": "https://github.com/symfony/reprise/issues",
-                "source": "https://github.com/symfony/reprise/tree/v1.2.0"
+                "source": "https://github.com/symfony/reprise/tree/v1.3.0"
             },
             "funding": [
                 {
@@ -4509,7 +4510,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-23T19:41:33+00:00"
+            "time": "2026-09-26T17:46:02+00:00"
         },
         {
             "name": "symfony/routing",
