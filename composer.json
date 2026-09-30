@@ -20,7 +20,7 @@
         "symfony/form": "~8.1.7",
         "symfony/framework-bundle": "~8.1.7",
         "symfony/monolog-bundle": "^4.1.0",
-        "symfony/reprise": "^1.2.0",
+        "symfony/reprise": "^1.3.0",
         "symfony/runtime": "~8.1.0",
         "symfony/security-bundle": "~8.1.7",
         "symfony/stimulus-bundle": "^3.5.1",
