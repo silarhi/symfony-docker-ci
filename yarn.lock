@@ -510,9 +510,7 @@
   version "3.5.1"
 
 "@tabler/core@^1.4.0":
-  version "1.5.1"
-  resolved "https://registry.yarnpkg.com/@tabler/core/-/core-1.5.1.tgz#d083f17521acb7df4bc231bc79e653bfeae268c9"
-  integrity sha512-PI9rJq4H4lBh53YP/J+m5Uz6lqVQbsGPmWCMN34IP4KQQ/wy28YMO6a3Eiz1cQHdFFr+3MlU3yYhXdzvFGJfqw==
+  version "1.6.0"
   dependencies:
     "@popperjs/core" "^2.11.8"
 
