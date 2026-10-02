@@ -9,22 +9,25 @@
         </div>
     {% endif %}
 
-    <div class="container mt-5 mb-5 text-center">
-        <h1>Scan this QR Code:</h1>
+    <div class="container mt-5 mb-5">
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <form method="post">
                     <div class="card">
-                        <div class="card-body">
-                            <div class="mb-3">
-                                <img width="300" height="300" class="qr-image" src="data:image/png;base64,{{ qrCodeImage }}" alt="{{ secretKey }}" />
+                        <div class="card-body text-center">
+                            <h1 class="mb-4">Set up two-factor authentication</h1>
+                            <p class="text-secondary">1. Scan this QR code with your authenticator app.</p>
+                            <img width="300" height="300" class="qr-image" src="data:image/png;base64,{{ qrCodeImage }}" alt="QR code to scan with your authenticator app" />
+                            <p class="small text-secondary mt-2 mb-4">
+                                Can't scan it? Enter this key instead: <code class="user-select-all">{{ secretKey }}</code>
+                            </p>
+                            <p class="text-secondary"><label for="qrCode">2. Enter the 6-digit code it shows.</label></p>
+                            <div class="otp otp-lg mb-4" data-controller="otp">
+                                <input type="text" id="qrCode" name="qrCode" class="otp-input" maxlength="6" required="required" autofocus />
                             </div>
-                            <div class="mb-3">
-                                <div class="otp otp-lg" data-controller="otp">
-                                    <input type="text" id="qrCode" name="qrCode" class="otp-input" maxlength="6" required="required" aria-label="6-digit code from your authenticator app" autofocus />
-                                </div>
+                            <div>
+                                <input type="submit" class="btn btn-lg btn-primary" value="Setup" />
                             </div>
-                            <input type="submit" class="btn btn-lg btn-primary" value="Setup" />
                         </div>
                     </div>
                 </form>
