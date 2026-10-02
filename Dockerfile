@@ -30,6 +30,8 @@ COPY --from=node_deps --link /app/node_modules ./node_modules
 COPY --from=node_deps --link /app/vendor ./vendor
 COPY --link package.json vite.config.js yarn.lock ./
 COPY --link assets ./assets
+# PurgeCSS keeps the selectors used in the Twig templates
+COPY --link templates ./templates
 RUN mkdir -p public && yarn build
 
 # Final
