@@ -1,9 +1,13 @@
 # .circleci/config.yml
 version: 2.1
+
+orbs:
+    docker: circleci/docker@4.0.1
+
 jobs:
     build:
         docker:
-            - image: cimg/base:2026.09
+            - image: cimg/base:2026.10
               environment:
                   IMAGE_NAME: silarhi/symfony-docker-ci
         steps:
@@ -11,22 +15,27 @@ jobs:
             - setup_remote_docker:
                   docker_layer_caching: true
 
-            - run: # Étapes 2 & 3
-                  name: 'Build and push Docker image'
-                  command: |
-                      IMAGE_TAG="1.${CIRCLE_BUILD_NUM}"
-                      APP_VERSION="${IMAGE_TAG}"
-                      GIT_COMMIT="${CIRCLE_SHA1:0:7}"
-                      docker build -t ${IMAGE_NAME}:${IMAGE_TAG} --build-arg APP_VERSION=${APP_VERSION} --build-arg GIT_COMMIT=${GIT_COMMIT} .
-
-                      if [ "${CIRCLE_BRANCH}" == "main" ]; then
-                          docker tag ${IMAGE_NAME}:${IMAGE_TAG} ${IMAGE_NAME}:latest
-                      fi
-                      echo ${DOCKER_PWD} | docker login -u ${DOCKER_LOGIN} --password-stdin
-                      docker push ${IMAGE_NAME} --all-tags
+            # Étapes 2 & 3
+            - docker/check:
+                  docker_password: DOCKER_PWD
+            - docker/build:
+                  image: $IMAGE_NAME
+                  tag: 1.$CIRCLE_BUILD_NUM,latest
+                  extra_build_args: --build-arg APP_VERSION=1.$CIRCLE_BUILD_NUM --build-arg GIT_COMMIT=${CIRCLE_SHA1:0:7}
+            - docker/push:
+                  image: $IMAGE_NAME
+                  tag: 1.$CIRCLE_BUILD_NUM
+            - when:
+                  condition:
+                      equal: [main, << pipeline.git.branch >>]
+                  steps:
+                      - docker/push:
+                            image: $IMAGE_NAME
+                            tag: latest
+                            step_name: Docker push latest
     deploy: # Étape 4
         machine:
-            image: ubuntu-2204:current
+            image: ubuntu-2404:current
         steps:
             - add_ssh_keys:
                   fingerprints:
