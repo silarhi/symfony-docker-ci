@@ -1,5 +1,5 @@
 # .circleci/config.yml
-version: 2
+version: 2.1
 jobs:
     build:
         docker:
@@ -38,7 +38,6 @@ jobs:
 
 # On éxécute ces étapes lors d'un commit sur la branche main uniquement
 workflows:
-    version: 2
     build-and-deploy:
         jobs:
             - build
