@@ -20,6 +20,8 @@ body {
     background: $lightShade;
 }
 
+// The navbar's explicit min-height would otherwise let it shrink below its content (e.g. the open mobile menu)
+.navbar,
 main {
     flex-shrink: 0;
 }

@@ -509,7 +509,7 @@
 "@symfony/ux-turbo@file:vendor/symfony/ux-turbo/assets":
   version "3.5.1"
 
-"@tabler/core@^1.4.0":
+"@tabler/core@^1.6.1":
   version "1.6.1"
   dependencies:
     "@popperjs/core" "^2.11.8"

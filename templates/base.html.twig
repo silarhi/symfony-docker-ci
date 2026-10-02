@@ -13,39 +13,44 @@
     {% block javascripts %}{% endblock %}
 </head>
 <body>
-<nav class="navbar navbar-expand" data-bs-theme="dark">
+<nav class="navbar navbar-expand-md" data-bs-theme="dark">
     <div class="container">
         <a class="navbar-brand" href="{{ path('homepage') }}">App Demo</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         {% set routeName = app.request.attributes.get('_route') %}
-        <ul class="navbar-nav flex-row">
-            <li class="nav-item">
-                <a class="nav-link {{ routeName == 'homepage' ? 'active' }}" href="{{ path('homepage') }}">CI Demo</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link {{ routeName == 'images' ? 'active' }}" href="{{ path('images') }}">Images</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link {{ routeName == 'picasso' ? 'active' }}" href="{{ path('picasso') }}">Picasso</a>
-            </li>
-            {% if is_granted(constant('\\App\\EventSubscriber\\DoubleAuthentificationSubscriber::ROLE_2FA_SUCCEED')) %}
+        <div class="collapse navbar-collapse" id="navbar-menu">
+            <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link {{ routeName == 'app_security_authentification_protected' ? 'active' }}" href="{{ path('app_security_authentification_protected') }}">
-                        Secret page!
-                    </a>
+                    <a class="nav-link {{ routeName == 'homepage' ? 'active' }}" href="{{ path('homepage') }}">CI Demo</a>
                 </li>
-            {% else %}
                 <li class="nav-item">
-                    <a class="nav-link {{ routeName == 'app_login' ? 'active' }}" href="{{ path('app_login') }}">Connection</a>
+                    <a class="nav-link {{ routeName == 'images' ? 'active' }}" href="{{ path('images') }}">Images</a>
                 </li>
-            {% endif %}
-            {% if is_granted('ROLE_USER') %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('_logout_main') }}">
-                        Logout
-                    </a>
+                    <a class="nav-link {{ routeName == 'picasso' ? 'active' }}" href="{{ path('picasso') }}">Picasso</a>
                 </li>
-            {% endif %}
-        </ul>
+                {% if is_granted(constant('\\App\\EventSubscriber\\DoubleAuthentificationSubscriber::ROLE_2FA_SUCCEED')) %}
+                    <li class="nav-item">
+                        <a class="nav-link {{ routeName == 'app_security_authentification_protected' ? 'active' }}" href="{{ path('app_security_authentification_protected') }}">
+                            Secret page!
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link {{ routeName == 'app_login' ? 'active' }}" href="{{ path('app_login') }}">Connection</a>
+                    </li>
+                {% endif %}
+                {% if is_granted('ROLE_USER') %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('_logout_main') }}">
+                            Logout
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
     </div>
 </nav>
 <main>{% block body %}{% endblock %}</main>
