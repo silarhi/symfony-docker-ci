@@ -6,8 +6,11 @@ $border-radius-lg: 0.25rem;
 $enable-shadows: true;
 $card-border-width: 0;
 $link-decoration: none;
+// Leave out the 1.x compatibility aliases loaded by tabler.scss, nothing here relies on them
+$enable-deprecated: false;
 
-@import '@tabler/core/scss/core';
+// tabler.scss rather than core: the .small and .h1-.h6 helpers are built in its _extends.scss
+@import '@tabler/core/scss/tabler';
 
 html,
 body {

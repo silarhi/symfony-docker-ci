@@ -1,4 +1,5 @@
 import { fileURLToPath } from 'node:url'
+import purgeCSSPlugin from '@fullhuman/postcss-purgecss'
 import Symfony from '@symfony/reprise/vite'
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
@@ -28,6 +29,24 @@ export default defineConfig(({ mode }) => {
                 ],
             }),
         ],
+
+        css: {
+            postcss: {
+                plugins: [
+                    // Drops the Tabler selectors no template or component uses. Runs in every mode so
+                    // `yarn watch` shows exactly what ships. Classes added only at runtime must be safelisted.
+                    purgeCSSPlugin({
+                        content: ['templates/**/*.twig', 'assets/js/**/*.{js,jsx}'],
+                        safelist: [
+                            // Toggled by Tabler's collapse plugin (mobile navbar)
+                            'show',
+                            'collapsing',
+                            'collapsed',
+                        ],
+                    }),
+                ],
+            },
+        },
 
         resolve: {
             alias: {
