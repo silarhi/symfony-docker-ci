@@ -63,6 +63,11 @@ export default defineConfig(({ mode }) => {
         },
 
         build: {
+            // Browsers with native light-dark(), which Tabler uses for its theme colors. With the default
+            // target, the minifier emulates it through variables resolved once on :root, so components
+            // with data-bs-theme="dark" (the navbar) got the light colors.
+            cssTarget: ['chrome123', 'edge123', 'firefox120', 'safari17.5'],
+
             // Encore's addEntry() equivalent. Reprise turns each key into an
             // entrypoints.json entry consumed by reprise_entry_*_tags().
             rollupOptions: {
