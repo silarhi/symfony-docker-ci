@@ -20,7 +20,9 @@
                                 <img width="300" height="300" class="qr-image" src="data:image/png;base64,{{ qrCodeImage }}" alt="{{ secretKey }}" />
                             </div>
                             <div class="mb-3">
-                                <input type="text" id="qrCode" name="qrCode" class="form-control form-control-lg" required="required" placeholder="Please enter the 6 code from your authenticator app" autofocus />
+                                <div class="otp otp-lg" data-controller="otp">
+                                    <input type="text" id="qrCode" name="qrCode" class="otp-input" maxlength="6" required="required" aria-label="6-digit code from your authenticator app" autofocus />
+                                </div>
                             </div>
                             <input type="submit" class="btn btn-lg btn-primary" value="Setup" />
                         </div>
