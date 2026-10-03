@@ -1,0 +1,21 @@
+{#
+    Each showcase example is described once, as an image file and a map of props: image() renders it
+    and snippet() prints the matching <twig:Picasso:Image> tag, so the code shown is the code rendered.
+#}
+
+{% macro image(image, props = {}) %}
+    {{- component('Picasso:Image', {src: asset('build/images/' ~ image)}|merge(props)) -}}
+{% endmacro %}
+
+{% macro snippet(image, props = {}) %}
+    {#- Split so that TwigComponent's pre-lexer does not read it as a component tag -#}
+    {%- set lines = ['<' ~ 'twig:Picasso:Image', "    src=\"{{ asset('build/images/" ~ image ~ "') }}\""] -%}
+    {%- for name, value in props -%}
+        {#- Booleans need the dynamic :prop syntax, strings and numbers are plain attributes -#}
+        {%- set line = value is same as(true) or value is same as(false)
+            ? ':' ~ name ~ '="' ~ (value ? 'true' : 'false') ~ '"'
+            : name ~ '="' ~ value ~ '"' -%}
+        {%- set lines = lines|merge(['    ' ~ line]) -%}
+    {%- endfor -%}
+    <pre class="small mt-2 mb-0"><code>{{ lines|merge(['/>'])|join('\n') }}</code></pre>
+{%- endmacro %}
