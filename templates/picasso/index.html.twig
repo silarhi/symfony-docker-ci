@@ -2,6 +2,11 @@
 
 {% block title %}PicassoBundle showcase{% endblock %}
 
+{% block meta %}
+    {# A plain transformed URL, for Open Graph: 1200x630 JPEG #}
+    <meta property="og:image" content="{{ absolute_url(picasso_image_url(asset('build/images/jacalyn-beales-669247-unsplash.jpg'), width: 1200, height: 630, format: 'jpg', fit: 'cover')) }}">
+{% endblock %}
+
 {% block body %}
     <div class="container my-4">
         <div class="mb-5">
@@ -32,6 +37,7 @@
                 <li><a href="#dimensions">Automatic dimensions</a></li>
                 <li><a href="#fixed-size">Fixed size and pixel density</a></li>
                 <li><a href="#placeholders">Placeholders</a></li>
+                <li><a href="#twig-functions">Twig functions</a></li>
                 <li><a href="#overrides">Individual overrides</a></li>
             </ol>
         </nav>
@@ -317,6 +323,52 @@ picasso:
             type: blurhash
             driver: gd
     default_placeholder: blur</code></pre>
+        </details>
+
+        <h2 id="twig-functions">Twig functions</h2>
+        <p>
+            The component is not the only way in. <code>picasso_image()</code> renders the same
+            <code>&lt;picture&gt;</code> for projects without <code>symfony/ux-twig-component</code>, and
+            <code>picasso_image_url()</code> returns a single transformed URL, for anything that is not an
+            <code>&lt;img&gt;</code>: a CSS background, an Open Graph image, an email.
+        </p>
+        <div class="row row-cols-1 row-cols-md-2">
+            <div class="col mb-3">
+                <h5><code>picasso_image()</code></h5>
+                {{ picasso_image(
+                    src: asset('build/images/elvira-visser-k89j1SUqf5U-unsplash.jpg'),
+                    width: 600,
+                    height: 400,
+                    sizes: '(max-width: 768px) 100vw, 50vw',
+                    fit: 'cover',
+                    attributes: {alt: 'Rendered by picasso_image()', class: 'img-fluid rounded shadow-sm'},
+                ) }}
+            </div>
+            <div class="col mb-3">
+                <h5><code>picasso_image_url()</code> as a CSS background</h5>
+                <div class="rounded shadow-sm d-flex align-items-end p-4" style="aspect-ratio: 3 / 2; background: linear-gradient(to top, rgb(0 0 0 / 0.65), transparent 55%), center / cover no-repeat url({{ picasso_image_url(asset('build/images/elvira-visser-k89j1SUqf5U-unsplash.jpg'), width: 1200, height: 800, format: 'webp', quality: 80, fit: 'cover')|json_encode }})">
+                    <span class="h3 mb-0 text-white">Text over a transformed background</span>
+                </div>
+            </div>
+        </div>
+        <p class="text-muted small">
+            This page's <code>og:image</code> also comes from <code>picasso_image_url()</code>: a 1200x630 JPEG,
+            the size social networks expect.
+        </p>
+        <details class="mb-5">
+            <summary class="text-secondary">Show the Twig</summary>
+            <pre class="mt-2"><code>{% apply escape %}{% verbatim %}{{ picasso_image(
+    src=asset('build/images/elvira-visser-k89j1SUqf5U-unsplash.jpg'),
+    width=600,
+    height=400,
+    sizes='(max-width: 768px) 100vw, 50vw',
+    fit='cover',
+    attributes={alt: 'Rendered by picasso_image()', class: 'img-fluid rounded'}
+) }}
+
+<div style="background-image: url('{{ picasso_image_url('photo.jpg', width: 1200, height: 800, format: 'webp', quality: 80, fit: 'cover') }}')">
+
+<meta property="og:image" content="{{ absolute_url(picasso_image_url('photo.jpg', width: 1200, height: 630, format: 'jpg', fit: 'cover')) }}">{% endverbatim %}{% endapply %}</code></pre>
         </details>
 
         <h2 id="overrides">Individual overrides</h2>

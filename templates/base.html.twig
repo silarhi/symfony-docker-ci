@@ -6,6 +6,7 @@
     <meta name="turbo-prefetch" content="false">
     <meta name="x-app-version" content="{{ app_version }}" data-turbo-track="reload">
     <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block meta %}{% endblock %}
     <link rel="icon" href="{{ asset('favicon.ico') }}">
     <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}">
 
