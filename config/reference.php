@@ -1350,6 +1350,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *             enabled?: bool|Param, // Default: false
  *             factory?: scalar|Param|null, // Symfony LockFactory service ID. "lock.factory" is the one framework.lock configures; use a store shared by every server (e.g. Redis) when several serve images. // Default: "lock.factory"
  *             ttl?: float|Param, // Seconds a render lock outlives a renderer that crashed. Must exceed the slowest render, plus the upload with defer_cache_write. // Default: 30.0
+ *             wait?: float|Param, // Seconds a request waits for the render in progress of the same variant, after which it renders the variant itself. Keep it well under max_execution_time: running out of it is a fatal error. // Default: 10.0
  *         },
  *         public_cache?: bool|array{
  *             enabled?: bool|Param, // Default: false
