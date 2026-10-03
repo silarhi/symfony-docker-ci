@@ -10,9 +10,11 @@
 
 namespace App\Controller;
 
+use Silarhi\PicassoBundle\Dto\ImageRenderData;
 use Silarhi\PicassoBundle\Service\ImageHelperInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Asset\Packages;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
@@ -20,6 +22,9 @@ class PicassoController extends AbstractController
 {
     /** A literal data URI, e.g. a dominant color stored next to the image: a light grey 3:2 SVG */
     private const string SOLID_COLOR_PLACEHOLDER = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 2'%3E%3Crect width='3' height='2' fill='%23d6d1cc'/%3E%3C/svg%3E";
+
+    /** The image the JSON API example renders */
+    private const string API_EXAMPLE_IMAGE = 'build/images/elvira-visser-k89j1SUqf5U-unsplash.jpg';
 
     #[Route(path: '/picasso', name: 'picasso')]
     public function index(ImageHelperInterface $imageHelper, Packages $packages): Response
@@ -40,9 +45,28 @@ class PicassoController extends AbstractController
         }
 
         return $this->render('picasso/index.html.twig', [
-            'photo' => $photo,
             'placeholders' => $placeholders,
-            'solidColorPlaceholder' => self::SOLID_COLOR_PLACEHOLDER,
+            'apiExample' => $this->apiExample($imageHelper, $packages),
         ]);
+    }
+
+    /**
+     * What a headless frontend (React, Vue, a mobile app…) gets to render the responsive image itself.
+     */
+    #[Route(path: '/picasso/api/image.json', name: 'picasso_api_image')]
+    public function apiImage(ImageHelperInterface $imageHelper, Packages $packages): JsonResponse
+    {
+        return new JsonResponse($this->apiExample($imageHelper, $packages));
+    }
+
+    private function apiExample(ImageHelperInterface $imageHelper, Packages $packages): ImageRenderData
+    {
+        return $imageHelper->imageData(
+            src: $packages->getUrl(self::API_EXAMPLE_IMAGE),
+            width: 1200,
+            height: 800,
+            sizes: '100vw',
+            fit: 'cover',
+        );
     }
 }

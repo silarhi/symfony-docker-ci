@@ -38,6 +38,7 @@
                 <li><a href="#fixed-size">Fixed size and pixel density</a></li>
                 <li><a href="#placeholders">Placeholders</a></li>
                 <li><a href="#twig-functions">Twig functions</a></li>
+                <li><a href="#json-api">JSON API for headless frontends</a></li>
                 <li><a href="#overrides">Individual overrides</a></li>
             </ol>
         </nav>
@@ -369,6 +370,29 @@ picasso:
 <div style="background-image: url('{{ picasso_image_url('photo.jpg', width: 1200, height: 800, format: 'webp', quality: 80, fit: 'cover') }}')">
 
 <meta property="og:image" content="{{ absolute_url(picasso_image_url('photo.jpg', width: 1200, height: 630, format: 'jpg', fit: 'cover')) }}">{% endverbatim %}{% endapply %}</code></pre>
+        </details>
+
+        <h2 id="json-api">JSON API for headless frontends</h2>
+        <p>
+            When a React, Vue or mobile app renders the image itself, <code>ImageHelperInterface::imageData()</code>
+            returns everything the component would: format sources, srcsets, placeholder and dimensions.
+            The object is <code>JsonSerializable</code>, so a controller returns it as is:
+            <a href="{{ path('picasso_api_image') }}"><code>{{ path('picasso_api_image') }}</code></a>.
+        </p>
+        <pre class="mb-3" style="max-height: 24rem"><code>{{ apiExample|json_encode(constant('JSON_PRETTY_PRINT') b-or constant('JSON_UNESCAPED_SLASHES')) }}</code></pre>
+        <details class="mb-5">
+            <summary class="text-secondary">Show the controller</summary>
+            <pre class="mt-2"><code>{% apply escape %}{% verbatim %}#[Route(path: '/picasso/api/image.json', name: 'picasso_api_image')]
+public function apiImage(ImageHelperInterface $imageHelper, Packages $packages): JsonResponse
+{
+    return new JsonResponse($imageHelper->imageData(
+        src: $packages->getUrl('build/images/elvira-visser-k89j1SUqf5U-unsplash.jpg'),
+        width: 1200,
+        height: 800,
+        sizes: '100vw',
+        fit: 'cover',
+    ));
+}{% endverbatim %}{% endapply %}</code></pre>
         </details>
 
         <h2 id="overrides">Individual overrides</h2>
