@@ -14,22 +14,32 @@
                 Every image below is rendered through the same Twig component: <code>&lt;twig:Picasso:Image&gt;</code>.
                 The bundle takes care of generating a full <code>&lt;picture&gt;</code> element with AVIF and WebP sources,
                 a JPEG fallback, responsive <code>srcset</code>, auto-detected dimensions and a blur placeholder inlined
-                as a CSS <code>background-image</code>.
+                as a CSS <code>background-image</code>. Unfold <em>Show the Twig</em> under an example to see the code behind it.
             </p>
             <p class="mb-0">
                 The transformer used in this project is <strong>Glide</strong> running locally with the GD driver,
                 and signed URLs to prevent abuse. Transformed image variants are cached under
-                <code>var/picasso-cache/</code>.
+                <code>var/storage/picasso-cache/</code>.
             </p>
         </div>
 
-        <h2>Responsive grid with <code>sizes</code></h2>
+        <nav class="mb-5" aria-label="Examples">
+            <h2 class="h4">Examples</h2>
+            <ol class="mb-0">
+                <li><a href="#responsive-grid">Responsive grid with <code>sizes</code></a></li>
+                <li><a href="#fit-modes">Different <code>fit</code> modes</a></li>
+                <li><a href="#priority">Priority image (LCP)</a></li>
+                <li><a href="#overrides">Individual overrides</a></li>
+            </ol>
+        </nav>
+
+        <h2 id="responsive-grid">Responsive grid with <code>sizes</code></h2>
         <p>
             Three images laid out in a Bootstrap grid. The <code>sizes</code> attribute is forwarded to the component,
             and the <code>srcset</code> is generated automatically from the breakpoints configured in
             <code>picasso.yaml</code>.
         </p>
-        <div class="row row-cols-1 row-cols-md-3 mb-5">
+        <div class="row row-cols-1 row-cols-md-3">
             {% for image in [asset('build/images/destiny-wiens-1332880-unsplash.jpg'), asset('build/images/diana-parkhouse-1166627-unsplash.jpg'), asset('build/images/elvira-visser-k89j1SUqf5U-unsplash.jpg')] %}
                 <div class="col">
                     <div class="card mb-3 shadow-sm">
@@ -53,78 +63,86 @@
                 </div>
             {% endfor %}
         </div>
+        <details class="mb-5">
+            <summary class="text-secondary">Show the Twig</summary>
+            <pre class="mt-2"><code>{% apply escape %}{% verbatim %}<twig:Picasso:Image
+    src="{{ asset('build/images/destiny-wiens-1332880-unsplash.jpg') }}"
+    width="600"
+    height="400"
+    sizes="(max-width: 768px) 100vw, 33vw"
+    fit="cover"
+    alt="A beautiful kitten"
+    class="card-img-top"
+/>{% endverbatim %}{% endapply %}</code></pre>
+        </details>
 
-        <h2>Different <code>fit</code> modes</h2>
+        <h2 id="fit-modes">Different <code>fit</code> modes</h2>
         <p>
             The same source file rendered with three different cropping strategies.
         </p>
-        <div class="row row-cols-1 row-cols-md-3 mb-5">
-            <div class="col mb-3 text-center">
-                <div class="bg-light p-3">
-                    <twig:Picasso:Image
-                        src="{{ asset('build/images/edgar-edgar-712801-unsplash.jpg') }}"
-                        width="300"
-                        height="300"
-                        fit="contain"
-                        alt="300x300px, contain"
-                        class="img-fluid d-block mx-auto shadow-sm"
-                    />
+        <div class="row row-cols-1 row-cols-md-3">
+            {% for fit in ['contain', 'cover', 'crop'] %}
+                <div class="col mb-3 text-center">
+                    <div class="bg-light p-3">
+                        <twig:Picasso:Image
+                            src="{{ asset('build/images/edgar-edgar-712801-unsplash.jpg') }}"
+                            width="300"
+                            height="300"
+                            fit="{{ fit }}"
+                            alt="300x300px, {{ fit }}"
+                            class="img-fluid d-block mx-auto shadow-sm"
+                        />
+                    </div>
+                    <span class="text-muted small">300x300px, <code>fit="{{ fit }}"</code></span>
                 </div>
-                <span class="text-muted small">300x300px, <code>fit="contain"</code></span>
-            </div>
-            <div class="col mb-3 text-center">
-                <div class="bg-light p-3">
-                    <twig:Picasso:Image
-                        src="{{ asset('build/images/edgar-edgar-712801-unsplash.jpg') }}"
-                        width="300"
-                        height="300"
-                        fit="cover"
-                        alt="300x300px, cover"
-                        class="img-fluid d-block mx-auto shadow-sm"
-                    />
-                </div>
-                <span class="text-muted small">300x300px, <code>fit="cover"</code></span>
-            </div>
-            <div class="col mb-3 text-center">
-                <div class="bg-light p-3">
-                    <twig:Picasso:Image
-                        src="{{ asset('build/images/edgar-edgar-712801-unsplash.jpg') }}"
-                        width="300"
-                        height="300"
-                        fit="crop"
-                        alt="300x300px, crop"
-                        class="img-fluid d-block mx-auto shadow-sm"
-                    />
-                </div>
-                <span class="text-muted small">300x300px, <code>fit="crop"</code></span>
-            </div>
+            {% endfor %}
         </div>
+        <details class="mb-5">
+            <summary class="text-secondary">Show the Twig</summary>
+            <pre class="mt-2"><code>{% apply escape %}{% verbatim %}<twig:Picasso:Image
+    src="{{ asset('build/images/edgar-edgar-712801-unsplash.jpg') }}"
+    width="300"
+    height="300"
+    fit="contain" {# or "cover", "crop", "fill" #}
+    alt="300x300px, contain"
+/>{% endverbatim %}{% endapply %}</code></pre>
+        </details>
 
-        <h2>Priority image (LCP)</h2>
+        <h2 id="priority">Priority image (LCP)</h2>
         <p>
             With <code>:priority="true"</code>, the image is loaded with <code>loading="eager"</code> and
             <code>fetchpriority="high"</code>. The blur placeholder is automatically disabled since it would
             only slow down the first paint. This is the mode you want for a hero banner.
         </p>
-        <div class="mb-5">
-            <twig:Picasso:Image
-                src="{{ asset('build/images/jacalyn-beales-669247-unsplash.jpg') }}"
-                width="1200"
-                height="500"
-                sizes="100vw"
-                fit="cover"
-                :priority="true"
-                alt="Hero banner"
-                class="img-fluid w-100 rounded shadow"
-            />
-        </div>
+        <twig:Picasso:Image
+            src="{{ asset('build/images/jacalyn-beales-669247-unsplash.jpg') }}"
+            width="1200"
+            height="500"
+            sizes="100vw"
+            fit="cover"
+            :priority="true"
+            alt="Hero banner"
+            class="img-fluid w-100 rounded shadow"
+        />
+        <details class="mt-3 mb-5">
+            <summary class="text-secondary">Show the Twig</summary>
+            <pre class="mt-2"><code>{% apply escape %}{% verbatim %}<twig:Picasso:Image
+    src="{{ asset('build/images/jacalyn-beales-669247-unsplash.jpg') }}"
+    width="1200"
+    height="500"
+    sizes="100vw"
+    fit="cover"
+    :priority="true"
+    alt="Hero banner"
+/>{% endverbatim %}{% endapply %}</code></pre>
+        </details>
 
-        <h2>Individual overrides</h2>
+        <h2 id="overrides">Individual overrides</h2>
         <p>
             Two examples showing per-image overrides: a custom quality setting on the left, and an image
             with its blur placeholder explicitly disabled on the right.
         </p>
-        <div class="row row-cols-1 row-cols-md-2 mb-5">
+        <div class="row row-cols-1 row-cols-md-2">
             <div class="col mb-3">
                 <h5>Quality set to 40% (<code>:quality="40"</code>)</h5>
                 <twig:Picasso:Image
@@ -150,6 +168,12 @@
                 />
             </div>
         </div>
+        <details class="mb-5">
+            <summary class="text-secondary">Show the Twig</summary>
+            <pre class="mt-2"><code>{% apply escape %}{% verbatim %}<twig:Picasso:Image src="..." width="600" height="400" fit="cover" :quality="40" alt="Low quality" />
+
+<twig:Picasso:Image src="..." width="600" height="400" fit="cover" :placeholder="false" alt="No placeholder" />{% endverbatim %}{% endapply %}</code></pre>
+        </details>
 
         <div class="alert alert-info">
             <strong>See also:</strong> the legacy version of this page, which uses Glide directly
