@@ -8,6 +8,8 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "bacon/bacon-qr-code": "^3.1.1",
+        "imagine/imagine": "^1.5.4",
+        "kornrunner/blurhash": "^1.2.2",
         "league/commonmark": "^2.10.3",
         "league/glide-symfony": "^2.1.0",
         "pragmarx/google2fa": "^9.1.0",
