@@ -31,6 +31,7 @@
                 <li><a href="#priority">Priority image (LCP)</a></li>
                 <li><a href="#dimensions">Automatic dimensions</a></li>
                 <li><a href="#fixed-size">Fixed size and pixel density</a></li>
+                <li><a href="#placeholders">Placeholders</a></li>
                 <li><a href="#overrides">Individual overrides</a></li>
             </ol>
         </nav>
@@ -240,6 +241,82 @@
     alt="Avatar"
     class="rounded-circle"
 />{% endverbatim %}{% endapply %}</code></pre>
+        </details>
+
+        <h2 id="placeholders">Placeholders</h2>
+        <p>
+            While the photo loads, a placeholder fills its box: it is inlined as a CSS <code>background-image</code>
+            on the <code>&lt;img&gt;</code> and removed once the photo is there. Below is what each strategy shows,
+            for the same 600x400 photo (throttle your network in the dev tools to see them live).
+        </p>
+        {% set placeholderStrategies = [
+            {
+                key: 'blur',
+                title: 'Blurred thumbnail (LQIP)',
+                twig: 'placeholder="blur"',
+                caption: 'A 10x7 JPEG blurred by the transformer. The default here, no extra dependency.',
+            },
+            {
+                key: 'blurhash',
+                title: 'BlurHash',
+                twig: 'placeholder="blurhash"',
+                caption: 'A smooth gradient decoded from a BlurHash, inlined as a PNG data URI.',
+            },
+            {
+                key: 'placeholderData',
+                title: 'Your own data URI',
+                twig: 'placeholderData="data:image/svg+xml,…"',
+                caption: 'Any data URI you already have, e.g. a dominant color stored with the image.',
+            },
+            {
+                key: 'none',
+                title: 'No placeholder',
+                twig: ':placeholder="false"',
+                caption: 'Nothing until the photo loads: the box only reserves its space.',
+            },
+        ] %}
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4">
+            {% for strategy in placeholderStrategies %}
+                {% set uri = placeholders[strategy.key] ?? null %}
+                <div class="col mb-3">
+                    <div class="card h-100 shadow-sm">
+                        {% if uri %}
+                            <div class="card-img-top" style="aspect-ratio: 3 / 2; background: center / cover no-repeat url({{ uri|json_encode }})"></div>
+                        {% else %}
+                            <div class="card-img-top bg-light" style="aspect-ratio: 3 / 2"></div>
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ strategy.title }}</h5>
+                            <p class="card-text small mb-2"><code>{{ strategy.twig }}</code></p>
+                            <p class="card-text small text-muted mb-0">
+                                {{ strategy.caption }}
+                                {% if uri starts with 'data:' %}
+                                    {{ uri|length|number_format(0, '.', ' ') }} bytes inline.
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <details class="mb-5">
+            <summary class="text-secondary">Show the Twig and the configuration</summary>
+            <pre class="mt-2"><code>{% apply escape %}{% verbatim %}<twig:Picasso:Image src="..." width="600" height="400" fit="cover" alt="..." /> {# default_placeholder: blur #}
+<twig:Picasso:Image src="..." width="600" height="400" fit="cover" placeholder="blurhash" alt="..." />
+<twig:Picasso:Image src="..." width="600" height="400" fit="cover" placeholderData="data:image/svg+xml,..." alt="..." />
+<twig:Picasso:Image src="..." width="600" height="400" fit="cover" :placeholder="false" alt="..." />{% endverbatim %}{% endapply %}</code></pre>
+            <pre><code># config/packages/picasso.yaml
+picasso:
+    placeholders:
+        blur:
+            type: transformer
+            size: 10
+            blur: 5
+            quality: 30
+        blurhash:
+            type: blurhash
+            driver: gd
+    default_placeholder: blur</code></pre>
         </details>
 
         <h2 id="overrides">Individual overrides</h2>
