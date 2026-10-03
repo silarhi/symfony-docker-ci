@@ -29,6 +29,7 @@
                 <li><a href="#responsive-grid">Responsive grid with <code>sizes</code></a></li>
                 <li><a href="#fit-modes">Different <code>fit</code> modes</a></li>
                 <li><a href="#priority">Priority image (LCP)</a></li>
+                <li><a href="#dimensions">Automatic dimensions</a></li>
                 <li><a href="#overrides">Individual overrides</a></li>
             </ol>
         </nav>
@@ -135,6 +136,70 @@
     :priority="true"
     alt="Hero banner"
 />{% endverbatim %}{% endapply %}</code></pre>
+        </details>
+
+        <h2 id="dimensions">Automatic dimensions</h2>
+        <p>
+            The <code>width</code> and <code>height</code> attributes tell the browser the shape of the image before
+            it loads, so the layout does not jump (<abbr title="Cumulative Layout Shift">CLS</abbr>). The filesystem
+            loader reads them from the source file (<code>resolve_metadata</code>, cached), so you only pass what
+            you know. The values below are read from the rendered HTML.
+        </p>
+        {% set dimensionExamples = [
+            {title: 'No dimension at all', caption: 'the source dimensions are used'},
+            {title: 'Width only', caption: 'the height follows the source aspect ratio'},
+            {title: 'Known source dimensions', caption: 'given explicitly, the file is not read'},
+        ] %}
+        <div class="row row-cols-1 row-cols-md-3">
+            {% for example in dimensionExamples %}
+                {% set markup %}
+                    {% if loop.index == 1 %}
+                        <twig:Picasso:Image
+                            src="{{ asset('build/images/destiny-wiens-1332880-unsplash.jpg') }}"
+                            sizes="(max-width: 768px) 100vw, 33vw"
+                            alt="Dimensions detected from the source"
+                            class="img-fluid shadow-sm"
+                        />
+                    {% elseif loop.index == 2 %}
+                        <twig:Picasso:Image
+                            src="{{ asset('build/images/destiny-wiens-1332880-unsplash.jpg') }}"
+                            width="400"
+                            sizes="(max-width: 768px) 100vw, 33vw"
+                            alt="Height computed from the width"
+                            class="img-fluid shadow-sm"
+                        />
+                    {% else %}
+                        <twig:Picasso:Image
+                            src="{{ asset('build/images/destiny-wiens-1332880-unsplash.jpg') }}"
+                            :sourceWidth="1800"
+                            :sourceHeight="1198"
+                            width="400"
+                            sizes="(max-width: 768px) 100vw, 33vw"
+                            alt="Explicit source dimensions"
+                            class="img-fluid shadow-sm"
+                        />
+                    {% endif %}
+                {% endset %}
+                <div class="col mb-3">
+                    <h5>{{ example.title }}</h5>
+                    {{ markup }}
+                    <p class="text-muted small mt-2 mb-0">
+                        Rendered <code>width="{{ markup|split('<img')|last|split(' width="')[1]|split('"')|first }}" height="{{ markup|split('<img')|last|split(' height="')[1]|split('"')|first }}"</code>:
+                        {{ example.caption }}.
+                    </p>
+                </div>
+            {% endfor %}
+        </div>
+        <details class="mb-5">
+            <summary class="text-secondary">Show the Twig</summary>
+            <pre class="mt-2"><code>{% apply escape %}{% verbatim %}{# No dimension at all: the source dimensions are used #}
+<twig:Picasso:Image src="..." sizes="(max-width: 768px) 100vw, 33vw" alt="..." />
+
+{# Width only: the height follows the source aspect ratio #}
+<twig:Picasso:Image src="..." width="400" sizes="(max-width: 768px) 100vw, 33vw" alt="..." />
+
+{# Known source dimensions: the file is not read #}
+<twig:Picasso:Image src="..." :sourceWidth="1800" :sourceHeight="1198" width="400" sizes="(max-width: 768px) 100vw, 33vw" alt="..." />{% endverbatim %}{% endapply %}</code></pre>
         </details>
 
         <h2 id="overrides">Individual overrides</h2>
