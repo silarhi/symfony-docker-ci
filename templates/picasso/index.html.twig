@@ -40,6 +40,7 @@
                 <li><a href="#twig-functions">Twig functions</a></li>
                 <li><a href="#json-api">JSON API for headless frontends</a></li>
                 <li><a href="#overrides">Individual overrides</a></li>
+                <li><a href="#generated-html">What the component generates</a></li>
             </ol>
         </nav>
 
@@ -432,6 +433,31 @@ public function apiImage(ImageHelperInterface $imageHelper, Packages $packages):
 
 <twig:Picasso:Image src="..." width="600" height="400" fit="cover" :placeholder="false" alt="No placeholder" />{% endverbatim %}{% endapply %}</code></pre>
         </details>
+
+        <h2 id="generated-html">What the component generates</h2>
+        <p>
+            The single Twig line below, and the HTML it renders: one <code>&lt;source&gt;</code> per modern format,
+            a JPEG fallback, a <code>srcset</code> capped to the source size (no upscaling), the placeholder,
+            lazy loading and the dimensions that prevent layout shifts. All signed, all cached.
+        </p>
+        {% set generated %}
+            <twig:Picasso:Image
+                src="{{ asset('build/images/diana-parkhouse-1166627-unsplash.jpg') }}"
+                width="600"
+                height="400"
+                sizes="(max-width: 768px) 100vw, 50vw"
+                fit="cover"
+                alt="A kitten"
+                class="img-fluid rounded shadow-sm"
+            />
+        {% endset %}
+        <div class="row">
+            <div class="col-md-4 mb-3">{{ generated }}</div>
+            <div class="col-md-8 mb-3">
+                <pre class="mb-2"><code>{% apply escape %}{% verbatim %}<twig:Picasso:Image src="..." width="600" height="400" sizes="(max-width: 768px) 100vw, 50vw" fit="cover" alt="A kitten" />{% endverbatim %}{% endapply %}</code></pre>
+                <pre class="mb-0" style="max-height: 24rem"><code>{{ generated|split('\n')|map(line => line|split(' ')|filter(part => part is not empty)|join(' '))|filter(line => line is not empty)|map(line => line starts with '<' ? line : '    ' ~ line)|join('\n') }}</code></pre>
+            </div>
+        </div>
 
         <div class="alert alert-info">
             <strong>See also:</strong> the legacy version of this page, which uses Glide directly
