@@ -17,5 +17,9 @@ picasso:
             size: 10
             blur: 5
             quality: 30
+        # Smooth gradient preview, inlined as a tiny PNG data URI (kornrunner/blurhash + imagine/imagine)
+        blurhash:
+            type: blurhash
+            driver: gd
 
     default_placeholder: blur
