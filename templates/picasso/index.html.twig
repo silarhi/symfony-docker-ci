@@ -398,10 +398,10 @@ public function apiImage(ImageHelperInterface $imageHelper, Packages $packages):
 
         <h2 id="overrides">Individual overrides</h2>
         <p>
-            Two examples showing per-image overrides: a custom quality setting on the left, and an image
-            with its blur placeholder explicitly disabled on the right.
+            Per-image overrides: a custom quality, no placeholder, and the original file served as is with
+            <code>unoptimized</code>, for what must not be transformed (an SVG logo, an animated GIF).
         </p>
-        <div class="row row-cols-1 row-cols-md-2">
+        <div class="row row-cols-1 row-cols-md-3">
             <div class="col mb-3">
                 <h5>Quality set to 40% (<code>:quality="40"</code>)</h5>
                 <twig:Picasso:Image
@@ -426,12 +426,25 @@ public function apiImage(ImageHelperInterface $imageHelper, Packages $packages):
                     class="img-fluid shadow-sm"
                 />
             </div>
+            <div class="col mb-3">
+                <h5>Original file (<code>:unoptimized="true"</code>)</h5>
+                <twig:Picasso:Image
+                    src="{{ asset('build/images/diana-parkhouse-1166627-unsplash.jpg') }}"
+                    width="600"
+                    height="400"
+                    :unoptimized="true"
+                    alt="Unoptimized"
+                    class="img-fluid shadow-sm"
+                />
+            </div>
         </div>
         <details class="mb-5">
             <summary class="text-secondary">Show the Twig</summary>
             <pre class="mt-2"><code>{% apply escape %}{% verbatim %}<twig:Picasso:Image src="..." width="600" height="400" fit="cover" :quality="40" alt="Low quality" />
 
-<twig:Picasso:Image src="..." width="600" height="400" fit="cover" :placeholder="false" alt="No placeholder" />{% endverbatim %}{% endapply %}</code></pre>
+<twig:Picasso:Image src="..." width="600" height="400" fit="cover" :placeholder="false" alt="No placeholder" />
+
+<twig:Picasso:Image src="..." width="600" height="400" :unoptimized="true" alt="Unoptimized" />{% endverbatim %}{% endapply %}</code></pre>
         </details>
 
         <h2 id="generated-html">What the component generates</h2>
