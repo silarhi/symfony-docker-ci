@@ -30,6 +30,7 @@
                 <li><a href="#fit-modes">Different <code>fit</code> modes</a></li>
                 <li><a href="#priority">Priority image (LCP)</a></li>
                 <li><a href="#dimensions">Automatic dimensions</a></li>
+                <li><a href="#fixed-size">Fixed size and pixel density</a></li>
                 <li><a href="#overrides">Individual overrides</a></li>
             </ol>
         </nav>
@@ -200,6 +201,45 @@
 
 {# Known source dimensions: the file is not read #}
 <twig:Picasso:Image src="..." :sourceWidth="1800" :sourceHeight="1198" width="400" sizes="(max-width: 768px) 100vw, 33vw" alt="..." />{% endverbatim %}{% endapply %}</code></pre>
+        </details>
+
+        <h2 id="fixed-size">Fixed size and pixel density</h2>
+        <p>
+            Without <code>sizes</code>, the image is meant to be shown at a fixed size: the <code>srcset</code> uses
+            pixel density descriptors instead of widths, so a retina screen gets the 2x variant. Ideal for avatars,
+            logos and thumbnails.
+        </p>
+        {% set avatars %}
+            {% for image in ['destiny-wiens-1332880-unsplash.jpg', 'diana-parkhouse-1166627-unsplash.jpg', 'elvira-visser-k89j1SUqf5U-unsplash.jpg'] %}
+                <twig:Picasso:Image
+                    src="{{ asset('build/images/' ~ image) }}"
+                    width="96"
+                    height="96"
+                    fit="cover"
+                    alt="Avatar {{ loop.index }}"
+                    class="rounded-circle shadow-sm me-2"
+                />
+            {% endfor %}
+        {% endset %}
+        <div class="d-flex align-items-center flex-wrap">
+            {{ avatars }}
+            <span class="text-muted small">
+                <code>srcset</code> descriptors:
+                {% for candidate in avatars|split('<img')|last|split(' srcset="')[1]|split('"')|first|split(', ') %}
+                    <code>{{ candidate|split(' ')|last }}</code>{{ not loop.last ? ',' }}
+                {% endfor %}
+            </span>
+        </div>
+        <details class="mt-3 mb-5">
+            <summary class="text-secondary">Show the Twig</summary>
+            <pre class="mt-2"><code>{% apply escape %}{% verbatim %}<twig:Picasso:Image
+    src="{{ asset('build/images/destiny-wiens-1332880-unsplash.jpg') }}"
+    width="96"
+    height="96"
+    fit="cover"
+    alt="Avatar"
+    class="rounded-circle"
+/>{% endverbatim %}{% endapply %}</code></pre>
         </details>
 
         <h2 id="overrides">Individual overrides</h2>
