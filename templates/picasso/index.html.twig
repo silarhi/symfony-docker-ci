@@ -312,14 +312,8 @@ picasso:
         <div class="row mb-4">
             <div class="col-lg-6 mb-3 d-flex flex-column">
                 <div class="card shadow-sm flex-grow-1">
-                    <div class="card-header">Response</div>
-                    <pre class="card-body small mb-0" style="max-height: 24rem"><code>{{ apiExample|json_encode(constant('JSON_PRETTY_PRINT') b-or constant('JSON_UNESCAPED_SLASHES')) }}</code></pre>
-                </div>
-            </div>
-            <div class="col-lg-6 mb-3 d-flex flex-column">
-                <div class="card shadow-sm flex-grow-1">
                     <div class="card-header">Controller</div>
-                    <pre class="card-body small mb-0"><code>{% apply escape %}{% verbatim %}#[Route(path: '/picasso/api/image.json', name: 'picasso_api_image')]
+                    <pre class="small flex-grow-1 rounded-top-0 mb-0"><code>{% apply escape %}{% verbatim %}#[Route(path: '/picasso/api/image.json', name: 'picasso_api_image')]
 public function apiImage(ImageHelperInterface $imageHelper, Packages $packages): JsonResponse
 {
     return new JsonResponse($imageHelper->imageData(
@@ -330,6 +324,12 @@ public function apiImage(ImageHelperInterface $imageHelper, Packages $packages):
         fit: 'cover',
     ));
 }{% endverbatim %}{% endapply %}</code></pre>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-3 d-flex flex-column">
+                <div class="card shadow-sm flex-grow-1">
+                    <div class="card-header">Response</div>
+                    <pre class="small flex-grow-1 rounded-top-0 mb-0" style="max-height: 24rem"><code>{{ apiExample|json_encode(constant('JSON_PRETTY_PRINT') b-or constant('JSON_UNESCAPED_SLASHES')) }}</code></pre>
                 </div>
             </div>
         </div>
@@ -376,7 +376,7 @@ public function apiImage(ImageHelperInterface $imageHelper, Packages $packages):
             <div class="col-md-8 mb-3 d-flex flex-column">
                 <div class="card shadow-sm flex-grow-1">
                     <div class="card-header">Generated HTML</div>
-                    <pre class="card-body small mb-0" style="max-height: 24rem"><code>{{ generated|split('\n')|map(line => line|split(' ')|filter(part => part is not empty)|join(' '))|filter(line => line is not empty)|map(line => line starts with '<' ? line : '    ' ~ line)|join('\n') }}</code></pre>
+                    <pre class="small flex-grow-1 rounded-top-0 mb-0" style="max-height: 24rem"><code>{{ generated|split('\n')|map(line => line|split(' ')|filter(part => part is not empty)|join(' '))|filter(line => line is not empty)|map(line => line starts with '<' ? line : '    ' ~ line)|join('\n') }}</code></pre>
                 </div>
             </div>
         </div>
