@@ -52,3 +52,9 @@ footer {
     border-radius: $card-border-radius;
     border: 1px solid $card-border-color;
 }
+
+// Showcase component: the open tab lays out like the card itself, so a card-body fills the remaining height
+.showcase > .tab-content > .active {
+    display: flex;
+    flex-direction: column;
+}

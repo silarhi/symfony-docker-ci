@@ -21,7 +21,7 @@
                 Every image below is rendered through the same Twig component: <code>&lt;twig:Picasso:Image&gt;</code>.
                 The bundle takes care of generating a full <code>&lt;picture&gt;</code> element with AVIF and WebP sources,
                 a JPEG fallback, responsive <code>srcset</code>, auto-detected dimensions and a blur placeholder inlined
-                as a CSS <code>background-image</code>. The Twig behind each example is shown right under it.
+                as a CSS <code>background-image</code>. Switch any example to <em>Code</em> to see the Twig behind it.
             </p>
             <p class="mb-0">
                 The transformer used in this project is <strong>Glide</strong> running locally with the GD driver,
@@ -54,10 +54,12 @@
         </p>
         <div class="row row-cols-1 row-cols-md-3 mb-4">
             {% for image in ['destiny-wiens-1332880-unsplash.jpg', 'diana-parkhouse-1166627-unsplash.jpg', 'elvira-visser-k89j1SUqf5U-unsplash.jpg'] %}
-                {% set props = {width: 600, height: 400, sizes: '(max-width: 768px) 100vw, 33vw', fit: 'cover', alt: 'A beautiful kitten', class: 'card-img-top'} %}
+                {% set props = {width: 600, height: 400, sizes: '(max-width: 768px) 100vw, 33vw', fit: 'cover', alt: 'A beautiful kitten', class: 'd-block w-100'} %}
                 <div class="col mb-3 d-flex flex-column">
-                    <div class="card shadow-sm flex-grow-1">
-                        {{ picasso.image(image, props) }}
+                    {% set markup = picasso.image(image, props) %}
+                    {% set code = picasso.snippet(image, props) %}
+                    <twig:Showcase class="flex-grow-1">
+                        {{ markup }}
                         <div class="card-body">
                             <h5 class="card-title">Responsive grid</h5>
                             <p class="card-text">
@@ -65,8 +67,8 @@
                                 with every format and every size variant.
                             </p>
                         </div>
-                    </div>
-                    {{ picasso.snippet(image, props) }}
+                        <twig:block name="code">{{ code }}</twig:block>
+                    </twig:Showcase>
                 </div>
             {% endfor %}
         </div>
@@ -79,13 +81,15 @@
             {% for fit in ['contain', 'cover', 'crop'] %}
                 {% set props = {width: 300, height: 300, fit: fit, alt: '300x300px, ' ~ fit, class: 'img-fluid d-block mx-auto shadow-sm'} %}
                 <div class="col mb-3 d-flex flex-column">
-                    <div class="card shadow-sm flex-grow-1">
+                    {% set markup = picasso.image('edgar-edgar-712801-unsplash.jpg', props) %}
+                    {% set code = picasso.snippet('edgar-edgar-712801-unsplash.jpg', props) %}
+                    <twig:Showcase class="flex-grow-1">
                         <div class="card-body bg-light text-center">
-                            {{ picasso.image('edgar-edgar-712801-unsplash.jpg', props) }}
+                            {{ markup }}
                         </div>
                         <div class="card-footer text-center text-muted small">300x300px, <code>fit="{{ fit }}"</code></div>
-                    </div>
-                    {{ picasso.snippet('edgar-edgar-712801-unsplash.jpg', props) }}
+                        <twig:block name="code">{{ code }}</twig:block>
+                    </twig:Showcase>
                 </div>
             {% endfor %}
         </div>
@@ -96,11 +100,13 @@
             <code>fetchpriority="high"</code>. The blur placeholder is automatically disabled since it would
             only slow down the first paint. This is the mode you want for a hero banner.
         </p>
-        {% set props = {width: 1200, height: 500, sizes: '100vw', fit: 'cover', priority: true, alt: 'Hero banner', class: 'img-fluid w-100 rounded shadow'} %}
-        <div class="mb-5">
-            {{ picasso.image('jacalyn-beales-669247-unsplash.jpg', props) }}
-            {{ picasso.snippet('jacalyn-beales-669247-unsplash.jpg', props) }}
-        </div>
+        {% set props = {width: 1200, height: 500, sizes: '100vw', fit: 'cover', priority: true, alt: 'Hero banner', class: 'd-block w-100'} %}
+        {% set markup = picasso.image('jacalyn-beales-669247-unsplash.jpg', props) %}
+        {% set code = picasso.snippet('jacalyn-beales-669247-unsplash.jpg', props) %}
+        <twig:Showcase class="mb-5">
+            {{ markup }}
+            <twig:block name="code">{{ code }}</twig:block>
+        </twig:Showcase>
 
         <h2 id="dimensions">Automatic dimensions</h2>
         <p>
@@ -131,7 +137,8 @@
                 {% set markup = picasso.image('destiny-wiens-1332880-unsplash.jpg', example.props) %}
                 {% set renderedImg = markup|split('<img')|last %}
                 <div class="col mb-3 d-flex flex-column">
-                    <div class="card shadow-sm flex-grow-1">
+                    {% set code = picasso.snippet('destiny-wiens-1332880-unsplash.jpg', example.props) %}
+                    <twig:Showcase class="flex-grow-1">
                         {{ markup }}
                         <div class="card-body">
                             <h5 class="card-title">{{ example.title }}</h5>
@@ -140,8 +147,8 @@
                                 {{ example.caption }}.
                             </p>
                         </div>
-                    </div>
-                    {{ picasso.snippet('destiny-wiens-1332880-unsplash.jpg', example.props) }}
+                        <twig:block name="code">{{ code }}</twig:block>
+                    </twig:Showcase>
                 </div>
             {% endfor %}
         </div>
@@ -157,7 +164,8 @@
                 {% set props = {width: 96, height: 96, fit: 'cover', alt: 'Avatar ' ~ loop.index, class: 'rounded-circle shadow-sm'} %}
                 {% set markup = picasso.image(image, props) %}
                 <div class="col mb-3 d-flex flex-column">
-                    <div class="card shadow-sm flex-grow-1">
+                    {% set code = picasso.snippet(image, props) %}
+                    <twig:Showcase class="flex-grow-1">
                         <div class="card-body d-flex align-items-center">
                             {{ markup }}
                             <span class="text-muted small ms-3">
@@ -167,8 +175,8 @@
                                 {% endfor %}
                             </span>
                         </div>
-                    </div>
-                    {{ picasso.snippet(image, props) }}
+                        <twig:block name="code">{{ code }}</twig:block>
+                    </twig:Showcase>
                 </div>
             {% endfor %}
         </div>
@@ -209,11 +217,12 @@
             {% for strategy in placeholderStrategies %}
                 {% set uri = placeholders[strategy.key] ?? null %}
                 <div class="col mb-3 d-flex flex-column">
-                    <div class="card shadow-sm flex-grow-1">
+                    {% set code = picasso.snippet('diana-parkhouse-1166627-unsplash.jpg', {width: 600, height: 400, fit: 'cover'}|merge(strategy.props)) %}
+                    <twig:Showcase class="flex-grow-1">
                         {% if uri %}
-                            <div class="card-img-top" style="aspect-ratio: 3 / 2; background: center / cover no-repeat url({{ uri|json_encode }})"></div>
+                            <div style="aspect-ratio: 3 / 2; background: center / cover no-repeat url({{ uri|json_encode }})"></div>
                         {% else %}
-                            <div class="card-img-top bg-light" style="aspect-ratio: 3 / 2"></div>
+                            <div class="bg-light" style="aspect-ratio: 3 / 2"></div>
                         {% endif %}
                         <div class="card-body">
                             <h5 class="card-title">{{ strategy.title }}</h5>
@@ -224,8 +233,8 @@
                                 {% endif %}
                             </p>
                         </div>
-                    </div>
-                    {{ picasso.snippet('diana-parkhouse-1166627-unsplash.jpg', {width: 600, height: 400, fit: 'cover'}|merge(strategy.props)) }}
+                        <twig:block name="code">{{ code }}</twig:block>
+                    </twig:Showcase>
                 </div>
             {% endfor %}
         </div>
@@ -254,32 +263,32 @@ picasso:
         </p>
         <div class="row row-cols-1 row-cols-md-2 mb-4">
             <div class="col mb-3 d-flex flex-column">
-                <div class="card shadow-sm flex-grow-1">
+                <twig:Showcase class="flex-grow-1">
                     {{ picasso_image(
                         src: asset('build/images/elvira-visser-k89j1SUqf5U-unsplash.jpg'),
                         width: 600,
                         height: 400,
                         sizes: '(max-width: 768px) 100vw, 50vw',
                         fit: 'cover',
-                        attributes: {alt: 'Rendered by picasso_image()', class: 'card-img-top'},
+                        attributes: {alt: 'Rendered by picasso_image()', class: 'd-block w-100'},
                     ) }}
                     <div class="card-body">
                         <h5 class="card-title"><code>picasso_image()</code></h5>
                         <p class="card-text text-muted small">The same <code>&lt;picture&gt;</code>, without the Twig component.</p>
                     </div>
-                </div>
-                <pre class="small mt-2 mb-0"><code>{% apply escape %}{% verbatim %}{{ picasso_image(
+                    <twig:block name="code"><pre class="small h-100 mb-0 rounded-0"><code>{% apply escape %}{% verbatim %}{{ picasso_image(
     src: asset('build/images/elvira-visser-k89j1SUqf5U-unsplash.jpg'),
     width: 600,
     height: 400,
     sizes: '(max-width: 768px) 100vw, 50vw',
     fit: 'cover',
-    attributes: {alt: 'Rendered by picasso_image()', class: 'card-img-top'},
-) }}{% endverbatim %}{% endapply %}</code></pre>
+    attributes: {alt: 'Rendered by picasso_image()', class: 'd-block w-100'},
+) }}{% endverbatim %}{% endapply %}</code></pre></twig:block>
+                </twig:Showcase>
             </div>
             <div class="col mb-3 d-flex flex-column">
-                <div class="card shadow-sm flex-grow-1">
-                    <div class="card-img-top d-flex align-items-end p-4" style="aspect-ratio: 3 / 2; background: linear-gradient(to top, rgb(0 0 0 / 0.65), transparent 55%), center / cover no-repeat url({{ picasso_image_url(asset('build/images/elvira-visser-k89j1SUqf5U-unsplash.jpg'), width: 1200, height: 800, format: 'webp', quality: 80, fit: 'cover')|json_encode }})">
+                <twig:Showcase class="flex-grow-1">
+                    <div class="d-flex align-items-end p-4" style="aspect-ratio: 3 / 2; background: linear-gradient(to top, rgb(0 0 0 / 0.65), transparent 55%), center / cover no-repeat url({{ picasso_image_url(asset('build/images/elvira-visser-k89j1SUqf5U-unsplash.jpg'), width: 1200, height: 800, format: 'webp', quality: 80, fit: 'cover')|json_encode }})">
                         <span class="h3 mb-0 text-white">Text over a transformed background</span>
                     </div>
                     <div class="card-body">
@@ -289,8 +298,7 @@ picasso:
                             a 1200x630 JPEG, the size social networks expect.
                         </p>
                     </div>
-                </div>
-                <pre class="small mt-2 mb-0"><code>{% apply escape %}{% verbatim %}<div style="background-image: url('{{ picasso_image_url(
+                    <twig:block name="code"><pre class="small h-100 mb-0 rounded-0"><code>{% apply escape %}{% verbatim %}<div style="background-image: url('{{ picasso_image_url(
     asset('build/images/elvira-visser-k89j1SUqf5U-unsplash.jpg'),
     width: 1200, height: 800, format: 'webp', quality: 80, fit: 'cover'
 ) }}')">
@@ -298,7 +306,8 @@ picasso:
 <meta property="og:image" content="{{ absolute_url(picasso_image_url(
     asset('build/images/jacalyn-beales-669247-unsplash.jpg'),
     width: 1200, height: 630, format: 'jpg', fit: 'cover'
-)) }}">{% endverbatim %}{% endapply %}</code></pre>
+)) }}">{% endverbatim %}{% endapply %}</code></pre></twig:block>
+                </twig:Showcase>
             </div>
         </div>
 
@@ -340,38 +349,41 @@ public function apiImage(ImageHelperInterface $imageHelper, Packages $packages):
             <code>unoptimized</code>, for what must not be transformed (an SVG logo, an animated GIF).
         </p>
         {% set overrides = [
-            {title: 'Quality set to 40%', props: {width: 600, height: 400, quality: 40, fit: 'cover', alt: 'Low quality', class: 'card-img-top'}},
-            {title: 'No placeholder', props: {width: 600, height: 400, placeholder: false, fit: 'cover', alt: 'No placeholder', class: 'card-img-top'}},
-            {title: 'Original file, unoptimized', props: {width: 600, height: 400, unoptimized: true, alt: 'Unoptimized', class: 'card-img-top'}},
+            {title: 'Quality set to 40%', props: {width: 600, height: 400, quality: 40, fit: 'cover', alt: 'Low quality', class: 'd-block w-100'}},
+            {title: 'No placeholder', props: {width: 600, height: 400, placeholder: false, fit: 'cover', alt: 'No placeholder', class: 'd-block w-100'}},
+            {title: 'Original file, unoptimized', props: {width: 600, height: 400, unoptimized: true, alt: 'Unoptimized', class: 'd-block w-100'}},
         ] %}
         <div class="row row-cols-1 row-cols-md-3 mb-4">
             {% for override in overrides %}
                 <div class="col mb-3 d-flex flex-column">
-                    <div class="card shadow-sm flex-grow-1">
-                        {{ picasso.image('diana-parkhouse-1166627-unsplash.jpg', override.props) }}
+                    {% set markup = picasso.image('diana-parkhouse-1166627-unsplash.jpg', override.props) %}
+                    {% set code = picasso.snippet('diana-parkhouse-1166627-unsplash.jpg', override.props) %}
+                    <twig:Showcase class="flex-grow-1">
+                        {{ markup }}
                         <div class="card-body">
                             <h5 class="card-title mb-0">{{ override.title }}</h5>
                         </div>
-                    </div>
-                    {{ picasso.snippet('diana-parkhouse-1166627-unsplash.jpg', override.props) }}
+                        <twig:block name="code">{{ code }}</twig:block>
+                    </twig:Showcase>
                 </div>
             {% endfor %}
         </div>
 
         <h2 id="generated-html">What the component generates</h2>
         <p>
-            The single Twig tag below, and the HTML it renders: one <code>&lt;source&gt;</code> per modern format,
+            A single Twig tag, and the HTML it renders: one <code>&lt;source&gt;</code> per modern format,
             a JPEG fallback, a <code>srcset</code> capped to the source size (no upscaling), the placeholder,
             lazy loading and the dimensions that prevent layout shifts. All signed, all cached.
         </p>
-        {% set props = {width: 600, height: 400, sizes: '(max-width: 768px) 100vw, 50vw', fit: 'cover', alt: 'A kitten', class: 'card-img-top'} %}
+        {% set props = {width: 600, height: 400, sizes: '(max-width: 768px) 100vw, 50vw', fit: 'cover', alt: 'A kitten', class: 'd-block w-100'} %}
         {% set generated = picasso.image('diana-parkhouse-1166627-unsplash.jpg', props) %}
         <div class="row mb-4">
             <div class="col-md-4 mb-3 d-flex flex-column">
-                <div class="card shadow-sm flex-grow-1">
+                {% set code = picasso.snippet('diana-parkhouse-1166627-unsplash.jpg', props) %}
+                <twig:Showcase class="flex-grow-1" active="code">
                     {{ generated }}
-                </div>
-                {{ picasso.snippet('diana-parkhouse-1166627-unsplash.jpg', props) }}
+                    <twig:block name="code">{{ code }}</twig:block>
+                </twig:Showcase>
             </div>
             <div class="col-md-8 mb-3 d-flex flex-column">
                 <div class="card shadow-sm flex-grow-1">

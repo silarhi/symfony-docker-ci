@@ -1,0 +1,39 @@
+{#
+    A showcase card: Preview / Code pills switch between the rendered example (the content) and its source
+    (the "code" block), like the examples of most component libraries' docs.
+
+    <twig:Showcase>
+        <img src="..." class="d-block w-100" alt="...">
+        <twig:block name="code"><pre>...</pre></twig:block>
+    </twig:Showcase>
+#}
+{% props active = 'preview' %}
+{% set id = 'showcase-' ~ random() %}
+<div {{ attributes.defaults({class: 'showcase card shadow-sm overflow-hidden'}) }}>
+    <div class="card-header">
+        <ul class="nav nav-pills card-header-pills" role="tablist">
+            {% for tab, label in {preview: 'Preview', code: 'Code'} %}
+                <li class="nav-item" role="presentation">
+                    <button
+                        type="button"
+                        class="nav-link py-1{{ tab == active ? ' active' }}"
+                        id="{{ id }}-{{ tab }}-tab"
+                        data-bs-toggle="pill"
+                        data-bs-target="#{{ id }}-{{ tab }}"
+                        role="tab"
+                        aria-controls="{{ id }}-{{ tab }}"
+                        aria-selected="{{ tab == active ? 'true' : 'false' }}"
+                    >{{ label }}</button>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="tab-content flex-grow-1">
+        <div class="tab-pane h-100{{ 'preview' == active ? ' active' }}" id="{{ id }}-preview" role="tabpanel" aria-labelledby="{{ id }}-preview-tab">
+            {% block content %}{% endblock %}
+        </div>
+        <div class="tab-pane h-100{{ 'code' == active ? ' active' }}" id="{{ id }}-code" role="tabpanel" aria-labelledby="{{ id }}-code-tab">
+            {% block code %}{% endblock %}
+        </div>
+    </div>
+</div>
