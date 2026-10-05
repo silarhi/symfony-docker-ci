@@ -17,5 +17,5 @@
             : name ~ '="' ~ value ~ '"' -%}
         {%- set lines = lines|merge(['    ' ~ line]) -%}
     {%- endfor -%}
-    <pre class="small mt-2 mb-0"><code>{{ lines|merge(['/>'])|join('\n') }}</code></pre>
+    <pre class="small h-100 mb-0 rounded-0"><code>{{ lines|merge(['/>'])|join('\n') }}</code></pre>
 {%- endmacro %}
