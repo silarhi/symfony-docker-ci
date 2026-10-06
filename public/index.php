@@ -11,7 +11,7 @@
 use App\Kernel;
 use Symfony\Component\HttpFoundation\Response;
 
-require_once \dirname(__DIR__) . '/vendor/autoload_runtime.php';
+require_once __DIR__ . '/../vendor/autoload_runtime.php';
 
 return static function (array $context) {
     if ($context['APP_MAINTENANCE'] ?? false) {

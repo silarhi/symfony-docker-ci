@@ -37,11 +37,8 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
     #[Override]
     public function authenticate(Request $request): Passport
     {
-        /** @var string $identifier */
         $identifier = $request->getPayload()->getString('username');
-        /** @var string $password */
         $password = $request->getPayload()->getString('password');
-        /** @var string $crsfToken */
         $crsfToken = $request->getPayload()->getString('_csrf_token');
 
         $request->getSession()->set(SecurityRequestAttributes::LAST_USERNAME, $identifier);

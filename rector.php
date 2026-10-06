@@ -9,7 +9,7 @@
  */
 
 use Rector\Config\RectorConfig;
-use Rector\Symfony\CodeQuality\Rector\Class_\ControllerMethodInjectionToConstructorRector;
+use Rector\TypeDeclaration\Rector\StmtsAwareInterface\SafeDeclareStrictTypesRector;
 
 return RectorConfig::configure()
     ->withCache(__DIR__ . '/var/tools/rector')
@@ -34,6 +34,9 @@ return RectorConfig::configure()
         symfony: true,
     )
     ->withSkip([
-        ControllerMethodInjectionToConstructorRector::class,
+        // strict_types would conflict with the php-cs-fixer header layout; opt in explicitly if wanted
+        SafeDeclareStrictTypesRector::class,
+        // Flex-managed file, keep fully-qualified bundle class names
+        __DIR__ . '/config/bundles.php',
     ])
 ;

@@ -59,7 +59,6 @@ class TwoFactorsAuthenticator extends AbstractLoginFormAuthenticator
 
         /** @var UserInterface $user */
         $user = $existingToken->getUser();
-        /** @var string $qrCode */
         $qrCode = $request->getPayload()->getString('qrCode');
         /** @var string $secretKey */
         $secretKey = $request->getSession()->get(SecurityController::QR_CODE_KEY);
