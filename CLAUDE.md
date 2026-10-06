@@ -4,13 +4,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a Symfony 7.4 demonstration application showcasing continuous integration/deployment with Docker and CircleCI. The project demonstrates:
+This is a Symfony 8.1 demonstration application showcasing continuous integration/deployment with Docker and CircleCI. The project demonstrates:
 
 - Custom two-factor authentication implementation
-- Dynamic image processing with League Glide
+- Dynamic image processing with League Glide (`/images`) and a `silarhi/picasso-bundle` showcase (`/picasso`)
 - Hybrid frontend: Twig templates + React components via Symfony Reprise (Vite)
 - Containerized deployment workflow
-- Enterprise-grade PHP tooling (PHPStan level 9, PHP-CS-Fixer, Rector)
+- Enterprise-grade PHP tooling (PHPStan level max, PHP-CS-Fixer, Rector)
 
 ## Development Commands
 
@@ -59,15 +59,18 @@ vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php
 vendor/bin/phpstan analyse
 vendor/bin/rector process --dry-run
 
-# JavaScript/CSS linting
-yarn lint                  # Run all linters
-yarn lint:eslint          # ESLint only
-yarn lint:prettier        # Prettier only
+# JavaScript linting/formatting (Biome, biome.json)
+yarn lint                 # biome check --write assets
+yarn lint-ci              # biome check assets (no writes, used in CI)
 
-# Format code
-yarn format               # Format all
-yarn format:eslint        # Fix ESLint issues
-yarn format:prettier      # Format with Prettier
+# SCSS/Markdown formatting (Prettier)
+yarn prettier
+
+# Both
+yarn format               # yarn lint && yarn prettier
+
+# Unused files/dependencies
+yarn knip
 ```
 
 ### Docker
@@ -87,8 +90,8 @@ docker build \
 
 The project uses Husky for pre-commit hooks that run:
 
-- ESLint with auto-fix on JS/JSX files
-- Prettier on SCSS/MD files
+- Biome (`check --write`) on JS/JSX/TS/JSON files
+- Prettier on SCSS/MD/YAML files
 - PHP-CS-Fixer on PHP files
 - Twig-CS-Fixer on Twig templates
 
@@ -120,7 +123,7 @@ The application implements a custom 2FA system using multiple authenticators:
 The application uses League Glide for on-the-fly image manipulation:
 
 - **AssetsController** (src/Controller/AssetsController.php) - Serves images via `/assets/{path}` route
-- **AssetExtension** (src/Twig/AssetExtension.php) - Provides `asset_url()` Twig function with HMAC signature for security
+- **AssetExtension** (src/Twig/AssetExtension.php) - Provides `app_asset()` Twig function (signed URLs to the `asset_url` route)
 - Images are processed dynamically based on URL parameters (resize, crop, filters, etc.)
 - Security: Routes are protected with HMAC signatures to prevent manipulation
 
@@ -141,10 +144,11 @@ The application uses League Glide for on-the-fly image manipulation:
 **Build Process**:
 
 - Vite compiles assets to `public/build/`; the `@symfony/reprise` plugin writes `entrypoints.json` + `manifest.json` there
-- Development: Non-hashed filenames
-- Production: Content-hashed filenames for cache busting
+- Content-hashed filenames in every mode (Vite default)
+- Development (`yarn dev` / `yarn watch`, `--mode development`): sourcemaps on, no minification
+- PurgeCSS (PostCSS) strips unused Tabler selectors based on `templates/**/*.twig` and `assets/js/**`
 - SCSS compiled with dart-sass
-- React JSX transpiled with Babel
+- React JSX via `@vitejs/plugin-react`
 
 ### Dependency Injection & Services
 
@@ -159,7 +163,7 @@ The application follows Symfony's autowiring conventions:
 ### PHP Standards
 
 - **PSR-12** coding style via PHP-CS-Fixer with Symfony ruleset
-- **PHPStan level 9** - Maximum static analysis strictness
+- **PHPStan level max** - Maximum static analysis strictness
 - **Header comments** - All PHP files must include SILARHI copyright header
 - **Strict types** - Use `declare(strict_types=1);` in all PHP files
 - **Import optimization** - Global namespace imports for classes
@@ -176,8 +180,8 @@ Notable rules from `.php-cs-fixer.dist.php`:
 
 ### JavaScript/TypeScript Standards
 
-- ESLint with React plugin
-- Prettier for formatting
+- Biome (`biome.json`, React domain) for linting and formatting: 4-space indent, single quotes, no semicolons
+- Prettier only for SCSS/Markdown/YAML
 - React 19 with hooks patterns
 - ES6+ syntax required
 
@@ -203,16 +207,18 @@ Located in `.circleci/config.yml`:
 
 Located in `.github/workflows/continuous-integration.yml`:
 
-**Lint JS/JSX Job**:
+**Lint Job**:
 
-- ESLint and Prettier checks
-- Runs on all PRs and pushes
+- Biome (`yarn lint-ci`) and Knip (`yarn knip`); needs `composer install` first (`@symfony/ux-turbo` is `file:vendor/...`)
+- Runs on PRs and pushes to `main`
 
 **QA Checks**:
 
 - Uses Laminas CI matrix for multi-environment testing
-- Symfony console linting (container, YAML, Twig)
+- Symfony console linting (container, YAML, Twig) and composer validate/normalize (`.laminas-ci.json`)
 - PHP static analysis
+
+**CI passed**: gate job requiring `matrix`, `qa` and `lint`
 
 ## Configuration Notes
 
@@ -234,11 +240,13 @@ Required for deployment (see config/packages/twig.yaml and Dockerfile):
 
 ### Docker Multi-Stage Build
 
-The Dockerfile uses a three-stage build process:
+The Dockerfile (base `silarhi/php-apache:8.5-frankenphp-alpine` + `node:24-alpine`) uses a multi-stage build:
 
-1. **php_builder**: Install PHP dependencies with Composer
-2. **node_builder**: Build frontend assets with Yarn + Vite (Symfony Reprise)
-3. **Final stage**: Combine artifacts, optimize autoloader, warm cache
+1. **php_base**: PHP image + extensions (exif, gd, imagick)
+2. **php_builder**: Install PHP dependencies with Composer
+3. **node_deps**: `yarn install` (needs `vendor/` for `@symfony/ux-turbo`)
+4. **node_builder**: Build frontend assets with Vite (Symfony Reprise); copies `templates/` for PurgeCSS
+5. **Final stage**: Combine artifacts, optimize autoloader, warm cache
 
 **Important**: The build process:
 
@@ -260,7 +268,10 @@ src/
 templates/            # Twig templates
 ├── base.html.twig   # Main layout with navigation
 ├── security/        # Login, 2FA setup pages
-└── default/         # Homepage templates
+├── default/         # Homepage templates
+├── images/          # Glide demo page
+├── picasso/         # Picasso bundle showcase
+└── components/      # Twig components
 
 assets/
 ├── js/
