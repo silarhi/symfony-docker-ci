@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e3245effbfa24ce0e5c7762525a6b8f2",
+    "content-hash": "e3e25e7fc04534949b6d3b22dd609dfc",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -1632,16 +1632,16 @@
         },
         {
             "name": "silarhi/picasso-bundle",
-            "version": "v2.2.1",
+            "version": "v2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/silarhi/picasso-bundle.git",
-                "reference": "6208e0d1d78a276fe13369fac01de953b83b5f75"
+                "reference": "fc3a98ee21a2ce814e47d6e9509a00dbfeca64cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silarhi/picasso-bundle/zipball/6208e0d1d78a276fe13369fac01de953b83b5f75",
-                "reference": "6208e0d1d78a276fe13369fac01de953b83b5f75",
+                "url": "https://api.github.com/repos/silarhi/picasso-bundle/zipball/fc3a98ee21a2ce814e47d6e9509a00dbfeca64cf",
+                "reference": "fc3a98ee21a2ce814e47d6e9509a00dbfeca64cf",
                 "shasum": ""
             },
             "require": {
@@ -1696,9 +1696,9 @@
             "description": "Responsive image component for Symfony, inspired by next/image",
             "support": {
                 "issues": "https://github.com/silarhi/picasso-bundle/issues",
-                "source": "https://github.com/silarhi/picasso-bundle/tree/v2.2.1"
+                "source": "https://github.com/silarhi/picasso-bundle/tree/v2.3.0"
             },
-            "time": "2026-10-06T17:27:11+00:00"
+            "time": "2026-10-08T08:04:11+00:00"
         },
         {
             "name": "symfony/asset",
