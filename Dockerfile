@@ -1,4 +1,4 @@
-#syntax=docker/dockerfile:1.27-labs
+#syntax=docker/dockerfile:1.28-labs
 
 # Versions
 FROM silarhi/php-apache:8.5-frankenphp-alpine AS php_upstream
