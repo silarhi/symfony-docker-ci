@@ -14,7 +14,7 @@
         "lint": "biome check --write assets",
         "lint-ci": "biome check assets",
         "prettier": "prettier --write \"assets/**/*.{scss,md}\"",
-        "format": "yarn lint && yarn prettier",
+        "format": "pnpm lint && pnpm prettier",
         "knip": "knip"
     },
     "lint-staged": {
@@ -45,5 +45,6 @@
     },
     "dependencies": {
         "@tabler/core": "^1.6.1"
-    }
+    },
+    "packageManager": "pnpm@12.11.2"
 }

@@ -34,21 +34,23 @@ bin/console lint:twig templates
 
 ### Frontend Assets
 
+pnpm is the package manager: its version is pinned by `packageManager` in `package.json`, and `pnpm-workspace.yaml` lists the dependencies allowed to run install scripts (`allowBuilds`; pnpm fails the install on a new unlisted one).
+
 ```bash
 # Install JavaScript dependencies
-yarn install
+pnpm install
 
 # Build assets for development
-yarn dev
+pnpm dev
 
 # Build assets for production
-yarn build
+pnpm build
 
 # Watch for changes
-yarn watch
+pnpm watch
 
 # Run development server with hot reload
-yarn dev-server
+pnpm dev-server
 ```
 
 ### Code Quality
@@ -60,17 +62,17 @@ vendor/bin/phpstan analyse
 vendor/bin/rector process --dry-run
 
 # JavaScript linting/formatting (Biome, biome.json)
-yarn lint                 # biome check --write assets
-yarn lint-ci              # biome check assets (no writes, used in CI)
+pnpm lint                 # biome check --write assets
+pnpm lint-ci              # biome check assets (no writes, used in CI)
 
 # SCSS/Markdown formatting (Prettier)
-yarn prettier
+pnpm prettier
 
 # Both
-yarn format               # yarn lint && yarn prettier
+pnpm format               # pnpm lint && pnpm prettier
 
 # Unused files/dependencies
-yarn knip
+pnpm knip
 ```
 
 ### Docker
@@ -145,7 +147,7 @@ The application uses League Glide for on-the-fly image manipulation:
 
 - Vite compiles assets to `public/build/`; the `@symfony/reprise` plugin writes `entrypoints.json` + `manifest.json` there
 - Content-hashed filenames in every mode (Vite default)
-- Development (`yarn dev` / `yarn watch`, `--mode development`): sourcemaps on, no minification
+- Development (`pnpm dev` / `pnpm watch`, `--mode development`): sourcemaps on, no minification
 - PurgeCSS (PostCSS) strips unused Tabler selectors based on `templates/**/*.twig` and `assets/js/**`
 - SCSS compiled with dart-sass
 - React JSX via `@vitejs/plugin-react`
@@ -209,7 +211,7 @@ Located in `.github/workflows/continuous-integration.yml`:
 
 **Lint Job**:
 
-- Biome (`yarn lint-ci`) and Knip (`yarn knip`); needs `composer install` first (`@symfony/ux-turbo` is `file:vendor/...`)
+- Biome (`pnpm lint-ci`) and Knip (`pnpm knip`); needs `composer install` first (`@symfony/ux-turbo` is `file:vendor/...`)
 - Runs on PRs and pushes to `main`
 
 **QA Checks**:
@@ -244,7 +246,7 @@ The Dockerfile (base `silarhi/php-apache:8.5-frankenphp-alpine` + `node:24-alpin
 
 1. **php_base**: PHP image + extensions (exif, gd, imagick)
 2. **php_builder**: Install PHP dependencies with Composer
-3. **node_deps**: `yarn install` (needs `vendor/` for `@symfony/ux-turbo`)
+3. **node_deps**: `pnpm install` (needs `vendor/` for `@symfony/ux-turbo`)
 4. **node_builder**: Build frontend assets with Vite (Symfony Reprise); copies `templates/` for PurgeCSS
 5. **Final stage**: Combine artifacts, optimize autoloader, warm cache
 

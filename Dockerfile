@@ -4,6 +4,10 @@
 FROM silarhi/php-apache:8.5-frankenphp-alpine AS php_upstream
 FROM node:24-alpine AS node_upstream
 
+# Node base with pnpm (it switches itself to the version pinned in package.json "packageManager")
+FROM node_upstream AS node_base
+RUN npm install --global pnpm@12
+
 # Base with extensions
 FROM php_upstream AS php_base
 RUN install-php-extensions exif gd imagick
@@ -16,23 +20,23 @@ RUN --mount=type=cache,target=/root/.composer \
     APP_ENV=prod composer install --no-interaction --no-dev --no-scripts --prefer-dist
 
 # Node deps (cached separately from build)
-FROM node_upstream AS node_deps
+FROM node_base AS node_deps
 WORKDIR /app
 COPY --from=php_builder --link /app/vendor ./vendor
-COPY --link package.json yarn.lock ./
-RUN --mount=type=cache,target=/root/.yarn \
-    YARN_CACHE_FOLDER=/root/.yarn yarn install --frozen-lockfile
+COPY --link package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+RUN --mount=type=cache,target=/pnpm/store \
+    pnpm install --frozen-lockfile --store-dir /pnpm/store
 
 # Asset build
-FROM node_upstream AS node_builder
+FROM node_base AS node_builder
 WORKDIR /app
 COPY --from=node_deps --link /app/node_modules ./node_modules
 COPY --from=node_deps --link /app/vendor ./vendor
-COPY --link package.json vite.config.js yarn.lock ./
+COPY --link package.json pnpm-lock.yaml pnpm-workspace.yaml vite.config.js ./
 COPY --link assets ./assets
 # PurgeCSS keeps the selectors used in the Twig templates
 COPY --link templates ./templates
-RUN mkdir -p public && yarn build
+RUN mkdir -p public && pnpm build
 
 # Final
 FROM php_base

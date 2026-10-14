@@ -4,3 +4,4 @@ public
 src
 templates
 vendor
+pnpm-lock.yaml
