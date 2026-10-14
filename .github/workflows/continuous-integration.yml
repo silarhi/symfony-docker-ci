@@ -54,17 +54,19 @@ jobs:
                   coverage: none
             - name: Install Composer dependencies
               run: composer install --no-interaction --no-progress --prefer-dist
+            - name: Setup pnpm
+              uses: pnpm/action-setup@v6
             - name: Setup Node.js
               uses: actions/setup-node@v7
               with:
                   node-version: '24'
-                  cache: 'yarn'
+                  cache: 'pnpm'
             - name: Install dependencies
-              run: yarn install --frozen-lockfile
+              run: pnpm install --frozen-lockfile
             - name: Biome
-              run: yarn lint-ci
+              run: pnpm lint-ci
             - name: Knip
-              run: yarn knip
+              run: pnpm knip
 
     ci-passed:
         name: CI passed

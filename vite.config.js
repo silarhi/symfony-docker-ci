@@ -42,7 +42,7 @@ export default defineConfig(({ mode }) => {
             postcss: {
                 plugins: [
                     // Drops the Tabler selectors no template or component uses. Runs in every mode so
-                    // `yarn watch` shows exactly what ships. Classes added only at runtime must be safelisted.
+                    // `pnpm watch` shows exactly what ships. Classes added only at runtime must be safelisted.
                     purgeCSSPlugin({
                         content: purgeContent,
                         safelist: [
@@ -79,7 +79,7 @@ export default defineConfig(({ mode }) => {
                 },
             },
 
-            // Dev build profile, used by `yarn dev` and `yarn watch`.
+            // Dev build profile, used by `pnpm dev` and `pnpm watch`.
             // Vite minifies and omits sourcemaps in build mode whatever the --mode,
             // so restore Encore's enableSourceMaps(!isProduction) behaviour explicitly.
             ...(isDev && {
