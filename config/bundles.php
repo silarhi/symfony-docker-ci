@@ -22,4 +22,6 @@ return [
     Symfony\UX\TwigComponent\TwigComponentBundle::class => ['all' => true],
     Silarhi\PicassoBundle\PicassoBundle::class => ['all' => true],
     Symfony\Reprise\RepriseBundle::class => ['all' => true],
+    Symfony\UX\Icons\UXIconsBundle::class => ['all' => true],
+    Silarhi\UxIconsJsBundle\SilarhiUxIconsJsBundle::class => ['all' => true],
 ];

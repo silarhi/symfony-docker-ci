@@ -1,0 +1,38 @@
+# Full configuration reference: https://symfony.com/bundles/ux-icons/current/index.html#configuration
+ux_icons:
+
+    # Default HTML attributes to add to all icons
+    default_icon_attributes:
+
+        # Use current text color to fill the icon
+        fill: currentColor
+
+        # Default dimensions
+        height: '1em'
+        width: '1em'
+
+    # Icons of the Lucide set get a class of their own, on top of the default attributes.
+    # silarhi/ux-icons-js-bundle dumps them with it: the JavaScript side renders the same <svg>.
+    icon_sets:
+        lucide:
+            icon_attributes:
+                class: 'icon-lucide'
+
+    # One more export per alias: DeleteIcon is lucide:trash-2
+    aliases:
+        delete: 'lucide:trash-2'
+
+    # Throw an exception if an icon is not
+    ignore_not_found: false
+
+
+when@dev:
+    ux_icons:
+        iconify:
+            # Persist each on-demand icon to disk on first render, so you don't forget to commit it before deploying (like `ux:icons:lock`)
+            auto_lock: true
+
+when@prod:
+    ux_icons:
+        # Suppress exceptions for missing icons in production
+        ignore_not_found: true
