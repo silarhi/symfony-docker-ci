@@ -8,6 +8,7 @@ This is a Symfony 8.1 demonstration application showcasing continuous integratio
 
 - Custom two-factor authentication implementation
 - Dynamic image processing with League Glide (`/images`) and a `silarhi/picasso-bundle` showcase (`/picasso`)
+- Symfony UX Icons rendered in JavaScript and React with `silarhi/ux-icons-js-bundle` (`/icons`)
 - Hybrid frontend: Twig templates + React components via Symfony Reprise (Vite)
 - Containerized deployment workflow
 - Enterprise-grade PHP tooling (PHPStan level max, PHP-CS-Fixer, Rector)
@@ -142,6 +143,9 @@ The application uses League Glide for on-the-fly image manipulation:
 
 - `app` - Main application CSS/JS (base.html.twig)
 - `index` - React-based index page (assets/js/pages/index.jsx)
+- `icons` - UX Icons JS showcase (assets/js/pages/icons.jsx): its Stimulus controllers and React components live in `assets/js/icons/`
+
+**Icons**: `silarhi/ux-icons-js-bundle` dumps the local icons of `assets/icons/` into `var/icons/` (not committed) on cache warmup, or with `bin/console ux-icons-js:dump`. They are imported through the `@icons` alias (`@icons/index.js`, `@icons/loaders.js`), so the Vite build fails until they are dumped. Add an icon by importing it, then `bin/console ux:icons:lock` (or `ux:icons:import lucide:<name>`).
 
 **Build Process**:
 
@@ -246,16 +250,17 @@ The Dockerfile (base `silarhi/php-apache:8.5-frankenphp-alpine` + `node:24-alpin
 
 1. **php_base**: PHP image + extensions (exif, gd, imagick)
 2. **php_builder**: Install PHP dependencies with Composer
-3. **node_deps**: `pnpm install` (needs `vendor/` for `@symfony/ux-turbo`)
-4. **node_builder**: Build frontend assets with Vite (Symfony Reprise); copies `templates/` for PurgeCSS
-5. **Final stage**: Combine artifacts, optimize autoloader, warm cache
+3. **php_icons**: `ux-icons-js:dump` writes `var/icons/`, imported by the asset build
+4. **node_deps**: `pnpm install` (needs `vendor/` for `@symfony/ux-turbo`)
+5. **node_builder**: Build frontend assets with Vite (Symfony Reprise); copies `templates/` for PurgeCSS and `var/icons/` from `php_icons`
+6. **Final stage**: Combine artifacts, optimize autoloader, warm cache
 
 **Important**: The build process:
 
 - Uses `--classmap-authoritative` for production optimization
 - Warms Symfony cache before deployment
 - Creates `.env.local.php` for environment variable caching
-- Excludes `assets/` and `docker/` directories from final image
+- Excludes `assets/` (except `assets/icons/`, read by `ux_icon()`) and `docker/` directories from final image
 
 ## File Structure
 
@@ -273,6 +278,7 @@ templates/            # Twig templates
 ├── default/         # Homepage templates
 ├── images/          # Glide demo page
 ├── picasso/         # Picasso bundle showcase
+├── icons/           # UX Icons JS showcase
 └── components/      # Twig components
 
 assets/
@@ -280,7 +286,9 @@ assets/
 │   ├── app.js       # Main JavaScript entry
 │   ├── pages/       # React page components
 │   ├── component/   # Reusable React components
+│   ├── icons/       # Stimulus controllers and React components of the /icons showcase
 │   └── controllers/ # Stimulus controllers
+├── icons/           # UX Icons SVG files (lucide/ imported from Iconify)
 └── scss/            # Stylesheets
 
 config/

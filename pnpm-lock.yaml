@@ -224,6 +224,9 @@ importers:
       '@hotwired/turbo':
         specifier: ^8.0.23
         version: 8.0.23
+      '@silarhi/ux-icons-js':
+        specifier: ^0.2.0
+        version: 0.2.0(react@19.3.1)
       '@symfony/reprise':
         specifier: ^1.3.0
         version: 1.3.0(@hotwired/stimulus@3.2.2)(rolldown@1.2.14)(vite@8.3.4(jiti@2.7.0)(sass@1.105.2)(yaml@2.9.1))
@@ -793,6 +796,17 @@ packages:
 
   '@rolldown/pluginutils@1.0.1':
     resolution: {integrity: sha512-2j9bGt5Jh8hj+vPtgzPtl72j0yRxHAyumoo6TNfAjsLB04UtpSvPbPcDcBMxz7n+9CYB0c1GxQFxYRg2jimqGw==}
+
+  '@silarhi/ux-icons-js@0.2.0':
+    resolution: {integrity: sha512-RVndLTTclvFwRlT4jj+ibphTFgvsBY4HDvN6x/QGFL/E71ECXoR9nVeO1EodcAz7Cc6dfNAYvkMm7j0mvl/aew==}
+    peerDependencies:
+      react: ^18.0 || ^19.0
+      vue: ^3.0
+    peerDependenciesMeta:
+      react:
+        optional: true
+      vue:
+        optional: true
 
   '@symfony/reprise@1.3.0':
     resolution: {integrity: sha512-o0+Fh68WDH5EFaLN2HN360TF7ZIkDMT+EGrSmjp2fjkAoD+hCJqSSBs0TNPxnXRdsrbTPm+VEkZBiqdk5js87Q==}
@@ -1581,6 +1595,10 @@ snapshots:
     optional: true
 
   '@rolldown/pluginutils@1.0.1': {}
+
+  '@silarhi/ux-icons-js@0.2.0(react@19.3.1)':
+    optionalDependencies:
+      react: 19.3.1
 
   '@symfony/reprise@1.3.0(@hotwired/stimulus@3.2.2)(rolldown@1.2.14)(vite@8.3.4(jiti@2.7.0)(sass@1.105.2)(yaml@2.9.1))':
     dependencies:

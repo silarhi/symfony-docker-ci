@@ -11,6 +11,9 @@
     "paths": {
         "@/*": [
             "assets/*"
+        ],
+        "@icons/*": [
+            "var/icons/*"
         ]
     },
     "ignoreBinaries": [

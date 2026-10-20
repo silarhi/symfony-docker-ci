@@ -92,6 +92,9 @@
     "silarhi/picasso-bundle": {
         "version": "v1.0.1"
     },
+    "silarhi/ux-icons-js-bundle": {
+        "version": "v0.2.0"
+    },
     "symfony/apache-pack": {
         "version": "1.0",
         "recipe": {
@@ -368,6 +371,19 @@
         "files": [
             "config/packages/twig.yaml",
             "templates/base.html.twig"
+        ]
+    },
+    "symfony/ux-icons": {
+        "version": "3.6",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "3.4",
+            "ref": "16a3114526e46593b494471d1654dfa46831beb5"
+        },
+        "files": [
+            "assets/icons/symfony.svg",
+            "config/packages/ux_icons.yaml"
         ]
     },
     "symfony/ux-turbo": {
