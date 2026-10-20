@@ -46,7 +46,7 @@
         "rector/rector": "^2.7.0",
         "symfony/apache-pack": "^1.0.1",
         "symfony/debug-bundle": "~8.1.0",
-        "symfony/http-client": "~8.1.0",
+        "symfony/http-client": "~8.1.9",
         "symfony/maker-bundle": "^1.68.0",
         "symfony/stopwatch": "~8.1.0",
         "symfony/web-profiler-bundle": "~8.1.9",
