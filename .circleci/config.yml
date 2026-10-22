@@ -21,7 +21,8 @@ jobs:
             - docker/build:
                   image: $IMAGE_NAME
                   tag: 1.$CIRCLE_BUILD_NUM,latest
-                  extra_build_args: --build-arg APP_VERSION=1.$CIRCLE_BUILD_NUM --build-arg GIT_COMMIT=${CIRCLE_SHA1:0:7}
+                  # --pull: docker_layer_caching would otherwise keep reusing a stale silarhi/php-apache base
+                  extra_build_args: --pull --build-arg APP_VERSION=1.$CIRCLE_BUILD_NUM --build-arg GIT_COMMIT=${CIRCLE_SHA1:0:7}
             - docker/push:
                   image: $IMAGE_NAME
                   tag: 1.$CIRCLE_BUILD_NUM
