@@ -1,5 +1,7 @@
 //Bootstrap default overrides
-$lightShade: #f8f8f8;
+$lightShade: #f8fafc;
+// Navbar, footer and terminal panels
+$shellDark: #0f172a;
 $primary: #6f42c1;
 $border-radius: 0.25rem;
 $border-radius-lg: 0.25rem;
@@ -34,14 +36,259 @@ footer {
 }
 
 .navbar {
-    box-shadow:
-        0 2px 4px -1px rgba(0, 0, 0, 0.2),
-        0 4px 5px 0 rgba(0, 0, 0, 0.14),
-        0 1px 10px 0 rgba(0, 0, 0, 0.12);
+    background: $shellDark;
+    border-bottom: 1px solid rgba($white, 0.08);
+
+    .nav-link.active {
+        background: rgba($white, 0.08);
+        border-radius: $border-radius;
+    }
 }
 
-footer {
+// The version chips of the navbar brand and the footer
+.badge-version {
+    font-family: $font-family-monospace;
+    font-weight: $font-weight-normal;
+    color: tint-color($primary, 60%);
+    background: rgba($primary, 0.25);
+    border: 1px solid rgba($primary, 0.5);
+}
+
+.site-footer {
+    padding: 1.25rem 0;
     color: $navbar-dark-color;
+    background: $shellDark;
+
+    a {
+        color: tint-color($primary, 50%);
+    }
+
+    .list-inline-item:not(:last-child)::after {
+        content: '|';
+        margin-left: 0.5rem;
+        opacity: 0.4;
+    }
+}
+
+// Uppercase monospace labels: the metadata of the status bars, tags and card headers
+%label-mono {
+    font-family: $font-family-monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.label-mono {
+    @extend %label-mono;
+}
+
+.tag-mono {
+    @extend %label-mono;
+    display: inline-block;
+    padding: 0.125rem 0.5rem;
+    color: $body-color;
+    background: $white;
+    border: 1px solid $border-color;
+}
+
+.tag-overlay {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+}
+
+.tag-overlay-bottom {
+    top: auto;
+    bottom: 0.75rem;
+    color: $white;
+    background: rgba($shellDark, 0.8);
+    border-color: transparent;
+}
+
+// Square, not round: a status LED rather than a badge
+.status-dot-square {
+    display: inline-block;
+    flex-shrink: 0;
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+.status-bar {
+    @extend %label-mono;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 1.5rem;
+    padding: 0.625rem 1rem;
+    background: $white;
+    border: 1px solid $border-color;
+}
+
+.status-bar-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: $font-weight-bold;
+
+    // The items line up on the right, unless the bar is centered
+    .status-bar:not(.justify-content-center) > & {
+        margin-right: auto;
+    }
+}
+
+.section-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
+    padding-bottom: 0.75rem;
+    margin-bottom: 1.25rem;
+    border-bottom: 1px solid $border-color;
+}
+
+.section-header-title {
+    margin: 0;
+    font-size: $h3-font-size;
+}
+
+.section-header-meta {
+    @extend %label-mono;
+    color: $text-secondary;
+}
+
+.terminal {
+    color: #cbd5e1;
+    background: $shellDark;
+    border-radius: $border-radius-lg;
+    overflow: hidden;
+}
+
+.terminal-header {
+    @extend %label-mono;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid rgba($white, 0.08);
+}
+
+.terminal-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: $white;
+}
+
+.terminal-meta {
+    color: #64748b;
+}
+
+.terminal-body {
+    padding: 1rem;
+    overflow-x: auto;
+    font-family: $font-family-monospace;
+    font-size: 0.8125rem;
+    line-height: 1.8;
+}
+
+// On the lines, not the body: the newlines between the Line components would print blank lines
+.terminal-line {
+    white-space: pre;
+}
+
+.terminal-prompt {
+    color: #94a3b8;
+
+    &::before {
+        content: '$ ';
+    }
+}
+
+.terminal .text-success {
+    color: #6ee7b7 !important;
+}
+
+.terminal .text-primary {
+    color: tint-color($primary, 50%) !important;
+    font-weight: $font-weight-bold;
+}
+
+// The README rendered on the homepage: its links read like a shell listing
+.readme {
+    h1 {
+        font-size: $h1-font-size * 1.5;
+        letter-spacing: -0.02em;
+    }
+
+    // The CircleCI build badge
+    h1 + p {
+        margin-bottom: 0.5rem;
+    }
+
+    p {
+        color: $text-secondary;
+    }
+
+    ul {
+        padding: 1rem 1.25rem;
+        margin: 1.5rem 0 0;
+        list-style: none;
+        font-family: $font-family-monospace;
+        font-size: 0.875rem;
+        background: $lightShade;
+        border: 1px solid $border-color;
+    }
+
+    li {
+        overflow-wrap: anywhere;
+
+        &::before {
+            content: '> ';
+            color: $primary;
+            font-weight: $font-weight-bold;
+        }
+
+        & + li {
+            margin-top: 0.25rem;
+        }
+    }
+}
+
+// The fitting examples: a checkered frame shows the padding the "fill" mode adds
+.fit-preview {
+    display: inline-block;
+    max-width: 100%;
+    padding: 0.5rem;
+    background: repeating-conic-gradient($gray-100 0 25%, $white 0 50%) 0 0 / 16px 16px;
+    border: 1px solid $border-color;
+
+    img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+.secret-key .form-control {
+    letter-spacing: 0.1em;
+}
+
+.dossier {
+    .card-header {
+        justify-content: space-between;
+        background: linear-gradient(135deg, $white, $gray-100);
+    }
+}
+
+.dossier-stamp {
+    @extend %label-mono;
+    padding: 0.25rem 0.75rem;
+    font-weight: $font-weight-bold;
+    color: $danger;
+    border: 2px solid currentColor;
+    transform: rotate(-4deg);
 }
 
 .card {
@@ -57,4 +304,223 @@ footer {
 .showcase > .tab-content > .active {
     display: flex;
     flex-direction: column;
+}
+
+.showcase > .card-header {
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    background: $lightShade;
+}
+
+// Preview / Code: two joined buttons, the active one raised like a key
+.nav-segmented {
+    gap: 0.25rem;
+    padding: 0.125rem;
+    background: $gray-100;
+    border: 1px solid $border-color;
+    border-radius: $border-radius;
+
+    .nav-link {
+        padding: 0.25rem 0.75rem;
+        font-size: $font-size-sm;
+        color: $text-secondary;
+        border-radius: calc(#{$border-radius} - 2px);
+
+        &.active {
+            color: $body-color;
+            background: $white;
+            box-shadow: 0 1px 2px rgba($black, 0.08);
+        }
+    }
+}
+
+.showcase-meta {
+    padding: 0.125rem 0.5rem;
+    overflow: hidden;
+    font-family: $font-family-monospace;
+    font-size: 0.75rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background: color-mix(in srgb, currentColor 8%, transparent);
+    border: 1px solid color-mix(in srgb, currentColor 25%, transparent);
+    border-radius: $border-radius;
+}
+
+.showcase-label {
+    padding: 0.125rem 0.5rem;
+    font-family: $font-family-monospace;
+    font-size: 0.8125rem;
+    background: $gray-100;
+    border-radius: $border-radius;
+}
+
+// The code tab of a showcase: the dark <pre> fills it, edge to edge
+.showcase pre {
+    border-radius: 0;
+}
+
+// A dark panel: the header bar is part of the code, not a white card header
+.code-panel {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: $shellDark;
+    border-radius: $border-radius-lg;
+
+    pre {
+        flex-grow: 1;
+        margin: 0;
+        background: transparent;
+        border-radius: 0;
+    }
+}
+
+.code-panel-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.625rem 1rem;
+    border-bottom: 1px solid rgba($white, 0.08);
+}
+
+.code-panel-title {
+    font-family: $font-family-monospace;
+    font-size: 0.8125rem;
+    color: $white;
+}
+
+.code-panel-meta {
+    @extend %label-mono;
+    color: #64748b;
+}
+
+.page-hero-title {
+    margin-bottom: 0.75rem;
+    font-size: $h1-font-size * 1.5;
+    letter-spacing: -0.02em;
+}
+
+.page-hero-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+    gap: 0.5rem 1.5rem;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.page-hero-feature {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+}
+
+// Numbered tiles: the number is a CSS counter, so the items need no prop for it
+.toc-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+    gap: 0.75rem;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    counter-reset: toc;
+}
+
+.toc-item {
+    counter-increment: toc;
+}
+
+.toc-link {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 0.125rem 0.75rem;
+    height: 100%;
+    padding: 0.75rem 1rem;
+    color: $body-color;
+    background: $white;
+    border: 1px solid $border-color;
+    border-radius: $border-radius;
+    transition:
+        border-color 0.15s,
+        box-shadow 0.15s,
+        transform 0.15s;
+
+    // The number: a chip that fills on hover
+    &::before {
+        content: counter(toc, decimal-leading-zero);
+        grid-column: 1;
+        grid-row: 1 / span 2;
+        align-self: start;
+        padding: 0.125rem 0.375rem;
+        font-family: $font-family-monospace;
+        font-size: 0.8125rem;
+        color: $primary;
+        background: rgba($primary, 0.08);
+        border-radius: $border-radius;
+        transition:
+            color 0.15s,
+            background-color 0.15s;
+    }
+
+    // An arrow that slides in on hover, so the whole tile reads as a link without underlining it
+    &::after {
+        content: '→';
+        grid-column: 3;
+        grid-row: 1 / span 2;
+        color: $primary;
+        opacity: 0;
+        transform: translateX(-0.25rem);
+        transition:
+            opacity 0.15s,
+            transform 0.15s;
+    }
+
+    &:hover,
+    &:focus-visible {
+        color: $body-color;
+        text-decoration: none;
+        border-color: rgba($primary, 0.5);
+        box-shadow: 0 4px 12px rgba($primary, 0.1);
+        transform: translateY(-1px);
+
+        &::before {
+            color: $white;
+            background: $primary;
+        }
+
+        &::after {
+            opacity: 1;
+            transform: none;
+        }
+    }
+}
+
+// Placed explicitly: auto-placement would put the hint in the arrow's column
+.toc-title,
+.toc-hint {
+    grid-column: 2;
+}
+
+.toc-title {
+    font-weight: $font-weight-medium;
+}
+
+.toc-hint {
+    justify-self: start;
+    text-decoration: none;
+    padding: 0;
+    font-size: 0.75rem;
+    color: $text-secondary;
+    background: none;
+}
+
+// The showcase pages: each example is a section, set apart by a rule
+.docs h2[id] {
+    padding-top: 2.5rem;
+    margin-top: 1rem;
+    border-top: 1px solid $border-color;
+    scroll-margin-top: 1rem;
 }

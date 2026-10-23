@@ -1,0 +1,3 @@
+{# prompt: prefixes the line with "$", status: colors it (success, warning, danger, primary) #}
+{% props prompt = false, status = null %}
+<div {{ attributes.defaults({class: 'terminal-line' ~ (prompt ? ' terminal-prompt') ~ (status ? ' text-' ~ status)}) }}>{% block content %}{% endblock %}</div>

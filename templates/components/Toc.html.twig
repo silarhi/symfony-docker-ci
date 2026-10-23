@@ -1,0 +1,12 @@
+{#
+    A table of contents as a grid of numbered tiles: the numbers come from a CSS counter.
+
+    <twig:Toc title="Examples">
+        <twig:Toc:Item href="#priority" hint="fetchpriority">Priority image (LCP)</twig:Toc:Item>
+    </twig:Toc>
+#}
+{% props title = 'Contents' %}
+<nav {{ attributes.defaults({class: 'toc', 'aria-label': title}) }}>
+    <h2 class="section-header-meta mb-3">{{ title }}</h2>
+    <ol class="toc-list">{% block content %}{% endblock %}</ol>
+</nav>

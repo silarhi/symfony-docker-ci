@@ -1,0 +1,23 @@
+{#
+    A section heading with a tag and a meta line on the right.
+
+    <twig:SectionHeader tag="Fitting" title="Resize modes" meta="crop, stretch, fill" />
+
+    Composed:
+    <twig:SectionHeader>
+        <twig:SectionHeader:Tag>React</twig:SectionHeader:Tag>
+        <twig:SectionHeader:Title>Posts</twig:SectionHeader:Title>
+        <twig:SectionHeader:Meta>200 OK</twig:SectionHeader:Meta>
+    </twig:SectionHeader>
+#}
+{% props tag = null, title = null, meta = null, level = 2 %}
+<div {{ attributes.defaults({class: 'section-header'}) }}>
+    {% if tag or title %}
+        <div class="d-flex align-items-center gap-2">
+            {% if tag %}<twig:SectionHeader:Tag>{{ tag }}</twig:SectionHeader:Tag>{% endif %}
+            {% if title %}<twig:SectionHeader:Title level="{{ level }}">{{ title }}</twig:SectionHeader:Title>{% endif %}
+        </div>
+    {% endif %}
+    {% block content %}{% endblock %}
+    {% if meta %}<twig:SectionHeader:Meta>{{ meta }}</twig:SectionHeader:Meta>{% endif %}
+</div>

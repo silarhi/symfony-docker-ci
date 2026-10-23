@@ -4,9 +4,30 @@
 
 {% block body %}
     <div class="container my-4">
-        {{ description|markdown_to_html }}
-        <br />
-        <div {{ stimulus_controller('index') }}>This will be modified by Javascript</div>
+        <twig:StatusBar label="Build {{ app_version }}" class="mb-3">
+            <twig:StatusBar:Item label="Commit">{{ git_commit }}</twig:StatusBar:Item>
+            <twig:StatusBar:Item label="Env">{{ app.environment }}</twig:StatusBar:Item>
+            <twig:StatusBar:Item label="Runner">CircleCI</twig:StatusBar:Item>
+        </twig:StatusBar>
+
+        <div class="card mb-5">
+            <div class="card-body p-4 p-lg-5 readme">
+                {{ description|markdown_to_html }}
+            </div>
+        </div>
+
+        <div class="mb-5" {{ stimulus_controller('index') }}>This will be modified by Javascript</div>
+
+        <twig:Terminal title="Docker build stages" meta="Dockerfile">
+            <twig:Terminal:Line prompt>docker build --build-arg APP_VERSION={{ app_version }} --build-arg GIT_COMMIT={{ git_commit }} -t silarhi/symfony-docker-ci .</twig:Terminal:Line>
+            <twig:Terminal:Line status="success">[OK] php_base     PHP + exif, gd, imagick</twig:Terminal:Line>
+            <twig:Terminal:Line status="success">[OK] php_builder  composer install</twig:Terminal:Line>
+            <twig:Terminal:Line status="success">[OK] php_icons    bin/console ux-icons-js:dump</twig:Terminal:Line>
+            <twig:Terminal:Line status="success">[OK] node_deps    pnpm install</twig:Terminal:Line>
+            <twig:Terminal:Line status="success">[OK] node_builder vite build</twig:Terminal:Line>
+            <twig:Terminal:Line status="success">[OK] final        cache warmup, .env.local.php</twig:Terminal:Line>
+            <twig:Terminal:Line status="primary">&gt;&gt; Deployed by CircleCI to labs.silarhi.fr</twig:Terminal:Line>
+        </twig:Terminal>
     </div>
 {% endblock %}
 

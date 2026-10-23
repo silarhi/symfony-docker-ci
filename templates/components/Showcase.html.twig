@@ -1,17 +1,19 @@
 {#
-    A showcase card: Preview / Code pills switch between the rendered example (the content) and its source
-    (the "code" block), like the examples of most component libraries' docs.
+    A showcase card: Preview / Code switch between the rendered example (the content) and its source
+    (the "code" block), like the examples of most component libraries' docs. The meta chip, on the right
+    of the switch, names what the example shows.
 
-    <twig:Showcase>
+    <twig:Showcase meta="q=40">
         <img src="..." class="d-block w-100" alt="...">
+        <twig:Showcase:Caption title="Quality set to 40%">Heavy compression, on this image only.</twig:Showcase:Caption>
         <twig:block name="code"><pre>...</pre></twig:block>
     </twig:Showcase>
 #}
-{% props active = 'preview' %}
+{% props active = 'preview', meta = null, metaColor = 'primary' %}
 {% set id = 'showcase-' ~ random() %}
-<div {{ attributes.defaults({class: 'showcase card shadow-sm overflow-hidden'}) }}>
+<div {{ attributes.defaults({class: 'showcase card overflow-hidden'}) }}>
     <div class="card-header">
-        <ul class="nav nav-pills card-header-pills" role="tablist">
+        <ul class="nav nav-segmented" role="tablist">
             {% for tab, label in {preview: 'Preview', code: 'Code'} %}
                 <li class="nav-item" role="presentation">
                     <button
@@ -27,6 +29,9 @@
                 </li>
             {% endfor %}
         </ul>
+        {% if meta %}
+            <twig:Showcase:Meta color="{{ metaColor }}" class="ms-auto">{{ meta }}</twig:Showcase:Meta>
+        {% endif %}
     </div>
     <div class="tab-content flex-grow-1">
         <div class="tab-pane h-100{{ 'preview' == active ? ' active' }}" id="{{ id }}-preview" role="tabpanel" aria-labelledby="{{ id }}-preview-tab">

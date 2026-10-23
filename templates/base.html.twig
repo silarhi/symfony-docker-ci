@@ -26,7 +26,10 @@
 <body>
 <nav class="navbar navbar-expand-md" data-bs-theme="dark">
     <div class="container">
-        <a class="navbar-brand" href="{{ path('homepage') }}">App Demo</a>
+        <a class="navbar-brand gap-2" href="{{ path('homepage') }}">
+            App Demo
+            <span class="badge badge-version">v{{ app_version }}</span>
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -68,26 +71,26 @@
     </div>
 </nav>
 <main>{% block body %}{% endblock %}</main>
-<footer class="py-4 bg-dark">
-    <div class="container text-center">
-        <ul class="list-inline">
+<footer class="site-footer">
+    <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between gap-2">
+        <ul class="list-inline mb-0 font-monospace small text-center text-md-start">
             <li class="list-inline-item">
                 Git commit:
                 <a href="https://github.com/silarhi/symfony-docker-ci/commit/{{ git_commit }}">{{ git_commit }}</a>
             </li>
             <li class="list-inline-item">
-                App version: <span class="badge text-bg-primary">{{ app_version }}</span>
+                App version: <span class="badge badge-version">{{ app_version }}</span>
             </li>
             <li class="list-inline-item">
                 Symfony version:
-                <span class="badge text-bg-primary">{{ constant('Symfony\\Component\\HttpKernel\\Kernel::VERSION') }}</span>
+                <span class="badge badge-version">{{ constant('Symfony\\Component\\HttpKernel\\Kernel::VERSION') }}</span>
             </li>
             <li class="list-inline-item">
                 PHP version:
-                <span class="badge text-bg-primary">{{ php_version }}</span>
+                <span class="badge badge-version">{{ php_version }}</span>
             </li>
         </ul>
-        <a href="https://sainthillier.fr">Guillaume Sainthillier - PHP Web Developer</a>
+        <a class="small" href="https://sainthillier.fr">Guillaume Sainthillier - PHP Web Developer</a>
     </div>
 </footer>
 </body>

@@ -57,6 +57,8 @@ export default defineConfig(({ mode }) => {
                             'collapsed',
                             // Slots rendered by Tabler's OTP plugin (2FA code)
                             /^otp-/,
+                            // Built from a prop by the StatusDot and Terminal:Line components
+                            /^(bg|text)-(primary|success|warning|danger)$/,
                         ],
                     }),
                 ],

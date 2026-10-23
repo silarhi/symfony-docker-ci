@@ -1,0 +1,3 @@
+{# A square status indicator: <twig:StatusDot color="success" /> #}
+{% props color = 'success' %}
+<span {{ attributes.defaults({class: 'status-dot-square bg-' ~ color, 'aria-hidden': 'true'}) }}></span>

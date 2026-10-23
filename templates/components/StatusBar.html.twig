@@ -1,0 +1,16 @@
+{#
+    A monospace status strip, like the header of a terminal or a CI run.
+
+    <twig:StatusBar label="Build 1.42" status="success">
+        <twig:StatusBar:Item label="Env">prod</twig:StatusBar:Item>
+    </twig:StatusBar>
+
+    Composed: put a <twig:StatusBar:Label> in the content to replace the label and its dot.
+#}
+{% props label = null, status = 'success' %}
+<div {{ attributes.defaults({class: 'status-bar'}) }}>
+    {% if label %}
+        <twig:StatusBar:Label status="{{ status }}">{{ label }}</twig:StatusBar:Label>
+    {% endif %}
+    {% block content %}{% endblock %}
+</div>

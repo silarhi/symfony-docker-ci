@@ -1,0 +1,5 @@
+{% props label = null %}
+<span {{ attributes.defaults({class: 'status-bar-item'}) }}>
+    {%- if label %}<span class="text-secondary">{{ label }}:</span> {% endif -%}
+    <strong>{% block content %}{% endblock %}</strong>
+</span>

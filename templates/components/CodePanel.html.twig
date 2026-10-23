@@ -1,0 +1,26 @@
+{#
+    A dark code panel with a header bar: the file name on the left, a hint on the right.
+
+    <twig:CodePanel title="config/packages/ux_icons.yaml" meta="YAML">
+        <pre><code>...</code></pre>
+    </twig:CodePanel>
+
+    Composed:
+    <twig:CodePanel>
+        <twig:CodePanel:Header>
+            <twig:CodePanel:Title>Response</twig:CodePanel:Title>
+            <twig:CodePanel:Meta>application/json</twig:CodePanel:Meta>
+        </twig:CodePanel:Header>
+        <pre><code>...</code></pre>
+    </twig:CodePanel>
+#}
+{% props title = null, meta = null %}
+<div {{ attributes.defaults({class: 'code-panel'}) }}>
+    {% if title or meta %}
+        <twig:CodePanel:Header>
+            {% if title %}<twig:CodePanel:Title>{{ title }}</twig:CodePanel:Title>{% endif %}
+            {% if meta %}<twig:CodePanel:Meta>{{ meta }}</twig:CodePanel:Meta>{% endif %}
+        </twig:CodePanel:Header>
+    {% endif %}
+    {% block content %}{% endblock %}
+</div>

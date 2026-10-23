@@ -3,38 +3,49 @@
 {% block title %}UX Icons JS showcase{% endblock %}
 
 {% block body %}
-    <div class="container my-4">
-        <div class="mb-5">
-            <h1>UX Icons JS showcase</h1>
-            <p class="lead">
-                A live demo of <a href="https://github.com/silarhi/ux-icons-js-bundle" target="_blank" rel="noopener">silarhi/ux-icons-js-bundle</a>
-                and its npm companion <a href="https://www.npmjs.com/package/@silarhi/ux-icons-js" target="_blank" rel="noopener">@silarhi/ux-icons-js</a>:
-                the <a href="https://symfony.com/bundles/ux-icons/current/index.html" target="_blank" rel="noopener">Symfony UX Icons</a>
-                of your Twig templates, in JavaScript, React and Vue. Everything is documented on
-                <a href="https://ux-icons-js-bundle.silarhi.dev" target="_blank" rel="noopener">ux-icons-js-bundle.silarhi.dev</a>.
-                Why and how it was built:
-                <a href="https://blog.silarhi.fr/symfony-ux-icons-javascript-react-vue/" target="_blank" rel="noopener">the introduction on the SILARHI blog</a>
-                (in French).
-            </p>
-            <p class="mb-0">
-                On cache warmup, the bundle dumps the local icons of <code>assets/icons/</code> into <code>var/icons/</code>,
-                one named export per icon, with the attributes <code>ux_icon()</code> gives them. The JavaScript side renders
-                them without <code>innerHTML</code>. Switch any example to <em>Code</em> to see the code behind it.
-            </p>
-        </div>
+    <div class="container my-4 docs">
+        <twig:StatusBar label="Icons dumped" class="mb-3">
+            <twig:StatusBar:Item label="From">assets/icons/</twig:StatusBar:Item>
+            <twig:StatusBar:Item label="To">var/icons/</twig:StatusBar:Item>
+            <twig:StatusBar:Item label="When">cache warmup</twig:StatusBar:Item>
+        </twig:StatusBar>
+        <twig:PageHero eyebrow="silarhi/ux-icons-js-bundle" title="UX Icons JS showcase" class="mb-4">
+            <twig:PageHero:Lead>
+                The <a href="https://symfony.com/bundles/ux-icons/current/index.html" target="_blank" rel="noopener">Symfony UX Icons</a>
+                of your Twig templates, in JavaScript, React and Vue. On cache warmup, the bundle dumps the local icons of
+                <code>assets/icons/</code> into <code>var/icons/</code>: switch any example to <em>Code</em> to see the code behind it.
+            </twig:PageHero:Lead>
+            <twig:PageHero:Features>
+                <twig:PageHero:Feature>One named export per icon</twig:PageHero:Feature>
+                <twig:PageHero:Feature>The attributes <code>ux_icon()</code> gives them</twig:PageHero:Feature>
+                <twig:PageHero:Feature>Rendered without <code>innerHTML</code></twig:PageHero:Feature>
+                <twig:PageHero:Feature>Vanilla JavaScript, React and Vue</twig:PageHero:Feature>
+            </twig:PageHero:Features>
+            <twig:PageHero:Actions>
+                <a class="btn btn-primary" href="https://ux-icons-js-bundle.silarhi.dev" target="_blank" rel="noopener">
+                    Documentation {{ ux_icon('lucide:external-link', {class: 'ms-1'}) }}
+                </a>
+                <a class="btn" href="https://github.com/silarhi/ux-icons-js-bundle" target="_blank" rel="noopener">
+                    silarhi/ux-icons-js-bundle {{ ux_icon('lucide:external-link', {class: 'ms-1'}) }}
+                </a>
+                <a class="btn" href="https://www.npmjs.com/package/@silarhi/ux-icons-js" target="_blank" rel="noopener">
+                    @silarhi/ux-icons-js {{ ux_icon('lucide:external-link', {class: 'ms-1'}) }}
+                </a>
+                <a class="btn" href="https://blog.silarhi.fr/symfony-ux-icons-javascript-react-vue/" target="_blank" rel="noopener">
+                    Why and how it was built (in French) {{ ux_icon('lucide:external-link', {class: 'ms-1'}) }}
+                </a>
+            </twig:PageHero:Actions>
+        </twig:PageHero>
 
-        <nav class="mb-5" aria-label="Examples">
-            <h2 class="h4">Examples</h2>
-            <ol class="mb-0">
-                <li><a href="#same-html">Same HTML as <code>ux_icon()</code></a></li>
-                <li><a href="#configuration">The <code>ux_icons</code> configuration, reused</a></li>
-                <li><a href="#vanilla">Vanilla JavaScript in a Stimulus controller</a></li>
-                <li><a href="#react">React component</a></li>
-                <li><a href="#dynamic-names">Icon names from an API</a></li>
-                <li><a href="#attributes">Attributes, the <code>ux_icon()</code> way</a></li>
-                <li><a href="#lock">A new icon in two steps</a></li>
-            </ol>
-        </nav>
+        <twig:Toc title="Examples" class="mb-5">
+            <twig:Toc:Item href="#same-html" hint="ux_icon()">Same HTML as on the server</twig:Toc:Item>
+            <twig:Toc:Item href="#configuration" hint="ux_icons">The configuration, reused</twig:Toc:Item>
+            <twig:Toc:Item href="#vanilla" hint="createIconElement()">Vanilla JavaScript in a Stimulus controller</twig:Toc:Item>
+            <twig:Toc:Item href="#react" hint="UXIcon">React component</twig:Toc:Item>
+            <twig:Toc:Item href="#dynamic-names" hint="UXLazyIcon">Icon names from an API</twig:Toc:Item>
+            <twig:Toc:Item href="#attributes" hint="resolveIcon()">Attributes, the ux_icon() way</twig:Toc:Item>
+            <twig:Toc:Item href="#lock" hint="ux:icons:lock">A new icon in two steps</twig:Toc:Item>
+        </twig:Toc>
 
         {# A string, not markup: printed |raw in the preview, escaped in the comparison below #}
         {% set twigIcon = ux_icon('lucide:trash-2', {class: 'text-danger', 'aria-label': 'Delete'}) %}
@@ -46,9 +57,9 @@
             </p>
             <div class="row row-cols-1 row-cols-md-3 mb-3">
                 <div class="col mb-3 d-flex flex-column">
-                    <twig:Showcase class="flex-grow-1">
+                    <twig:Showcase class="flex-grow-1" meta="server">
                         <div class="card-body text-center fs-1">{{ twigIcon|raw }}</div>
-                        <div class="card-footer text-center text-muted small">Twig, <code>ux_icon()</code></div>
+                        <twig:Showcase:Caption class="border-top">Twig, <code>ux_icon()</code></twig:Showcase:Caption>
                         <twig:block name="code">
                             <pre class="small h-100 mb-0 rounded-0"><code>{% apply escape %}{% verbatim %}{{ ux_icon('lucide:trash-2', {
     class: 'text-danger',
@@ -58,9 +69,9 @@
                     </twig:Showcase>
                 </div>
                 <div class="col mb-3 d-flex flex-column">
-                    <twig:Showcase class="flex-grow-1">
+                    <twig:Showcase class="flex-grow-1" meta="browser">
                         <div class="card-body text-center fs-1" {{ stimulus_target('icons-compare', 'preview') }}></div>
-                        <div class="card-footer text-center text-muted small">JavaScript, <code>createIconElement()</code></div>
+                        <twig:Showcase:Caption class="border-top">JavaScript, <code>createIconElement()</code></twig:Showcase:Caption>
                         <twig:block name="code">
                             <pre class="small h-100 mb-0 rounded-0"><code>{% apply escape %}{% verbatim %}import { createIconElement } from '@silarhi/ux-icons-js'
 import { LucideTrash2Icon } from '@icons/index.js'
@@ -74,9 +85,9 @@ element.append(createIconElement(LucideTrash2Icon, {
                     </twig:Showcase>
                 </div>
                 <div class="col mb-3 d-flex flex-column">
-                    <twig:Showcase class="flex-grow-1">
+                    <twig:Showcase class="flex-grow-1" meta="browser">
                         <div class="card-body text-center fs-1" {{ stimulus_controller('icons-react', {component: 'Trash'}) }}></div>
-                        <div class="card-footer text-center text-muted small">React, <code>&lt;UXIcon&gt;</code></div>
+                        <twig:Showcase:Caption class="border-top">React, <code>&lt;UXIcon&gt;</code></twig:Showcase:Caption>
                         <twig:block name="code">
                             <pre class="small h-100 mb-0 rounded-0"><code>{% apply escape %}{% verbatim %}import { UXIcon } from '@silarhi/ux-icons-js/react'
 import { LucideTrash2Icon } from '@icons/index.js'
@@ -120,9 +131,8 @@ import { LucideTrash2Icon } from '@icons/index.js'
         </p>
         <div class="row row-cols-1 row-cols-lg-2 mb-5">
             <div class="col mb-3 d-flex flex-column">
-                <div class="card flex-grow-1">
-                    <div class="card-header"><h3 class="card-title"><code>config/packages/ux_icons.yaml</code></h3></div>
-                    <pre class="small h-100 mb-0 rounded-0"><code>{% verbatim %}ux_icons:
+                <twig:CodePanel title="config/packages/ux_icons.yaml" meta="YAML" class="flex-grow-1">
+                    <pre class="small mb-0"><code>{% verbatim %}ux_icons:
     default_icon_attributes:
         fill: currentColor
         height: '1em'
@@ -135,13 +145,12 @@ import { LucideTrash2Icon } from '@icons/index.js'
 
     aliases:
         delete: 'lucide:trash-2'{% endverbatim %}</code></pre>
-                </div>
+                </twig:CodePanel>
             </div>
             <div class="col mb-3 d-flex flex-column">
-                <div class="card flex-grow-1">
-                    <div class="card-header"><h3 class="card-title"><code>var/icons/index.js</code>, as dumped</h3></div>
-                    <pre class="small h-100 mb-0 rounded-0 text-wrap text-break"><code>{{ dumpExample ?? 'Run bin/console ux-icons-js:dump' }}</code></pre>
-                </div>
+                <twig:CodePanel title="var/icons/index.js" meta="As dumped" class="flex-grow-1">
+                    <pre class="small mb-0 text-wrap text-break"><code>{{ dumpExample ?? 'Run bin/console ux-icons-js:dump' }}</code></pre>
+                </twig:CodePanel>
             </div>
         </div>
 
@@ -151,7 +160,7 @@ import { LucideTrash2Icon } from '@icons/index.js'
             check mark once the command is copied. <code>createIconElement()</code> builds the <code>&lt;svg&gt;</code>
             with the DOM API: no HTML is parsed, which suits a strict Content Security Policy.
         </p>
-        <twig:Showcase class="mb-5">
+        <twig:Showcase class="mb-5" meta="createIconElement()">
             <div class="card-body">
                 <div class="input-group" {{ stimulus_controller('icons-copy', {text: 'composer require silarhi/ux-icons-js-bundle'}) }}>
                     <input type="text" class="form-control font-monospace" value="composer require silarhi/ux-icons-js-bundle" readonly aria-label="Command" {{ stimulus_target('icons-copy', 'input') }}>
@@ -185,7 +194,7 @@ export default class extends Controller {
             Its props follow the <code>ux_icon()</code> rules, event handlers and refs are passed to React as they are.
             Only the imported star ends up in the bundle: the other icons of the dump are tree-shaken.
         </p>
-        <twig:Showcase class="mb-5">
+        <twig:Showcase class="mb-5" meta="UXIcon">
             <div class="card-body" {{ stimulus_controller('icons-react', {component: 'Rating', props: {max: 5}}) }}></div>
             <twig:block name="code">
                 <pre class="small h-100 mb-0 rounded-0"><code>{% apply escape %}{% verbatim %}import { UXIcon } from '@silarhi/ux-icons-js/react'
@@ -216,7 +225,7 @@ export default function Rating({ max = 5 }) {
             alone, from the dumped <code>loaders</code> map, and shows a fallback meanwhile. Open the network tab of your
             dev tools: every icon is its own small chunk. The last name is unknown to the dump, so its fallback stays.
         </p>
-        <twig:Showcase class="mb-5">
+        <twig:Showcase class="mb-5" meta="UXLazyIcon">
             <div {{ stimulus_controller('icons-react', {component: 'StatusBoard', props: {url: path('icons_api_status')}}) }}></div>
             <twig:block name="code">
                 <pre class="small h-100 mb-0 rounded-0"><code>{% apply escape %}{% verbatim %}import { UXLazyIcon } from '@silarhi/ux-icons-js/react'
@@ -264,20 +273,18 @@ services.map(({ label, icon }) => (
         </p>
         <div class="row row-cols-1 row-cols-lg-2 mb-4">
             <div class="col mb-3 d-flex flex-column">
-                <div class="card flex-grow-1">
-                    <div class="card-header"><h3 class="card-title">1. Import it</h3></div>
-                    <pre class="small h-100 mb-0 rounded-0"><code>{% verbatim %}// assets/js/controllers/mail_controller.ts
+                <twig:CodePanel title="1. Import it" meta="TypeScript" class="flex-grow-1">
+                    <pre class="small mb-0"><code>{% verbatim %}// assets/js/controllers/mail_controller.ts
 import { LucideMailIcon } from '@icons/index.js'{% endverbatim %}</code></pre>
-                </div>
+                </twig:CodePanel>
             </div>
             <div class="col mb-3 d-flex flex-column">
-                <div class="card flex-grow-1">
-                    <div class="card-header"><h3 class="card-title">2. Lock it</h3></div>
-                    <pre class="small h-100 mb-0 rounded-0"><code>{% verbatim %}$ php bin/console ux:icons:lock
+                <twig:CodePanel title="2. Lock it" meta="Terminal" class="flex-grow-1">
+                    <pre class="small mb-0"><code>{% verbatim %}$ php bin/console ux:icons:lock
  ✓ Imported lucide:mail (License: ISC). Render with: {{ ux_icon('lucide:mail') }}
  JavaScript: import { LucideMailIcon }
  // Dumped 16 icon(s) for JavaScript.{% endverbatim %}</code></pre>
-                </div>
+                </twig:CodePanel>
             </div>
         </div>
     </div>

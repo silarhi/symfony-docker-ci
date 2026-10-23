@@ -9,25 +9,51 @@
         </div>
     {% endif %}
 
-    <div class="container mt-5 mb-5">
+    <div class="container my-5">
         <div class="row justify-content-center">
-            <div class="col-md-6">
+            <div class="col-md-8 col-lg-6">
+                <twig:StatusBar label="TOTP 2FA" status="primary" class="mb-3">
+                    <twig:StatusBar:Item label="Step">2 / 2</twig:StatusBar:Item>
+                </twig:StatusBar>
                 <form method="post">
                     <div class="card">
-                        <div class="card-body text-center">
-                            <h1 class="mb-4">Set up two-factor authentication</h1>
-                            <p class="text-secondary">1. Scan this QR code with your authenticator app.</p>
+                        <div class="card-body text-center p-4 p-lg-5">
+                            <span class="avatar avatar-lg bg-primary-lt mb-3">{{ ux_icon('lucide:shield-check', {class: 'icon-lg'}) }}</span>
+                            <h1 class="mb-2">Set up two-factor authentication</h1>
+                            <p class="text-secondary mb-4">A time-based code from your authenticator app, on top of your password.</p>
+
+                            <span class="tag-mono mb-2">Step 1</span>
+                            <p>Scan this QR code with your authenticator app.</p>
                             <img width="300" height="300" class="qr-image" src="data:image/png;base64,{{ qrCodeImage }}" alt="QR code to scan with your authenticator app" />
-                            <p class="small text-secondary mt-2 mb-4">
-                                Can't scan it? Enter this key instead: <code class="user-select-all">{{ secretKey }}</code>
-                            </p>
-                            <p class="text-secondary"><label for="qrCode">2. Enter the 6-digit code it shows.</label></p>
+                            <div class="secret-key mt-3 mb-4" {{ stimulus_controller('clipboard', {text: secretKey}) }}>
+                                <span class="small text-secondary">Can't scan it? Enter this key instead:</span>
+                                <div class="input-group input-group-flat mt-1">
+                                    <input type="text" class="form-control font-monospace text-center" value="{{ secretKey }}" readonly aria-label="Secret key">
+                                    <span class="input-group-text">
+                                        <button type="button" class="btn btn-link btn-sm p-0 label-mono" {{ stimulus_action('clipboard', 'copy') }}>
+                                            <span {{ stimulus_target('clipboard', 'label') }}>Copy</span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <span class="tag-mono mb-2">Step 2</span>
+                            <p><label for="qrCode">Enter the 6-digit code it shows.</label></p>
                             <div class="otp otp-lg mb-4" data-controller="otp">
                                 <input type="text" id="qrCode" name="qrCode" class="otp-input" maxlength="6" required="required" autofocus />
                             </div>
                             <div>
-                                <input type="submit" class="btn btn-lg btn-primary" value="Setup" />
+                                <button type="submit" class="btn btn-lg btn-primary">
+                                    Setup {{ ux_icon('lucide:arrow-right', {class: 'ms-1'}) }}
+                                </button>
                             </div>
+                        </div>
+                        <div class="card-footer">
+                            <ul class="list-inline mb-0 text-center label-mono text-secondary">
+                                <li class="list-inline-item">RFC 6238</li>
+                                <li class="list-inline-item">30s period</li>
+                                <li class="list-inline-item">6 digits</li>
+                            </ul>
                         </div>
                     </div>
                 </form>
