@@ -4,6 +4,8 @@ twig:
         php_version: !php/const PHP_VERSION
         app_version: '%env(APP_VERSION)%'
         git_commit: '%env(GIT_COMMIT)%'
+        # The Umami tracker loads in prod only, when the website id is set (templates/base.html.twig)
+        umami_website_id: '%env(default::UMAMI_WEBSITE_ID)%'
 
 when@test:
     twig:

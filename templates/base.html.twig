@@ -14,6 +14,14 @@
     {% block stylesheets %}{% endblock %}
     {{ reprise_entry_script_tags('app') }}
     {% block javascripts %}{% endblock %}
+
+    {# Umami (self-hosted, cookieless): page views only, prod only, once the website id is set (UMAMI_WEBSITE_ID);
+       data-domains keeps other hosts out of the stats. Loaded from the site's own origin, so ad blockers do not drop
+       it as a third-party analytics host: the host's Traefik hands /a/script.js and /a/api/send (where the script
+       posts, next to itself) to Umami #}
+    {% if app.environment == 'prod' and umami_website_id %}
+        <script defer src="/a/script.js" data-website-id="{{ umami_website_id }}" data-domains="labs.silarhi.fr"></script>
+    {% endif %}
 </head>
 <body>
 <nav class="navbar navbar-expand-md" data-bs-theme="dark">
