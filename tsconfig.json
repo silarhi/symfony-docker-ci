@@ -1,0 +1,25 @@
+{
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "compilerOptions": {
+        "strict": true,
+        "noEmit": true,
+        "target": "es2022",
+        "module": "esnext",
+        "moduleResolution": "bundler",
+        "lib": ["es2022", "dom", "dom.iterable"],
+        "types": ["vite/client"],
+        "jsx": "react-jsx",
+        "isolatedModules": true,
+        "verbatimModuleSyntax": true,
+        "noUncheckedIndexedAccess": true,
+        "skipLibCheck": true,
+        "paths": {
+            "@/*": ["./assets/*"],
+            "@icons/*": ["./var/icons/*"],
+            // Types only: Tabler's sources are TypeScript written for its own compiler options, so they are
+            // typed from the declarations it publishes. Vite still bundles the sources (no alias there).
+            "@tabler/core/js/src/*": ["./node_modules/@tabler/core/dist/types/src/*"]
+        }
+    },
+    "include": ["assets/**/*.ts", "assets/**/*.tsx"]
+}

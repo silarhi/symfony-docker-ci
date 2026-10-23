@@ -1,11 +1,11 @@
 import { Controller } from '@hotwired/stimulus'
 import { LucideHeartIcon } from '@icons/index.js'
-import { resolveIcon } from '@silarhi/ux-icons-js'
+import { resolveIcon, type UXIconAttributes } from '@silarhi/ux-icons-js'
 
 const isActive = false
 
 // Attributes given in JavaScript, and what ux_icon() rules make of them
-const EXAMPLES = [
+const EXAMPLES: [code: string, attributes: UXIconAttributes][] = [
     ['{}', {}],
     ["{ 'aria-label': 'Like' }", { 'aria-label': 'Like' }],
     [
@@ -23,6 +23,7 @@ const HIDDEN = ['xmlns', 'viewBox']
 // Fills the table with the attributes resolveIcon() computes, in the browser
 export default class extends Controller {
     static targets = ['body']
+    declare readonly bodyTarget: HTMLTableSectionElement
 
     connect() {
         this.bodyTarget.replaceChildren(

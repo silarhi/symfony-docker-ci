@@ -42,7 +42,7 @@ FROM node_base AS node_builder
 WORKDIR /app
 COPY --from=node_deps --link /app/node_modules ./node_modules
 COPY --from=node_deps --link /app/vendor ./vendor
-COPY --link package.json pnpm-lock.yaml pnpm-workspace.yaml vite.config.js ./
+COPY --link package.json pnpm-lock.yaml pnpm-workspace.yaml vite.config.ts ./
 COPY --link assets ./assets
 COPY --from=php_icons --link /app/var/icons ./var/icons
 # PurgeCSS keeps the selectors used in the Twig templates

@@ -7,6 +7,10 @@ import { createIconElement, renderIcon } from '@silarhi/ux-icons-js'
 export default class extends Controller {
     static targets = ['preview', 'javascript', 'result']
     static values = { twig: String }
+    declare readonly previewTargets: HTMLElement[]
+    declare readonly javascriptTarget: HTMLElement
+    declare readonly resultTarget: HTMLElement
+    declare readonly twigValue: string
 
     connect() {
         this.previewTargets.forEach((preview) =>

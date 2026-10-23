@@ -1,9 +1,9 @@
 import { Controller } from '@hotwired/stimulus'
-import { createRoot } from 'react-dom/client'
+import { createRoot, type Root } from 'react-dom/client'
 import App from '@/js/component/App'
 
 class IndexController extends Controller {
-    #root
+    #root?: Root
     connect() {
         if (document.documentElement.hasAttribute('data-turbo-preview')) {
             return

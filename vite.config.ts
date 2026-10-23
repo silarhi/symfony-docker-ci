@@ -14,7 +14,7 @@ if (!existsSync(`${icons}/index.js`)) {
 
 // PurgeCSS drops every selector it does not find in these files: without the templates (e.g. a
 // Docker stage that does not copy them), the build would silently ship a CSS stripped of the layout.
-const purgeContent = ['templates/**/*.twig', 'assets/js/**/*.{js,jsx}']
+const purgeContent = ['templates/**/*.twig', 'assets/js/**/*.{ts,tsx}']
 if (0 === globSync('templates/**/*.twig').length) {
     throw new Error('No Twig template found for PurgeCSS: copy templates/ before building the assets.')
 }
@@ -80,9 +80,9 @@ export default defineConfig(({ mode }) => {
             // entrypoints.json entry consumed by reprise_entry_*_tags().
             rollupOptions: {
                 input: {
-                    app: `${assets}/js/app.js`,
-                    index: `${assets}/js/pages/index.jsx`,
-                    icons: `${assets}/js/pages/icons.jsx`,
+                    app: `${assets}/js/app.ts`,
+                    index: `${assets}/js/pages/index.tsx`,
+                    icons: `${assets}/js/pages/icons.tsx`,
                 },
             },
 
