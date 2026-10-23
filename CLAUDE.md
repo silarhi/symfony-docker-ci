@@ -74,6 +74,9 @@ pnpm format               # pnpm lint && pnpm prettier
 
 # Unused files/dependencies
 pnpm knip
+
+# TypeScript (dumps var/icons first, so it needs vendor/: run composer install before)
+pnpm typecheck
 ```
 
 ### Docker
@@ -139,11 +142,11 @@ The application uses League Glide for on-the-fly image manipulation:
 - Stimulus controllers for progressive enhancement
 - Hotwire Turbo for SPA-like navigation
 
-**Entry Points** (vite.config.js, `build.rollupOptions.input`):
+**Entry Points** (vite.config.ts, `build.rollupOptions.input`):
 
 - `app` - Main application CSS/JS (base.html.twig)
-- `index` - React-based index page (assets/js/pages/index.jsx)
-- `icons` - UX Icons JS showcase (assets/js/pages/icons.jsx): its Stimulus controllers and React components live in `assets/js/icons/`
+- `index` - React-based index page (assets/js/pages/index.tsx)
+- `icons` - UX Icons JS showcase (assets/js/pages/icons.tsx): its Stimulus controllers and React components live in `assets/js/icons/`
 
 **Icons**: `silarhi/ux-icons-js-bundle` dumps the local icons of `assets/icons/` into `var/icons/` (not committed) on cache warmup, or with `bin/console ux-icons-js:dump`. They are imported through the `@icons` alias (`@icons/index.js`, `@icons/loaders.js`), so the Vite build fails until they are dumped. Add an icon by importing it, then `bin/console ux:icons:lock` (or `ux:icons:import lucide:<name>`).
 
@@ -189,7 +192,11 @@ Notable rules from `.php-cs-fixer.dist.php`:
 - Biome (`biome.json`, React domain) for linting and formatting: 4-space indent, single quotes, no semicolons
 - Prettier only for SCSS/Markdown/YAML
 - React 19 with hooks patterns
-- ES6+ syntax required
+- TypeScript, `strict` (`tsconfig.json` for `assets/`, `tsconfig.node.json` for `vite.config.ts`); no `any`, no `@ts-ignore`, no `prop-types`
+- Declarations for untyped code live in `assets/types/` (Turbo events, `window.app`)
+- Stimulus targets and values are typed with `declare readonly fooTarget: HTMLElement`
+- `@icons/*` is typed by the `.d.ts` files the dump writes next to `var/icons/*.js`
+- `@tabler/core/js/src/*` is typed from Tabler's `dist/types/src/` (`paths` in `tsconfig.json`): its raw `.ts` sources do not compile under our options
 
 ## CI/CD Pipeline
 
@@ -215,7 +222,7 @@ Located in `.github/workflows/continuous-integration.yml`:
 
 **Lint Job**:
 
-- Biome (`pnpm lint-ci`) and Knip (`pnpm knip`); needs `composer install` first (`@symfony/ux-turbo` is `file:vendor/...`)
+- Biome (`pnpm lint-ci`), Knip (`pnpm knip`) and TypeScript (`pnpm typecheck`); needs `composer install` first (`@symfony/ux-turbo` is `file:vendor/...`)
 - Runs on PRs and pushes to `main`
 
 **QA Checks**:
@@ -283,7 +290,7 @@ templates/            # Twig templates
 
 assets/
 ├── js/
-│   ├── app.js       # Main JavaScript entry
+│   ├── app.ts       # Main TypeScript entry
 │   ├── pages/       # React page components
 │   ├── component/   # Reusable React components
 │   ├── icons/       # Stimulus controllers and React components of the /icons showcase
@@ -319,7 +326,7 @@ config/
 
 1. Create component in `assets/js/component/`
 2. Create page wrapper in `assets/js/pages/`
-3. Add entry point in `vite.config.js` under `build.rollupOptions.input`
+3. Add entry point in `vite.config.ts` under `build.rollupOptions.input`
 4. Include in Twig template with `reprise_entry_script_tags()`
 
 ### Modifying Security Configuration

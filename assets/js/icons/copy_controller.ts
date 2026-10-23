@@ -7,8 +7,11 @@ import { createIconElement } from '@silarhi/ux-icons-js'
 export default class extends Controller {
     static targets = ['icon', 'input']
     static values = { text: String }
+    declare readonly iconTarget: HTMLElement
+    declare readonly inputTarget: HTMLInputElement
+    declare readonly textValue: string
 
-    #timeout
+    #timeout?: ReturnType<typeof setTimeout>
 
     async copy() {
         try {
@@ -27,7 +30,7 @@ export default class extends Controller {
     }
 
     // Shows the given icon for 2 seconds, then the copy icon again
-    #showIcon(icon) {
+    #showIcon(icon: SVGSVGElement) {
         this.iconTarget.replaceChildren(icon)
         clearTimeout(this.#timeout)
         this.#timeout = setTimeout(() => this.iconTarget.replaceChildren(createIconElement(LucideCopyIcon)), 2000)

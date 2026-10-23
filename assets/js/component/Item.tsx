@@ -1,6 +1,10 @@
-import PropTypes from 'prop-types'
+export interface ItemProps {
+    id: number
+    title: string
+    body: string
+}
 
-export default function Items({ id, title, body }) {
+export default function Items({ id, title, body }: ItemProps) {
     return (
         <div className="col-md-4">
             <div className="card">
@@ -13,10 +17,4 @@ export default function Items({ id, title, body }) {
             </div>
         </div>
     )
-}
-
-Items.propTypes = {
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    body: PropTypes.string.isRequired,
 }

@@ -1,9 +1,8 @@
 {
     "$schema": "https://unpkg.com/knip@5/schema.json",
     "entry": [
-        "assets/js/app.js",
-        "assets/js/pages/**/*.{js,jsx}",
-        "assets/js/controllers/**/*.{js,jsx}"
+        "assets/js/pages/**/*.{ts,tsx}",
+        "assets/js/controllers/**/*.{ts,tsx}"
     ],
     "project": [
         "assets/**/*.{js,jsx,ts,tsx}"
@@ -17,15 +16,13 @@
         ]
     },
     "ignoreBinaries": [
-        "composer",
-        "vendor/bin/.+"
+        "composer"
     ],
     "rules": {
         "unlisted": "off",
         "unresolved": "off"
     },
     "ignoreDependencies": [
-        "@tabler/core",
         "@hotwired/turbo",
         "^@symfony/ux-"
     ]

@@ -2,13 +2,25 @@ import { loaders } from '@icons/loaders.js'
 import { UXLazyIcon } from '@silarhi/ux-icons-js/react'
 import { useEffect, useState } from 'react'
 
-const STATUS_COLORS = { Operational: 'text-success', Degraded: 'text-warning', Down: 'text-danger' }
+const STATUS_COLORS: Record<string, string> = {
+    Operational: 'text-success',
+    Degraded: 'text-warning',
+    Down: 'text-danger',
+}
 
 const fallback = <span className="placeholder rounded-circle" style={{ width: '1em', height: '1em' }} />
 
+// One service of the API response: its icon names are only known at runtime
+interface Service {
+    label: string
+    icon: string
+    status: string
+    statusIcon: string
+}
+
 // The icon names come from the API: each UXLazyIcon loads its icon alone, as its own chunk
-export default function StatusBoard({ url }) {
-    const [services, setServices] = useState(null)
+export default function StatusBoard({ url }: { url: string }) {
+    const [services, setServices] = useState<Service[] | null>(null)
 
     useEffect(() => {
         fetch(url)

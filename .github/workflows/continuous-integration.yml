@@ -67,6 +67,8 @@ jobs:
               run: pnpm lint-ci
             - name: Knip
               run: pnpm knip
+            - name: TypeScript
+              run: pnpm typecheck
 
     ci-passed:
         name: CI passed

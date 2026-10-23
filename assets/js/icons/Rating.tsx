@@ -3,7 +3,7 @@ import { UXIcon } from '@silarhi/ux-icons-js/react'
 import { useState } from 'react'
 
 // Static import: the star is bundled with the component, and the other icons of the dump are tree-shaken
-export default function Rating({ max = 5 }) {
+export default function Rating({ max = 5 }: { max?: number }) {
     const [rating, setRating] = useState(3)
 
     return (

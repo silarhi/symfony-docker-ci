@@ -1,13 +1,13 @@
 import React from 'react'
-import Item from '@/js/component/Item'
+import Item, { type ItemProps } from '@/js/component/Item'
 
 export default function App() {
-    const [entries, setEntries] = React.useState([])
+    const [entries, setEntries] = React.useState<ItemProps[]>([])
 
     React.useEffect(() => {
         fetch('https://jsonplaceholder.typicode.com/posts/?_limit=6')
             .then((response) => response.json())
-            .then((entries) => {
+            .then((entries: ItemProps[]) => {
                 setEntries(entries)
             })
     }, [])

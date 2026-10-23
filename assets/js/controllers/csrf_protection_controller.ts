@@ -7,7 +7,9 @@ const tokenCheck = /^[-_/+a-zA-Z0-9]{24,}$/
 document.addEventListener(
     'submit',
     (event) => {
-        generateCsrfToken(event.target)
+        if (event.target instanceof HTMLFormElement) {
+            generateCsrfToken(event.target)
+        }
     },
     true
 )
@@ -16,8 +18,8 @@ document.addEventListener(
 // The `framework.csrf_protection.check_header` config option needs to be enabled for the header to be checked
 document.addEventListener('turbo:submit-start', (event) => {
     const h = generateCsrfHeaders(event.detail.formSubmission.formElement)
-    Object.keys(h).map((k) => {
-        event.detail.formSubmission.fetchRequest.headers[k] = h[k]
+    Object.entries(h).map(([k, v]) => {
+        event.detail.formSubmission.fetchRequest.headers[k] = v
     })
 })
 
@@ -26,8 +28,10 @@ document.addEventListener('turbo:submit-end', (event) => {
     removeCsrfToken(event.detail.formSubmission.formElement)
 })
 
-export function generateCsrfToken(formElement) {
-    const csrfField = formElement.querySelector('input[data-controller="csrf-protection"], input[name="_csrf_token"]')
+export function generateCsrfToken(formElement: HTMLFormElement): void {
+    const csrfField = formElement.querySelector<HTMLInputElement>(
+        'input[data-controller="csrf-protection"], input[name="_csrf_token"]'
+    )
 
     if (!csrfField) {
         return
@@ -39,7 +43,7 @@ export function generateCsrfToken(formElement) {
     if (!csrfCookie && nameCheck.test(csrfToken)) {
         csrfField.setAttribute('data-csrf-protection-cookie-value', (csrfCookie = csrfToken))
         csrfField.defaultValue = csrfToken = btoa(
-            String.fromCharCode.apply(null, (window.crypto || window.msCrypto).getRandomValues(new Uint8Array(18)))
+            String.fromCharCode(...window.crypto.getRandomValues(new Uint8Array(18)))
         )
     }
     csrfField.dispatchEvent(new Event('change', { bubbles: true }))
@@ -53,9 +57,11 @@ export function generateCsrfToken(formElement) {
     }
 }
 
-export function generateCsrfHeaders(formElement) {
-    const headers = {}
-    const csrfField = formElement.querySelector('input[data-controller="csrf-protection"], input[name="_csrf_token"]')
+export function generateCsrfHeaders(formElement: HTMLFormElement): Record<string, string> {
+    const headers: Record<string, string> = {}
+    const csrfField = formElement.querySelector<HTMLInputElement>(
+        'input[data-controller="csrf-protection"], input[name="_csrf_token"]'
+    )
 
     if (!csrfField) {
         return headers
@@ -63,15 +69,17 @@ export function generateCsrfHeaders(formElement) {
 
     const csrfCookie = csrfField.getAttribute('data-csrf-protection-cookie-value')
 
-    if (tokenCheck.test(csrfField.value) && nameCheck.test(csrfCookie)) {
+    if (csrfCookie && tokenCheck.test(csrfField.value) && nameCheck.test(csrfCookie)) {
         headers[csrfCookie] = csrfField.value
     }
 
     return headers
 }
 
-export function removeCsrfToken(formElement) {
-    const csrfField = formElement.querySelector('input[data-controller="csrf-protection"], input[name="_csrf_token"]')
+export function removeCsrfToken(formElement: HTMLFormElement): void {
+    const csrfField = formElement.querySelector<HTMLInputElement>(
+        'input[data-controller="csrf-protection"], input[name="_csrf_token"]'
+    )
 
     if (!csrfField) {
         return
@@ -79,7 +87,7 @@ export function removeCsrfToken(formElement) {
 
     const csrfCookie = csrfField.getAttribute('data-csrf-protection-cookie-value')
 
-    if (tokenCheck.test(csrfField.value) && nameCheck.test(csrfCookie)) {
+    if (csrfCookie && tokenCheck.test(csrfField.value) && nameCheck.test(csrfCookie)) {
         // biome-ignore lint/style/useTemplate: keep verbatim Symfony stimulus-bundle CSRF controller
         const cookie = csrfCookie + '_' + csrfField.value + '=0; path=/; samesite=strict; max-age=0'
 
