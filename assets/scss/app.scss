@@ -14,6 +14,13 @@ $enable-deprecated: false;
 // tabler.scss rather than core: the .small and .h1-.h6 helpers are built in its _extends.scss
 @import '@tabler/core/scss/tabler';
 
+// Light / dark: Tabler's CSS variables (--bg-surface, --border-color, --body-color…) follow the data-bs-theme
+// attribute of <html>, so the components below use them rather than the Sass colors, set at build time.
+// The page background has no Tabler equivalent: light-dark() follows the color-scheme Tabler sets with the theme.
+:root {
+    --app-bg: light-dark(#{$lightShade}, var(--body-bg));
+}
+
 html,
 body {
     height: 100%;
@@ -22,7 +29,7 @@ body {
 body {
     display: flex;
     flex-direction: column;
-    background: $lightShade;
+    background: var(--app-bg);
 }
 
 // The navbar's explicit min-height would otherwise let it shrink below its content (e.g. the open mobile menu)
@@ -70,6 +77,62 @@ footer {
     }
 }
 
+// The light / dark switch, like silarhi.fr: a moon in light mode, a sun in dark mode, swapped with a turn
+.btn-theme-toggle {
+    position: relative;
+    display: inline-flex;
+    width: 2.25rem;
+    height: 2.25rem;
+    padding: 0;
+    font-size: 1.25rem;
+    color: $navbar-dark-color;
+    background: transparent;
+    border: 0;
+    border-radius: $border-radius-lg;
+    transition:
+        color 0.2s,
+        background-color 0.2s;
+
+    &:hover {
+        color: $white;
+        background: rgba($white, 0.1);
+    }
+
+    &:focus-visible {
+        outline: 2px solid tint-color($primary, 50%);
+        outline-offset: 2px;
+    }
+}
+
+.theme-icon {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition:
+        opacity 0.3s ease-in-out,
+        transform 0.3s ease-in-out;
+}
+
+.theme-icon-sun {
+    opacity: 0;
+    transform: scale(0) rotate(90deg);
+}
+
+// :root, as the navbar sets data-bs-theme="dark" on itself in both themes
+:root[data-bs-theme='dark'] {
+    .theme-icon-moon {
+        opacity: 0;
+        transform: scale(0) rotate(-90deg);
+    }
+
+    .theme-icon-sun {
+        opacity: 1;
+        transform: none;
+    }
+}
+
 // Uppercase monospace labels: the metadata of the status bars, tags and card headers
 %label-mono {
     font-family: $font-family-monospace;
@@ -86,9 +149,9 @@ footer {
     @extend %label-mono;
     display: inline-block;
     padding: 0.125rem 0.5rem;
-    color: $body-color;
-    background: $white;
-    border: 1px solid $border-color;
+    color: var(--body-color);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
 }
 
 .tag-overlay {
@@ -120,8 +183,8 @@ footer {
     align-items: center;
     gap: 0.5rem 1.5rem;
     padding: 0.625rem 1rem;
-    background: $white;
-    border: 1px solid $border-color;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
 }
 
 .status-bar-label {
@@ -144,7 +207,7 @@ footer {
     gap: 0.5rem 1rem;
     padding-bottom: 0.75rem;
     margin-bottom: 1.25rem;
-    border-bottom: 1px solid $border-color;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .section-header-title {
@@ -154,10 +217,11 @@ footer {
 
 .section-header-meta {
     @extend %label-mono;
-    color: $text-secondary;
+    color: var(--secondary-color);
 }
 
 .terminal {
+    border: 1px solid rgba($white, 0.08);
     color: #cbd5e1;
     background: $shellDark;
     border-radius: $border-radius-lg;
@@ -228,7 +292,7 @@ footer {
     }
 
     p {
-        color: $text-secondary;
+        color: var(--secondary-color);
     }
 
     ul {
@@ -237,8 +301,8 @@ footer {
         list-style: none;
         font-family: $font-family-monospace;
         font-size: 0.875rem;
-        background: $lightShade;
-        border: 1px solid $border-color;
+        background: var(--app-bg);
+        border: 1px solid var(--border-color);
     }
 
     li {
@@ -261,8 +325,8 @@ footer {
     display: inline-block;
     max-width: 100%;
     padding: 0.5rem;
-    background: repeating-conic-gradient($gray-100 0 25%, $white 0 50%) 0 0 / 16px 16px;
-    border: 1px solid $border-color;
+    background: repeating-conic-gradient(var(--bg-surface-secondary) 0 25%, var(--bg-surface) 0 50%) 0 0 / 16px 16px;
+    border: 1px solid var(--border-color);
 
     img {
         display: block;
@@ -278,7 +342,7 @@ footer {
 .dossier {
     .card-header {
         justify-content: space-between;
-        background: linear-gradient(135deg, $white, $gray-100);
+        background: linear-gradient(135deg, var(--bg-surface), var(--bg-surface-secondary));
     }
 }
 
@@ -309,26 +373,26 @@ footer {
 .showcase > .card-header {
     gap: 0.5rem;
     padding: 0.5rem 0.75rem;
-    background: $lightShade;
+    background: var(--app-bg);
 }
 
 // Preview / Code: two joined buttons, the active one raised like a key
 .nav-segmented {
     gap: 0.25rem;
     padding: 0.125rem;
-    background: $gray-100;
-    border: 1px solid $border-color;
+    background: var(--bg-surface-secondary);
+    border: 1px solid var(--border-color);
     border-radius: $border-radius;
 
     .nav-link {
         padding: 0.25rem 0.75rem;
         font-size: $font-size-sm;
-        color: $text-secondary;
+        color: var(--secondary-color);
         border-radius: calc(#{$border-radius} - 2px);
 
         &.active {
-            color: $body-color;
-            background: $white;
+            color: var(--body-color);
+            background: var(--bg-surface);
             box-shadow: 0 1px 2px rgba($black, 0.08);
         }
     }
@@ -346,11 +410,22 @@ footer {
     border-radius: $border-radius;
 }
 
+// The purple text is too dark on a dark card: the meta chips, and the ghost buttons until they fill on hover
+:root[data-bs-theme='dark'] {
+    .showcase-meta.text-primary {
+        color: tint-color($primary, 45%) !important;
+    }
+
+    .btn-ghost-primary:not(:hover, :active) {
+        color: tint-color($primary, 45%);
+    }
+}
+
 .showcase-label {
     padding: 0.125rem 0.5rem;
     font-family: $font-family-monospace;
     font-size: 0.8125rem;
-    background: $gray-100;
+    background: var(--bg-surface-secondary);
     border-radius: $border-radius;
 }
 
@@ -361,6 +436,7 @@ footer {
 
 // A dark panel: the header bar is part of the code, not a white card header
 .code-panel {
+    border: 1px solid rgba($white, 0.08);
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -439,9 +515,9 @@ footer {
     gap: 0.125rem 0.75rem;
     height: 100%;
     padding: 0.75rem 1rem;
-    color: $body-color;
-    background: $white;
-    border: 1px solid $border-color;
+    color: var(--body-color);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
     border-radius: $border-radius;
     transition:
         border-color 0.15s,
@@ -480,7 +556,7 @@ footer {
 
     &:hover,
     &:focus-visible {
-        color: $body-color;
+        color: var(--body-color);
         text-decoration: none;
         border-color: rgba($primary, 0.5);
         box-shadow: 0 4px 12px rgba($primary, 0.1);
@@ -513,7 +589,7 @@ footer {
     text-decoration: none;
     padding: 0;
     font-size: 0.75rem;
-    color: $text-secondary;
+    color: var(--secondary-color);
     background: none;
 }
 
@@ -521,6 +597,6 @@ footer {
 .docs h2[id] {
     padding-top: 2.5rem;
     margin-top: 1rem;
-    border-top: 1px solid $border-color;
+    border-top: 1px solid var(--border-color);
     scroll-margin-top: 1rem;
 }

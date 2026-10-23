@@ -30,7 +30,7 @@
                                 <div class="input-group input-group-flat mt-1">
                                     <input type="text" class="form-control font-monospace text-center" value="{{ secretKey }}" readonly aria-label="Secret key">
                                     <span class="input-group-text">
-                                        <button type="button" class="btn btn-link btn-sm p-0 label-mono" {{ stimulus_action('clipboard', 'copy') }}>
+                                        <button type="button" class="btn btn-sm btn-ghost-primary label-mono" {{ stimulus_action('clipboard', 'copy') }}>
                                             <span {{ stimulus_target('clipboard', 'label') }}>Copy</span>
                                         </button>
                                     </span>

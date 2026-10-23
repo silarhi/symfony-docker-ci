@@ -16,7 +16,7 @@
             {% for image in ['destiny-wiens-1332880-unsplash.jpg', 'diana-parkhouse-1166627-unsplash.jpg', 'elvira-visser-k89j1SUqf5U-unsplash.jpg'] %}
                 <div class="col">
                     <div class="card h-100">
-                        <div class="bg-light position-relative">
+                        <div class="bg-surface-secondary position-relative">
                             <span class="tag-mono tag-overlay">#{{ loop.index }}</span>
                             {{ macros.fixedHeightImage(asset('build/images/' ~ image), 300, {class: 'd-block mx-auto'}) }}
                         </div>

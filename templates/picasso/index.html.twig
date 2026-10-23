@@ -87,7 +87,7 @@
                     {% set markup = picasso.image('edgar-edgar-712801-unsplash.jpg', props) %}
                     {% set code = picasso.snippet('edgar-edgar-712801-unsplash.jpg', props) %}
                     <twig:Showcase class="flex-grow-1" meta="fit: {{ fit }}">
-                        <div class="card-body bg-light text-center">
+                        <div class="card-body bg-surface-secondary text-center">
                             {{ markup }}
                         </div>
                         <twig:Showcase:Caption class="border-top">300x300px, fit="{{ fit }}"</twig:Showcase:Caption>
@@ -225,7 +225,7 @@
                         {% if uri %}
                             <div style="aspect-ratio: 3 / 2; background: center / cover no-repeat url({{ uri|json_encode }})"></div>
                         {% else %}
-                            <div class="bg-light" style="aspect-ratio: 3 / 2"></div>
+                            <div class="bg-surface-secondary" style="aspect-ratio: 3 / 2"></div>
                         {% endif %}
                         <twig:Showcase:Caption title="{{ strategy.title }}">
                             {{ strategy.caption }}
