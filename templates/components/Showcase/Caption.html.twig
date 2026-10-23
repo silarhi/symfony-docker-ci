@@ -1,0 +1,14 @@
+{#
+    The text under a preview: <twig:Showcase:Caption title="Width only">the height follows the source.</twig:Showcase:Caption>
+    Without a title, a centered label: <twig:Showcase:Caption>300x300px</twig:Showcase:Caption>
+#}
+{% props title = null %}
+{% set body %}{% block content %}{% endblock %}{% endset %}
+<div {{ attributes.defaults({class: 'card-body showcase-caption' ~ (title ? '' : ' text-center')}) }}>
+    {% if title %}
+        <h3 class="card-title{{ body|trim is empty ? ' mb-0' }}">{{ title }}</h3>
+        {% if body|trim is not empty %}<p class="card-text text-secondary small">{{ body }}</p>{% endif %}
+    {% else %}
+        <span class="showcase-label">{{ body }}</span>
+    {% endif %}
+</div>

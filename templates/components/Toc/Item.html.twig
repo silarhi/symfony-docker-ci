@@ -1,0 +1,7 @@
+{% props href, hint = null %}
+<li {{ attributes.defaults({class: 'toc-item'}) }}>
+    <a class="toc-link" href="{{ href }}">
+        <span class="toc-title">{% block content %}{% endblock %}</span>
+        {% if hint %}<code class="toc-hint">{{ hint }}</code>{% endif %}
+    </a>
+</li>

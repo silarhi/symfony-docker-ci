@@ -10,6 +10,19 @@
     <link rel="icon" href="{{ asset('favicon.ico') }}">
     <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}">
 
+    {# Before the stylesheets, so the page never flashes in the other theme: the saved choice (theme_controller), else
+       the system one. Turbo keeps the <html> attributes, and does not run this script again on its visits #}
+    <script>
+        (() => {
+            let theme = null
+            try {
+                theme = localStorage.getItem('theme')
+            } catch {}
+            const dark = theme ? 'dark' === theme : matchMedia('(prefers-color-scheme: dark)').matches
+            document.documentElement.setAttribute('data-bs-theme', dark ? 'dark' : 'light')
+        })()
+    </script>
+
     {{ reprise_entry_link_tags('app') }}
     {% block stylesheets %}{% endblock %}
     {{ reprise_entry_script_tags('app') }}
@@ -26,10 +39,20 @@
 <body>
 <nav class="navbar navbar-expand-md" data-bs-theme="dark">
     <div class="container">
-        <a class="navbar-brand" href="{{ path('homepage') }}">App Demo</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <a class="navbar-brand gap-2" href="{{ path('homepage') }}">
+            App Demo
+            <span class="badge badge-version">v{{ app_version }}</span>
+        </a>
+        {# Next to the menu button on mobile, after the menu on desktop #}
+        <div class="d-flex align-items-center gap-1 ms-auto ms-md-2 order-md-last">
+            <button type="button" class="btn-theme-toggle" aria-label="Dark mode" aria-pressed="false" {{ stimulus_controller('theme') }} {{ stimulus_action('theme', 'toggle') }}>
+                <span class="theme-icon theme-icon-moon">{{ ux_icon('lucide:moon') }}</span>
+                <span class="theme-icon theme-icon-sun">{{ ux_icon('lucide:sun') }}</span>
+            </button>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
         {% set routeName = app.request.attributes.get('_route') %}
         <div class="collapse navbar-collapse" id="navbar-menu">
             <ul class="navbar-nav ms-auto">
@@ -68,26 +91,26 @@
     </div>
 </nav>
 <main>{% block body %}{% endblock %}</main>
-<footer class="py-4 bg-dark">
-    <div class="container text-center">
-        <ul class="list-inline">
+<footer class="site-footer">
+    <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between gap-2">
+        <ul class="list-inline mb-0 font-monospace small text-center text-md-start">
             <li class="list-inline-item">
                 Git commit:
                 <a href="https://github.com/silarhi/symfony-docker-ci/commit/{{ git_commit }}">{{ git_commit }}</a>
             </li>
             <li class="list-inline-item">
-                App version: <span class="badge text-bg-primary">{{ app_version }}</span>
+                App version: <span class="badge badge-version">{{ app_version }}</span>
             </li>
             <li class="list-inline-item">
                 Symfony version:
-                <span class="badge text-bg-primary">{{ constant('Symfony\\Component\\HttpKernel\\Kernel::VERSION') }}</span>
+                <span class="badge badge-version">{{ constant('Symfony\\Component\\HttpKernel\\Kernel::VERSION') }}</span>
             </li>
             <li class="list-inline-item">
                 PHP version:
-                <span class="badge text-bg-primary">{{ php_version }}</span>
+                <span class="badge badge-version">{{ php_version }}</span>
             </li>
         </ul>
-        <a href="https://sainthillier.fr">Guillaume Sainthillier - PHP Web Developer</a>
+        <a class="small" href="https://sainthillier.fr">Guillaume Sainthillier - PHP Web Developer</a>
     </div>
 </footer>
 </body>

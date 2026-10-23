@@ -1,0 +1,3 @@
+{# The chip on the right of the Preview / Code switch: <twig:Showcase:Meta color="success">unoptimized</twig:Showcase:Meta> #}
+{% props color = 'primary' %}
+<span {{ attributes.defaults({class: 'showcase-meta text-' ~ color}) }}>{% block content %}{% endblock %}</span>

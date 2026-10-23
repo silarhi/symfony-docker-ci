@@ -1,0 +1,21 @@
+{#
+    The top of a showcase page: an eyebrow, the title, the lead, then the composed parts.
+
+    <twig:PageHero eyebrow="silarhi/picasso-bundle" title="PicassoBundle showcase">
+        <twig:PageHero:Lead>The image component that was missing.</twig:PageHero:Lead>
+        <twig:PageHero:Features>
+            <twig:PageHero:Feature>AVIF + WebP</twig:PageHero:Feature>
+        </twig:PageHero:Features>
+        <twig:PageHero:Actions>
+            <a class="btn btn-primary" href="...">GitHub</a>
+        </twig:PageHero:Actions>
+    </twig:PageHero>
+#}
+{% props eyebrow = null, title = null %}
+<header {{ attributes.defaults({class: 'page-hero card'}) }}>
+    <div class="card-body p-4 p-lg-5">
+        {% if eyebrow %}<div class="label-mono text-primary mb-2">{{ eyebrow }}</div>{% endif %}
+        {% if title %}<h1 class="page-hero-title">{{ title }}</h1>{% endif %}
+        {% block content %}{% endblock %}
+    </div>
+</header>

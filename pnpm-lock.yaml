@@ -167,8 +167,8 @@ importers:
   .:
     dependencies:
       '@tabler/core':
-        specifier: ^1.6.1
-        version: 1.6.1
+        specifier: ^1.7.0
+        version: 1.7.0
     devDependencies:
       '@biomejs/biome':
         specifier: 2.5.15
@@ -796,8 +796,8 @@ packages:
       '@hotwired/stimulus': ^3.0.0
       '@hotwired/turbo': ^7.1.0 || ^8.0
 
-  '@tabler/core@1.6.1':
-    resolution: {integrity: sha512-lgmR9gcxRp5JlLxcmRi9Rz85JrEvH6Bz71KnlcPVSa97wtwQNjgSs3g3fxwbAlulHyRMghhIV04QUuW3pqDsIg==}
+  '@tabler/core@1.7.0':
+    resolution: {integrity: sha512-f3a18Binkl4soRdzjaf7DhJFCuJXRJ45H1mJxmCFeHvqI2QIAZ6Djq2dVtYc1jJJgYYeIyVc+Rws8dK1yQp+Uw==}
     engines: {node: '>=20'}
     peerDependencies:
       vanilla-calendar-pro: ^3.3.2
@@ -1713,7 +1713,7 @@ snapshots:
       '@hotwired/stimulus': 3.2.2
       '@hotwired/turbo': 8.0.23
 
-  '@tabler/core@1.6.1':
+  '@tabler/core@1.7.0':
     dependencies:
       '@popperjs/core': 2.11.8
 

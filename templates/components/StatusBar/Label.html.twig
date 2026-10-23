@@ -1,0 +1,5 @@
+{% props status = 'success' %}
+<span {{ attributes.defaults({class: 'status-bar-label'}) }}>
+    <twig:StatusDot color="{{ status }}" />
+    {% block content %}{% endblock %}
+</span>

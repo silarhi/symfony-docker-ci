@@ -12,20 +12,35 @@
 
     <div class="container my-5">
         <div class="row justify-content-center">
-            <div class="col-md-6">
-                <h1>Login</h1>
+            <div class="col-md-6 col-lg-5">
+                <twig:StatusBar label="Firewall: main" status="primary" class="mb-3">
+                    <twig:StatusBar:Item label="Step">1 / 2</twig:StatusBar:Item>
+                </twig:StatusBar>
                 <form method="post">
                     <div class="card">
+                        <div class="card-header">
+                            <h1 class="card-title">Login</h1>
+                        </div>
                         <div class="card-body">
                             <div class="mb-3">
-                                <label for="inputUsername">Username</label>
+                                <label class="form-label" for="inputUsername">Username</label>
                                 <input type="text" value="test" name="username" id="inputUsername"
                                        class="form-control form-control-lg" required autofocus placeholder="test">
                             </div>
-                            <div class="mb-3">
-                                <label for="inputPassword">Password</label>
-                                <input type="password" name="password" id="inputPassword"
-                                       class="form-control form-control-lg" required placeholder="test" value="test">
+                            <div class="mb-4">
+                                <label class="form-label" for="inputPassword">Password</label>
+                                <div class="input-group input-group-flat" {{ stimulus_controller('password-visibility') }}>
+                                    <input type="password" name="password" id="inputPassword"
+                                           class="form-control form-control-lg" required placeholder="test" value="test"
+                                           {{ stimulus_target('password-visibility', 'input') }}>
+                                    <span class="input-group-text">
+                                        <button type="button" class="btn btn-link link-secondary p-0" aria-label="Show the password" aria-pressed="false"
+                                                {{ stimulus_action('password-visibility', 'toggle') }}>
+                                            <span {{ stimulus_target('password-visibility', 'show') }}>{{ ux_icon('lucide:eye') }}</span>
+                                            <span class="d-none" {{ stimulus_target('password-visibility', 'hide') }}>{{ ux_icon('lucide:eye-off') }}</span>
+                                        </button>
+                                    </span>
+                                </div>
                             </div>
 
                             <input type="hidden"
@@ -45,11 +60,12 @@
                             </div>
                             #}
 
-                            <div class="text-center">
-                                <button class="btn btn-lg btn-primary" type="submit">
-                                    Connection
-                                </button>
-                            </div>
+                            <button class="btn btn-lg btn-primary w-100" type="submit">
+                                Connection
+                            </button>
+                        </div>
+                        <div class="card-footer text-secondary small">
+                            Demo account: <code>test</code> / <code>test</code>. Two-factor authentication comes next.
                         </div>
                     </div>
                 </form>

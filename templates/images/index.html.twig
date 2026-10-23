@@ -5,55 +5,59 @@
 
 {% block body %}
     <div class="container my-4">
-        <h1>Welcome to kitten world</h1>
-        <h2>300px height</h2>
-        <div class="row row-cols-1 row-cols-md-3">
+        <twig:StatusBar label="Glide" class="mb-4">
+            <twig:StatusBar:Item label="Source">assets/images</twig:StatusBar:Item>
+            <twig:StatusBar:Item label="URLs">HMAC signed</twig:StatusBar:Item>
+        </twig:StatusBar>
+        <h1 class="mb-5">Welcome to kitten world</h1>
+
+        <twig:SectionHeader tag="300px height" title="Fixed height" meta="Width: auto" />
+        <div class="row row-cards row-cols-1 row-cols-md-3 mb-5">
             {% for image in ['destiny-wiens-1332880-unsplash.jpg', 'diana-parkhouse-1166627-unsplash.jpg', 'elvira-visser-k89j1SUqf5U-unsplash.jpg'] %}
                 <div class="col">
-                    <div class="card mb-3">
-                        <div class="bg-light">
+                    <div class="card h-100">
+                        <div class="bg-surface-secondary position-relative">
+                            <span class="tag-mono tag-overlay">#{{ loop.index }}</span>
                             {{ macros.fixedHeightImage(asset('build/images/' ~ image), 300, {class: 'd-block mx-auto'}) }}
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <h3 class="card-title">Card title</h3>
+                            <p class="card-text text-secondary">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        </div>
+                        <div class="card-footer d-flex justify-content-between font-monospace small text-secondary">
+                            <span>{{ image|split('-')|first }}</span>
+                            <span>h=300</span>
                         </div>
                     </div>
                 </div>
             {% endfor %}
         </div>
-        <h2>Fitting</h2>
-        <div class="row row-cols-1 row-cols-md-3">
-            <div class="col mb-3 text-center">
-                {{ macros.image(
-                    asset('build/images/edgar-edgar-712801-unsplash.jpg'),
-                    300,
-                    300,
-                    {class: 'img-fluid d-block mx-auto shadow-sm', alt: '300x500px, crop'},
-                    {fit: 'crop'},
-                ) }}
-                <span>300x500px, crop</span>
-            </div>
-            <div class="col mb-3 text-center">
-                {{ macros.image(
-                    asset('build/images/edgar-edgar-712801-unsplash.jpg'),
-                    300,
-                    300,
-                    {class: 'img-fluid d-block mx-auto shadow-sm', alt: '300x300px, stretch'},
-                    {fit: 'stretch'},
-                ) }}
-                <span>300x300px, stretch</span>
-            </div>
-            <div class="col mb-3 text-center">
-                {{ macros.image(
-                    asset('build/images/edgar-edgar-712801-unsplash.jpg'),
-                    300,
-                    300,
-                    {class: 'img-fluid d-block mx-auto shadow-sm', alt: '300x300px, fill'},
-                    {fit: 'fill'},
-                ) }}
-                <span>300x300px, fill</span>
-            </div>
+
+        <twig:SectionHeader tag="Fitting" title="Resize modes" meta="fit: crop, stretch, fill" />
+        <div class="row row-cards row-cols-1 row-cols-md-3">
+            {% for fit, info in {
+                crop: {label: '300x500px, crop', mode: 'Covers the box, cropped from the center'},
+                stretch: {label: '300x300px, stretch', mode: 'Fills the box, ratio not kept'},
+                fill: {label: '300x300px, fill', mode: 'Fits in the box, padded'},
+            } %}
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <div class="fit-preview mb-3">
+                                {{ macros.image(
+                                    asset('build/images/edgar-edgar-712801-unsplash.jpg'),
+                                    300,
+                                    300,
+                                    {alt: info.label},
+                                    {fit: fit},
+                                ) }}
+                            </div>
+                            <span class="tag-mono">{{ info.label }}</span>
+                            <p class="small text-secondary mt-2 mb-0">{{ info.mode }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}
