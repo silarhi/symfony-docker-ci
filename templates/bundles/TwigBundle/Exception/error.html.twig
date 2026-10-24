@@ -1,0 +1,94 @@
+{#
+    The error pages, overriding TwigBundle's: error{code}.html.twig extends this one and fills its error_* blocks.
+
+    They keep the real layout, 5xx included, as nothing in it can fail: no database, local icons only, and Reprise
+    renders nothing in prod rather than throw. Except the account links of the navbar: is_granted() reads the session,
+    which a 5xx may come from, so they are left out there. Keep it so: when rendering this page throws, Symfony falls
+    back to its bare error page.
+#}
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ status_code }} · {{ block('error_title')|striptags|trim }}{% endblock %}
+
+{% block meta %}
+    <meta name="robots" content="noindex">
+{% endblock %}
+
+{% block navbar_account %}
+    {% if status_code < 500 %}{{ parent() }}{% endif %}
+{% endblock %}
+
+{% block body %}
+    {# 4xx and 503 are warnings: the request or the timing is off, not the app #}
+    {% set error_status = status_code >= 500 and status_code != 503 ? 'danger' : 'warning' %}
+    {% set error_path = app.request.pathInfo|length > 60 ? app.request.pathInfo|slice(0, 59) ~ '…' : app.request.pathInfo %}
+    {% set error_url = app.request.schemeAndHttpHost ~ app.request.baseUrl ~ error_path %}
+
+    {# Captured first: the blocks of a page cannot be defined inside a component tag, they would be its own #}
+    {% set error_title %}
+        {%- block error_title %}{{ status_code >= 500 ? 'Le serveur a rencontré un problème' : 'Cette requête n’a pas abouti' }}{% endblock -%}
+    {% endset %}
+    {% set error_lead %}
+        {%- block error_lead -%}
+            {% if status_code >= 500 %}
+                Une erreur inattendue nous empêche d’afficher cette page. Elle est journalisée : réessayez dans quelques
+                minutes.
+            {% else %}
+                Le serveur n’a pas pu traiter cette requête telle quelle. Vérifiez l’adresse, ou repartez de l’une des
+                pages de la démo.
+            {% endif %}
+        {%- endblock -%}
+    {% endset %}
+    {% set error_actions %}
+        {%- block error_actions -%}
+            {% block error_primary_action %}
+                <a class="btn btn-primary" href="{{ path('homepage') }}">{{ ux_icon('lucide:arrow-left', {class: 'me-1'}) }} Retour à l’accueil</a>
+            {% endblock %}
+            <a class="btn" href="https://silarhi.fr/contact">{{ ux_icon('lucide:mail', {class: 'me-1'}) }} Nous contacter</a>
+            <a class="btn btn-ghost-primary" href="https://github.com/silarhi/symfony-docker-ci/issues">Signaler un bug {{ ux_icon('lucide:external-link', {class: 'ms-1'}) }}</a>
+        {%- endblock -%}
+    {% endset %}
+    {% set error_terminal %}
+        {%- block error_terminal -%}
+            <twig:Terminal:Line prompt>curl -I {{ error_url }}</twig:Terminal:Line>
+            <twig:Terminal:Line status="{{ error_status }}">HTTP/1.1 {{ status_code }} {{ status_text }}</twig:Terminal:Line>
+            {% block error_terminal_hint %}
+                <twig:Terminal:Line status="primary">&gt;&gt; {{ status_code >= 500 ? 'Réessayez dans quelques minutes' : 'Les pages de la démo sont listées ci-dessous' }}</twig:Terminal:Line>
+            {% endblock %}
+        {%- endblock -%}
+    {% endset %}
+
+    <div class="container my-4">
+        <twig:StatusBar label="HTTP {{ status_code }}" status="{{ error_status }}" class="mb-3">
+            <twig:StatusBar:Item label="Method">{{ app.request.method }}</twig:StatusBar:Item>
+            <twig:StatusBar:Item label="Env">{{ app.environment }}</twig:StatusBar:Item>
+        </twig:StatusBar>
+
+        <twig:ErrorHero code="{{ status_code }}" label="{{ status_text }}" status="{{ error_status }}" title="{{ error_title }}" class="mb-5">
+            <twig:ErrorHero:Lead>{{ error_lead }}</twig:ErrorHero:Lead>
+            <twig:ErrorHero:Actions>{{ error_actions }}</twig:ErrorHero:Actions>
+            <twig:block name="aside">
+                <twig:Terminal title="Requête" meta="{{ app.request.method }}" status="{{ error_status }}" class="terminal-wrap">{{ error_terminal }}</twig:Terminal>
+            </twig:block>
+        </twig:ErrorHero>
+
+        {# Static links only: the routes of the demo, then its sources and docs #}
+        {% block error_links %}
+            {% if status_code < 500 %}
+                <twig:Toc title="Les pages de la démo" class="mb-5">
+                    <twig:Toc:Item href="{{ path('homepage') }}" hint="/">CI Demo</twig:Toc:Item>
+                    <twig:Toc:Item href="{{ path('images') }}" hint="League Glide">Images</twig:Toc:Item>
+                    <twig:Toc:Item href="{{ path('picasso') }}" hint="silarhi/picasso-bundle">Picasso</twig:Toc:Item>
+                    <twig:Toc:Item href="{{ path('icons') }}" hint="silarhi/ux-icons-js-bundle">Icons</twig:Toc:Item>
+                    <twig:Toc:Item href="{{ path('app_login') }}" hint="test / test, puis 2FA">Connexion</twig:Toc:Item>
+                </twig:Toc>
+            {% endif %}
+            <twig:Toc title="Sources et docs" class="mb-5">
+                <twig:Toc:Item href="https://github.com/silarhi/symfony-docker-ci" hint="github.com">Code source</twig:Toc:Item>
+                <twig:Toc:Item href="https://blog.silarhi.fr/deploiement-continu-symfony-docker-circleci/" hint="blog.silarhi.fr">Déploiement continu avec Docker et CircleCI</twig:Toc:Item>
+                <twig:Toc:Item href="https://hub.docker.com/r/silarhi/symfony-docker-ci" hint="hub.docker.com">Image Docker</twig:Toc:Item>
+                <twig:Toc:Item href="https://symfony.com/doc/current/controller/error_pages.html" hint="templates/bundles/TwigBundle">Comment cette page est faite</twig:Toc:Item>
+            </twig:Toc>
+        {% endblock %}
+    </div>
+{% endblock %}

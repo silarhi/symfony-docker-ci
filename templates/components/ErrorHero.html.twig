@@ -1,0 +1,26 @@
+{#
+    The top of an error page: the status code in large digits, the title, the lead and the actions, with an aside on
+    the right (a terminal replaying the request) that drops below on small screens.
+
+    <twig:ErrorHero code="404" label="Not Found" status="warning" title="Cette page n'existe pas">
+        <twig:ErrorHero:Lead>Le lien est peut-être cassé.</twig:ErrorHero:Lead>
+        <twig:ErrorHero:Actions>
+            <a class="btn btn-primary" href="/">Retour à l'accueil</a>
+        </twig:ErrorHero:Actions>
+        <twig:block name="aside"><twig:Terminal title="Requête">...</twig:Terminal></twig:block>
+    </twig:ErrorHero>
+
+    Composed: put a <twig:ErrorHero:Code> and a <twig:ErrorHero:Title> in the content instead of the props.
+#}
+{% props code = null, label = null, status = 'danger', title = null %}
+{% set aside %}{% block aside %}{% endblock %}{% endset %}
+<header {{ attributes.defaults({class: 'error-hero card'}) }}>
+    <div class="card-body p-4 p-lg-5 error-hero-grid{{ aside|trim is not empty ? ' error-hero-grid-aside' }}">
+        <div>
+            {% if code %}<twig:ErrorHero:Code label="{{ label }}" status="{{ status }}">{{ code }}</twig:ErrorHero:Code>{% endif %}
+            {% if title %}<twig:ErrorHero:Title>{{ title }}</twig:ErrorHero:Title>{% endif %}
+            {% block content %}{% endblock %}
+        </div>
+        {% if aside|trim is not empty %}<div class="error-hero-aside">{{ aside }}</div>{% endif %}
+    </div>
+</header>

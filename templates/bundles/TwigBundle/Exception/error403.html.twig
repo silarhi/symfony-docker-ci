@@ -1,0 +1,27 @@
+{% extends '@Twig/Exception/error.html.twig' %}
+
+{% block error_title %}Accès refusé{% endblock %}
+
+{% block error_lead %}
+    {% if is_granted('ROLE_USER') %}
+        Vous êtes connecté, mais il manque un droit à votre compte pour ouvrir cette page : la double authentification
+        est peut-être à valider.
+    {% else %}
+        Cette page est réservée aux utilisateurs connectés. Le compte de démo est <code>test</code> /
+        <code>test</code>, suivi de la double authentification.
+    {% endif %}
+{% endblock %}
+
+{% block error_primary_action %}
+    {% if is_granted('ROLE_USER') %}
+        {{ parent() }}
+    {% else %}
+        <a class="btn btn-primary" href="{{ path('app_login') }}">{{ ux_icon('lucide:lock', {class: 'me-1'}) }} Se connecter</a>
+        <a class="btn" href="{{ path('homepage') }}">{{ ux_icon('lucide:arrow-left', {class: 'me-1'}) }} Retour à l’accueil</a>
+    {% endif %}
+{% endblock %}
+
+{% block error_terminal_hint %}
+    <twig:Terminal:Line status="danger">[ERR] firewall main  accès refusé</twig:Terminal:Line>
+    <twig:Terminal:Line status="primary">&gt;&gt; {{ is_granted('ROLE_USER') ? 'Validez la double authentification' : 'Connectez-vous : test / test' }}</twig:Terminal:Line>
+{% endblock %}

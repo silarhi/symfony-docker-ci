@@ -1,0 +1,13 @@
+{% extends '@Twig/Exception/error.html.twig' %}
+
+{% block error_title %}Cette page n’existe pas{% endblock %}
+
+{% block error_lead %}
+    Le lien est peut-être cassé, ou la page a changé d’adresse. Le router n’a rien trouvé pour
+    <code>{{ error_path }}</code> : repartez de l’une des pages de la démo.
+{% endblock %}
+
+{% block error_terminal_hint %}
+    <twig:Terminal:Line status="danger">[ERR] router  aucune route pour {{ app.request.method }} {{ error_path }}</twig:Terminal:Line>
+    <twig:Terminal:Line status="primary">&gt;&gt; Les pages de la démo sont listées ci-dessous</twig:Terminal:Line>
+{% endblock %}
