@@ -260,7 +260,7 @@ The Dockerfile (base `silarhi/php-apache:8.5-frankenphp-alpine` + `node:24-alpin
 3. **php_icons**: `ux-icons-js:dump` writes `var/icons/`, imported by the asset build
 4. **node_deps**: `pnpm install` (needs `vendor/` for `@symfony/ux-turbo`)
 5. **node_builder**: Build frontend assets with Vite (Symfony Reprise); copies `templates/` for PurgeCSS and `var/icons/` from `php_icons`
-6. **Final stage**: Combine artifacts, optimize autoloader, warm cache
+6. **Final stage**: Combine artifacts, optimize autoloader, warm cache and the icon cache (`ux:icons:warm-cache`)
 
 **Important**: The build process:
 

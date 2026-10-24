@@ -1,0 +1,7 @@
+# The icons are dumped into var/icons (the default), never committed: on every cache rebuild, and by the php_icons stage
+# of the Dockerfile for the asset build. `pnpm typecheck` dumps them first.
+
+when@prod:
+    silarhi_ux_icons_js:
+        # The asset build only imports index.js: the types would only be dumped for nothing
+        dump_typescript: false
