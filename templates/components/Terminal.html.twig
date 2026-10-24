@@ -5,12 +5,14 @@
         <twig:Terminal:Line prompt>docker build .</twig:Terminal:Line>
         <twig:Terminal:Line status="success">[OK] php_base</twig:Terminal:Line>
     </twig:Terminal>
+
+    status: the color of the dot in the title bar (success, warning, danger, primary)
 #}
-{% props title = null, meta = null %}
+{% props title = null, meta = null, status = 'success' %}
 <div {{ attributes.defaults({class: 'terminal'}) }}>
     {% if title or meta %}
         <div class="terminal-header">
-            <span class="terminal-title"><twig:StatusDot color="success" />{{ title }}</span>
+            <span class="terminal-title"><twig:StatusDot color="{{ status }}" />{{ title }}</span>
             {% if meta %}<span class="terminal-meta">{{ meta }}</span>{% endif %}
         </div>
     {% endif %}

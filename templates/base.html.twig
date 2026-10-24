@@ -68,24 +68,27 @@
                 <li class="nav-item">
                     <a class="nav-link {{ routeName == 'icons' ? 'active' }}" href="{{ path('icons') }}">Icons</a>
                 </li>
-                {% if is_granted(constant('\\App\\EventSubscriber\\DoubleAuthentificationSubscriber::ROLE_2FA_SUCCEED')) %}
-                    <li class="nav-item">
-                        <a class="nav-link {{ routeName == 'app_security_authentification_protected' ? 'active' }}" href="{{ path('app_security_authentification_protected') }}">
-                            Secret page!
-                        </a>
-                    </li>
-                {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link {{ routeName == 'app_login' ? 'active' }}" href="{{ path('app_login') }}">Connection</a>
-                    </li>
-                {% endif %}
-                {% if is_granted('ROLE_USER') %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('_logout_main') }}">
-                            Logout
-                        </a>
-                    </li>
-                {% endif %}
+                {# A block, so the 5xx error pages can leave it out: is_granted() reads the session, which may be what failed #}
+                {% block navbar_account %}
+                    {% if is_granted(constant('\\App\\EventSubscriber\\DoubleAuthentificationSubscriber::ROLE_2FA_SUCCEED')) %}
+                        <li class="nav-item">
+                            <a class="nav-link {{ routeName == 'app_security_authentification_protected' ? 'active' }}" href="{{ path('app_security_authentification_protected') }}">
+                                Secret page!
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link {{ routeName == 'app_login' ? 'active' }}" href="{{ path('app_login') }}">Connection</a>
+                        </li>
+                    {% endif %}
+                    {% if is_granted('ROLE_USER') %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('_logout_main') }}">
+                                Logout
+                            </a>
+                        </li>
+                    {% endif %}
+                {% endblock %}
             </ul>
         </div>
     </div>

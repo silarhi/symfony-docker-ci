@@ -262,6 +262,12 @@ footer {
     white-space: pre;
 }
 
+// Long lines wrap rather than scroll, e.g. the requested URL on the error pages
+.terminal-wrap .terminal-line {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
 .terminal-prompt {
     color: #94a3b8;
 
@@ -272,6 +278,15 @@ footer {
 
 .terminal .text-success {
     color: #6ee7b7 !important;
+}
+
+// Tabler's red and yellow are too dark on the terminal: their lighter shades read the same in both themes
+.terminal .text-danger {
+    color: #fca5a5 !important;
+}
+
+.terminal .text-warning {
+    color: #fcd34d !important;
 }
 
 .terminal .text-primary {
@@ -476,6 +491,63 @@ footer {
     margin-bottom: 0.75rem;
     font-size: $h1-font-size * 1.5;
     letter-spacing: -0.02em;
+}
+
+// The error pages: one column, then the terminal on the right on large screens. minmax(0, …) lets the terminal
+// scroll its long lines rather than widen the page
+.error-hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
+    align-items: center;
+}
+
+@include media-breakpoint-up(lg) {
+    .error-hero-grid-aside {
+        grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+        gap: 3rem;
+    }
+}
+
+.error-hero-code {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.error-hero-digits {
+    font-family: $font-family-monospace;
+    font-size: clamp(4rem, 14vw, 6.5rem);
+    font-weight: $font-weight-bold;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: light-dark(#{$primary}, #{tint-color($primary, 45%)});
+
+    // A shell cursor after the code
+    &::after {
+        content: '_';
+        animation: error-hero-cursor 1.1s steps(1) infinite;
+    }
+}
+
+@keyframes error-hero-cursor {
+    50% {
+        opacity: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .error-hero-digits::after {
+        animation: none;
+    }
+}
+
+.error-hero-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .page-hero-features {

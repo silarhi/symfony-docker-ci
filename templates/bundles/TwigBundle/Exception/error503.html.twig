@@ -1,0 +1,13 @@
+{% extends '@Twig/Exception/error.html.twig' %}
+
+{% block error_title %}Maintenance en cours{% endblock %}
+
+{% block error_lead %}
+    Une opération de maintenance est en cours : un nouveau déploiement, sans doute. Le site revient dans quelques
+    minutes.
+{% endblock %}
+
+{% block error_terminal_hint %}
+    <twig:Terminal:Line status="warning">[..] deploy.sh  maintenance en cours</twig:Terminal:Line>
+    <twig:Terminal:Line status="primary">&gt;&gt; De retour dans quelques minutes</twig:Terminal:Line>
+{% endblock %}

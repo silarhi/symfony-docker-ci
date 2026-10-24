@@ -1,0 +1,8 @@
+{# The status code, a blinking cursor after it, and its label in a chip: <twig:ErrorHero:Code label="Not Found">404</twig:ErrorHero:Code> #}
+{% props label = null, status = 'danger' %}
+<p {{ attributes.defaults({class: 'error-hero-code'}) }}>
+    <span class="error-hero-digits">{% block content %}{% endblock %}</span>
+    {% if label %}
+        <span class="tag-mono error-hero-label"><twig:StatusDot color="{{ status }}" />{{ label }}</span>
+    {% endif %}
+</p>

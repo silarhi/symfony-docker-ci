@@ -1,0 +1,13 @@
+{% extends '@Twig/Exception/error.html.twig' %}
+
+{% block error_title %}Le serveur a planté{% endblock %}
+
+{% block error_lead %}
+    Une erreur inattendue nous empêche d’afficher cette page. Elle est journalisée et sera corrigée : réessayez dans
+    quelques minutes, ou signalez-la si elle persiste.
+{% endblock %}
+
+{% block error_terminal_hint %}
+    <twig:Terminal:Line status="danger">[ERR] kernel.exception  l’erreur est journalisée</twig:Terminal:Line>
+    <twig:Terminal:Line status="primary">&gt;&gt; Réessayez dans quelques minutes</twig:Terminal:Line>
+{% endblock %}
