@@ -23,7 +23,7 @@ class IconsController extends AbstractController
 
     #[Route(path: '/icons', name: 'icons')]
     public function index(
-        #[Autowire('%kernel.project_dir%/var/icons/index.js')]
+        #[Autowire('%app.dumped_icons%')]
         string $dumpedIcons,
     ): Response {
         $dump = is_file($dumpedIcons) ? (string) file_get_contents($dumpedIcons) : '';

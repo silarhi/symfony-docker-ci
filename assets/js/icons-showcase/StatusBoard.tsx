@@ -1,6 +1,6 @@
-import { loaders } from '@icons/loaders.js'
 import { UXLazyIcon } from '@silarhi/ux-icons-js/react'
 import { useEffect, useState } from 'react'
+import { loaders } from '@/js/icons/loaders'
 
 const STATUS_COLORS: Record<string, string> = {
     Operational: 'text-success',

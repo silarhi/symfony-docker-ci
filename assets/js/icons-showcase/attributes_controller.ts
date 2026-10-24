@@ -1,6 +1,6 @@
 import { Controller } from '@hotwired/stimulus'
-import { LucideHeartIcon } from '@icons/index.js'
 import { resolveIcon, type UXIconAttributes } from '@silarhi/ux-icons-js'
+import { LucideHeartIcon } from '@/js/icons'
 
 const isActive = false
 

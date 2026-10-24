@@ -1,9 +1,9 @@
 import { Controller } from '@hotwired/stimulus'
 import type { ReactNode } from 'react'
 import { createRoot, type Root } from 'react-dom/client'
-import Rating from '@/js/icons/Rating'
-import StatusBoard from '@/js/icons/StatusBoard'
-import Trash from '@/js/icons/Trash'
+import Rating from '@/js/icons-showcase/Rating'
+import StatusBoard from '@/js/icons-showcase/StatusBoard'
+import Trash from '@/js/icons-showcase/Trash'
 
 // The props come from Twig as a JSON object: each example reads the ones it takes
 const COMPONENTS: Record<string, (props: Record<string, unknown>) => ReactNode> = {

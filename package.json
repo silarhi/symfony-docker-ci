@@ -16,7 +16,7 @@
         "prettier": "prettier --write \"assets/**/*.{scss,md}\"",
         "format": "pnpm lint && pnpm prettier",
         "knip": "knip",
-        "typecheck": "bin/console ux-icons-js:dump --quiet && tsc -p tsconfig.json && tsc -p tsconfig.node.json"
+        "typecheck": "tsc -p tsconfig.json && tsc -p tsconfig.node.json"
     },
     "lint-staged": {
         "*.{js,jsx,ts,tsx,mjs,json}": "biome check --write --no-errors-on-unmatched",

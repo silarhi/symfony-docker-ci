@@ -1,6 +1,6 @@
 import { Controller } from '@hotwired/stimulus'
-import { LucideTrash2Icon } from '@icons/index.js'
 import { createIconElement, renderIcon } from '@silarhi/ux-icons-js'
+import { LucideTrash2Icon } from '@/js/icons'
 
 // Renders the icon in JavaScript and compares it with the HTML ux_icon() rendered for the same attributes.
 // The Twig output comes as a value, not as markup: the browser would serialize parsed markup its own way.

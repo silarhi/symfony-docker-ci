@@ -10,6 +10,8 @@ parameters:
     locale: 'en'
     app.public_dir: '%kernel.project_dir%/public'
     app.image_cache_dir: '%kernel.project_dir%/var/storage'
+    # The dump of config/packages/silarhi_ux_icons_js.yaml, one export of which the /icons page shows
+    app.dumped_icons: '%kernel.project_dir%/assets/js/icons/index.js'
 
 services:
     # default configuration for services in *this* file
@@ -39,3 +41,8 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+when@prod:
+    parameters:
+        # The image's cache warmup dumps into var/icons (assets/ stays out of the image)
+        app.dumped_icons: '%kernel.project_dir%/var/icons/index.js'

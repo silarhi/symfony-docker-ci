@@ -19,16 +19,6 @@ COPY --link composer.json composer.lock symfony.lock ./
 RUN --mount=type=cache,target=/root/.composer \
     APP_ENV=prod composer install --no-interaction --no-dev --no-scripts --prefer-dist
 
-# Icons dumped as a JavaScript module by silarhi/ux-icons-js-bundle, imported by the asset build
-FROM php_builder AS php_icons
-COPY --link .env ./
-COPY --link bin ./bin
-COPY --link config ./config
-COPY --link src ./src
-COPY --link templates ./templates
-COPY --link assets/icons ./assets/icons
-RUN APP_ENV=prod bin/console ux-icons-js:dump
-
 # Node deps (cached separately from build)
 FROM node_base AS node_deps
 WORKDIR /app
@@ -44,7 +34,6 @@ COPY --from=node_deps --link /app/node_modules ./node_modules
 COPY --from=node_deps --link /app/vendor ./vendor
 COPY --link package.json pnpm-lock.yaml pnpm-workspace.yaml vite.config.ts ./
 COPY --link assets ./assets
-COPY --from=php_icons --link /app/var/icons ./var/icons
 # PurgeCSS keeps the selectors used in the Twig templates
 COPY --link templates ./templates
 RUN mkdir -p public && pnpm build

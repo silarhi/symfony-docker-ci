@@ -1,6 +1,6 @@
 import { Controller } from '@hotwired/stimulus'
-import { LucideCheckIcon, LucideCopyIcon, LucideTriangleAlertIcon } from '@icons/index.js'
 import { createIconElement } from '@silarhi/ux-icons-js'
+import { LucideCheckIcon, LucideCopyIcon, LucideTriangleAlertIcon } from '@/js/icons'
 
 // A copy button: Twig renders the first icon with ux_icon(), JavaScript swaps it after the click.
 // createIconElement() builds the <svg> with the DOM API, no HTML is parsed: no innerHTML needed.

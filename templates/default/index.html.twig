@@ -22,10 +22,9 @@
             <twig:Terminal:Line prompt>docker build --build-arg APP_VERSION={{ app_version }} --build-arg GIT_COMMIT={{ git_commit }} -t silarhi/symfony-docker-ci .</twig:Terminal:Line>
             <twig:Terminal:Line status="success">[OK] php_base     PHP + exif, gd, imagick</twig:Terminal:Line>
             <twig:Terminal:Line status="success">[OK] php_builder  composer install</twig:Terminal:Line>
-            <twig:Terminal:Line status="success">[OK] php_icons    bin/console ux-icons-js:dump</twig:Terminal:Line>
             <twig:Terminal:Line status="success">[OK] node_deps    pnpm install</twig:Terminal:Line>
             <twig:Terminal:Line status="success">[OK] node_builder vite build</twig:Terminal:Line>
-            <twig:Terminal:Line status="success">[OK] final        cache warmup, .env.local.php</twig:Terminal:Line>
+            <twig:Terminal:Line status="success">[OK] final        cache and icon warmup, .env.local.php</twig:Terminal:Line>
             <twig:Terminal:Line status="primary">&gt;&gt; Deployed by CircleCI to labs.silarhi.fr</twig:Terminal:Line>
         </twig:Terminal>
     </div>
