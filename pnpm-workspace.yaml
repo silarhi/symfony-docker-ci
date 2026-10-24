@@ -4,4 +4,4 @@ allowBuilds:
     '@parcel/watcher': false
 # Released less than a day before it was added here, under the pnpm minimum release age
 minimumReleaseAgeExclude:
-    - '@silarhi/ux-icons-js@0.2.0'
+    - '@silarhi/ux-icons-js@0.3.1'

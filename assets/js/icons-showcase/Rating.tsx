@@ -1,6 +1,6 @@
-import { LucideStarIcon } from '@icons/index.js'
 import { UXIcon } from '@silarhi/ux-icons-js/react'
 import { useState } from 'react'
+import { LucideStarIcon } from '@/js/icons'
 
 // Static import: the star is bundled with the component, and the other icons of the dump are tree-shaken
 export default function Rating({ max = 5 }: { max?: number }) {

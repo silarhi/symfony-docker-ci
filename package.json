@@ -16,7 +16,7 @@
         "prettier": "prettier --write \"assets/**/*.{scss,md}\"",
         "format": "pnpm lint && pnpm prettier",
         "knip": "knip",
-        "typecheck": "bin/console ux-icons-js:dump --quiet && tsc -p tsconfig.json && tsc -p tsconfig.node.json"
+        "typecheck": "tsc -p tsconfig.json && tsc -p tsconfig.node.json"
     },
     "lint-staged": {
         "*.{js,jsx,ts,tsx,mjs,json}": "biome check --write --no-errors-on-unmatched",
@@ -30,7 +30,7 @@
         "@fullhuman/postcss-purgecss": "^8.0.0",
         "@hotwired/stimulus": "^3.2.2",
         "@hotwired/turbo": "^8.0.23",
-        "@silarhi/ux-icons-js": "^0.2.0",
+        "@silarhi/ux-icons-js": "^0.3.1",
         "@symfony/reprise": "^1.3.0",
         "@symfony/ux-turbo": "file:vendor/symfony/ux-turbo/assets",
         "@types/node": "^26.6.5",

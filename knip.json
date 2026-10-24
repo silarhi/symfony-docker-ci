@@ -7,12 +7,12 @@
     "project": [
         "assets/**/*.{js,jsx,ts,tsx}"
     ],
+    "ignore": [
+        "assets/js/icons/**"
+    ],
     "paths": {
         "@/*": [
             "assets/*"
-        ],
-        "@icons/*": [
-            "var/icons/*"
         ]
     },
     "ignoreBinaries": [

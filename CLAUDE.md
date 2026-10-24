@@ -75,7 +75,7 @@ pnpm format               # pnpm lint && pnpm prettier
 # Unused files/dependencies
 pnpm knip
 
-# TypeScript (dumps var/icons first, so it needs vendor/: run composer install before)
+# TypeScript
 pnpm typecheck
 ```
 
@@ -146,9 +146,9 @@ The application uses League Glide for on-the-fly image manipulation:
 
 - `app` - Main application CSS/JS (base.html.twig)
 - `index` - React-based index page (assets/js/pages/index.tsx)
-- `icons` - UX Icons JS showcase (assets/js/pages/icons.tsx): its Stimulus controllers and React components live in `assets/js/icons/`
+- `icons` - UX Icons JS showcase (assets/js/pages/icons.tsx): its Stimulus controllers and React components live in `assets/js/icons-showcase/`
 
-**Icons**: `silarhi/ux-icons-js-bundle` dumps the local icons of `assets/icons/` into `var/icons/` (not committed) on cache warmup, or with `bin/console ux-icons-js:dump`. They are imported through the `@icons` alias (`@icons/index.js`, `@icons/loaders.js`), so the Vite build fails until they are dumped. Add an icon by importing it, then `bin/console ux:icons:lock` (or `ux:icons:import lucide:<name>`).
+**Icons**: `silarhi/ux-icons-js-bundle` dumps the local icons of `assets/icons/` into `assets/js/icons/` on cache warmup, or with `bin/console ux-icons-js:dump`, as by-night.fr and offre-parrainages.fr do. The dump is committed (`index.js`, `loaders.js`, `icons/` and their types), so the frontend builds and type-checks without PHP: commit it again after adding an SVG or changing `ux_icons` (prod dumps into `var/icons` instead, see `config/packages/silarhi_ux_icons_js.yaml`). It is imported from `@/js/icons` and `@/js/icons/loaders`. Add an icon by importing it, then `bin/console ux:icons:lock` (or `ux:icons:import lucide:<name>`).
 
 **Build Process**:
 
@@ -195,7 +195,7 @@ Notable rules from `.php-cs-fixer.dist.php`:
 - TypeScript, `strict` (`tsconfig.json` for `assets/`, `tsconfig.node.json` for `vite.config.ts`); no `any`, no `@ts-ignore`, no `prop-types`
 - Declarations for untyped code live in `assets/types/` (Turbo events, `window.app`)
 - Stimulus targets and values are typed with `declare readonly fooTarget: HTMLElement`
-- `@icons/*` is typed by the `.d.ts` files the dump writes next to `var/icons/*.js`
+- `@/js/icons` is typed by the committed `.d.ts` files of the dump
 - `@tabler/core/js/src/*` is typed from Tabler's `dist/types/src/` (`paths` in `tsconfig.json`): its raw `.ts` sources do not compile under our options
 
 ## CI/CD Pipeline
@@ -257,10 +257,9 @@ The Dockerfile (base `silarhi/php-apache:8.5-frankenphp-alpine` + `node:24-alpin
 
 1. **php_base**: PHP image + extensions (exif, gd, imagick)
 2. **php_builder**: Install PHP dependencies with Composer
-3. **php_icons**: `ux-icons-js:dump` writes `var/icons/`, imported by the asset build
-4. **node_deps**: `pnpm install` (needs `vendor/` for `@symfony/ux-turbo`)
-5. **node_builder**: Build frontend assets with Vite (Symfony Reprise); copies `templates/` for PurgeCSS and `var/icons/` from `php_icons`
-6. **Final stage**: Combine artifacts, optimize autoloader, warm cache
+3. **node_deps**: `pnpm install` (needs `vendor/` for `@symfony/ux-turbo`)
+4. **node_builder**: Build frontend assets with Vite (Symfony Reprise), the icons from their committed dump; copies `templates/` for PurgeCSS
+5. **Final stage**: Combine artifacts, optimize autoloader, warm cache and the icon cache (`ux:icons:warm-cache`)
 
 **Important**: The build process:
 
@@ -293,7 +292,8 @@ assets/
 │   ├── app.ts       # Main TypeScript entry
 │   ├── pages/       # React page components
 │   ├── component/   # Reusable React components
-│   ├── icons/       # Stimulus controllers and React components of the /icons showcase
+│   ├── icons/       # Icons dumped by silarhi/ux-icons-js-bundle (committed, never edited)
+│   ├── icons-showcase/ # Stimulus controllers and React components of the /icons showcase
 │   └── controllers/ # Stimulus controllers
 ├── icons/           # UX Icons SVG files (lucide/ imported from Iconify)
 └── scss/            # Stylesheets

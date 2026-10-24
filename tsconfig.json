@@ -15,7 +15,6 @@
         "skipLibCheck": true,
         "paths": {
             "@/*": ["./assets/*"],
-            "@icons/*": ["./var/icons/*"],
             // Types only: Tabler's sources are TypeScript written for its own compiler options, so they are
             // typed from the declarations it publishes. Vite still bundles the sources (no alias there).
             "@tabler/core/js/src/*": ["./node_modules/@tabler/core/dist/types/src/*"]

@@ -1,4 +1,4 @@
-import { existsSync, globSync } from 'node:fs'
+import { globSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import purgeCSSPlugin from '@fullhuman/postcss-purgecss'
 import Symfony from '@symfony/reprise/vite'
@@ -6,11 +6,6 @@ import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 
 const assets = fileURLToPath(new URL('./assets', import.meta.url))
-// The icons dumped by silarhi/ux-icons-js-bundle (on cache warmup, or with `bin/console ux-icons-js:dump`)
-const icons = fileURLToPath(new URL('./var/icons', import.meta.url))
-if (!existsSync(`${icons}/index.js`)) {
-    throw new Error('No dumped icon for the /icons showcase: run `bin/console ux-icons-js:dump` before building the assets.')
-}
 
 // PurgeCSS drops every selector it does not find in these files: without the templates (e.g. a
 // Docker stage that does not copy them), the build would silently ship a CSS stripped of the layout.
@@ -68,7 +63,6 @@ export default defineConfig(({ mode }) => {
         resolve: {
             alias: {
                 '@': assets,
-                '@icons': icons,
             },
         },
 
