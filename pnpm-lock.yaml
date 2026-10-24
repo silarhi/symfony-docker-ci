@@ -183,8 +183,8 @@ importers:
         specifier: ^8.0.23
         version: 8.0.23
       '@silarhi/ux-icons-js':
-        specifier: ^0.2.0
-        version: 0.2.0(react@19.3.1)
+        specifier: ^0.3.1
+        version: 0.3.1(react@19.3.1)
       '@symfony/reprise':
         specifier: ^1.3.0
         version: 1.3.0(@hotwired/stimulus@3.2.2)(rolldown@1.2.14)(vite@8.3.4(@types/node@26.6.5)(jiti@2.7.0)(sass@1.105.2)(yaml@2.9.1))
@@ -764,12 +764,15 @@ packages:
   '@rolldown/pluginutils@1.0.1':
     resolution: {integrity: sha512-2j9bGt5Jh8hj+vPtgzPtl72j0yRxHAyumoo6TNfAjsLB04UtpSvPbPcDcBMxz7n+9CYB0c1GxQFxYRg2jimqGw==}
 
-  '@silarhi/ux-icons-js@0.2.0':
-    resolution: {integrity: sha512-RVndLTTclvFwRlT4jj+ibphTFgvsBY4HDvN6x/QGFL/E71ECXoR9nVeO1EodcAz7Cc6dfNAYvkMm7j0mvl/aew==}
+  '@silarhi/ux-icons-js@0.3.1':
+    resolution: {integrity: sha512-9owsAK1WHuDA8ZSlFUBOovUMLy3iaZrDL3acBKouTcggX2Ud+cgSjznEedW0mgkRcsVXe2R0iEhsWb7rfrnZIA==}
     peerDependencies:
+      preact: ^10.0 || ^11.0
       react: ^18.0 || ^19.0
       vue: ^3.0
     peerDependenciesMeta:
+      preact:
+        optional: true
       react:
         optional: true
       vue:
@@ -1688,7 +1691,7 @@ snapshots:
 
   '@rolldown/pluginutils@1.0.1': {}
 
-  '@silarhi/ux-icons-js@0.2.0(react@19.3.1)':
+  '@silarhi/ux-icons-js@0.3.1(react@19.3.1)':
     optionalDependencies:
       react: 19.3.1
 
