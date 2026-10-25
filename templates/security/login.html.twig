@@ -1,6 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}Log in{% endblock %}
+{% block description %}Log in to the Symfony Docker CI demo, the first step of its two-factor authentication.{% endblock %}
+
+{# Kept crawlable, so search engines see the noindex #}
+{% block robots %}<meta name="robots" content="noindex">{% endblock %}
 
 {% block body %}
 

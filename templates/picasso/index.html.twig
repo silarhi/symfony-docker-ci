@@ -3,10 +3,14 @@
 {% import 'picasso/macros.html.twig' as picasso %}
 
 {% block title %}PicassoBundle showcase{% endblock %}
+{% block description %}Responsive images in Symfony with silarhi/picasso-bundle: one Twig component for AVIF and WebP sources, srcset and blur placeholders.{% endblock %}
 
 {% block meta %}
     {# A plain transformed URL, for Open Graph: 1200x630 JPEG #}
     <meta property="og:image" content="{{ absolute_url(picasso_image_url(asset('build/images/jacalyn-beales-669247-unsplash.jpg'), width: 1200, height: 630, format: 'jpg', fit: 'cover')) }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
 {% endblock %}
 
 {% block body %}

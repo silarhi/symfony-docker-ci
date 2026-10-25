@@ -1,6 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Page for connected users!{% endblock %}
+{% block title %}Page for connected users{% endblock %}
+{% block description %}A page only users who passed two-factor authentication can see.{% endblock %}
+
+{# Kept crawlable, so search engines see the noindex #}
+{% block robots %}<meta name="robots" content="noindex">{% endblock %}
 
 {% block body %}
     <div class="container my-5">

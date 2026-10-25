@@ -1,6 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Qr code!{% endblock %}
+{% block title %}Set up two-factor authentication{% endblock %}
+{% block description %}Scan the QR code with an authenticator app to set up two-factor authentication.{% endblock %}
+
+{# Kept crawlable, so search engines see the noindex #}
+{% block robots %}<meta name="robots" content="noindex">{% endblock %}
 
 {% block body %}
     {% if error %}

@@ -10,9 +10,10 @@
 
 {% block title %}{{ status_code }} · {{ block('error_title')|striptags|trim }}{% endblock %}
 
-{% block meta %}
-    <meta name="robots" content="noindex">
-{% endblock %}
+{% block robots %}<meta name="robots" content="noindex">{% endblock %}
+
+{# No canonical: a 403 has a route, and its URL is not this page's #}
+{% block canonical %}{% endblock %}
 
 {% block navbar_account %}
     {% if status_code < 500 %}{{ parent() }}{% endif %}
