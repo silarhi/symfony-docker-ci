@@ -46,6 +46,6 @@ class IconsController extends AbstractController
             ['label' => 'Payments', 'icon' => 'lucide:credit-card', 'status' => 'Down', 'statusIcon' => 'lucide:circle-x'],
             // A name the dump does not know: the fallback stays
             ['label' => 'Legacy API', 'icon' => 'lucide:does-not-exist', 'status' => 'Unknown', 'statusIcon' => null],
-        ]);
+        ], headers: ['X-Robots-Tag' => 'noindex']);
     }
 }

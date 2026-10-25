@@ -56,7 +56,7 @@ class PicassoController extends AbstractController
     #[Route(path: '/picasso/api/image.json', name: 'picasso_api_image')]
     public function apiImage(ImageHelperInterface $imageHelper, Packages $packages): JsonResponse
     {
-        return new JsonResponse($this->apiExample($imageHelper, $packages));
+        return new JsonResponse($this->apiExample($imageHelper, $packages), headers: ['X-Robots-Tag' => 'noindex']);
     }
 
     private function apiExample(ImageHelperInterface $imageHelper, Packages $packages): ImageRenderData

@@ -1,12 +1,33 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="turbo-prefetch" content="false">
     <meta name="x-app-version" content="{{ app_version }}" data-turbo-track="reload">
-    <title>{% block title %}Welcome!{% endblock %}</title>
-    {% block meta %}{% endblock %}
+    {# Each page defines the title and description blocks: they feed <title>, the meta description and Open Graph #}
+    {% set title = block('title') is defined ? block('title') : 'Symfony Docker CI Demo' %}
+    {% set description = block('description') is defined ? block('description') : 'A Symfony demo application, built in Docker and deployed by CircleCI.' %}
+    <title>{{ title }} · {{ site_name }}</title>
+    <meta name="description" content="{{ description }}">
+    {% block robots %}{% endblock %}
+    {# From the route, without the query string: /images?utm_source=… points to /images. A block, so the error pages
+       can leave it out #}
+    {% block canonical %}
+        {% if app.current_route %}
+            {% set canonical = url(app.current_route, app.current_route_parameters) %}
+            <link rel="canonical" href="{{ canonical }}">
+            <meta property="og:url" content="{{ canonical }}">
+        {% endif %}
+    {% endblock %}
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="{{ site_name }}">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:title" content="{{ title }}">
+    <meta property="og:description" content="{{ description }}">
+    {% block meta %}
+        <meta name="twitter:card" content="summary">
+    {% endblock %}
     <link rel="icon" href="{{ asset('favicon.ico') }}">
     <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}">
 

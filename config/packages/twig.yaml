@@ -1,6 +1,8 @@
 twig:
     file_name_pattern: '*.twig'
     globals:
+        # Suffix of the <title>, og:site_name (templates/base.html.twig)
+        site_name: 'SILARHI Labs'
         php_version: !php/const PHP_VERSION
         app_version: '%env(APP_VERSION)%'
         git_commit: '%env(GIT_COMMIT)%'
