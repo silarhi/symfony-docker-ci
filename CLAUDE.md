@@ -66,7 +66,7 @@ vendor/bin/rector process --dry-run
 pnpm lint                 # biome check --write assets
 pnpm lint-ci              # biome check assets (no writes, used in CI)
 
-# SCSS/Markdown formatting (Prettier)
+# Markdown/YAML formatting (Prettier)
 pnpm prettier
 
 # Both
@@ -96,8 +96,8 @@ docker build \
 
 The project uses Husky for pre-commit hooks that run:
 
-- Biome (`check --write`) on JS/JSX/TS/JSON files
-- Prettier on SCSS/MD/YAML files
+- Biome (`check --write`) on JS/JSX/TS/JSON/SCSS files
+- Prettier on MD/YAML files
 - PHP-CS-Fixer on PHP files
 - Twig-CS-Fixer on Twig templates
 
@@ -189,8 +189,8 @@ Notable rules from `.php-cs-fixer.dist.php`:
 
 ### JavaScript/TypeScript Standards
 
-- Biome (`biome.json`, React domain) for linting and formatting: 4-space indent, single quotes, no semicolons
-- Prettier only for SCSS/Markdown/YAML
+- Biome (`biome.json`, React domain) for linting and formatting JS/TS and SCSS: 4-space indent, single quotes, no semicolons
+- Prettier only for Markdown/YAML
 - React 19 with hooks patterns
 - TypeScript, `strict` (`tsconfig.json` for `assets/`, `tsconfig.node.json` for `vite.config.ts`); no `any`, no `@ts-ignore`, no `prop-types`
 - Declarations for untyped code live in `assets/types/` (Turbo events, `window.app`)

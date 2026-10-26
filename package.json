@@ -13,20 +13,20 @@
         "prepare": "husky",
         "lint": "biome check --write assets",
         "lint-ci": "biome check assets",
-        "prettier": "prettier --write \"assets/**/*.{scss,md}\"",
+        "prettier": "prettier --write --no-error-on-unmatched-pattern \"assets/**/*.{md,yaml,yml}\"",
         "format": "pnpm lint && pnpm prettier",
         "knip": "knip",
         "typecheck": "tsc -p tsconfig.json && tsc -p tsconfig.node.json"
     },
     "lint-staged": {
-        "*.{js,jsx,ts,tsx,mjs,json}": "biome check --write --no-errors-on-unmatched",
-        "*.{scss,md,yaml,yml}": "prettier --write",
+        "*.{js,jsx,ts,tsx,mjs,json,scss}": "biome check --write --no-errors-on-unmatched",
+        "*.{md,yaml,yml}": "prettier --write",
         "*.php": "vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php",
         "*.twig": "vendor/bin/twig-cs-fixer lint --fix --config=.twig-cs-fixer.php",
         "composer.json": "composer normalize"
     },
     "devDependencies": {
-        "@biomejs/biome": "2.5.15",
+        "@biomejs/biome": "2.6.3",
         "@fullhuman/postcss-purgecss": "^8.0.0",
         "@hotwired/stimulus": "^3.2.2",
         "@hotwired/turbo": "^8.0.23",
