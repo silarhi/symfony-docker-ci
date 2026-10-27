@@ -16,7 +16,8 @@
         "prettier": "prettier --write --no-error-on-unmatched-pattern \"assets/**/*.{md,yaml,yml}\"",
         "format": "pnpm lint && pnpm prettier",
         "knip": "knip",
-        "typecheck": "tsc -p tsconfig.json && tsc -p tsconfig.node.json"
+        "typecheck": "tsc -p tsconfig.json && tsc -p tsconfig.node.json",
+        "og-image": "node scripts/og-image.mjs"
     },
     "lint-staged": {
         "*.{js,jsx,ts,tsx,mjs,json,scss}": "biome check --write --no-errors-on-unmatched",
