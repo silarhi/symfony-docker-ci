@@ -6,6 +6,8 @@ when@prod:
             # No request headers, cookies nor IP address: errors are fixable without them.
             # see https://docs.sentry.io/platforms/php/data-management/data-collected/ for more info
             send_default_pii: false
+            # Nor request bodies, which the SDK sends even without PII (POST fields up to 10 kB, passwords included)
+            max_request_body_size: 'none'
             # The CircleCI build the image comes from (build arg APP_VERSION)
             release: '%env(APP_VERSION)%'
             ignore_exceptions:
