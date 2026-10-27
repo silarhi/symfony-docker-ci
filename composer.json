@@ -13,6 +13,7 @@
         "league/commonmark": "^2.10.4",
         "league/glide-symfony": "^2.1.0",
         "pragmarx/google2fa": "^9.1.0",
+        "sentry/sentry-symfony": "^5.14",
         "silarhi/picasso-bundle": "^2.5.0",
         "silarhi/ux-icons-js-bundle": "^0.3.1",
         "symfony/asset": "~8.1.0",

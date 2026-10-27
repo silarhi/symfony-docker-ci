@@ -24,4 +24,5 @@ return [
     Symfony\Reprise\RepriseBundle::class => ['all' => true],
     Symfony\UX\Icons\UXIconsBundle::class => ['all' => true],
     Silarhi\UxIconsJsBundle\SilarhiUxIconsJsBundle::class => ['all' => true],
+    Sentry\SentryBundle\SentryBundle::class => ['prod' => true],
 ];
