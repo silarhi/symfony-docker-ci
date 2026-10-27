@@ -1,0 +1,32 @@
+when@prod:
+    sentry:
+        # Empty by default: the public image sends nothing until SENTRY_DSN is set (labs.silarhi.fr sets it).
+        dsn: '%env(SENTRY_DSN)%'
+        options:
+            # No request headers, cookies nor IP address: errors are fixable without them.
+            # see https://docs.sentry.io/platforms/php/data-management/data-collected/ for more info
+            send_default_pii: false
+            # The CircleCI build the image comes from (build arg APP_VERSION)
+            release: '%env(APP_VERSION)%'
+            ignore_exceptions:
+                - 'Symfony\Component\ErrorHandler\Error\FatalError'
+                - 'Symfony\Component\Debug\Exception\FatalErrorException'
+
+        # Errors reach Sentry through Monolog only, see below:
+        # https://docs.sentry.io/platforms/php/guides/symfony/integrations/monolog/
+        register_error_listener: false
+        register_error_handler: false
+
+    monolog:
+        handlers:
+            # Forward ERROR-level Monolog records (incl. uncaught exceptions logged by Symfony) to Sentry as Issues.
+            sentry:
+                type: service
+                id: Sentry\Monolog\Handler
+
+    services:
+        Sentry\Monolog\Handler:
+            arguments:
+                $hub: '@Sentry\State\HubInterface'
+                $level: !php/const Monolog\Logger::ERROR
+                $fillExtraContext: true # Enables sending monolog context to Sentry

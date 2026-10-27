@@ -1,12 +1,6 @@
 <?php
 
-/*
- * This file is part of SILARHI.
- * (c) 2019 - present Guillaume Sainthillier <guillaume@silarhi.fr>
- *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
- */
+// This file is auto-generated and is for apps only. Bundles SHOULD NOT rely on its content.
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
@@ -422,7 +416,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         log_channel?: scalar|Param|null, // The channel of log message. Null to let Symfony decide. // Default: null
  *     }>,
  *     web_link?: bool|array{ // Web links configuration
- *         enabled?: bool|Param, // Default: false
+ *         enabled?: bool|Param, // Default: true
  *     },
  *     lock?: Param|bool|string|array{ // Lock configuration
  *         enabled?: bool|Param, // Default: false
@@ -1396,6 +1390,125 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     dump_typescript?: bool|Param, // Whether TypeScript types are dumped alongside the icons. Disable this if you do not use TypeScript (e.g. in production when using AssetMapper). // Default: true
  *     scan_directories?: list<scalar|Param|null>,
  * }
+ * @psalm-type SentryConfig = array{
+ *     dsn?: scalar|Param|null, // If this value is not provided, the SDK will try to read it from the SENTRY_DSN environment variable. If that variable also does not exist, the SDK will not send any events.
+ *     register_error_listener?: bool|Param, // Default: true
+ *     register_error_handler?: bool|Param, // Default: true
+ *     logger?: scalar|Param|null, // The service ID of the PSR-3 logger used to log messages coming from the SDK client. Be aware that setting the same logger of the application may create a circular loop when an event fails to be sent. // Default: null
+ *     options?: array{
+ *         integrations?: mixed, // Default: []
+ *         default_integrations?: bool|Param,
+ *         prefixes?: list<scalar|Param|null>,
+ *         sample_rate?: float|Param, // The sampling factor to apply to events. A value of 0 will deny sending any event, and a value of 1 will send all events.
+ *         enable_tracing?: bool|Param,
+ *         traces_sample_rate?: float|Param, // The sampling factor to apply to transactions. A value of 0 will deny sending any transaction, and a value of 1 will send all transactions.
+ *         traces_sampler?: scalar|Param|null,
+ *         profiles_sample_rate?: float|Param, // The sampling factor to apply to profiles. A value of 0 will deny sending any profiles, and a value of 1 will send all profiles. Profiles are sampled in relation to traces_sample_rate
+ *         enable_logs?: bool|Param,
+ *         log_flush_threshold?: mixed, // Default: null
+ *         enable_metrics?: bool|Param, // Default: true
+ *         attach_stacktrace?: bool|Param,
+ *         attach_metric_code_locations?: bool|Param,
+ *         context_lines?: int|Param,
+ *         environment?: scalar|Param|null, // Default: "%kernel.environment%"
+ *         logger?: scalar|Param|null,
+ *         spotlight?: bool|Param,
+ *         spotlight_url?: scalar|Param|null,
+ *         release?: scalar|Param|null, // Default: "%env(default::SENTRY_RELEASE)%"
+ *         org_id?: int|Param,
+ *         server_name?: scalar|Param|null,
+ *         ignore_exceptions?: list<scalar|Param|null>,
+ *         ignore_transactions?: list<scalar|Param|null>,
+ *         before_send?: scalar|Param|null,
+ *         before_send_transaction?: scalar|Param|null,
+ *         before_send_check_in?: scalar|Param|null,
+ *         before_send_metrics?: scalar|Param|null,
+ *         before_send_log?: scalar|Param|null,
+ *         before_send_metric?: scalar|Param|null,
+ *         trace_propagation_targets?: mixed,
+ *         strict_trace_continuation?: bool|Param,
+ *         tags?: array<string, scalar|Param|null>,
+ *         error_types?: scalar|Param|null,
+ *         max_breadcrumbs?: int|Param,
+ *         before_breadcrumb?: mixed,
+ *         in_app_exclude?: list<scalar|Param|null>,
+ *         in_app_include?: list<scalar|Param|null>,
+ *         send_default_pii?: bool|Param,
+ *         data_collection?: array{ // Opts into the data collection options, which replace legacy options such as "send_default_pii". An empty array applies the default of every option, null keeps the legacy options even if an earlier config file opted in.
+ *             user_info?: bool|Param,
+ *             cookies?: array{
+ *                 mode?: "off"|"denyList"|"allowList"|Param,
+ *                 terms?: list<scalar|Param|null>,
+ *             },
+ *             http_headers?: array{
+ *                 request?: array{
+ *                     mode?: "off"|"denyList"|"allowList"|Param,
+ *                     terms?: list<scalar|Param|null>,
+ *                 },
+ *                 response?: array{
+ *                     mode?: "off"|"denyList"|"allowList"|Param,
+ *                     terms?: list<scalar|Param|null>,
+ *                 },
+ *                 ...<string, mixed>
+ *             },
+ *             http_bodies?: list<"incomingRequest"|"outgoingRequest"|"incomingResponse"|"outgoingResponse"|Param>,
+ *             url_query_params?: array{
+ *                 mode?: "off"|"denyList"|"allowList"|Param,
+ *                 terms?: list<scalar|Param|null>,
+ *             },
+ *             gen_ai?: array{
+ *                 inputs?: bool|Param,
+ *                 outputs?: bool|Param,
+ *             },
+ *             database_query_data?: bool|Param,
+ *             queues?: bool|Param,
+ *             stack_frame_variables?: bool|array{
+ *                 mode?: "off"|"denyList"|"allowList"|Param,
+ *                 terms?: list<scalar|Param|null>,
+ *             },
+ *             frame_context_lines?: int|Param,
+ *             ...<string, mixed>
+ *         },
+ *         max_value_length?: int|Param,
+ *         transport?: scalar|Param|null,
+ *         http_client?: scalar|Param|null,
+ *         http_proxy?: scalar|Param|null,
+ *         http_proxy_authentication?: scalar|Param|null,
+ *         http_connect_timeout?: float|Param, // The maximum number of seconds to wait while trying to connect to a server. It works only when using the default transport.
+ *         http_timeout?: float|Param, // The maximum execution time for the request+response as a whole. It works only when using the default transport.
+ *         http_ssl_verify_peer?: bool|Param,
+ *         http_compression?: bool|Param,
+ *         capture_silenced_errors?: bool|Param,
+ *         max_request_body_size?: "none"|"never"|"small"|"medium"|"always"|Param,
+ *         class_serializers?: array<string, scalar|Param|null>,
+ *     },
+ *     messenger?: bool|array{
+ *         enabled?: bool|Param, // Default: false
+ *         capture_soft_fails?: bool|Param, // Default: true
+ *         isolate_breadcrumbs_by_message?: bool|Param, // Default: false
+ *         isolate_context_by_message?: bool|Param, // Default: false
+ *     },
+ *     tracing?: bool|array{
+ *         enabled?: bool|Param, // Default: true
+ *         dbal?: bool|array{
+ *             enabled?: bool|Param, // Default: false
+ *             ignore_prepare_spans?: bool|Param, // Default: false
+ *             connections?: list<scalar|Param|null>,
+ *         },
+ *         twig?: bool|array{
+ *             enabled?: bool|Param, // Default: true
+ *         },
+ *         cache?: bool|array{
+ *             enabled?: bool|Param, // Default: true
+ *         },
+ *         http_client?: bool|array{
+ *             enabled?: bool|Param, // Default: true
+ *         },
+ *         console?: array{
+ *             excluded_commands?: list<scalar|Param|null>,
+ *         },
+ *     },
+ * }
  * @psalm-type ConfigType = array{
  *     imports?: ImportsConfig,
  *     parameters?: ParametersConfig,
@@ -1448,6 +1561,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         reprise?: RepriseConfig,
  *         ux_icons?: UxIconsConfig,
  *         silarhi_ux_icons_js?: SilarhiUxIconsJsConfig,
+ *         sentry?: SentryConfig,
  *     },
  *     "when@test"?: array{
  *         imports?: ImportsConfig,
