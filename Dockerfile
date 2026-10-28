@@ -2,7 +2,7 @@
 
 # Versions
 FROM silarhi/php-apache:8.5-frankenphp-alpine AS php_upstream
-FROM node:24-alpine AS node_upstream
+FROM node:26-alpine AS node_upstream
 
 # Node base with pnpm (it switches itself to the version pinned in package.json "packageManager")
 FROM node_upstream AS node_base
