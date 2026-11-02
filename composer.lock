@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "32f1339b46839a6ab97763ab9ddf1a8b",
+    "content-hash": "92b2ad088b3e0fb6db3092ea01539ab7",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -2132,23 +2132,25 @@
         },
         {
             "name": "silarhi/picasso-bundle",
-            "version": "v2.5.0",
+            "version": "v2.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/silarhi/picasso-bundle.git",
-                "reference": "c3ccee8c85cdabe1bb6ecf3500ca3a6766930c3f"
+                "reference": "56f71f4578c095c9f5721684caef6e3543eeac85"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silarhi/picasso-bundle/zipball/c3ccee8c85cdabe1bb6ecf3500ca3a6766930c3f",
-                "reference": "c3ccee8c85cdabe1bb6ecf3500ca3a6766930c3f",
+                "url": "https://api.github.com/repos/silarhi/picasso-bundle/zipball/56f71f4578c095c9f5721684caef6e3543eeac85",
+                "reference": "56f71f4578c095c9f5721684caef6e3543eeac85",
                 "shasum": ""
             },
             "require": {
                 "php": ">=8.2",
                 "symfony/deprecation-contracts": "^2.5 || ^3.0",
-                "symfony/framework-bundle": "^6.4 || ^7.0 || ^8.0",
-                "symfony/ux-twig-component": "^2.13 || ^3.0"
+                "symfony/framework-bundle": "^6.4 || ^7.0 || ^8.0"
+            },
+            "conflict": {
+                "symfony/ux-twig-component": "<2.13"
             },
             "require-dev": {
                 "ergebnis/composer-normalize": "^2.54.0",
@@ -2158,16 +2160,19 @@
                 "league/flysystem-bundle": "^2.1 || ^3.0",
                 "league/glide": "^2.3 || ^3.0 || ^4.0",
                 "phpstan/extension-installer": "^1.4.3",
-                "phpstan/phpstan": "^2.3.1",
+                "phpstan/phpstan": "^2.3.2",
                 "phpstan/phpstan-strict-rules": "^2.1.0",
-                "phpstan/phpstan-symfony": "^2.1.0",
+                "phpstan/phpstan-symfony": "^2.1.1",
                 "phpunit/phpunit": "^11.5.57 || ^12.5.38 || ^13.4.1",
                 "psr/http-client": "^1.0.3",
                 "psr/http-factory": "^1.1",
-                "rector/rector": "^2.7.0",
+                "rector/rector": "^2.8.1",
+                "symfony/asset-mapper": "^6.4 || ^7.0 || ^8.0",
                 "symfony/http-client": "^6.4 || ^7.0 || ^8.0",
                 "symfony/lock": "^6.4 || ^7.0 || ^8.0",
                 "symfony/twig-bundle": "^6.4 || ^7.0 || ^8.0",
+                "symfony/ux-twig-component": "^2.13 || ^3.0",
+                "symfony/web-link": "^6.4 || ^7.0 || ^8.0",
                 "vich/uploader-bundle": "^2.9 || ^3.0",
                 "vincentlanglet/twig-cs-fixer": "^4.1.1"
             },
@@ -2179,8 +2184,12 @@
                 "league/glide": "Required for the Glide transformer (local image transformation)",
                 "psr/http-client": "Required for the URL loader (PSR-18 HTTP client interface)",
                 "psr/http-factory": "Required for the URL loader (PSR-17 HTTP factory interface)",
+                "symfony/asset-mapper": "Required for the AssetMapper loader",
                 "symfony/http-client": "Provides a PSR-18 HTTP client implementation for the URL loader",
                 "symfony/lock": "Required for the Glide lock option (render each missing variant once)",
+                "symfony/twig-bundle": "Required for the picasso_image() and picasso_image_url() Twig functions",
+                "symfony/ux-twig-component": "Required for the <twig:Picasso:Image> component",
+                "symfony/web-link": "Required to preload priority images (Link header)",
                 "vich/uploader-bundle": "Required for the VichUploader loader"
             },
             "type": "symfony-bundle",
@@ -2193,12 +2202,33 @@
             "license": [
                 "MIT"
             ],
-            "description": "Responsive image component for Symfony, inspired by next/image",
+            "description": "Responsive images for Symfony: one Twig component for AVIF/WebP srcset, blur placeholders, Glide/Imgix, inspired by next/image",
+            "homepage": "https://picasso-bundle.silarhi.dev",
+            "keywords": [
+                "blurhash",
+                "bundle",
+                "glide",
+                "image",
+                "images",
+                "imgix",
+                "next-image",
+                "picture",
+                "placeholder",
+                "responsive",
+                "responsive-images",
+                "srcset",
+                "symfony",
+                "symfony-bundle",
+                "twig",
+                "twig-component"
+            ],
             "support": {
+                "docs": "https://picasso-bundle.silarhi.dev",
                 "issues": "https://github.com/silarhi/picasso-bundle/issues",
-                "source": "https://github.com/silarhi/picasso-bundle/tree/v2.5.0"
+                "source": "https://github.com/silarhi/picasso-bundle"
             },
-            "time": "2026-10-12T10:52:57+00:00"
+            "time": "2026-10-29T21:09:25+00:00",
+            "published-time": "2026-10-29T21:09:42+00:00"
         },
         {
             "name": "silarhi/ux-icons-js-bundle",
