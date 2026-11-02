@@ -1,6 +1,12 @@
 <?php
 
-// This file is auto-generated and is for apps only. Bundles SHOULD NOT rely on its content.
+/*
+ * This file is part of SILARHI.
+ * (c) 2019 - present Guillaume Sainthillier <guillaume@silarhi.fr>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
@@ -1295,6 +1301,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         error_max_age?: scalar|Param|null, // Seconds clients and CDNs may cache a 404. Null keeps 404s uncacheable. // Default: null
  *     },
  *     resolve_metadata?: bool|Param, // Whether to resolve image metadata (dimensions) from the source by default. Filesystem loaders default to true. // Default: false
+ *     preload?: bool|Param, // Preload priority images through a Link header (and 103 Early Hints when sent). Needs symfony/web-link, does nothing without it. // Default: true
  *     collector?: bool|Param, // Enable the web profiler data collector for Picasso. Disabled by default; turn on in dev to debug image rendering. // Default: false
  *     default_placeholder?: scalar|Param|null, // Default placeholder name. Auto-detected when only one is configured. // Default: null
  *     placeholders?: array<string, array{ // Default: []
@@ -1312,7 +1319,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     }>,
  *     loaders?: array<string, array{ // Default: []
  *         enabled?: bool|Param, // Default: true
- *         type?: "filesystem"|"flysystem"|"vich"|"url"|"chain"|Param, // Loader type. Inferred from name when it matches a known type. // Default: null
+ *         type?: "filesystem"|"flysystem"|"vich"|"url"|"asset_mapper"|"chain"|Param, // Loader type. Inferred from name when it matches a known type. // Default: null
  *         path?: scalar|Param|null, // Directory a filesystem loader reads images from. // Default: null
  *         paths?: mixed, // Removed in 2.0: declare one filesystem loader per directory, each with its own "path". // Default: null
  *         loaders?: list<scalar|Param|null>,
@@ -1325,12 +1332,12 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         default_transformer?: scalar|Param|null, // Default transformer name for this loader. Overrides the global default_transformer. // Default: null
  *         url_alias?: scalar|Param|null, // Public name of this loader in image URLs and public-cache keys, instead of its name (e.g. "p" for /image/glide/p/…). // Default: null
  *         private?: bool|Param, // Only your own routes serve the images of this loader (through ImageServer, e.g. behind security voters): the bundle image route refuses it, and rendering requires a "route". // Default: false
- *         resolve_metadata?: scalar|Param|null, // Whether to resolve image metadata for this loader. Null inherits from global. Filesystem loaders default to true. // Default: null
+ *         resolve_metadata?: scalar|Param|null, // Whether to resolve image metadata for this loader. Null inherits from global. Filesystem and asset_mapper loaders default to true. // Default: null
  *     }>,
  *     transformers?: array<string, array{ // Default: []
  *         enabled?: bool|Param, // Default: true
  *         type?: "glide"|"imgix"|"service"|Param, // Transformer type. Inferred from name when it matches a known type. // Default: null
- *         sign_key?: scalar|Param|null, // Default: null
+ *         sign_key?: mixed, // Glide: secret signing image URLs, required (e.g. bin2hex(random_bytes(32))); or a list of them to rotate keys, as with Symfony secrets: the first one signs, all of them validate. Imgix: optional signing token. // Default: null
  *         cache?: scalar|Param|null, // Glide cache target. Either a local path or a Flysystem storage name (resolved via FlysystemRegistry). // Default: null
  *         driver?: scalar|Param|null, // Default: "gd"
  *         max_image_size?: int|Param, // Max image size for glide. // Default: null
@@ -1394,6 +1401,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     dsn?: scalar|Param|null, // If this value is not provided, the SDK will try to read it from the SENTRY_DSN environment variable. If that variable also does not exist, the SDK will not send any events.
  *     register_error_listener?: bool|Param, // Default: true
  *     register_error_handler?: bool|Param, // Default: true
+ *     register_monolog_handler?: bool|Param, // EXPERIMENT: automatically push a Sentry handler onto every Monolog channel (requires MonologBundle). // Default: false
  *     logger?: scalar|Param|null, // The service ID of the PSR-3 logger used to log messages coming from the SDK client. Be aware that setting the same logger of the application may create a circular loop when an event fails to be sent. // Default: null
  *     options?: array{
  *         integrations?: mixed, // Default: []
