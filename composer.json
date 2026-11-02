@@ -20,7 +20,7 @@
         "symfony/console": "~8.1.10",
         "symfony/dotenv": "~8.1.6",
         "symfony/expression-language": "~8.1.9",
-        "symfony/flex": "^2.11",
+        "symfony/flex": "^2.12.0",
         "symfony/form": "~8.1.10",
         "symfony/framework-bundle": "~8.1.10",
         "symfony/monolog-bundle": "^4.1.0",
