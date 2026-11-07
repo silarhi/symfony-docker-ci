@@ -7,7 +7,7 @@ orbs:
 jobs:
     build:
         docker:
-            - image: cimg/base:2026.10
+            - image: cimg/base:2026.11
               environment:
                   IMAGE_NAME: silarhi/symfony-docker-ci
         steps:
