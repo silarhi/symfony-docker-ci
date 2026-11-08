@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e302bca13aa715ba2e113ee158873cbc",
+    "content-hash": "3383ccaa76bacfbba66e5e34102d9ddf",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -6485,16 +6485,16 @@
         },
         {
             "name": "symfony/ux-icons",
-            "version": "v3.6.0",
+            "version": "v3.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/ux-icons.git",
-                "reference": "7df597be46d9fb681bdf34dcd5d6102f952db8f4"
+                "reference": "6411c1ca64613d2bcec71446e75ffdb3df3c4212"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/ux-icons/zipball/7df597be46d9fb681bdf34dcd5d6102f952db8f4",
-                "reference": "7df597be46d9fb681bdf34dcd5d6102f952db8f4",
+                "url": "https://api.github.com/repos/symfony/ux-icons/zipball/6411c1ca64613d2bcec71446e75ffdb3df3c4212",
+                "reference": "6411c1ca64613d2bcec71446e75ffdb3df3c4212",
                 "shasum": ""
             },
             "require": {
@@ -6556,7 +6556,7 @@
                 "twig"
             ],
             "support": {
-                "source": "https://github.com/symfony/ux-icons/tree/v3.6.0"
+                "source": "https://github.com/symfony/ux-icons/tree/v3.7.0"
             },
             "funding": [
                 {
@@ -6576,7 +6576,8 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-07T05:37:39+00:00"
+            "time": "2026-10-18T10:57:24+00:00",
+            "published-time": "2026-11-04T08:54:18+00:00"
         },
         {
             "name": "symfony/ux-turbo",
@@ -7241,7 +7242,8 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-06T20:35:36+00:00"
+            "time": "2026-09-06T20:35:36+00:00",
+            "published-time": "2026-09-18T09:10:36+00:00"
         },
         {
             "name": "twig/markdown-extra",
