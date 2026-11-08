@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8ca39c0b20ad1657f7000f658186bb02",
+    "content-hash": "6b22489b0065636a1b475f62424bc752",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -303,7 +303,8 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-17T23:57:19+00:00"
+            "time": "2026-10-17T23:57:19+00:00",
+            "published-time": "2026-10-17T23:57:53+00:00"
         },
         {
             "name": "imagine/imagine",
@@ -433,7 +434,8 @@
                     "type": "ko_fi"
                 }
             ],
-            "time": "2026-01-04T09:27:23+00:00"
+            "time": "2026-01-04T09:27:23+00:00",
+            "published-time": "2026-01-04T10:20:40+00:00"
         },
         {
             "name": "intervention/image",
@@ -509,7 +511,8 @@
                     "type": "ko_fi"
                 }
             ],
-            "time": "2026-10-05T12:21:16+00:00"
+            "time": "2026-10-05T12:21:16+00:00",
+            "published-time": "2026-10-10T06:28:14+00:00"
         },
         {
             "name": "jean85/pretty-package-versions",
@@ -889,7 +892,8 @@
                 "issues": "https://github.com/thephpleague/flysystem/issues",
                 "source": "https://github.com/thephpleague/flysystem/tree/3.36.0"
             },
-            "time": "2026-09-02T08:00:27+00:00"
+            "time": "2026-09-02T08:00:27+00:00",
+            "published-time": "2026-09-02T08:01:40+00:00"
         },
         {
             "name": "league/flysystem-local",
@@ -938,7 +942,8 @@
             "support": {
                 "source": "https://github.com/thephpleague/flysystem-local/tree/3.35.3"
             },
-            "time": "2026-08-12T13:29:21+00:00"
+            "time": "2026-08-12T13:29:21+00:00",
+            "published-time": "2026-08-22T12:57:18+00:00"
         },
         {
             "name": "league/glide",
@@ -1004,24 +1009,25 @@
                 "issues": "https://github.com/thephpleague/glide/issues",
                 "source": "https://github.com/thephpleague/glide/tree/3.2.0"
             },
-            "time": "2026-02-19T11:57:40+00:00"
+            "time": "2026-02-19T11:57:40+00:00",
+            "published-time": "2026-02-19T12:29:21+00:00"
         },
         {
             "name": "league/glide-symfony",
-            "version": "2.1.0",
+            "version": "v2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/glide-symfony.git",
-                "reference": "83e12464eef3af91ada98d0f3c595e2ce3fbfddb"
+                "reference": "27dde6d5926cf6afc92bfa56d11f407a20af8016"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/glide-symfony/zipball/83e12464eef3af91ada98d0f3c595e2ce3fbfddb",
-                "reference": "83e12464eef3af91ada98d0f3c595e2ce3fbfddb",
+                "url": "https://api.github.com/repos/thephpleague/glide-symfony/zipball/27dde6d5926cf6afc92bfa56d11f407a20af8016",
+                "reference": "27dde6d5926cf6afc92bfa56d11f407a20af8016",
                 "shasum": ""
             },
             "require": {
-                "league/glide": "^2.0|^3.0",
+                "league/glide": "^2.0|^3.0|^4.0",
                 "php": "^8.1",
                 "symfony/http-foundation": "^5|^6|^7|^8"
             },
@@ -1044,15 +1050,21 @@
                     "name": "Jonathan Reinink",
                     "email": "jonathan@reinink.ca",
                     "homepage": "http://reinink.ca"
+                },
+                {
+                    "name": "Robin Chalas",
+                    "email": "robin@baksla.sh",
+                    "homepage": "https://baksla.sh"
                 }
             ],
             "description": "Glide adapter for Symfony",
             "homepage": "http://glide.thephpleague.com",
             "support": {
                 "issues": "https://github.com/thephpleague/glide-symfony/issues",
-                "source": "https://github.com/thephpleague/glide-symfony/tree/2.1.0"
+                "source": "https://github.com/thephpleague/glide-symfony/tree/v2.2.0"
             },
-            "time": "2026-04-10T16:45:03+00:00"
+            "time": "2026-10-13T21:31:59+00:00",
+            "published-time": "2026-11-02T12:16:00+00:00"
         },
         {
             "name": "league/mime-type-detection",
@@ -1108,7 +1120,8 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-07-09T11:49:27+00:00"
+            "time": "2026-07-09T11:49:27+00:00",
+            "published-time": "2026-07-09T11:50:09+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -1763,7 +1776,8 @@
             "support": {
                 "source": "https://github.com/php-fig/http-factory"
             },
-            "time": "2024-04-15T12:06:14+00:00"
+            "time": "2024-04-15T12:06:14+00:00",
+            "published-time": "2024-05-10T07:32:19+00:00"
         },
         {
             "name": "psr/http-message",
@@ -1816,7 +1830,8 @@
             "support": {
                 "source": "https://github.com/php-fig/http-message/tree/2.0"
             },
-            "time": "2023-04-04T09:54:51+00:00"
+            "time": "2023-04-04T09:54:51+00:00",
+            "published-time": "2023-04-04T09:55:35+00:00"
         },
         {
             "name": "psr/link",
