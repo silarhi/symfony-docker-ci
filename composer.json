@@ -45,7 +45,7 @@
         "phpstan/phpstan": "^2.3.4",
         "phpstan/phpstan-strict-rules": "^2.1.0",
         "phpstan/phpstan-symfony": "^2.1.1",
-        "rector/rector": "^2.8.3",
+        "rector/rector": "^2.8.4",
         "symfony/apache-pack": "^1.0.1",
         "symfony/debug-bundle": "~8.1.0",
         "symfony/http-client": "~8.1.11",
