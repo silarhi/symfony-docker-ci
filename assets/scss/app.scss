@@ -89,7 +89,9 @@ footer {
     background: transparent;
     border: 0;
     border-radius: $border-radius-lg;
-    transition: color 0.2s, background-color 0.2s;
+    transition:
+        color 0.2s,
+        background-color 0.2s;
 
     &:hover {
         color: $white;
@@ -108,7 +110,9 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    transition:
+        opacity 0.3s ease-in-out,
+        transform 0.3s ease-in-out;
 }
 
 .theme-icon-sun {
@@ -587,7 +591,10 @@ footer {
     background: var(--bg-surface);
     border: 1px solid var(--border-color);
     border-radius: $border-radius;
-    transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+    transition:
+        border-color 0.15s,
+        box-shadow 0.15s,
+        transform 0.15s;
 
     // The number: a chip that fills on hover
     &::before {
@@ -601,7 +608,9 @@ footer {
         color: $primary;
         background: rgba($primary, 0.08);
         border-radius: $border-radius;
-        transition: color 0.15s, background-color 0.15s;
+        transition:
+            color 0.15s,
+            background-color 0.15s;
     }
 
     // An arrow that slides in on hover, so the whole tile reads as a link without underlining it
@@ -612,7 +621,9 @@ footer {
         color: $primary;
         opacity: 0;
         transform: translateX(-0.25rem);
-        transition: opacity 0.15s, transform 0.15s;
+        transition:
+            opacity 0.15s,
+            transform 0.15s;
     }
 
     &:hover,

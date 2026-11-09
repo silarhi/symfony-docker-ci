@@ -10,8 +10,7 @@
 
 namespace App\EventSubscriber;
 
-use Override;
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
@@ -21,7 +20,7 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Http\Authenticator\Token\PostAuthenticationToken;
 
-class DoubleAuthentificationSubscriber implements EventSubscriberInterface
+class DoubleAuthentificationSubscriber
 {
     final public const string ROLE_2FA_SUCCEED = 'ROLE_2FA_SUCCEED';
 
@@ -31,14 +30,7 @@ class DoubleAuthentificationSubscriber implements EventSubscriberInterface
     {
     }
 
-    #[Override]
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            KernelEvents::REQUEST => ['onKernelRequest', -10],
-        ];
-    }
-
+    #[AsEventListener(event: KernelEvents::REQUEST, priority: -10)]
     public function onKernelRequest(RequestEvent $event): void
     {
         if (!$event->isMainRequest()) {
