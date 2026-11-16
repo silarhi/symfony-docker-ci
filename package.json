@@ -27,7 +27,7 @@
         "composer.json": "composer normalize"
     },
     "devDependencies": {
-        "@biomejs/biome": "2.6.6",
+        "@biomejs/biome": "2.6.7",
         "@fullhuman/postcss-purgecss": "^8.0.0",
         "@hotwired/stimulus": "^3.2.2",
         "@hotwired/turbo": "^8.0.23",
@@ -37,20 +37,20 @@
         "@types/node": "^26.6.6",
         "@types/react": "^19.3.0",
         "@types/react-dom": "^19.3.0",
-        "@vitejs/plugin-react": "^6.2.1",
+        "@vitejs/plugin-react": "^6.3.0",
         "husky": "^9.1.7",
-        "knip": "^6.44.2",
+        "knip": "^6.45.1",
         "lint-staged": "^17.6.0",
-        "postcss": "^8.5.32",
-        "prettier": "^3.9.10",
+        "postcss": "^8.5.33",
+        "prettier": "^3.10.1",
         "react": "^19.3.1",
         "react-dom": "^19.3.1",
-        "sass": "^1.108.1",
+        "sass": "^1.108.2",
         "typescript": "^7.0.2",
-        "vite": "^8.3.6"
+        "vite": "^8.3.8"
     },
     "dependencies": {
-        "@tabler/core": "^1.7.3"
+        "@tabler/core": "^1.7.5"
     },
     "packageManager": "pnpm@12.18.0"
 }
