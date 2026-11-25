@@ -114,9 +114,9 @@ The application implements a custom 2FA system using multiple authenticators:
 2. **TwoFactorsAuthenticator** (src/Security/TwoFactorsAuthenticator.php)
     - Validates TOTP codes using Google2FA
     - Second authenticator in the chain
-    - Works in conjunction with DoubleAuthentificationSubscriber
+    - Works in conjunction with DoubleAuthentificationListener
 
-3. **DoubleAuthentificationSubscriber** (src/EventSubscriber/DoubleAuthentificationSubscriber.php)
+3. **DoubleAuthentificationListener** (src/EventListener/DoubleAuthentificationListener.php)
     - Manages 2FA workflow via event subscription
     - Grants `ROLE_2FA_SUCCEED` upon successful 2FA completion
     - Redirects to `/setup-2FA` if user hasn't set up 2FA yet
@@ -334,7 +334,7 @@ config/
 The 2FA implementation is tightly coupled across three components:
 
 - `src/Security/TwoFactorsAuthenticator.php`
-- `src/EventSubscriber/DoubleAuthentificationSubscriber.php`
+- `src/EventListener/DoubleAuthentificationListener.php`
 - `config/packages/security.yaml`
 
 Changes to authentication flow require updates to all three.
