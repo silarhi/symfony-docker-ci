@@ -253,7 +253,7 @@ Required for deployment (see config/packages/twig.yaml and Dockerfile):
 
 ### Docker Multi-Stage Build
 
-The Dockerfile (base `silarhi/php-apache:8.5-frankenphp-alpine` + `node:24-alpine`) uses a multi-stage build:
+The Dockerfile (base `silarhi/php-apache:8.6-frankenphp-alpine` + `node:24-alpine`) uses a multi-stage build:
 
 1. **php_base**: PHP image + extensions (exif, gd, imagick)
 2. **php_builder**: Install PHP dependencies with Composer

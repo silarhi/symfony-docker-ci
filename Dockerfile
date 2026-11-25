@@ -1,7 +1,7 @@
 #syntax=docker/dockerfile:1.29-labs
 
 # Versions
-FROM silarhi/php-apache:8.5-frankenphp-alpine AS php_upstream
+FROM silarhi/php-apache:8.6-frankenphp-alpine AS php_upstream
 FROM node:26-alpine AS node_upstream
 
 # Node base with pnpm (it switches itself to the version pinned in package.json "packageManager")
@@ -10,7 +10,9 @@ RUN npm install --global pnpm@12
 
 # Base with extensions
 FROM php_upstream AS php_base
-RUN install-php-extensions exif gd imagick
+# imagick 3.8.1 doesn't build on PHP 8.6 (XtOffsetOf removed): master has the fix (Imagick/imagick#795).
+# Back to a plain `imagick` once 3.8.2 is on PECL.
+RUN install-php-extensions exif gd imagick/imagick@55ed2e9f
 
 # Composer deps (cached)
 FROM php_base AS php_builder

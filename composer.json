@@ -4,7 +4,7 @@
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": "^8.5",
+        "php": "^8.6",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "bacon/bacon-qr-code": "^3.1.1",
