@@ -26,6 +26,8 @@ $finder = PhpCsFixer\Finder::create()
 $config = new PhpCsFixer\Config();
 
 return $config
+    // PHP CS Fixer 3.95 parses PHP syntax up to 8.5 only: drop once a release supports 8.6
+    ->setUnsupportedPhpVersionAllowed(true)
     ->setRules([
         '@Symfony' => true,
         '@Symfony:risky' => true,
