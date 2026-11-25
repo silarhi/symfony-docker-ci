@@ -29,14 +29,12 @@ return RectorConfig::configure()
         codingStyle: true,
         symfonyCodeQuality: true,
     )
-    ->withComposerBased(
-        twig: true,
-        symfony: true,
-    )
+    ->withComposerBased()
     ->withSkip([
         // strict_types would conflict with the php-cs-fixer header layout; opt in explicitly if wanted
         SafeDeclareStrictTypesRector::class,
         // Flex-managed file, keep fully-qualified bundle class names
         __DIR__ . '/config/bundles.php',
     ])
+    ->reportUnusedSkips()
 ;
