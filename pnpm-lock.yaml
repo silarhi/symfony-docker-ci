@@ -183,8 +183,8 @@ importers:
         specifier: 2.6.7
         version: 2.6.7
       '@fullhuman/postcss-purgecss':
-        specifier: ^8.0.0
-        version: 8.0.0(postcss@8.5.33)
+        specifier: ^9.0.0
+        version: 9.1.0(postcss@8.5.33)
       '@hotwired/stimulus':
         specifier: ^3.2.2
         version: 3.2.2
@@ -332,8 +332,9 @@ packages:
   '@emnapi/wasi-threads@2.2.0':
     resolution: {integrity: sha512-JP7OYH38Q7+pyTAe14raZHLQIK7BDKbdwji+Xi3pcd/6QkJYQH3SX4wu6EplGrGJWRepoNzedfm0G3B9Z4e9Rw==}
 
-  '@fullhuman/postcss-purgecss@8.0.0':
-    resolution: {integrity: sha512-fSRaBGf6+DYdfQMxedWfnIW8FSYE1LBpgy16jpK1L2vNb1HgeBRRZ+UX4UokNmW7YEAwPdvwkKdYtlkYpH+Aqg==}
+  '@fullhuman/postcss-purgecss@9.1.0':
+    resolution: {integrity: sha512-x3LtKP0P0CDrrENkcdCkMt8DsIjRd4YIT1hNdJgyCt/qTv1Ay0a8uWNWnrrwv+EAw9KBEKwbU4uumSy3BL0DyA==}
+    engines: {node: '>=22.12.0'}
     peerDependencies:
       postcss: ^8.0.0
 
@@ -1005,9 +1006,9 @@ packages:
     resolution: {integrity: sha512-TQMmc3w+5AxjpL8iIiwebF73dRDF4fBIieAqGn9RGCWaEVwQ6Fb2cGe31Yns0RRIzii5goJ1Y7xbMwo1TxMplw==}
     engines: {node: '>= 20.19.0'}
 
-  commander@12.1.0:
-    resolution: {integrity: sha512-Vw8qHK3bZM9y/P10u3Vib8o/DdkvA2OtPtZvD871QKjy74Wj1WSKFILMPRPSdUSx5RFK1arlJzEtA4PkFgnbuA==}
-    engines: {node: '>=18'}
+  commander@15.1.0:
+    resolution: {integrity: sha512-cgnQ88TRrWcC7pVq46RzJVRMktu3W2RcbnoidnfBsl1bmDCBwJS/udcIZpKoCrbAYYaCqsz1yZCVIgbIaU3ddQ==}
+    engines: {node: '>=22.12.0'}
 
   csstype@3.2.4:
     resolution: {integrity: sha512-PoKaoPzQapnEoqUSnHx1u6W6ku8CVEgKsnpmmzU3m1nwkidpPBQ8V/Zq2+bWNrsOKoKLwTGdbx6xF7BXP1zLVQ==}
@@ -1214,8 +1215,9 @@ packages:
     engines: {node: '>=14'}
     hasBin: true
 
-  purgecss@8.0.0:
-    resolution: {integrity: sha512-QFJyps9y5oHeXnNA3Ql1EaAqWBivNwQn19Pw1lt9RxfB+4e+bIyqCyuombk79D6Fxe+lPXggVfI1WtRGEBwgbQ==}
+  purgecss@9.1.0:
+    resolution: {integrity: sha512-KUuJWwloltnB1NhRFAjpkC9URvAenZWpKwUjpg/+cYPQGtVj65Iw7XpiF9NkPGBEPhJu9Rw5DbCn7NFlIAg8OQ==}
+    engines: {node: '>=22.12.0'}
     hasBin: true
 
   queue-microtask@1.2.3:
@@ -1471,10 +1473,11 @@ snapshots:
       tslib: 2.9.1
     optional: true
 
-  '@fullhuman/postcss-purgecss@8.0.0(postcss@8.5.33)':
+  '@fullhuman/postcss-purgecss@9.1.0(postcss@8.5.33)':
     dependencies:
+      fast-glob: 3.3.3
       postcss: 8.5.33
-      purgecss: 8.0.0
+      purgecss: 9.1.0
 
   '@hotwired/stimulus@3.2.2': {}
 
@@ -1877,7 +1880,7 @@ snapshots:
     dependencies:
       readdirp: 5.1.1
 
-  commander@12.1.0: {}
+  commander@15.1.0: {}
 
   csstype@3.2.4: {}
 
@@ -2086,9 +2089,9 @@ snapshots:
 
   prettier@3.10.1: {}
 
-  purgecss@8.0.0:
+  purgecss@9.1.0:
     dependencies:
-      commander: 12.1.0
+      commander: 15.1.0
       fast-glob: 3.3.3
       postcss: 8.5.33
       postcss-selector-parser: 7.2.1
