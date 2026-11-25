@@ -11,7 +11,7 @@
 namespace App\Security;
 
 use App\Controller\SecurityController;
-use App\EventSubscriber\DoubleAuthentificationSubscriber;
+use App\EventListener\DoubleAuthentificationListener;
 use Override;
 use PragmaRX\Google2FA\Google2FA;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -82,7 +82,7 @@ class TwoFactorsAuthenticator extends AbstractLoginFormAuthenticator
     {
         $currentToken = parent::createToken($passport, $firewallName);
 
-        $roles = array_merge($currentToken->getRoleNames(), [DoubleAuthentificationSubscriber::ROLE_2FA_SUCCEED]);
+        $roles = array_merge($currentToken->getRoleNames(), [DoubleAuthentificationListener::ROLE_2FA_SUCCEED]);
 
         /** @var UserInterface $user */
         $user = $currentToken->getUser();
