@@ -10,7 +10,9 @@ RUN npm install --global pnpm@12
 
 # Base with extensions
 FROM php_upstream AS php_base
-RUN install-php-extensions exif gd imagick
+# imagick 3.8.1 doesn't build on PHP 8.6 (XtOffsetOf removed): master has the fix (Imagick/imagick#795).
+# Back to a plain `imagick` once 3.8.2 is on PECL.
+RUN install-php-extensions exif gd imagick/imagick@55ed2e9f
 
 # Composer deps (cached)
 FROM php_base AS php_builder
