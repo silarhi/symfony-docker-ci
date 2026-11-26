@@ -1,0 +1,9 @@
+{
+    "version": "0.0.1",
+    "configurations": [
+        {
+            "name": "ci",
+            "url": "https://127.0.0.1:8001"
+        }
+    ]
+}
