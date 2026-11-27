@@ -12,13 +12,13 @@ namespace App\Controller;
 
 use Silarhi\PicassoBundle\Dto\ImageRenderData;
 use Silarhi\PicassoBundle\Service\ImageHelperInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Asset\Packages;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\Cache;
 use Symfony\Component\Routing\Attribute\Route;
 
+#[Cache(maxage: 0, smaxage: self::SHARED_MAX_AGE, public: true, staleWhileRevalidate: self::SHARED_MAX_AGE)]
 class PicassoController extends AbstractController
 {
     /** A literal data URI, e.g. a dominant color stored next to the image: a light grey 3:2 SVG */
@@ -28,7 +28,6 @@ class PicassoController extends AbstractController
     private const string API_EXAMPLE_IMAGE = 'build/images/elvira-visser-k89j1SUqf5U-unsplash.jpg';
 
     #[Route(path: '/picasso', name: 'picasso')]
-    #[Cache(smaxage: 300, public: true)]
     public function index(ImageHelperInterface $imageHelper, Packages $packages): Response
     {
         $photo = $packages->getUrl('build/images/diana-parkhouse-1166627-unsplash.jpg');
@@ -56,7 +55,6 @@ class PicassoController extends AbstractController
      * What a headless frontend (React, Vue, a mobile app…) gets to render the responsive image itself.
      */
     #[Route(path: '/picasso/api/image.json', name: 'picasso_api_image')]
-    #[Cache(smaxage: 300, public: true)]
     public function apiImage(ImageHelperInterface $imageHelper, Packages $packages): JsonResponse
     {
         return new JsonResponse($this->apiExample($imageHelper, $packages), headers: ['X-Robots-Tag' => 'noindex']);

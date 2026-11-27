@@ -245,6 +245,14 @@ Located in `.github/workflows/continuous-integration.yml`:
 - **Access control**: `/setup-2FA` requires `ROLE_USER`
 - **CSRF protection**: Enabled with header check for Turbo
 
+### HTTP Cache
+
+The public pages extend `App\Controller\AbstractController` and carry
+`#[Cache(maxage: 0, smaxage: self::SHARED_MAX_AGE, public: true, staleWhileRevalidate: self::SHARED_MAX_AGE)]` (5
+minutes on the CDN). `App\EventListener\PublicCacheListener` keeps them public for a visitor without a session cookie,
+although the navbar's `is_granted()` reads the token, and adds an ETag (304 on revalidation), as offre-parrainages.fr
+and by-night.fr. Keep the HTML of a page the same from one render to the next: `dom_id()` rather than `random()`.
+
 ### Environment Variables
 
 Required for deployment (see config/packages/twig.yaml and Dockerfile):

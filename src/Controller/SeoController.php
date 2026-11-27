@@ -10,25 +10,23 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\Cache;
 use Symfony\Component\Routing\Attribute\Route;
 
+#[Cache(maxage: 0, smaxage: self::SHARED_MAX_AGE, public: true, staleWhileRevalidate: self::SHARED_MAX_AGE)]
 class SeoController extends AbstractController
 {
     /** The public pages, in the order of the menu: the security pages stay out (noindex) */
     private const array SITEMAP_ROUTES = ['homepage', 'images', 'picasso', 'icons'];
 
     #[Route(path: '/robots.txt', name: 'robots', methods: ['GET'], format: 'txt')]
-    #[Cache(smaxage: 300, public: true)]
     public function robots(): Response
     {
         return $this->render('seo/robots.txt.twig');
     }
 
     #[Route(path: '/sitemap.xml', name: 'sitemap', methods: ['GET'], format: 'xml')]
-    #[Cache(smaxage: 300, public: true)]
     public function sitemap(): Response
     {
         return $this->render('seo/sitemap.xml.twig', [

@@ -10,7 +10,6 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\Cache;
 use Symfony\Component\Routing\Attribute\Route;
@@ -18,10 +17,10 @@ use Symfony\Contracts\Cache\CacheInterface;
 use Twig\Environment;
 use Twig\Extra\Markdown\MarkdownRuntime;
 
+#[Cache(maxage: 0, smaxage: self::SHARED_MAX_AGE, public: true, staleWhileRevalidate: self::SHARED_MAX_AGE)]
 class DefaultController extends AbstractController
 {
     #[Route(path: '/', name: 'homepage')]
-    #[Cache(smaxage: 300, public: true)]
     public function index(string $projectDir, CacheInterface $cache, Environment $twig): Response
     {
         $readme = $projectDir . \DIRECTORY_SEPARATOR . 'README.md';

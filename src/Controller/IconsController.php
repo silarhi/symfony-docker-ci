@@ -10,7 +10,6 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,13 +17,13 @@ use Symfony\Component\HttpKernel\Attribute\Cache;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Contracts\Cache\CacheInterface;
 
+#[Cache(maxage: 0, smaxage: self::SHARED_MAX_AGE, public: true, staleWhileRevalidate: self::SHARED_MAX_AGE)]
 class IconsController extends AbstractController
 {
     /** The dumped export shown on the page, so the code shown is the code dumped */
     private const string DUMP_EXAMPLE_EXPORT = 'LucideTrash2Icon';
 
     #[Route(path: '/icons', name: 'icons')]
-    #[Cache(smaxage: 300, public: true)]
     public function index(
         #[Autowire('%app.dumped_icons%')]
         string $dumpedIcons,
@@ -51,7 +50,6 @@ class IconsController extends AbstractController
      * What an API typically returns: the icon of each item is a name, only known at runtime.
      */
     #[Route(path: '/icons/api/status.json', name: 'icons_api_status')]
-    #[Cache(smaxage: 300, public: true)]
     public function apiStatus(): JsonResponse
     {
         return new JsonResponse([
