@@ -47,6 +47,9 @@ ARG APP_VERSION=dev
 ARG GIT_COMMIT=master
 ENV APP_VERSION="${APP_VERSION}"
 ENV GIT_COMMIT="${GIT_COMMIT}"
+# Worker mode, with the Symfony runtime's native FrankenPHP support (Caddyfile shipped by silarhi/php-apache): the
+# kernel boots once per worker instead of once per request
+ENV FRANKENPHP_CONFIG="import symfony-worker-native.Caddyfile"
 
 COPY --from=php_builder --link /app/vendor ./vendor
 COPY --from=node_builder --link /app/public/build /app/public/build
@@ -54,8 +57,8 @@ COPY --link --exclude=assets --exclude=docker . .
 # ux_icon() reads the SVG files at runtime (and on cache warmup)
 COPY --link assets/icons ./assets/icons
 
-# Config
-COPY --link docker/php.ini $PHP_INI_DIR/conf.d/app.ini
+# Config: zz-app.ini loads after the app.ini of silarhi/php-apache (opcache, realpath cache…), which it must not replace
+COPY --link docker/php.ini $PHP_INI_DIR/conf.d/zz-app.ini
 
 RUN mkdir -p var var/storage && \
     composer dump-autoload --optimize --classmap-authoritative --no-dev --no-interaction && \
@@ -64,5 +67,9 @@ RUN mkdir -p var var/storage && \
     APP_ENV=prod bin/console ux:icons:warm-cache && \
     # We don't use DotEnv component as docker-compose will provide real environment variables
     echo "<?php return [];" > .env.local.php && \
-    chown -R www-data:www-data var && \
+    chown -R www-data:www-data var /data/caddy /config/caddy && \
     rm -rf /root/.cache
+
+# The code stays root-owned: www-data only writes to var/ and Caddy's data and config (frankenphp has
+# cap_net_bind_service for port 80)
+USER www-data

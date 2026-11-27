@@ -261,6 +261,10 @@ The Dockerfile (base `silarhi/php-apache:8.5-frankenphp-alpine` + `node:24-alpin
 4. **node_builder**: Build frontend assets with Vite (Symfony Reprise), the icons from their committed dump; copies `templates/` for PurgeCSS
 5. **Final stage**: Combine artifacts, optimize autoloader, warm cache and the icon cache (`ux:icons:warm-cache`)
 
+The final image runs FrankenPHP in worker mode (`FRANKENPHP_CONFIG="import symfony-worker-native.Caddyfile"`, as
+cerfahub.fr), as `www-data`: services live across requests, so keep them stateless. `docker/php.ini` is copied as
+`zz-app.ini`, after the base image's `app.ini` (opcache, realpath cache).
+
 **Important**: The build process:
 
 - Uses `--classmap-authoritative` for production optimization
