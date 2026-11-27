@@ -10,7 +10,7 @@
 
 namespace App\Controller;
 
-use BaconQrCode\Renderer\Image\ImagickImageBackEnd;
+use BaconQrCode\Renderer\Image\SvgImageBackEnd;
 use BaconQrCode\Renderer\ImageRenderer;
 use BaconQrCode\Renderer\RendererStyle\RendererStyle;
 use BaconQrCode\Writer;
@@ -60,7 +60,7 @@ class SecurityController extends AbstractController
         $writer = new Writer(
             new ImageRenderer(
                 new RendererStyle(400),
-                new ImagickImageBackEnd()
+                new SvgImageBackEnd()
             )
         );
         $qrCodeImage = base64_encode($writer->writeString($qrCodeUrl));

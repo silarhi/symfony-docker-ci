@@ -255,7 +255,7 @@ Required for deployment (see config/packages/twig.yaml and Dockerfile):
 
 The Dockerfile (base `silarhi/php-apache:8.5-frankenphp-alpine` + `node:24-alpine`) uses a multi-stage build:
 
-1. **php_base**: PHP image + extensions (exif, gd, imagick)
+1. **php_base**: PHP image + extensions (exif, gd: the QR code of the 2FA setup is an SVG)
 2. **php_builder**: Install PHP dependencies with Composer
 3. **node_deps**: `pnpm install` (needs `vendor/` for `@symfony/ux-turbo`)
 4. **node_builder**: Build frontend assets with Vite (Symfony Reprise), the icons from their committed dump; copies `templates/` for PurgeCSS

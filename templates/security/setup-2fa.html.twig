@@ -28,7 +28,7 @@
 
                             <span class="tag-mono mb-2">Step 1</span>
                             <p>Scan this QR code with your authenticator app.</p>
-                            <img width="300" height="300" class="qr-image" src="data:image/png;base64,{{ qrCodeImage }}" alt="QR code to scan with your authenticator app" />
+                            <img width="300" height="300" class="qr-image" src="data:image/svg+xml;base64,{{ qrCodeImage }}" alt="QR code to scan with your authenticator app" />
                             <div class="secret-key mt-3 mb-4" {{ stimulus_controller('clipboard', {text: secretKey}) }}>
                                 <span class="small text-secondary">Can't scan it? Enter this key instead:</span>
                                 <div class="input-group input-group-flat mt-1">

@@ -10,7 +10,7 @@ RUN npm install --global pnpm@12
 
 # Base with extensions
 FROM php_upstream AS php_base
-RUN install-php-extensions exif gd imagick
+RUN install-php-extensions exif gd
 
 # Composer deps (cached)
 FROM php_base AS php_builder
