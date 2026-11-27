@@ -16,6 +16,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Asset\Packages;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\Cache;
 use Symfony\Component\Routing\Attribute\Route;
 
 class PicassoController extends AbstractController
@@ -27,6 +28,7 @@ class PicassoController extends AbstractController
     private const string API_EXAMPLE_IMAGE = 'build/images/elvira-visser-k89j1SUqf5U-unsplash.jpg';
 
     #[Route(path: '/picasso', name: 'picasso')]
+    #[Cache(smaxage: 300, public: true)]
     public function index(ImageHelperInterface $imageHelper, Packages $packages): Response
     {
         $photo = $packages->getUrl('build/images/diana-parkhouse-1166627-unsplash.jpg');
@@ -54,6 +56,7 @@ class PicassoController extends AbstractController
      * What a headless frontend (React, Vue, a mobile app…) gets to render the responsive image itself.
      */
     #[Route(path: '/picasso/api/image.json', name: 'picasso_api_image')]
+    #[Cache(smaxage: 300, public: true)]
     public function apiImage(ImageHelperInterface $imageHelper, Packages $packages): JsonResponse
     {
         return new JsonResponse($this->apiExample($imageHelper, $packages), headers: ['X-Robots-Tag' => 'noindex']);
