@@ -4,6 +4,7 @@ import { LucideCheckIcon, LucideCopyIcon, LucideTriangleAlertIcon } from '@/js/i
 
 // A copy button: Twig renders the first icon with ux_icon(), JavaScript swaps it after the click.
 // createIconElement() builds the <svg> with the DOM API, no HTML is parsed: no innerHTML needed.
+/* stimulusFetch: 'lazy' */
 export default class extends Controller {
     static targets = ['icon', 'input']
     static values = { text: String }

@@ -21,6 +21,7 @@ const EXAMPLES: [code: string, attributes: UXIconAttributes][] = [
 const HIDDEN = ['xmlns', 'viewBox']
 
 // Fills the table with the attributes resolveIcon() computes, in the browser
+/* stimulusFetch: 'lazy' */
 export default class extends Controller {
     static targets = ['body']
     declare readonly bodyTarget: HTMLTableSectionElement
