@@ -10,7 +10,7 @@
     </twig:Showcase>
 #}
 {% props active = 'preview', meta = null, metaColor = 'primary' %}
-{% set id = 'showcase-' ~ random() %}
+{% set id = dom_id('showcase') %}
 <div {{ attributes.defaults({class: 'showcase card overflow-hidden'}) }}>
     <div class="card-header">
         <ul class="nav nav-segmented" role="tablist">

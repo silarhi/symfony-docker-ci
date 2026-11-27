@@ -4,6 +4,7 @@ import { LucideTrash2Icon } from '@/js/icons'
 
 // Renders the icon in JavaScript and compares it with the HTML ux_icon() rendered for the same attributes.
 // The Twig output comes as a value, not as markup: the browser would serialize parsed markup its own way.
+/* stimulusFetch: 'lazy' */
 export default class extends Controller {
     static targets = ['preview', 'javascript', 'result']
     static values = { twig: String }

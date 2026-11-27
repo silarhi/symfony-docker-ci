@@ -2,7 +2,9 @@ import { Controller } from '@hotwired/stimulus'
 import { createRoot, type Root } from 'react-dom/client'
 import App from '@/js/component/App'
 
-class IndexController extends Controller {
+// Lazy: React and the component are only loaded on the homepage
+/* stimulusFetch: 'lazy' */
+export default class extends Controller {
     #root?: Root
     connect() {
         if (document.documentElement.hasAttribute('data-turbo-preview')) {
@@ -16,5 +18,3 @@ class IndexController extends Controller {
         this.#root?.unmount()
     }
 }
-
-window.app.register('index', IndexController)

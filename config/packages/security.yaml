@@ -9,8 +9,10 @@ security:
                 users:
                     test: { password: 'test', roles: ['ROLE_USER'] }
     firewalls:
+        # The profiler, and the Glide images of AssetsController (/assets/…): no firewall, so no session. The built
+        # assets of public/build/ never reach PHP
         dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js|assets)/
+            pattern: ^/(_(profiler|wdt)|assets)/
             security: false
         main:
             lazy: true

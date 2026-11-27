@@ -13,6 +13,7 @@ const COMPONENTS: Record<string, (props: Record<string, unknown>) => ReactNode> 
 }
 
 // Mounts one of the React examples of the showcase, with its props
+/* stimulusFetch: 'lazy' */
 export default class extends Controller {
     static values = { component: String, props: Object }
     declare readonly componentValue: string

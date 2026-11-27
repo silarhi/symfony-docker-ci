@@ -142,11 +142,13 @@ The application uses League Glide for on-the-fly image manipulation:
 - Stimulus controllers for progressive enhancement
 - Hotwire Turbo for SPA-like navigation
 
-**Entry Points** (vite.config.ts, `build.rollupOptions.input`):
+**Entry Point** (vite.config.ts, `build.rollupOptions.input`): a single `app` entry (base.html.twig). The page scripts
+are lazy Stimulus controllers (`/* stimulusFetch: 'lazy' */` above the class): Vite splits each into its own chunk, loaded
+when its `data-controller` element first appears, React included:
 
-- `app` - Main application CSS/JS (base.html.twig)
-- `index` - React-based index page (assets/js/pages/index.tsx)
-- `icons` - UX Icons JS showcase (assets/js/pages/icons.tsx): its Stimulus controllers and React components live in `assets/js/icons-showcase/`
+- `index` (`assets/js/controllers/index_controller.tsx`) - React-based homepage
+- `icons-*` (`assets/js/controllers/icons_*_controller.ts`) - UX Icons JS showcase; its React components live in
+  `assets/js/icons-showcase/`
 
 **Icons**: `silarhi/ux-icons-js-bundle` dumps the local icons of `assets/icons/` into `assets/js/icons/` on cache warmup, or with `bin/console ux-icons-js:dump`, as by-night.fr and offre-parrainages.fr do. The dump is committed (`index.js`, `loaders.js`, `icons/` and their types), so the frontend builds and type-checks without PHP: commit it again after adding an SVG or changing `ux_icons` (prod dumps into `var/icons` instead, see `config/packages/silarhi_ux_icons_js.yaml`). It is imported from `@/js/icons` and `@/js/icons/loaders`. Add an icon by importing it, then `bin/console ux:icons:lock` (or `ux:icons:import lucide:<name>`).
 
@@ -193,7 +195,7 @@ Notable rules from `.php-cs-fixer.dist.php`:
 - Prettier only for Markdown/YAML
 - React 19 with hooks patterns
 - TypeScript, `strict` (`tsconfig.json` for `assets/`, `tsconfig.node.json` for `vite.config.ts`); no `any`, no `@ts-ignore`, no `prop-types`
-- Declarations for untyped code live in `assets/types/` (Turbo events, `window.app`)
+- Declarations for untyped code live in `assets/types/` (Turbo events)
 - Stimulus targets and values are typed with `declare readonly fooTarget: HTMLElement`
 - `@/js/icons` is typed by the committed `.d.ts` files of the dump
 - `@tabler/core/js/src/*` is typed from Tabler's `dist/types/src/` (`paths` in `tsconfig.json`): its raw `.ts` sources do not compile under our options
@@ -243,6 +245,14 @@ Located in `.github/workflows/continuous-integration.yml`:
 - **Access control**: `/setup-2FA` requires `ROLE_USER`
 - **CSRF protection**: Enabled with header check for Turbo
 
+### HTTP Cache
+
+The public pages extend `App\Controller\AbstractController` and carry
+`#[Cache(maxage: 0, smaxage: self::SHARED_MAX_AGE, public: true, staleWhileRevalidate: self::SHARED_MAX_AGE)]` (5
+minutes on the CDN). `App\EventListener\PublicCacheListener` keeps them public for a visitor without a session cookie,
+although the navbar's `is_granted()` reads the token, and adds an ETag (304 on revalidation), as offre-parrainages.fr
+and by-night.fr. Keep the HTML of a page the same from one render to the next: `dom_id()` rather than `random()`.
+
 ### Environment Variables
 
 Required for deployment (see config/packages/twig.yaml and Dockerfile):
@@ -255,11 +265,15 @@ Required for deployment (see config/packages/twig.yaml and Dockerfile):
 
 The Dockerfile (base `silarhi/php-apache:8.5-frankenphp-alpine` + `node:24-alpine`) uses a multi-stage build:
 
-1. **php_base**: PHP image + extensions (exif, gd, imagick)
+1. **php_base**: PHP image + extensions (exif, gd: the QR code of the 2FA setup is an SVG)
 2. **php_builder**: Install PHP dependencies with Composer
 3. **node_deps**: `pnpm install` (needs `vendor/` for `@symfony/ux-turbo`)
 4. **node_builder**: Build frontend assets with Vite (Symfony Reprise), the icons from their committed dump; copies `templates/` for PurgeCSS
 5. **Final stage**: Combine artifacts, optimize autoloader, warm cache and the icon cache (`ux:icons:warm-cache`)
+
+The final image runs FrankenPHP in worker mode (`FRANKENPHP_CONFIG="import symfony-worker-native.Caddyfile"`, as
+cerfahub.fr), as `www-data`: services live across requests, so keep them stateless. `docker/php.ini` is copied as
+`zz-app.ini`, after the base image's `app.ini` (opcache, realpath cache).
 
 **Important**: The build process:
 
@@ -290,10 +304,9 @@ templates/            # Twig templates
 assets/
 ├── js/
 │   ├── app.ts       # Main TypeScript entry
-│   ├── pages/       # React page components
 │   ├── component/   # Reusable React components
 │   ├── icons/       # Icons dumped by silarhi/ux-icons-js-bundle (committed, never edited)
-│   ├── icons-showcase/ # Stimulus controllers and React components of the /icons showcase
+│   ├── icons-showcase/ # React components of the /icons showcase
 │   └── controllers/ # Stimulus controllers
 ├── icons/           # UX Icons SVG files (lucide/ imported from Iconify)
 └── scss/            # Stylesheets
@@ -325,9 +338,8 @@ config/
 ### Adding a New React Component
 
 1. Create component in `assets/js/component/`
-2. Create page wrapper in `assets/js/pages/`
-3. Add entry point in `vite.config.ts` under `build.rollupOptions.input`
-4. Include in Twig template with `reprise_entry_script_tags()`
+2. Mount it from a lazy Stimulus controller in `assets/js/controllers/` (see `index_controller.tsx`)
+3. Add `{{ stimulus_controller('…') }}` on its element in the Twig template: no new entry point
 
 ### Modifying Security Configuration
 

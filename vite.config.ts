@@ -76,9 +76,8 @@ export default defineConfig(({ mode }) => {
             // entrypoints.json entry consumed by reprise_entry_*_tags().
             rollupOptions: {
                 input: {
+                    // The page scripts are lazy Stimulus controllers (assets/js/controllers/), split by Vite
                     app: `${assets}/js/app.ts`,
-                    index: `${assets}/js/pages/index.tsx`,
-                    icons: `${assets}/js/pages/icons.tsx`,
                 },
             },
 
