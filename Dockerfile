@@ -50,6 +50,8 @@ ENV GIT_COMMIT="${GIT_COMMIT}"
 # Worker mode, with the Symfony runtime's native FrankenPHP support (Caddyfile shipped by silarhi/php-apache): the
 # kernel boots once per worker instead of once per request
 ENV FRANKENPHP_CONFIG="import symfony-worker-native.Caddyfile"
+# The cache headers of public/build/
+ENV CADDY_SERVER_EXTRA_DIRECTIVES='import /etc/frankenphp/server.caddyfile'
 
 COPY --from=php_builder --link /app/vendor ./vendor
 COPY --from=node_builder --link /app/public/build /app/public/build
@@ -59,6 +61,7 @@ COPY --link assets/icons ./assets/icons
 
 # Config: zz-app.ini loads after the app.ini of silarhi/php-apache (opcache, realpath cache…), which it must not replace
 COPY --link docker/php.ini $PHP_INI_DIR/conf.d/zz-app.ini
+COPY --link docker/server.caddyfile /etc/frankenphp/server.caddyfile
 
 RUN mkdir -p var var/storage && \
     composer dump-autoload --optimize --classmap-authoritative --no-dev --no-interaction && \
