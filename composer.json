@@ -10,7 +10,7 @@
         "bacon/bacon-qr-code": "^3.1.1",
         "imagine/imagine": "^1.5.4",
         "kornrunner/blurhash": "^1.2.2",
-        "league/commonmark": "^2.10.7",
+        "league/commonmark": "^2.10.8",
         "league/glide-symfony": "^2.2.0",
         "pragmarx/google2fa": "^9.1.0",
         "sentry/sentry-symfony": "^5.17.0",
